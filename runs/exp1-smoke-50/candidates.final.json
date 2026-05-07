@@ -1,0 +1,1402 @@
+[
+  {
+    "paper_id": "2605.05084v1",
+    "candidate_problem": "Underexploited failure mode in Order Matters: Improving Domain Adaptation by Reordering Data: Our simulations demonstrate reduced variance compared to related methods, and experiments on two domain shift image classification benchmarks show improved target domain accuracy.",
+    "evidence_spans": [
+      "Our simulations demonstrate reduced variance compared to related methods, and experiments on two domain shift image classification benchmarks show improved target domain accuracy."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Primary benchmark metric improvement (accuracy/F1/error) against baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 20,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 12,
+      "storyability": 7,
+      "total": 85
+    },
+    "grade": "A",
+    "rank": 1,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05000v1",
+    "candidate_problem": "Underexploited failure mode in Agentic Vulnerability Reasoning on Windows COM Binaries: COMRace++ ’s limited base-configuration performance (0.225 F1, 0.500 recall, and 32 missed vulnerable functions out of 64) stems from four structural limitations that persist despite our engineering enhancements.",
+    "evidence_spans": [
+      "COMRace++ ’s limited base-configuration performance (0.225 F1, 0.500 recall, and 32 missed vulnerable functions out of 64) stems from four structural limitations that persist despite our engineering enhancements."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Primary benchmark metric improvement (accuracy/F1/error) against baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 20,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 83
+    },
+    "grade": "A",
+    "rank": 2,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05054v1",
+    "candidate_problem": "Underexploited failure mode in Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation: Extensive results across 11 benchmarks have demonstrated that DP-FM achieves a new state-of-the-art for multi-step few-shot adaptation.",
+    "evidence_spans": [
+      "Extensive results across 11 benchmarks have demonstrated that DP-FM achieves a new state-of-the-art for multi-step few-shot adaptation."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 12,
+      "storyability": 7,
+      "total": 81
+    },
+    "grade": "A",
+    "rank": 3,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05000v1",
+    "candidate_problem": "Underexploited failure mode in Agentic Vulnerability Reasoning on Windows COM Binaries: Stage 1 discovery completes within current 400K–1M+ token context windows, but Stage 2 PoC generation involves iterative compile-execute-debug cycles that consume 7.7–11.4M tokens per case on the strongest configurations ( Appendix D ).",
+    "evidence_spans": [
+      "Stage 1 discovery completes within current 400K–1M+ token context windows, but Stage 2 PoC generation involves iterative compile-execute-debug cycles that consume 7.7–11.4M tokens per case on the strongest configurations ( Appendix D )."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Quality-cost frontier: output quality versus compute/token cost.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 16,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 4,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05133v1",
+    "candidate_problem": "Underexploited failure mode in Transformed Latent Variable Multi-Output Gaussian Processes: Future work could address this trade-off by adopting structured variational distributions (Mishkin et al.",
+    "evidence_spans": [
+      "Future work could address this trade-off by adopting structured variational distributions (Mishkin et al."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 5,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05020v1",
+    "candidate_problem": "Underexploited failure mode in Graph-SND: Sparse Aggregation for Behavioral Diversity in Multi-Agent Reinforcement Learning: The main failure mode is transparent from the graph semantics.",
+    "evidence_spans": [
+      "The main failure mode is transparent from the graph semantics."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 6,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05206v1",
+    "candidate_problem": "Underexploited failure mode in Taming Outlier Tokens in Diffusion Transformers: Prior work has shown that Vision Transformers (ViTs) can produce a small number of high-norm tokens that attract disproportionate attention while carrying limited local information, but their role in generative models remains underexplored.",
+    "evidence_spans": [
+      "Prior work has shown that Vision Transformers (ViTs) can produce a small number of high-norm tokens that attract disproportionate attention while carrying limited local information, but their role in generative models remains underexplored."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Quality-cost frontier: output quality versus compute/token cost.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 16,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 7,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05206v1",
+    "candidate_problem": "Underexploited failure mode in Taming Outlier Tokens in Diffusion Transformers: Taming Outlier Tokens in Diffusion Transformers Xiaoyu Wu 1* Yifei Wang 1* Tsu-Jui Fu 2 Liang-Chieh Chen 2 Zhe Gan 2 Chen Wei 1 1 Rice University 2 Apple Abstract We study outlier tokens in Diffusion Transformers (DiTs) for image generation.",
+    "evidence_spans": [
+      "Taming Outlier Tokens in Diffusion Transformers Xiaoyu Wu 1* Yifei Wang 1* Tsu-Jui Fu 2 Liang-Chieh Chen 2 Zhe Gan 2 Chen Wei 1 1 Rice University 2 Apple Abstract We study outlier tokens in Diffusion Transformers (DiTs) for image generation."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Quality-cost frontier: output quality versus compute/token cost.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 16,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 8,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05144v1",
+    "candidate_problem": "Underexploited failure mode in Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting: While we took steps to reduce leakage risk, alternative sentiment extraction methods remain an important direction for future work.",
+    "evidence_spans": [
+      "While we took steps to reduce leakage risk, alternative sentiment extraction methods remain an important direction for future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 9,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05134v1",
+    "candidate_problem": "Underexploited failure mode in Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction: Extensive testing across three data benchmarks demonstrates that our method achieves state-of-the-art performance with reduced resource overhead.",
+    "evidence_spans": [
+      "Extensive testing across three data benchmarks demonstrates that our method achieves state-of-the-art performance with reduced resource overhead."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 10,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05134v1",
+    "candidate_problem": "Underexploited failure mode in Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction: This phenomenon emerges from the fundamental trade-off between finite training data and open-ended generation bender2021dangers .",
+    "evidence_spans": [
+      "This phenomenon emerges from the fundamental trade-off between finite training data and open-ended generation bender2021dangers ."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 11,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05123v1",
+    "candidate_problem": "Underexploited failure mode in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning: We demonstrate that our approach improves upon O2O-RL baselines with various benchmarks.",
+    "evidence_spans": [
+      "We demonstrate that our approach improves upon O2O-RL baselines with various benchmarks."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 12,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05095v1",
+    "candidate_problem": "Underexploited failure mode in A Bayesian Approach for Task-Specific Next-Best-View Selection with Uncertain Geometry: We see these as promising future work.",
+    "evidence_spans": [
+      "We see these as promising future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 13,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05093v1",
+    "candidate_problem": "Underexploited failure mode in Proximal Projection for Doubly Sparse Regularized Models: Ridge regression provides a better bias-variance trade-off, producing more stable estimates with lower bias.",
+    "evidence_spans": [
+      "Ridge regression provides a better bias-variance trade-off, producing more stable estimates with lower bias."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 14,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05066v1",
+    "candidate_problem": "Underexploited failure mode in The Impossibility Triangle of Long-Context Modeling: Our analysis has several limitations.",
+    "evidence_spans": [
+      "Our analysis has several limitations."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 15,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05066v1",
+    "candidate_problem": "Underexploited failure mode in The Impossibility Triangle of Long-Context Modeling: We highlight four directions for future work.",
+    "evidence_spans": [
+      "We highlight four directions for future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 16,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05055v1",
+    "candidate_problem": "Underexploited failure mode in Adaptive Learning Strategies for AoA-Based Outdoor Localization: A Comprehensive Framework: There are several directions for future work.",
+    "evidence_spans": [
+      "There are several directions for future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 17,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05029v1",
+    "candidate_problem": "Underexploited failure mode in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence: We show that this premise fails in a systematic and measurable way.",
+    "evidence_spans": [
+      "We show that this premise fails in a systematic and measurable way."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 18,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05023v1",
+    "candidate_problem": "Underexploited failure mode in CuBridge: An LLM-Based Framework for Understanding and Reconstructing High-Performance Attention Kernels: Our work has two main limitations.",
+    "evidence_spans": [
+      "Our work has two main limitations."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 19,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05008v1",
+    "candidate_problem": "Underexploited failure mode in Scalable inference of spatial regions and temporal signatures from time series: Several directions for future work remain.",
+    "evidence_spans": [
+      "Several directions for future work remain."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 20,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.04993v1",
+    "candidate_problem": "Underexploited failure mode in Federated Learning for Early Prediction of EV Charging Demand: Future work will extend the present intra-depot setting to cross-depot federated learning across multiple charging sites.",
+    "evidence_spans": [
+      "Future work will extend the present intra-depot setting to cross-depot federated learning across multiple charging sites."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 21,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05054v1",
+    "candidate_problem": "Underexploited failure mode in Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation: Under this new geometric view, we identify three overlooked limitations in them: 1) Angular dynamics distortion : The radial-angular coupling induces non-uniform speed on the angular sub-manifold, leading to regression training difficulty and extra truncation errors.",
+    "evidence_spans": [
+      "Under this new geometric view, we identify three overlooked limitations in them: 1) Angular dynamics distortion : The radial-angular coupling induces non-uniform speed on the angular sub-manifold, leading to regression training difficulty and extra truncation errors."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 12,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 22,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05040v1",
+    "candidate_problem": "Underexploited failure mode in Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization: The main limitation of our setting is that PBSD still depends on the quality of the contextual teacher signal.",
+    "evidence_spans": [
+      "The main limitation of our setting is that PBSD still depends on the quality of the contextual teacher signal."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 8,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 23,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05104v1",
+    "candidate_problem": "Underexploited failure mode in Building informative materials datasets beyond targeted objectives: Robust computation of diversity for our framework while making the computation reasonable time consuming is left as future work.",
+    "evidence_spans": [
+      "Robust computation of diversity for our framework while making the computation reasonable time consuming is left as future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 8,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 24,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05104v1",
+    "candidate_problem": "Underexploited failure mode in Building informative materials datasets beyond targeted objectives: Testing in higher-dimensional settings, and methods to address possible curse of dimensionality effects, are left for future work.",
+    "evidence_spans": [
+      "Testing in higher-dimensional settings, and methods to address possible curse of dimensionality effects, are left for future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 8,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 25,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05179v1",
+    "candidate_problem": "Underexploited failure mode in Estimating the expected output of wide random MLPs more efficiently than sampling: By far the most common way to estimate an expected loss in machine learning is to draw samples, compute the loss on each one, and take the empirical average.",
+    "evidence_spans": [
+      "By far the most common way to estimate an expected loss in machine learning is to draw samples, compute the loss on each one, and take the empirical average."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Quality-cost frontier: output quality versus compute/token cost.",
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 16,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 8,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 26,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05179v1",
+    "candidate_problem": "Underexploited failure mode in Estimating the expected output of wide random MLPs more efficiently than sampling: However, sampling is not necessarily optimal.",
+    "evidence_spans": [
+      "However, sampling is not necessarily optimal."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 8,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 27,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05084v1",
+    "candidate_problem": "Underexploited failure mode in Order Matters: Improving Domain Adaptation by Reordering Data: Although theoretically well-grounded [ 7 , 6 , 44 ] , a key limitation is that empirically estimating these discrepancies is extremely noisy, especially in high dimensions and with small minibatches.",
+    "evidence_spans": [
+      "Although theoretically well-grounded [ 7 , 6 , 44 ] , a key limitation is that empirically estimating these discrepancies is extremely noisy, especially in high dimensions and with small minibatches."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 12,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 28,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.04971v1",
+    "candidate_problem": "Underexploited failure mode in Why Geometric Continuity Emerges in Deep Neural Networks: Residual Connections and Rotational Symmetry Breaking: While the same patterns appear in pretrained Llama-3.1-8B and models up to 70B parameters (Appendix A , B ), we have not verified the training dynamics (rotation drift) at larger scales.",
+    "evidence_spans": [
+      "While the same patterns appear in pretrained Llama-3.1-8B and models up to 70B parameters (Appendix A , B ), we have not verified the training dynamics (rotation drift) at larger scales."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 12,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 29,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.04971v1",
+    "candidate_problem": "Underexploited failure mode in Why Geometric Continuity Emerges in Deep Neural Networks: Residual Connections and Rotational Symmetry Breaking: Crucially, a nonlinear but rotation-preserving activation fails to retain continuity, isolating symmetry breaking—not nonlinearity itself—as the active ingredient.",
+    "evidence_spans": [
+      "Crucially, a nonlinear but rotation-preserving activation fails to retain continuity, isolating symmetry breaking—not nonlinearity itself—as the active ingredient."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 12,
+      "storyability": 7,
+      "total": 77
+    },
+    "grade": "B",
+    "rank": 30,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.04997v1",
+    "candidate_problem": "Underexploited failure mode in DualTCN: A Physics-Constrained Temporal Convolutional Network for 2 Time-Domain Marine CSEM Inversion: Key limitations include: (i) the two-channel input creates a structural amplitude vulnerability mitigated by DualTCN-AmpAug ( R ¯ 2 = 0.858 \\bar{R}^{2}=0.858 at ± \\pm 2% noise) and DualTCN-AmpRatio (exact uniform-bias immunity); per-receiver calibration mismatch remains the dominant vulnerability (Section 5.4.1 , Fig.",
+    "evidence_spans": [
+      "Key limitations include: (i) the two-channel input creates a structural amplitude vulnerability mitigated by DualTCN-AmpAug ( R ¯ 2 = 0.858 \\bar{R}^{2}=0.858 at ± \\pm 2% noise) and DualTCN-AmpRatio (exact uniform-bias immunity); per-receiver calibration mismatch remains the dominant vulnerability (Section 5.4.1 , Fig."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 31,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.04997v1",
+    "candidate_problem": "Underexploited failure mode in DualTCN: A Physics-Constrained Temporal Convolutional Network for 2 Time-Domain Marine CSEM Inversion: The retraining pipeline takes < 8 <8 GPU-hours for one million samples; two concrete field-data targets (Zenodo TD-CSEM benchmark, Scarborough gas-field data) are identified for future work.",
+    "evidence_spans": [
+      "The retraining pipeline takes < 8 <8 GPU-hours for one million samples; two concrete field-data targets (Zenodo TD-CSEM benchmark, Scarborough gas-field data) are identified for future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 32,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05125v1",
+    "candidate_problem": "Underexploited failure mode in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation: Table 1 summarizes per-metric ranks and binary reliability criteria across all four synthetic datasets; full numerical results per dataset are in Appendix G (Tables 10 – 11 ).",
+    "evidence_spans": [
+      "Table 1 summarizes per-metric ranks and binary reliability criteria across all four synthetic datasets; full numerical results per dataset are in Appendix G (Tables 10 – 11 )."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 33,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05125v1",
+    "candidate_problem": "Underexploited failure mode in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation: All models perform comparably on the positive control (Simple 3-Node), confirming the DAG constraint does not degrade performance when confounding is absent; two non-overlapping failure modes emerge on harder benchmarks.",
+    "evidence_spans": [
+      "All models perform comparably on the positive control (Simple 3-Node), confirming the DAG constraint does not degrade performance when confounding is absent; two non-overlapping failure modes emerge on harder benchmarks."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 34,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05049v1",
+    "candidate_problem": "Underexploited failure mode in Piper: Efficient Large-Scale MoE Training via Resource Modeling and Pipelined Hybrid Parallelism: We presented Piper, a holistic MoE training framework that co-designs distributed training strategy through mathematical resource modeling, empirical micro-benchmarking, and platform-aware performance estimation.",
+    "evidence_spans": [
+      "We presented Piper, a holistic MoE training framework that co-designs distributed training strategy through mathematical resource modeling, empirical micro-benchmarking, and platform-aware performance estimation."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 35,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05049v1",
+    "candidate_problem": "Underexploited failure mode in Piper: Efficient Large-Scale MoE Training via Resource Modeling and Pipelined Hybrid Parallelism: Implemented in Python and PyTorch, Piper is portable across platforms, and its micro-benchmarking suite can characterize arbitrary HPC systems.",
+    "evidence_spans": [
+      "Implemented in Python and PyTorch, Piper is portable across platforms, and its micro-benchmarking suite can characterize arbitrary HPC systems."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 36,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05133v1",
+    "candidate_problem": "Underexploited failure mode in Transformed Latent Variable Multi-Output Gaussian Processes: Furthermore, although the parameter complexity of q ​ ( 𝐇 ) q(\\mathbf{H}) scales linearly with the number of outputs P P , future work could investigate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) .",
+    "evidence_spans": [
+      "Furthermore, although the parameter complexity of q ​ ( 𝐇 ) q(\\mathbf{H}) scales linearly with the number of outputs P P , future work could investigate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) ."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 37,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05020v1",
+    "candidate_problem": "Underexploited failure mode in Graph-SND: Sparse Aggregation for Behavioral Diversity in Multi-Agent Reinforcement Learning: The same implementation can therefore support two scientifically different uses: measuring diversity only where interaction structure says it matters, or approximating the global SND metric when all-pairs aggregation is the bottleneck.",
+    "evidence_spans": [
+      "The same implementation can therefore support two scientifically different uses: measuring diversity only where interaction structure says it matters, or approximating the global SND metric when all-pairs aggregation is the bottleneck."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 38,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05151v1",
+    "candidate_problem": "Underexploited failure mode in Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting: Attention heads and residual stream representations may encode additional structure not captured by this analysis and represent a natural direction for future work.",
+    "evidence_spans": [
+      "Attention heads and residual stream representations may encode additional structure not captured by this analysis and represent a natural direction for future work."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 39,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05151v1",
+    "candidate_problem": "Underexploited failure mode in Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting: The absence of strong FFN superposition suggests that these benchmarks do not exert the kind of feature-compression pressure commonly associated with transformer advantages in language modeling, helping explain the persistent competitiveness of simple linear models such as DLinear.",
+    "evidence_spans": [
+      "The absence of strong FFN superposition suggests that these benchmarks do not exert the kind of feature-compression pressure commonly associated with transformer advantages in language modeling, helping explain the persistent competitiveness of simple linear models such as DLinear."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 40,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05144v1",
+    "candidate_problem": "Underexploited failure mode in Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting: These limitations point to the importance of contextualizing our results and pursuing further research to validate the educational benefits of AI support.",
+    "evidence_spans": [
+      "These limitations point to the importance of contextualizing our results and pursuing further research to validate the educational benefits of AI support."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 41,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05123v1",
+    "candidate_problem": "Underexploited failure mode in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning: Across multiple benchmarks, our adaptive selection and fine-tuning procedure consistently improves over O2O-RL baselines.",
+    "evidence_spans": [
+      "Across multiple benchmarks, our adaptive selection and fine-tuning procedure consistently improves over O2O-RL baselines."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 42,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05120v1",
+    "candidate_problem": "Underexploited failure mode in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals: This section discusses the implications of these findings, the physiological interpretability of the model, and the limitations of the current approach.",
+    "evidence_spans": [
+      "This section discusses the implications of these findings, the physiological interpretability of the model, and the limitations of the current approach."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 43,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05120v1",
+    "candidate_problem": "Underexploited failure mode in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals: Future work will aim to validate these findings under diverse real-world traffic conditions to further explore the influence of dynamic environmental stressors on physiological responses.",
+    "evidence_spans": [
+      "Future work will aim to validate these findings under diverse real-world traffic conditions to further explore the influence of dynamic environmental stressors on physiological responses."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 44,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05095v1",
+    "candidate_problem": "Underexploited failure mode in A Bayesian Approach for Task-Specific Next-Best-View Selection with Uncertain Geometry: In our work, we rely on Gaussian process models, due to both their recent use in stochastic surface reconstruction and popularity in other decision-making settings such as Bayesian optimization.",
+    "evidence_spans": [
+      "In our work, we rely on Gaussian process models, due to both their recent use in stochastic surface reconstruction and popularity in other decision-making settings such as Bayesian optimization."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 45,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05093v1",
+    "candidate_problem": "Underexploited failure mode in Proximal Projection for Doubly Sparse Regularized Models: We use a penalty function that permits a clear user-defined trade-off between the l 1 l_{1} and l 2 l_{2} penalties and propose a novel proximal projection during optimization.",
+    "evidence_spans": [
+      "We use a penalty function that permits a clear user-defined trade-off between the l 1 l_{1} and l 2 l_{2} penalties and propose a novel proximal projection during optimization."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 46,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05055v1",
+    "candidate_problem": "Underexploited failure mode in Adaptive Learning Strategies for AoA-Based Outdoor Localization: A Comprehensive Framework: This section presented the experimental setup and results for AoA-based localization frameworks under both offline and online learning settings.",
+    "evidence_spans": [
+      "This section presented the experimental setup and results for AoA-based localization frameworks under both offline and online learning settings."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 47,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05050v1",
+    "candidate_problem": "Underexploited failure mode in Kinematic Discriminants of Deceleration Behavior Modes in Car-Following: Evidence from NGSIM Trajectory Data: Gap-closing rate and visual looming swap discriminative dominance depending on deceleration intensity - a finding that reconciles a long-standing conflict in the car-following literature and challenges spacing-centered assumptions in traditional driver behavior models.",
+    "evidence_spans": [
+      "Gap-closing rate and visual looming swap discriminative dominance depending on deceleration intensity - a finding that reconciles a long-standing conflict in the car-following literature and challenges spacing-centered assumptions in traditional driver behavior models."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 48,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05050v1",
+    "candidate_problem": "Underexploited failure mode in Kinematic Discriminants of Deceleration Behavior Modes in Car-Following: Evidence from NGSIM Trajectory Data: This study presents a two-stage analytical framework that distinguishes between information availability (kinematic variables measurable in the environment) and information utilization (variables that demonstrably separate driver behavioral patterns), applied to 1,060,119 valid car-following observations from the NG...",
+    "evidence_spans": [
+      "This study presents a two-stage analytical framework that distinguishes between information availability (kinematic variables measurable in the environment) and information utilization (variables that demonstrably separate driver behavioral patterns), applied to 1,060,119 valid car-following observations from the NG..."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 49,
+    "evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05029v1",
+    "candidate_problem": "Underexploited failure mode in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence: The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence Kejun Liu kjliu@suda.edu.cn State Key Laboratory of Bioinspired Interface Material Science, Institute of Nano & Functional Materials, Soochow University, Suzhou 215123, China Abstract We report a systematic failure mode in predictive...",
+    "evidence_spans": [
+      "The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence Kejun Liu kjliu@suda.edu.cn State Key Laboratory of Bioinspired Interface Material Science, Institute of Nano & Functional Materials, Soochow University, Suzhou 215123, China Abstract We report a systematic failure mode in predictive..."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 75
+    },
+    "grade": "B",
+    "rank": 50,
+    "evidence_precision": 1
+  }
+]

@@ -661,7 +661,7 @@ function heuristicCandidatesFromPaper(
 
     candidates.push({
       paper_id: paper.id,
-      candidate_problem: safeSubstring(`Underexploited failure mode in ${paper.title}: ${span}`, 280),
+      candidate_problem: `Underexploited failure mode in ${paper.title}: ${span}`,
       evidence_spans: [span],
       why_hidden_or_underexploited:
         "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
@@ -1154,23 +1154,140 @@ function writeJson(path: string, value: unknown): void {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
-function markdownReport(candidates: CandidateProblem[]): string {
+function markdownList(items: string[]): string[] {
+  if (items.length === 0) {
+    return ["- None."];
+  }
+  return items.map((item) => `- ${item}`);
+}
+
+function markdownReport(
+  candidates: CandidateProblem[],
+  rejected: RejectionRecord[],
+  summary: RunSummary,
+): string {
   const lines: string[] = [];
-  lines.push("# Experiment 1 Candidate Report");
+  lines.push("# Experiment 1 Comprehensive Smoke Report");
   lines.push("");
   lines.push(`Generated: ${new Date().toISOString()}`);
+  lines.push(`Output directory: \`${summary.config.output_dir}\``);
+  lines.push(`Mode: \`${summary.config.mode}\``);
   lines.push("");
+
+  lines.push("## Run Summary");
+  lines.push("");
+  lines.push(`- Papers fetched from arXiv API: ${summary.papers_fetched}`);
+  lines.push(`- Papers inside ${summary.config.days}-day window: ${summary.papers_in_window}`);
+  lines.push(`- Abstract-pass shortlist size: ${summary.abstract_shortlist_size}`);
+  lines.push(`- Raw candidates extracted: ${summary.raw_candidates}`);
+  lines.push(`- Accepted candidates in report: ${summary.accepted_candidates}`);
+  lines.push(`- Rejected candidates: ${summary.rejected_candidates}`);
+  lines.push(`- Top-20 evidence precision: ${Math.round(summary.top_20_evidence_precision * 100)}%`);
+  lines.push(`- Estimated cost: $${summary.estimated_cost_usd}`);
+  lines.push(`- Estimated cost per scanned paper: $${summary.estimated_cost_per_paper_usd}`);
+  lines.push("");
+
+  lines.push("## Acceptance Checks");
+  lines.push("");
+  for (const [check, passed] of Object.entries(summary.acceptance.checks)) {
+    lines.push(`- ${passed ? "PASS" : "FAIL"}: ${check}`);
+  }
+  lines.push(`- Overall: ${summary.acceptance.pass ? "PASS" : "FAIL"}`);
+  lines.push("");
+
+  lines.push("## Grade Counts");
+  lines.push("");
+  lines.push(`- A: ${summary.grade_counts.A}`);
+  lines.push(`- B: ${summary.grade_counts.B}`);
+  lines.push(`- C: ${summary.grade_counts.C}`);
+  lines.push("");
+
   if (candidates.length === 0) {
     lines.push("No accepted candidates.");
-    return lines.join("\n");
+  } else {
+    lines.push("## Candidate Index");
+    lines.push("");
+    lines.push("| Rank | Grade | Paper | Score | Impact | Time Budget | Candidate |");
+    lines.push("| --- | --- | --- | --- | --- | --- | --- |");
+    for (const candidate of candidates) {
+      const shortProblem = safeSubstring(candidate.candidate_problem, 140).replace(/\|/g, "\\|");
+      lines.push(
+        `| ${candidate.rank} | ${candidate.grade} | [${candidate.paper_id}](https://arxiv.org/abs/${candidate.paper_id}) | ${candidate.score_breakdown.total} | ${candidate.impact_type} | ${candidate.time_budget_hours}h | ${shortProblem} |`,
+      );
+    }
+    lines.push("");
+
+    lines.push("## Detailed Candidates");
+    lines.push("");
+    for (const candidate of candidates) {
+      lines.push(`### ${candidate.rank}. ${candidate.grade}-grade candidate: ${candidate.paper_id}`);
+      lines.push("");
+      lines.push(`ArXiv: https://arxiv.org/abs/${candidate.paper_id}`);
+      lines.push(`Score: ${candidate.score_breakdown.total}/100`);
+      lines.push(`Confidence: ${candidate.confidence}`);
+      lines.push(`Impact type: ${candidate.impact_type}`);
+      lines.push(`Time budget: ${candidate.time_budget_hours} hours`);
+      lines.push(`Evidence precision: ${Math.round(candidate.evidence_precision * 100)}%`);
+      lines.push("");
+      lines.push("Candidate problem:");
+      lines.push("");
+      lines.push(candidate.candidate_problem);
+      lines.push("");
+      lines.push("Evidence spans:");
+      lines.push("");
+      lines.push(...markdownList(candidate.evidence_spans));
+      lines.push("");
+      lines.push("Why hidden or underexploited:");
+      lines.push("");
+      lines.push(candidate.why_hidden_or_underexploited || "Not specified.");
+      lines.push("");
+      lines.push("Auto-research experiment:");
+      lines.push("");
+      lines.push(candidate.auto_research_experiment || "Not specified.");
+      lines.push("");
+      lines.push("Available data or benchmark:");
+      lines.push("");
+      lines.push(candidate.available_data_or_benchmark || "Not specified.");
+      lines.push("");
+      lines.push("Expected metric:");
+      lines.push("");
+      lines.push(candidate.expected_metric || "Not specified.");
+      lines.push("");
+      lines.push("Story angle:");
+      lines.push("");
+      lines.push(candidate.story_angle || "Not specified.");
+      lines.push("");
+      lines.push("Disqualifiers:");
+      lines.push("");
+      lines.push(...markdownList(candidate.disqualifiers));
+      lines.push("");
+      lines.push("Score breakdown:");
+      lines.push("");
+      lines.push(`- Auto-research feasibility: ${candidate.score_breakdown.auto_research_feasibility}/25`);
+      lines.push(`- Falsifiable evaluation: ${candidate.score_breakdown.falsifiable_evaluation}/20`);
+      lines.push(`- Problem clarity: ${candidate.score_breakdown.problem_clarity}/15`);
+      lines.push(`- Novelty or neglectedness: ${candidate.score_breakdown.novelty_or_neglectedness}/15`);
+      lines.push(`- Impact: ${candidate.score_breakdown.impact}/15`);
+      lines.push(`- Storyability: ${candidate.score_breakdown.storyability}/10`);
+      lines.push("");
+    }
   }
 
-  lines.push("| Rank | Grade | Paper ID | Score | Impact | Candidate Problem |");
-  lines.push("| --- | --- | --- | --- | --- | --- |");
-  for (const candidate of candidates) {
-    lines.push(
-      `| ${candidate.rank} | ${candidate.grade} | ${candidate.paper_id} | ${candidate.score_breakdown.total} | ${candidate.impact_type} | ${candidate.candidate_problem.replace(/\|/g, "\\|")} |`,
-    );
+  lines.push("## Rejection Audit");
+  lines.push("");
+  if (rejected.length === 0) {
+    lines.push("No rejected candidates.");
+  } else {
+    for (const [index, item] of rejected.entries()) {
+      lines.push(`### Rejected ${index + 1}: ${item.paper_id}`);
+      lines.push("");
+      lines.push(`Candidate: ${item.candidate_problem}`);
+      lines.push("");
+      lines.push("Reasons:");
+      lines.push("");
+      lines.push(...markdownList(item.reasons));
+      lines.push("");
+    }
   }
 
   return lines.join("\n");
@@ -1543,7 +1660,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   writeJson(join(config.output_dir, "candidates.final.json"), trimmedAccepted);
   writeJson(join(config.output_dir, "candidates.rejected.json"), rejected);
   writeJson(join(config.output_dir, "summary.json"), summary);
-  writeFileSync(join(config.output_dir, "report.md"), `${markdownReport(trimmedAccepted)}\n`, "utf8");
+  writeFileSync(join(config.output_dir, "report.md"), `${markdownReport(trimmedAccepted, rejected, summary)}\n`, "utf8");
 
   console.log(
     JSON.stringify({
