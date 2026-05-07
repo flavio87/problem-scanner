@@ -25,6 +25,15 @@ export const IMPACT_TYPES = [
 
 export type ImpactType = (typeof IMPACT_TYPES)[number];
 export type RunMode = "heuristic" | "llm";
+export type EvidenceRole =
+  | "limitation"
+  | "future_work"
+  | "failure_mode"
+  | "negative_result"
+  | "benchmark_gap"
+  | "positive_result_only";
+export type PaperStatus = "active" | "withdrawn" | "unknown";
+export type CodeOrDataStatus = "found" | "claimed" | "not_found" | "unknown";
 
 export interface ScoreBreakdown {
   auto_research_feasibility: number;
@@ -40,10 +49,18 @@ export interface CandidateProblem {
   paper_id: string;
   candidate_problem: string;
   evidence_spans: string[];
+  problem_evidence_spans: string[];
+  feasibility_evidence_spans: string[];
+  evidence_role: EvidenceRole;
   why_hidden_or_underexploited: string;
   auto_research_experiment: string;
   available_data_or_benchmark: string;
   expected_metric: string;
+  specific_intervention: string;
+  baseline: string;
+  metric: string;
+  paper_status: PaperStatus;
+  code_or_data_status: CodeOrDataStatus;
   time_budget_hours: number;
   impact_type: ImpactType;
   story_angle: string;
@@ -53,16 +70,26 @@ export interface CandidateProblem {
   grade: "A" | "B" | "C";
   rank: number;
   evidence_precision: number;
+  problem_evidence_precision: number;
+  feasibility_evidence_precision: number;
 }
 
 export interface RawCandidate {
   paper_id: string;
   candidate_problem: string;
   evidence_spans: string[];
+  problem_evidence_spans: string[];
+  feasibility_evidence_spans: string[];
+  evidence_role: EvidenceRole;
   why_hidden_or_underexploited: string;
   auto_research_experiment: string;
   available_data_or_benchmark: string;
   expected_metric: string;
+  specific_intervention: string;
+  baseline: string;
+  metric: string;
+  paper_status: PaperStatus;
+  code_or_data_status: CodeOrDataStatus;
   time_budget_hours: number;
   impact_type: ImpactType;
   story_angle: string;
@@ -161,6 +188,7 @@ interface RunSummary {
   accepted_candidates: number;
   rejected_candidates: number;
   top_20_evidence_precision: number;
+  top_20_problem_evidence_precision: number;
   grade_counts: {
     A: number;
     B: number;
@@ -172,6 +200,7 @@ interface RunSummary {
       at_least_3_a_grade: boolean;
       at_least_8_a_or_b_grade: boolean;
       top_20_evidence_precision_gt_80pct: boolean;
+      top_20_problem_evidence_precision_gt_80pct: boolean;
       at_least_1_under_72h_public_benchmark: boolean;
       low_cost_per_paper: boolean;
     };
@@ -201,6 +230,28 @@ const POSITIVE_SIGNAL_TERMS = [
 
 const NEGATIVE_SIGNAL_TERMS = ["survey", "tutorial", "opinion", "position paper"];
 
+const PROBLEM_EVIDENCE_PATTERNS: Array<{ role: EvidenceRole; pattern: RegExp }> = [
+  { role: "limitation", pattern: /\b(limitation|limitations|limited by|we limit|our analysis has several limitations)\b/i },
+  { role: "future_work", pattern: /\b(future work|future direction|future directions|open problem|next step|next steps|promising direction)\b/i },
+  { role: "failure_mode", pattern: /\b(failure mode|fails?|failure|brittle|breaks down|does not generalize|degrades|unstable)\b/i },
+  { role: "negative_result", pattern: /\b(negative result|underperform|worse than|did not improve|no improvement|unsuccessful)\b/i },
+  { role: "benchmark_gap", pattern: /\b(benchmark gap|not covered by|uncovered|missing benchmark|evaluation gap|not evaluated)\b/i },
+];
+
+const FEASIBILITY_EVIDENCE_PATTERN =
+  /\b(public|benchmark|benchmarks|dataset|datasets|github|repository|repo|source code|code is available|baseline|accuracy|f1|auc|precision|recall|error|domainbed|imagenet|cifar|mnist|ngsim)\b/i;
+
+const GENERIC_EXPERIMENT_PATTERN =
+  /^reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode/i;
+
+const GENERIC_INTERVENTION_PATTERN = /^design a paper-specific ablation around this stated gap/i;
+
+const SOLVED_PRIOR_ART_PATTERN =
+  /\bto address (?:this|these) limitations?\b/i;
+
+const HUMAN_STUDY_INTERVENTION_PATTERN =
+  /\b(participant base|participants?|cohorts?|human subjects?|user stud(?:y|ies)|classroom|students?|interviews?|survey respondents?)\b/i;
+
 const WET_LAB_TERMS = [
   "wet lab",
   "in vivo",
@@ -229,6 +280,10 @@ const UNSANDBOXED_RISK_PATTERNS = [
   /\bmalware\b/i,
   /\bexploit(?:s|ed|ing)?\b/i,
   /\bzero-day\b/i,
+  /\bvulnerabilit(?:y|ies)\b/i,
+  /\bproof-of-concept\b/i,
+  /\bpo[cs]\b/i,
+  /\barbitrary code execution\b/i,
   /\blive target\b/i,
   /\breal-world attack\b/i,
   /\boffensive operation\b/i,
@@ -297,11 +352,63 @@ function parseImpactType(input: string): ImpactType {
   return match ?? "science";
 }
 
+function parseEvidenceRole(input: string): EvidenceRole {
+  const normalized = normalizeWhitespace(input.toLowerCase()).replace(/[\s-]+/g, "_");
+  if (
+    normalized === "limitation" ||
+    normalized === "future_work" ||
+    normalized === "failure_mode" ||
+    normalized === "negative_result" ||
+    normalized === "benchmark_gap" ||
+    normalized === "positive_result_only"
+  ) {
+    return normalized;
+  }
+  return "positive_result_only";
+}
+
+function parsePaperStatus(input: string): PaperStatus {
+  const normalized = normalizeWhitespace(input.toLowerCase());
+  if (normalized === "active" || normalized === "withdrawn" || normalized === "unknown") {
+    return normalized;
+  }
+  return "unknown";
+}
+
+function parseCodeOrDataStatus(input: string): CodeOrDataStatus {
+  const normalized = normalizeWhitespace(input.toLowerCase()).replace(/[\s-]+/g, "_");
+  if (normalized === "found" || normalized === "claimed" || normalized === "not_found" || normalized === "unknown") {
+    return normalized;
+  }
+  return "unknown";
+}
+
 function safeSubstring(input: string, maxLength: number): string {
   if (input.length <= maxLength) {
     return input;
   }
   return `${input.slice(0, maxLength - 3)}...`;
+}
+
+function splitSentences(text: string): string[] {
+  const protectedText = [
+    /\bet al\./gi,
+    /\be\.g\./gi,
+    /\bi\.e\./gi,
+    /\bvs\./gi,
+    /\bfig\./gi,
+    /\beq\./gi,
+    /\bsec\./gi,
+    /\bdr\./gi,
+    /\bprof\./gi,
+    /\bmr\./gi,
+    /\bms\./gi,
+  ].reduce((value, pattern) => value.replace(pattern, (match) => match.replace(/\./g, "<DOT>")), normalizeWhitespace(text));
+
+  return protectedText
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.replaceAll("<DOT>", ".").trim())
+    .filter((sentence) => sentence.length > 30);
 }
 
 function extractTagContent(block: string, tag: string): string {
@@ -556,10 +663,7 @@ function buildFullText(paper: ArxivPaper, sections: PaperSections): string {
 }
 
 export function extractEvidenceSentences(text: string, max: number): string[] {
-  const sentences = normalizeWhitespace(text)
-    .split(/(?<=[.!?])\s+/)
-    .map((sentence) => sentence.trim())
-    .filter((sentence) => sentence.length > 30);
+  const sentences = splitSentences(text);
 
   const evidence: string[] = [];
 
@@ -586,6 +690,74 @@ export function extractEvidenceSentences(text: string, max: number): string[] {
   return evidence;
 }
 
+function classifyEvidenceRole(sentence: string): EvidenceRole {
+  for (const { role, pattern } of PROBLEM_EVIDENCE_PATTERNS) {
+    if (pattern.test(sentence)) {
+      return role;
+    }
+  }
+  return "positive_result_only";
+}
+
+function evidenceRolePriority(role: EvidenceRole): number {
+  switch (role) {
+    case "future_work":
+      return 5;
+    case "benchmark_gap":
+      return 4;
+    case "negative_result":
+      return 3;
+    case "failure_mode":
+      return 2;
+    case "limitation":
+      return 1;
+    case "positive_result_only":
+      return 0;
+  }
+}
+
+function extractRoleEvidenceSentences(
+  text: string,
+  max: number,
+): Array<{ span: string; role: EvidenceRole }> {
+  const sentences = splitSentences(text);
+
+  const evidence: Array<{ span: string; role: EvidenceRole }> = [];
+  for (const sentence of sentences) {
+    const role = classifyEvidenceRole(sentence);
+    if (role === "positive_result_only") {
+      continue;
+    }
+    const span = safeSubstring(sentence, 480);
+    if (!evidence.some((item) => item.span === span)) {
+      evidence.push({ span, role });
+    }
+  }
+
+  return evidence
+    .sort((a, b) => evidenceRolePriority(b.role) - evidenceRolePriority(a.role))
+    .slice(0, max);
+}
+
+function extractFeasibilityEvidenceSentences(text: string, max: number): string[] {
+  const sentences = splitSentences(text);
+
+  const evidence: string[] = [];
+  for (const sentence of sentences) {
+    if (!FEASIBILITY_EVIDENCE_PATTERN.test(sentence)) {
+      continue;
+    }
+    const span = safeSubstring(sentence, 480);
+    if (!evidence.includes(span)) {
+      evidence.push(span);
+      if (evidence.length >= max) {
+        break;
+      }
+    }
+  }
+  return evidence;
+}
+
 function inferImpactType(text: string): ImpactType {
   const lower = text.toLowerCase();
   if (/(econom|market|cost|business|revenue)/.test(lower)) {
@@ -608,8 +780,17 @@ function inferImpactType(text: string): ImpactType {
 
 function inferMetric(text: string): string {
   const lower = text.toLowerCase();
-  if (/(accuracy|f1|auc|precision|recall|error rate)/.test(lower)) {
-    return "Primary benchmark metric improvement (accuracy/F1/error) against baseline.";
+  if (/\bf1\b/.test(lower)) {
+    return "Primary benchmark F1 improvement against baseline.";
+  }
+  if (/\bauc\b/.test(lower)) {
+    return "Primary benchmark AUC improvement against baseline.";
+  }
+  if (/(precision|recall)/.test(lower)) {
+    return "Primary benchmark precision/recall trade-off against baseline.";
+  }
+  if (/(accuracy|error rate)/.test(lower)) {
+    return "Primary benchmark accuracy/error improvement against baseline.";
   }
   if (/(safety|attack|exploit|security)/.test(lower)) {
     return "Safety benchmark success/failure rate and false-positive/false-negative trade-offs.";
@@ -622,13 +803,98 @@ function inferMetric(text: string): string {
 
 function inferBenchmarkHint(paper: ArxivPaper, text: string): string {
   const combined = `${paper.comments} ${text}`.toLowerCase();
-  if (/(github|code|repo)/.test(combined)) {
+  if (/(github|repository|repo|source code|code is available)/.test(combined)) {
     return "Author-provided code repository plus public benchmark datasets referenced in the paper.";
   }
   if (/(dataset|benchmark|public)/.test(combined)) {
     return "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.";
   }
   return "Public benchmark related to the paper's main task; start with reproduction from abstract and references.";
+}
+
+function inferCodeOrDataStatus(text: string): CodeOrDataStatus {
+  const lower = text.toLowerCase();
+  if (/https?:\/\/(www\.)?github\.com|github\.com|code is available|source code (?:is )?available|repository at/.test(lower)) {
+    return "found";
+  }
+  if (/\b(public|benchmark|benchmarks|dataset|datasets|github|repository|repo|source code|open-source)\b/.test(lower)) {
+    return "claimed";
+  }
+  if (PRIVATE_DATA_TERMS.some((term) => lower.includes(term))) {
+    return "not_found";
+  }
+  return "unknown";
+}
+
+function inferPaperStatus(paper: ArxivPaper, paperText: PaperText): PaperStatus {
+  const text = `${paper.title} ${paper.abstract} ${paper.comments} ${paperText.full_text}`.toLowerCase();
+  if (/\bwithdrawn\b|\bthis paper has been withdrawn\b/.test(text)) {
+    return "withdrawn";
+  }
+  return "active";
+}
+
+function cleanInterventionPhrase(value: string): string {
+  return normalizeWhitespace(value)
+    .replace(/\s+([,.;:])/g, "$1")
+    .replace(/\(\s+/g, "(")
+    .replace(/\s+\)/g, ")")
+    .replace(/[.;:]+$/g, "")
+    .trim();
+}
+
+function inferSpecificIntervention(problemSpan: string, paper: ArxivPaper): string {
+  const span = normalizeWhitespace(problemSpan);
+  if (/\bsimulated annealing\b/i.test(span) || /\btabu search\b/i.test(span)) {
+    return safeSubstring(
+      `Compare the paper's greedy optimisation procedure against simulated annealing and tabu search in the ${paper.title} setup`,
+      260,
+    );
+  }
+
+  const futureWorkIsInMatch = span.match(/\bfuture work is in\s+(.+)/i);
+  if (futureWorkIsInMatch?.[1]) {
+    return safeSubstring(`Evaluate ${cleanInterventionPhrase(futureWorkIsInMatch[1])} in the ${paper.title} setup`, 260);
+  }
+
+  const futureMatch = span.match(/\b(?:future work|future directions?|next steps?|promising direction)[^;:,-]*(?:include|includes|address|explore|investigate|extend|improve|develop|test|evaluate|consider)\s+(.+)/i);
+  if (futureMatch?.[1]) {
+    return safeSubstring(`Evaluate ${cleanInterventionPhrase(futureMatch[1])} in the ${paper.title} setup`, 260);
+  }
+
+  const limitationMatch = span.match(/\b(?:limitation|limitations|limited by|fails?|failure mode|degrades|unstable)[^.!?]*\b(?:under|when|on|for|with|because of)\s+([^.!?]+)/i);
+  if (limitationMatch?.[1]) {
+    return safeSubstring(`Stress-test and mitigate ${cleanInterventionPhrase(limitationMatch[1])} in the ${paper.title} setup`, 260);
+  }
+
+  return safeSubstring(`Design a paper-specific ablation around this stated gap in ${paper.title}: ${span}`, 260);
+}
+
+function inferBaseline(paper: ArxivPaper): string {
+  return `The reported baseline/protocol from ${paper.title}.`;
+}
+
+function inferMetricName(expectedMetric: string): string {
+  const lower = expectedMetric.toLowerCase();
+  if (lower.includes("f1")) {
+    return "F1";
+  }
+  if (lower.includes("auc")) {
+    return "AUC";
+  }
+  if (lower.includes("accuracy")) {
+    return "accuracy";
+  }
+  if (lower.includes("latency")) {
+    return "latency";
+  }
+  if (lower.includes("cost")) {
+    return "cost";
+  }
+  if (lower.includes("error")) {
+    return "error rate";
+  }
+  return "pre-registered benchmark delta";
 }
 
 function heuristicCandidatesFromPaper(
@@ -641,40 +907,51 @@ function heuristicCandidatesFromPaper(
     paperText.sections.future_work,
     paperText.sections.discussion,
     paperText.sections.conclusion,
-    paper.abstract,
   ]
     .filter(Boolean)
     .join(" ");
 
-  const evidence = extractEvidenceSentences(focusText, Math.max(config.candidate_per_paper, 1) * 2);
+  const problemEvidence = extractRoleEvidenceSentences(focusText, Math.max(config.candidate_per_paper, 1) * 2);
+  const feasibilityEvidence = extractFeasibilityEvidenceSentences(
+    `${paper.comments} ${paper.abstract} ${paperText.full_text}`,
+    config.max_evidence_spans,
+  );
 
-  if (evidence.length === 0) {
+  if (problemEvidence.length === 0) {
     return [];
   }
 
   const candidates: RawCandidate[] = [];
-  for (let i = 0; i < Math.min(config.candidate_per_paper, evidence.length); i += 1) {
-    const span = evidence[i];
+  for (let i = 0; i < Math.min(config.candidate_per_paper, problemEvidence.length); i += 1) {
+    const { span, role } = problemEvidence[i];
     const impactType = inferImpactType(`${paper.title} ${focusText}`);
     const metric = inferMetric(`${paper.title} ${span}`);
     const dataHint = inferBenchmarkHint(paper, focusText);
+    const specificIntervention = inferSpecificIntervention(span, paper);
 
     candidates.push({
       paper_id: paper.id,
-      candidate_problem: `Underexploited failure mode in ${paper.title}: ${span}`,
-      evidence_spans: [span],
+      candidate_problem: `Test whether ${specificIntervention} addresses a stated ${role.replace(/_/g, " ")} in ${paper.title}.`,
+      evidence_spans: [span, ...feasibilityEvidence],
+      problem_evidence_spans: [span],
+      feasibility_evidence_spans: feasibilityEvidence,
+      evidence_role: role,
       why_hidden_or_underexploited:
-        "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
-      auto_research_experiment:
-        "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+        `The candidate is grounded in an explicit ${role.replace(/_/g, " ")} span rather than a positive-result claim.`,
+      auto_research_experiment: `Reproduce ${inferBaseline(paper)} Then apply this intervention: ${specificIntervention}. Compare against the baseline under the same data, split, and compute budget.`,
       available_data_or_benchmark: dataHint,
       expected_metric: metric,
+      specific_intervention: specificIntervention,
+      baseline: inferBaseline(paper),
+      metric: inferMetricName(metric),
+      paper_status: inferPaperStatus(paper, paperText),
+      code_or_data_status: inferCodeOrDataStatus(`${paper.comments} ${paper.abstract} ${paperText.full_text}`),
       time_budget_hours: 48,
       impact_type: impactType,
       story_angle:
-        "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+        "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
       disqualifiers: [],
-      confidence: 0.48,
+      confidence: 0.58,
     });
   }
 
@@ -682,17 +959,36 @@ function heuristicCandidatesFromPaper(
 }
 
 function normalizeRawCandidate(candidate: Partial<RawCandidate>, paperId: string): RawCandidate {
+  const problemEvidence = (candidate.problem_evidence_spans ?? candidate.evidence_spans ?? [])
+    .map((span) => normalizeWhitespace(String(span)))
+    .filter(Boolean)
+    .slice(0, 8);
+  const feasibilityEvidence = (candidate.feasibility_evidence_spans ?? [])
+    .map((span) => normalizeWhitespace(String(span)))
+    .filter(Boolean)
+    .slice(0, 8);
+  const combinedEvidence = (candidate.evidence_spans ?? [...problemEvidence, ...feasibilityEvidence])
+    .map((span) => normalizeWhitespace(String(span)))
+    .filter(Boolean)
+    .slice(0, 12);
+  const inferredRole = problemEvidence[0] ? classifyEvidenceRole(problemEvidence[0]) : "positive_result_only";
+
   return {
     paper_id: paperId,
     candidate_problem: normalizeWhitespace(candidate.candidate_problem ?? "Candidate problem missing."),
-    evidence_spans: (candidate.evidence_spans ?? [])
-      .map((span) => normalizeWhitespace(String(span)))
-      .filter(Boolean)
-      .slice(0, 8),
+    evidence_spans: combinedEvidence.length > 0 ? combinedEvidence : [...problemEvidence, ...feasibilityEvidence],
+    problem_evidence_spans: problemEvidence,
+    feasibility_evidence_spans: feasibilityEvidence,
+    evidence_role: parseEvidenceRole(String(candidate.evidence_role ?? inferredRole)),
     why_hidden_or_underexploited: normalizeWhitespace(candidate.why_hidden_or_underexploited ?? ""),
     auto_research_experiment: normalizeWhitespace(candidate.auto_research_experiment ?? ""),
     available_data_or_benchmark: normalizeWhitespace(candidate.available_data_or_benchmark ?? ""),
     expected_metric: normalizeWhitespace(candidate.expected_metric ?? ""),
+    specific_intervention: normalizeWhitespace(candidate.specific_intervention ?? ""),
+    baseline: normalizeWhitespace(candidate.baseline ?? ""),
+    metric: normalizeWhitespace(candidate.metric ?? ""),
+    paper_status: parsePaperStatus(String(candidate.paper_status ?? "unknown")),
+    code_or_data_status: parseCodeOrDataStatus(String(candidate.code_or_data_status ?? "unknown")),
     time_budget_hours: clamp(Math.round(Number(candidate.time_budget_hours ?? 72)), 1, 240),
     impact_type: parseImpactType(String(candidate.impact_type ?? "science")),
     story_angle: normalizeWhitespace(candidate.story_angle ?? ""),
@@ -785,9 +1081,11 @@ function llmV1Prompt(paper: ArxivPaper, paperText: PaperText, config: Experiment
   return [
     "You are extracting computationally testable latent research problems from a fresh arXiv paper.",
     "Return strict JSON only with this schema:",
-    "{\"candidates\":[{\"candidate_problem\":string,\"evidence_spans\":string[],\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}]}",
+    "{\"candidates\":[{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}]}",
     `Return at most ${config.candidate_per_paper} candidates.`,
-    "Reject vague ideas. Each candidate must include explicit evidence text and a falsifiable 24-72h experiment path on public data/code/benchmarks.",
+    "Reject vague ideas. Each candidate must include author-supported problem evidence and separate feasibility evidence.",
+    "Problem evidence must come from limitations, future work, error analysis, failure modes, benchmark gaps, or negative results. Do not use a positive result as problem evidence.",
+    "Each candidate must name a specific intervention, baseline, and metric. Generic plans like 'reproduce and add an ablation' are invalid.",
     "Hard disqualify if wet-lab/private-data/unbounded compute is required.",
     "Paper metadata:",
     `ID: ${paper.id}`,
@@ -803,9 +1101,10 @@ function llmV2Prompt(candidate: RawCandidate, paper: ArxivPaper, paperText: Pape
   return [
     "You are a strict verifier for research-candidate quality.",
     "Return strict JSON only with this schema:",
-    "{\"accepted\":boolean,\"rejection_reasons\":string[],\"score_breakdown\":{\"auto_research_feasibility\":number,\"falsifiable_evaluation\":number,\"problem_clarity\":number,\"novelty_or_neglectedness\":number,\"impact\":number,\"storyability\":number,\"total\":number},\"candidate_patch\":{\"candidate_problem\":string,\"evidence_spans\":string[],\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}}",
+    "{\"accepted\":boolean,\"rejection_reasons\":string[],\"score_breakdown\":{\"auto_research_feasibility\":number,\"falsifiable_evaluation\":number,\"problem_clarity\":number,\"novelty_or_neglectedness\":number,\"impact\":number,\"storyability\":number,\"total\":number},\"candidate_patch\":{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}}",
     "Scoring rubric weights: feasibility 25, falsifiable 20, clarity 15, novelty 15, impact 15, storyability 10.",
-    "Reject if: no evidence span; wet-lab/private data/unavailable compute; no measurable criterion; pure survey path; unsandboxed legal/safety risk.",
+    "Reject if: no source-backed problem evidence; evidence is positive-result-only; no feasibility evidence; no specific intervention/baseline/metric; wet-lab/private data/unavailable compute; pure survey path; unsandboxed legal/safety risk.",
+    "Downgrade withdrawn papers and candidates with only unknown code/data status.",
     "Paper metadata:",
     `ID: ${paper.id}`,
     `Title: ${paper.title}`,
@@ -817,54 +1116,73 @@ function llmV2Prompt(candidate: RawCandidate, paper: ArxivPaper, paperText: Pape
 }
 
 function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
-  const candidateText = `${candidate.candidate_problem} ${candidate.auto_research_experiment} ${candidate.available_data_or_benchmark}`.toLowerCase();
+  const candidateText = [
+    candidate.candidate_problem,
+    candidate.auto_research_experiment,
+    candidate.available_data_or_benchmark,
+    candidate.specific_intervention,
+    candidate.baseline,
+    candidate.metric,
+    candidate.feasibility_evidence_spans.join(" "),
+  ]
+    .join(" ")
+    .toLowerCase();
 
   let feasibility = 0;
   if (candidate.time_budget_hours <= 72) {
-    feasibility += 10;
-  } else if (candidate.time_budget_hours <= 120) {
     feasibility += 6;
+  } else if (candidate.time_budget_hours <= 120) {
+    feasibility += 3;
   } else {
+    feasibility += 1;
+  }
+  if (candidate.code_or_data_status === "found") {
+    feasibility += 10;
+  } else if (candidate.code_or_data_status === "claimed") {
+    feasibility += 8;
+  } else if (candidate.code_or_data_status === "unknown") {
     feasibility += 2;
   }
-  if (/(public|benchmark|dataset|github|kaggle|open)/.test(candidateText)) {
-    feasibility += 8;
+  if (candidate.feasibility_evidence_spans.length > 0 && /(public|benchmark|dataset|github|kaggle|open|accuracy|f1|auc)/.test(candidateText)) {
+    feasibility += 5;
   }
-  if (/(reproduce|ablation|baseline|evaluate|run|compare)/.test(candidate.auto_research_experiment.toLowerCase())) {
+  if (candidate.specific_intervention.length >= 30 && candidate.baseline.length >= 20) {
     feasibility += 7;
   }
   feasibility = clamp(feasibility, 0, 25);
 
   let falsifiable = 0;
-  if (candidate.expected_metric.length >= 20) {
+  if (candidate.expected_metric.length >= 20 && candidate.metric.length >= 3) {
     falsifiable += 8;
   }
-  if (/(accuracy|f1|auc|error|rate|latency|throughput|cost|success|precision|recall)/.test(candidate.expected_metric.toLowerCase())) {
+  if (/(accuracy|f1|auc|error|rate|latency|throughput|cost|success|precision|recall)/.test(`${candidate.expected_metric} ${candidate.metric}`.toLowerCase())) {
     falsifiable += 8;
   }
-  if (/\d|%|delta|improv|drop|increase|decrease/.test(candidate.expected_metric.toLowerCase())) {
+  if (/\d|%|delta|improv|drop|increase|decrease|baseline|compare|versus/.test(candidate.expected_metric.toLowerCase())) {
     falsifiable += 4;
   }
   falsifiable = clamp(falsifiable, 0, 20);
 
   let clarity = 0;
   const problemLength = candidate.candidate_problem.length;
-  if (problemLength >= 60 && problemLength <= 260) {
+  if (problemLength >= 60 && problemLength <= 360) {
     clarity += 10;
   } else if (problemLength >= 30) {
     clarity += 6;
   }
-  if (candidate.why_hidden_or_underexploited.length >= 40) {
+  if (candidate.specific_intervention.length >= 30 && candidate.baseline.length >= 20) {
     clarity += 5;
   }
   clarity = clamp(clarity, 0, 15);
 
   let novelty = 0;
-  const noveltyText = candidate.why_hidden_or_underexploited.toLowerCase();
-  if (/(limitation|discussion|appendix|negative|failure|underexplored|neglected)/.test(noveltyText)) {
+  if (candidate.evidence_role !== "positive_result_only" && candidate.problem_evidence_spans.length > 0) {
     novelty += 10;
   }
-  if (/(not in abstract|hidden|underused|overlooked)/.test(noveltyText)) {
+  if (candidate.evidence_role === "future_work" || candidate.evidence_role === "limitation") {
+    novelty += 3;
+  }
+  if (/(not in abstract|hidden|underused|overlooked|author-supported|explicit)/.test(candidate.why_hidden_or_underexploited.toLowerCase())) {
     novelty += 5;
   }
   novelty = clamp(novelty, 0, 15);
@@ -878,6 +1196,9 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   }
   if (candidate.story_angle.toLowerCase().includes("real-world")) {
     impact += 2;
+  }
+  if (candidate.paper_status === "withdrawn") {
+    impact -= 4;
   }
   impact = clamp(impact, 0, 15);
 
@@ -893,7 +1214,19 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   }
   storyability = clamp(storyability, 0, 10);
 
-  const total = feasibility + falsifiable + clarity + novelty + impact + storyability;
+  let total = feasibility + falsifiable + clarity + novelty + impact + storyability;
+  if (candidate.code_or_data_status === "unknown") {
+    total = Math.min(total, 72);
+  }
+  if (candidate.code_or_data_status === "not_found") {
+    total = Math.min(total, 62);
+  }
+  if (candidate.paper_status === "withdrawn") {
+    total = Math.min(total, 74);
+  }
+  if (candidate.evidence_role === "positive_result_only") {
+    total = Math.min(total, 45);
+  }
 
   return {
     auto_research_feasibility: feasibility,
@@ -902,7 +1235,7 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
     novelty_or_neglectedness: novelty,
     impact,
     storyability,
-    total,
+    total: Math.round(total),
   };
 }
 
@@ -931,6 +1264,36 @@ function evidencePrecisionForCandidate(candidate: RawCandidate, paperText: Paper
   return matched / spans.length;
 }
 
+function problemEvidencePrecisionForCandidate(candidate: RawCandidate, paperText: PaperText): number {
+  const haystack = paperText.full_text.toLowerCase();
+  const spans = candidate.problem_evidence_spans.map((span) => normalizeWhitespace(span).toLowerCase()).filter(Boolean);
+  if (spans.length === 0) {
+    return 0;
+  }
+  let matched = 0;
+  for (const span of spans) {
+    if (haystack.includes(span) || haystack.includes(span.slice(0, Math.min(80, span.length)))) {
+      matched += 1;
+    }
+  }
+  return matched / spans.length;
+}
+
+function feasibilityEvidencePrecisionForCandidate(candidate: RawCandidate, paperText: PaperText): number {
+  const haystack = paperText.full_text.toLowerCase();
+  const spans = candidate.feasibility_evidence_spans.map((span) => normalizeWhitespace(span).toLowerCase()).filter(Boolean);
+  if (spans.length === 0) {
+    return 0;
+  }
+  let matched = 0;
+  for (const span of spans) {
+    if (haystack.includes(span) || haystack.includes(span.slice(0, Math.min(80, span.length)))) {
+      matched += 1;
+    }
+  }
+  return matched / spans.length;
+}
+
 export function applyHardRejectionGates(candidate: RawCandidate, paperText: PaperText): string[] {
   const reasons: string[] = [];
   const fullText = [
@@ -943,12 +1306,44 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
     .join(" ")
     .toLowerCase();
 
-  if (candidate.evidence_spans.length === 0) {
-    reasons.push("No cited evidence span.");
+  if (candidate.problem_evidence_spans.length === 0) {
+    reasons.push("No source-backed problem evidence span.");
+  }
+
+  if (candidate.evidence_role === "positive_result_only") {
+    reasons.push("Evidence role is positive_result_only, not a stated problem, limitation, future work, or failure mode.");
+  }
+
+  if (candidate.problem_evidence_spans.some((span) => classifyEvidenceRole(span) === "positive_result_only")) {
+    reasons.push("Problem evidence span does not state a problem role.");
+  }
+
+  if (candidate.problem_evidence_spans.some((span) => SOLVED_PRIOR_ART_PATTERN.test(span))) {
+    reasons.push("Problem evidence appears to describe a limitation the paper claims to solve, not an open candidate.");
+  }
+
+  if (
+    HUMAN_STUDY_INTERVENTION_PATTERN.test(
+      `${candidate.candidate_problem} ${candidate.specific_intervention} ${candidate.problem_evidence_spans.join(" ")}`,
+    )
+  ) {
+    reasons.push("Candidate requires new human participants, cohorts, surveys, or classroom deployment.");
+  }
+
+  if (candidate.feasibility_evidence_spans.length === 0) {
+    reasons.push("No separate feasibility evidence span for public data, code, benchmark, or metric.");
+  }
+
+  if (candidate.code_or_data_status === "not_found" || candidate.code_or_data_status === "unknown") {
+    reasons.push("No public code, data, benchmark, or metric evidence found.");
   }
 
   if (evidencePrecisionForCandidate(candidate, paperText) === 0) {
     reasons.push("Evidence spans do not match source text.");
+  }
+
+  if (problemEvidencePrecisionForCandidate(candidate, paperText) === 0) {
+    reasons.push("Problem evidence spans do not match source text.");
   }
 
   if (WET_LAB_TERMS.some((term) => fullText.includes(term)) && !fullText.includes("in silico")) {
@@ -965,6 +1360,26 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
 
   if (candidate.auto_research_experiment.length < 40) {
     reasons.push("Experiment path is too vague to execute.");
+  }
+
+  if (GENERIC_EXPERIMENT_PATTERN.test(candidate.auto_research_experiment)) {
+    reasons.push("Experiment path is generic rather than paper-specific.");
+  }
+
+  if (candidate.specific_intervention.length < 30) {
+    reasons.push("No specific intervention named.");
+  }
+
+  if (GENERIC_INTERVENTION_PATTERN.test(candidate.specific_intervention)) {
+    reasons.push("Specific intervention is generic rather than operational.");
+  }
+
+  if (candidate.baseline.length < 20) {
+    reasons.push("No concrete baseline named.");
+  }
+
+  if (candidate.metric.length < 3) {
+    reasons.push("No concrete metric named.");
   }
 
   if (/\b(survey|opinion|position)\b/.test(fullText) && !/\b(experiment|benchmark|evaluate|ablation|reproduce)\b/.test(fullText)) {
@@ -1183,6 +1598,7 @@ function markdownReport(
   lines.push(`- Accepted candidates in report: ${summary.accepted_candidates}`);
   lines.push(`- Rejected candidates: ${summary.rejected_candidates}`);
   lines.push(`- Top-20 evidence precision: ${Math.round(summary.top_20_evidence_precision * 100)}%`);
+  lines.push(`- Top-20 problem-evidence precision: ${Math.round(summary.top_20_problem_evidence_precision * 100)}%`);
   lines.push(`- Estimated cost: $${summary.estimated_cost_usd}`);
   lines.push(`- Estimated cost per scanned paper: $${summary.estimated_cost_per_paper_usd}`);
   lines.push("");
@@ -1228,14 +1644,23 @@ function markdownReport(
       lines.push(`Impact type: ${candidate.impact_type}`);
       lines.push(`Time budget: ${candidate.time_budget_hours} hours`);
       lines.push(`Evidence precision: ${Math.round(candidate.evidence_precision * 100)}%`);
+      lines.push(`Problem evidence precision: ${Math.round(candidate.problem_evidence_precision * 100)}%`);
+      lines.push(`Feasibility evidence precision: ${Math.round(candidate.feasibility_evidence_precision * 100)}%`);
+      lines.push(`Evidence role: ${candidate.evidence_role}`);
+      lines.push(`Paper status: ${candidate.paper_status}`);
+      lines.push(`Code/data status: ${candidate.code_or_data_status}`);
       lines.push("");
       lines.push("Candidate problem:");
       lines.push("");
       lines.push(candidate.candidate_problem);
       lines.push("");
-      lines.push("Evidence spans:");
+      lines.push("Problem evidence spans:");
       lines.push("");
-      lines.push(...markdownList(candidate.evidence_spans));
+      lines.push(...markdownList(candidate.problem_evidence_spans));
+      lines.push("");
+      lines.push("Feasibility evidence spans:");
+      lines.push("");
+      lines.push(...markdownList(candidate.feasibility_evidence_spans));
       lines.push("");
       lines.push("Why hidden or underexploited:");
       lines.push("");
@@ -1252,6 +1677,18 @@ function markdownReport(
       lines.push("Expected metric:");
       lines.push("");
       lines.push(candidate.expected_metric || "Not specified.");
+      lines.push("");
+      lines.push("Specific intervention:");
+      lines.push("");
+      lines.push(candidate.specific_intervention || "Not specified.");
+      lines.push("");
+      lines.push("Baseline:");
+      lines.push("");
+      lines.push(candidate.baseline || "Not specified.");
+      lines.push("");
+      lines.push("Metric:");
+      lines.push("");
+      lines.push(candidate.metric || "Not specified.");
       lines.push("");
       lines.push("Story angle:");
       lines.push("");
@@ -1553,7 +1990,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
 
     let working = candidate;
     let score = scoreCandidate(working);
-    const reasons = applyHardRejectionGates(working, paperText);
+    const verifierReasons: string[] = [];
 
     if (verifier && verifierBudgetIds.has(candidate)) {
       try {
@@ -1563,7 +2000,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
         const mergedScore = mergeScoreBreakdown(result.data.score_breakdown, scoreCandidate(working));
         score = mergedScore;
         if (!result.data.accepted) {
-          reasons.push(...(result.data.rejection_reasons ?? []));
+          verifierReasons.push(...(result.data.rejection_reasons ?? []));
         }
       } catch (error) {
         console.warn(
@@ -1576,7 +2013,10 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
       }
     }
 
+    const reasons = [...applyHardRejectionGates(working, paperText), ...verifierReasons];
     const evidencePrecision = evidencePrecisionForCandidate(working, paperText);
+    const problemEvidencePrecision = problemEvidencePrecisionForCandidate(working, paperText);
+    const feasibilityEvidencePrecision = feasibilityEvidencePrecisionForCandidate(working, paperText);
 
     if (reasons.length > 0) {
       rejected.push({
@@ -1593,7 +2033,9 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
       score_breakdown: score,
       grade,
       rank: 0,
-      evidence_precision: evidencePrecision,
+      evidence_precision: Math.min(evidencePrecision, problemEvidencePrecision),
+      problem_evidence_precision: problemEvidencePrecision,
+      feasibility_evidence_precision: feasibilityEvidencePrecision,
     });
   }
 
@@ -1609,6 +2051,10 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     top20.length > 0
       ? top20.reduce((sum, candidate) => sum + candidate.evidence_precision, 0) / top20.length
       : 0;
+  const top20ProblemEvidencePrecision =
+    top20.length > 0
+      ? top20.reduce((sum, candidate) => sum + candidate.problem_evidence_precision, 0) / top20.length
+      : 0;
 
   const gradeCounts = {
     A: trimmedAccepted.filter((candidate) => candidate.grade === "A").length,
@@ -1620,7 +2066,8 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   const hasFastPublicCandidate = trimmedAccepted.some(
     (candidate) =>
       candidate.time_budget_hours <= 72 &&
-      /(public|benchmark|dataset|github|open)/.test(candidate.available_data_or_benchmark.toLowerCase()),
+      (candidate.code_or_data_status === "found" || candidate.code_or_data_status === "claimed") &&
+      candidate.feasibility_evidence_spans.length > 0,
   );
 
   const cost = estimateCost(usage, config);
@@ -1630,6 +2077,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     at_least_3_a_grade: gradeCounts.A >= 3,
     at_least_8_a_or_b_grade: aOrBCount >= 8,
     top_20_evidence_precision_gt_80pct: top20EvidencePrecision > 0.8,
+    top_20_problem_evidence_precision_gt_80pct: top20ProblemEvidencePrecision > 0.8,
     at_least_1_under_72h_public_benchmark: hasFastPublicCandidate,
     low_cost_per_paper: config.input_price_per_mtoken_usd === 0 && config.output_price_per_mtoken_usd === 0
       ? true
@@ -1647,6 +2095,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     accepted_candidates: trimmedAccepted.length,
     rejected_candidates: rejected.length,
     top_20_evidence_precision: Number(top20EvidencePrecision.toFixed(4)),
+    top_20_problem_evidence_precision: Number(top20ProblemEvidencePrecision.toFixed(4)),
     grade_counts: gradeCounts,
     acceptance: {
       pass: Object.values(acceptance).every(Boolean),

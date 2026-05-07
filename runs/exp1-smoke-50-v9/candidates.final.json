@@ -1,0 +1,341 @@
+[
+  {
+    "paper_id": "2605.05084v1",
+    "candidate_problem": "Test whether Compare the paper's greedy optimisation procedure against simulated annealing and tabu search in the Order Matters: Improving Domain Adaptation by Reordering Data setup addresses a stated future work in Order Matters: Improving Domain Adaptation by Reordering Data.",
+    "evidence_spans": [
+      "We believe the most promising direction for future work is in improving the optimisation procedure, for instance by applying metaheuristics such as simulated annealing or tabu search to enhance robustness against local minima.",
+      "This paper proposes Optimal Reordering of Data for Error-Reduced Estimation of Discrepancy (ORDERED), a novel unbiased stochastic variance reduction technique which reduces the discrepancy estimation error by optimising the order in which the training data are sampled.",
+      "We consider two specific domain discrepancy losses (correlation alignment and the maximum mean discrepancy), formulate their stochastic estimation error as a function of the data sampling order, and propose a practical optimisation algorithm.",
+      "Our simulations demonstrate reduced variance compared to related methods, and experiments on two domain shift image classification benchmarks show improved target domain accuracy.",
+      "We call this method Optimal Reordering of Data for Error-Reduced Estimation of Discrepancy (ORDERED)."
+    ],
+    "problem_evidence_spans": [
+      "We believe the most promising direction for future work is in improving the optimisation procedure, for instance by applying metaheuristics such as simulated annealing or tabu search to enhance robustness against local minima."
+    ],
+    "feasibility_evidence_spans": [
+      "This paper proposes Optimal Reordering of Data for Error-Reduced Estimation of Discrepancy (ORDERED), a novel unbiased stochastic variance reduction technique which reduces the discrepancy estimation error by optimising the order in which the training data are sampled.",
+      "We consider two specific domain discrepancy losses (correlation alignment and the maximum mean discrepancy), formulate their stochastic estimation error as a function of the data sampling order, and propose a practical optimisation algorithm.",
+      "Our simulations demonstrate reduced variance compared to related methods, and experiments on two domain shift image classification benchmarks show improved target domain accuracy.",
+      "We call this method Optimal Reordering of Data for Error-Reduced Estimation of Discrepancy (ORDERED)."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Order Matters: Improving Domain Adaptation by Reordering Data. Then apply this intervention: Compare the paper's greedy optimisation procedure against simulated annealing and tabu search in the Order Matters: Improving Domain Adaptation by Reordering Data setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Compare the paper's greedy optimisation procedure against simulated annealing and tabu search in the Order Matters: Improving Domain Adaptation by Reordering Data setup",
+    "baseline": "The reported baseline/protocol from Order Matters: Improving Domain Adaptation by Reordering Data.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 86
+    },
+    "grade": "A",
+    "rank": 1,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05133v1",
+    "candidate_problem": "Test whether Evaluate this trade-off by adopting structured variational distributions (Mishkin et al in the Transformed Latent Variable Multi-Output Gaussian Processes setup addresses a stated future work in Transformed Latent Variable Multi-Output Gaussian Processes.",
+    "evidence_spans": [
+      "Future work could address this trade-off by adopting structured variational distributions (Mishkin et al. , 2018 ; Tomczak et al. , 2020 ) , which capture complex dependencies without incurring prohibitive computational costs.",
+      "ICML 2026 Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "Across diverse benchmarks, including climate modelling with over 10,000 outputs and zero-inflated spatial transcriptomics data, T-LVMOGP outperforms baselines in both predictive accuracy and computational efficiency.",
+      "TITLE: Transformed Latent Variable Multi-Output Gaussian Processes ABSTRACT: Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "(4) Empirical experiments demonstrate that our model outperforms MOGP baselines in both predictive accuracy and computational efficiency."
+    ],
+    "problem_evidence_spans": [
+      "Future work could address this trade-off by adopting structured variational distributions (Mishkin et al. , 2018 ; Tomczak et al. , 2020 ) , which capture complex dependencies without incurring prohibitive computational costs."
+    ],
+    "feasibility_evidence_spans": [
+      "ICML 2026 Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "Across diverse benchmarks, including climate modelling with over 10,000 outputs and zero-inflated spatial transcriptomics data, T-LVMOGP outperforms baselines in both predictive accuracy and computational efficiency.",
+      "TITLE: Transformed Latent Variable Multi-Output Gaussian Processes ABSTRACT: Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "(4) Empirical experiments demonstrate that our model outperforms MOGP baselines in both predictive accuracy and computational efficiency."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Transformed Latent Variable Multi-Output Gaussian Processes. Then apply this intervention: Evaluate this trade-off by adopting structured variational distributions (Mishkin et al in the Transformed Latent Variable Multi-Output Gaussian Processes setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Evaluate this trade-off by adopting structured variational distributions (Mishkin et al in the Transformed Latent Variable Multi-Output Gaussian Processes setup",
+    "baseline": "The reported baseline/protocol from Transformed Latent Variable Multi-Output Gaussian Processes.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 10,
+      "storyability": 7,
+      "total": 84
+    },
+    "grade": "A",
+    "rank": 2,
+    "evidence_precision": 0.6,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 0.5
+  },
+  {
+    "paper_id": "2605.05133v1",
+    "candidate_problem": "Test whether Evaluate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) in the Transformed Latent Variable Multi-Output Gaussian Processes setup addresses a stated future work in Transformed Latent Variable Multi-Output Gaussian Processes.",
+    "evidence_spans": [
+      "Furthermore, although the parameter complexity of q ​ ( 𝐇 ) q(\\mathbf{H}) scales linearly with the number of outputs P P , future work could investigate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) .",
+      "ICML 2026 Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "Across diverse benchmarks, including climate modelling with over 10,000 outputs and zero-inflated spatial transcriptomics data, T-LVMOGP outperforms baselines in both predictive accuracy and computational efficiency.",
+      "TITLE: Transformed Latent Variable Multi-Output Gaussian Processes ABSTRACT: Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "(4) Empirical experiments demonstrate that our model outperforms MOGP baselines in both predictive accuracy and computational efficiency."
+    ],
+    "problem_evidence_spans": [
+      "Furthermore, although the parameter complexity of q ​ ( 𝐇 ) q(\\mathbf{H}) scales linearly with the number of outputs P P , future work could investigate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) ."
+    ],
+    "feasibility_evidence_spans": [
+      "ICML 2026 Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "Across diverse benchmarks, including climate modelling with over 10,000 outputs and zero-inflated spatial transcriptomics data, T-LVMOGP outperforms baselines in both predictive accuracy and computational efficiency.",
+      "TITLE: Transformed Latent Variable Multi-Output Gaussian Processes ABSTRACT: Multi-Output Gaussian Processes (MOGPs) provide a principled probabilistic framework for modelling correlated outputs but face scalability bottlenecks when applied to datasets with high-dimensional output spaces.",
+      "(4) Empirical experiments demonstrate that our model outperforms MOGP baselines in both predictive accuracy and computational efficiency."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Transformed Latent Variable Multi-Output Gaussian Processes. Then apply this intervention: Evaluate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) in the Transformed Latent Variable Multi-Output Gaussian Processes setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Evaluate imposing additional constraints within the latent space, such as amortisation (Kingma and Welling, 2014 ) in the Transformed Latent Variable Multi-Output Gaussian Processes setup",
+    "baseline": "The reported baseline/protocol from Transformed Latent Variable Multi-Output Gaussian Processes.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 10,
+      "storyability": 7,
+      "total": 84
+    },
+    "grade": "A",
+    "rank": 3,
+    "evidence_precision": 0.6,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 0.5
+  },
+  {
+    "paper_id": "2605.04993v1",
+    "candidate_problem": "Test whether Evaluate the present intra-depot setting to cross-depot federated learning across multiple charging sites in the Federated Learning for Early Prediction of EV Charging Demand setup addresses a stated future work in Federated Learning for Early Prediction of EV Charging Demand.",
+    "evidence_spans": [
+      "Future work will extend the present intra-depot setting to cross-depot federated learning across multiple charging sites.",
+      "We construct a session-level dataset from the Adaptive Charging Network (ACN), combining session metadata with early-window charging measurements, and derive tabular features capturing user intent, temporal patterns, and initial charging behavior.",
+      "Code is available at https://github.com/Indigma-Innovations/federated-learning-ev-charging-demand.",
+      "We build a session-level dataset using the Adaptive Charging Network (ACN) framework [ 7 ] by combining session metadata with features extracted from the first 10 minutes of charging activity, including current, pilot signal, utilization, and trend statistics.",
+      "• We build a realistic session-level dataset using ACN framework and derive a compact tabular representation that captures temporal context, user-provided information, and early charging dynamics."
+    ],
+    "problem_evidence_spans": [
+      "Future work will extend the present intra-depot setting to cross-depot federated learning across multiple charging sites."
+    ],
+    "feasibility_evidence_spans": [
+      "We construct a session-level dataset from the Adaptive Charging Network (ACN), combining session metadata with early-window charging measurements, and derive tabular features capturing user intent, temporal patterns, and initial charging behavior.",
+      "Code is available at https://github.com/Indigma-Innovations/federated-learning-ev-charging-demand.",
+      "We build a session-level dataset using the Adaptive Charging Network (ACN) framework [ 7 ] by combining session metadata with features extracted from the first 10 minutes of charging activity, including current, pilot signal, utilization, and trend statistics.",
+      "• We build a realistic session-level dataset using ACN framework and derive a compact tabular representation that captures temporal context, user-provided information, and early charging dynamics."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Federated Learning for Early Prediction of EV Charging Demand. Then apply this intervention: Evaluate the present intra-depot setting to cross-depot federated learning across multiple charging sites in the Federated Learning for Early Prediction of EV Charging Demand setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Evaluate the present intra-depot setting to cross-depot federated learning across multiple charging sites in the Federated Learning for Early Prediction of EV Charging Demand setup",
+    "baseline": "The reported baseline/protocol from Federated Learning for Early Prediction of EV Charging Demand.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 10,
+      "storyability": 7,
+      "total": 84
+    },
+    "grade": "A",
+    "rank": 4,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05115v1",
+    "candidate_problem": "Test whether Evaluate more abstract concepts, e in the Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior setup addresses a stated future work in Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior.",
+    "evidence_spans": [
+      "To further validate the claims posited in this paper, future work is needed to explore more abstract concepts, e.g., refusals (Arditi et al. , 2024 ) , sycophancy (Vennemeyer et al. , 2025 ) , and persuasion (Costello et al. , 2026 ) .",
+      "We perform geometry-aware steering experiments and compare against the baseline of linear steering (see Fig. 1 ).",
+      "Goodman †,a Thomas Fel † {}^{{\\color[rgb]{0.72265625,0.59375,0.2265625}\\definecolor[named]{pgfstrokecolor}{rgb}{0.72265625,0.59375,0.2265625}\\bm{\\dagger}}\\raisebox{0.5pt}{\\hskip 1.42262pt\\includegraphics[height=6.0pt]{goodfire/goodfire_logo_small.png}}} Atticus Geiger † {}^{{\\color[rgb]{0.72265625,0.59375,0.2265625}\\definecolor[named]{pgfstrokecolor}{rgb}{0.72265625,0.59375,0.2265625}\\bm{\\dagger}}\\raisebox{0.5pt}{\\hskip 1.42262pt\\includegraphics[height=6.0pt]{goodfire/good..."
+    ],
+    "problem_evidence_spans": [
+      "To further validate the claims posited in this paper, future work is needed to explore more abstract concepts, e.g., refusals (Arditi et al. , 2024 ) , sycophancy (Vennemeyer et al. , 2025 ) , and persuasion (Costello et al. , 2026 ) ."
+    ],
+    "feasibility_evidence_spans": [
+      "We perform geometry-aware steering experiments and compare against the baseline of linear steering (see Fig. 1 ).",
+      "Goodman †,a Thomas Fel † {}^{{\\color[rgb]{0.72265625,0.59375,0.2265625}\\definecolor[named]{pgfstrokecolor}{rgb}{0.72265625,0.59375,0.2265625}\\bm{\\dagger}}\\raisebox{0.5pt}{\\hskip 1.42262pt\\includegraphics[height=6.0pt]{goodfire/goodfire_logo_small.png}}} Atticus Geiger † {}^{{\\color[rgb]{0.72265625,0.59375,0.2265625}\\definecolor[named]{pgfstrokecolor}{rgb}{0.72265625,0.59375,0.2265625}\\bm{\\dagger}}\\raisebox{0.5pt}{\\hskip 1.42262pt\\includegraphics[height=6.0pt]{goodfire/good..."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior. Then apply this intervention: Evaluate more abstract concepts, e in the Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Evaluate more abstract concepts, e in the Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior setup",
+    "baseline": "The reported baseline/protocol from Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 10,
+      "storyability": 7,
+      "total": 84
+    },
+    "grade": "A",
+    "rank": 5,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05054v1",
+    "candidate_problem": "Test whether Stress-test and mitigate the angular sub-manifold, leading to regression training difficulty and extra truncation errors in the Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation setup addresses a stated limitation in Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation.",
+    "evidence_spans": [
+      "Under this new geometric view, we identify three overlooked limitations in them: 1) Angular dynamics distortion : The radial-angular coupling induces non-uniform speed on the angular sub-manifold, leading to regression training difficulty and extra truncation errors.",
+      "3) Context-agnostic unconditional flow: Dataset-specific information loss during pre-trained cross-modal feature extraction remains unrecovered.",
+      "Meanwhile, we incorporate classifier-free guidance by conditioning the flow on the pre-trained VLMs' hidden states to inject missing dataset-specific information.",
+      "Extensive results across 11 benchmarks have demonstrated that DP-FM achieves a new state-of-the-art for multi-step few-shot adaptation.",
+      "e ., image features and text features) in challenging datasets (Jiang et al. , 2026 ) ."
+    ],
+    "problem_evidence_spans": [
+      "Under this new geometric view, we identify three overlooked limitations in them: 1) Angular dynamics distortion : The radial-angular coupling induces non-uniform speed on the angular sub-manifold, leading to regression training difficulty and extra truncation errors."
+    ],
+    "feasibility_evidence_spans": [
+      "3) Context-agnostic unconditional flow: Dataset-specific information loss during pre-trained cross-modal feature extraction remains unrecovered.",
+      "Meanwhile, we incorporate classifier-free guidance by conditioning the flow on the pre-trained VLMs' hidden states to inject missing dataset-specific information.",
+      "Extensive results across 11 benchmarks have demonstrated that DP-FM achieves a new state-of-the-art for multi-step few-shot adaptation.",
+      "e ., image features and text features) in challenging datasets (Jiang et al. , 2026 ) ."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit limitation span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation. Then apply this intervention: Stress-test and mitigate the angular sub-manifold, leading to regression training difficulty and extra truncation errors in the Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate the angular sub-manifold, leading to regression training difficulty and extra truncation errors in the Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation setup",
+    "baseline": "The reported baseline/protocol from Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 82
+    },
+    "grade": "A",
+    "rank": 6,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.05040v1",
+    "candidate_problem": "Test whether Stress-test and mitigate the quality of the contextual teacher signal in the Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization setup addresses a stated limitation in Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization.",
+    "evidence_spans": [
+      "The main limitation of our setting is that PBSD still depends on the quality of the contextual teacher signal.",
+      "Experiments on mathematical reasoning and tool-use benchmarks across multiple model scales demonstrate that PBSD consistently achieves the strongest average performance among comparable baselines, showing improved training stability over prior self-distillation baselines while preserving token efficiency.",
+      "Specifically, KL matching tends to suppress epistemic verbalization (namely, the model’s explicit expression of uncertainty, hesitation, self-checking, and error correction), yielding reasoning traces that are shorter but undesirably overconfident.",
+      "We further provide a statistical analysis clarifying when contextual self-distillation, i.e., learning from a relevant teacher, can be theoretically preferable to learning from an external teacher; specifically, we show this by analyzing the statistical error of the maximum likelihood estimator (MLE) in the induced preference-learning problem.",
+      "• We empirically evaluate our proposed PBSD on mathematical reasoning and tool-use benchmarks across multiple model scales."
+    ],
+    "problem_evidence_spans": [
+      "The main limitation of our setting is that PBSD still depends on the quality of the contextual teacher signal."
+    ],
+    "feasibility_evidence_spans": [
+      "Experiments on mathematical reasoning and tool-use benchmarks across multiple model scales demonstrate that PBSD consistently achieves the strongest average performance among comparable baselines, showing improved training stability over prior self-distillation baselines while preserving token efficiency.",
+      "Specifically, KL matching tends to suppress epistemic verbalization (namely, the model’s explicit expression of uncertainty, hesitation, self-checking, and error correction), yielding reasoning traces that are shorter but undesirably overconfident.",
+      "We further provide a statistical analysis clarifying when contextual self-distillation, i.e., learning from a relevant teacher, can be theoretically preferable to learning from an external teacher; specifically, we show this by analyzing the statistical error of the maximum likelihood estimator (MLE) in the induced preference-learning problem.",
+      "• We empirically evaluate our proposed PBSD on mathematical reasoning and tool-use benchmarks across multiple model scales."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit limitation span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization. Then apply this intervention: Stress-test and mitigate the quality of the contextual teacher signal in the Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate the quality of the contextual teacher signal in the Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization setup",
+    "baseline": "The reported baseline/protocol from Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 8,
+      "storyability": 7,
+      "total": 82
+    },
+    "grade": "A",
+    "rank": 7,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  }
+]

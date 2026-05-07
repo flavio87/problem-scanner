@@ -1,0 +1,16 @@
+[
+  {
+    "paper_id": "2605.05029v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence: The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence Kejun Liu kjliu@suda.edu.cn S... addresses a stated failure mode in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence.",
+    "reasons": [
+      "No public code, data, benchmark, or metric evidence found."
+    ]
+  },
+  {
+    "paper_id": "2605.05029v1",
+    "candidate_problem": "Test whether Stress-test and mitigate dimension: at N = 100 N=100 , the optimal encoder becomes causally blind (fidelity ∼ 10 − 8 \\sim 10^{-8} ) while achieving 92 % 92\\% lower prediction error than the causal representation in the The Predictive-Causal Gap: An Impossib... addresses a stated failure mode in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence.",
+    "reasons": [
+      "No public code, data, benchmark, or metric evidence found."
+    ]
+  }
+]

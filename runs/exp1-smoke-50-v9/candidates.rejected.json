@@ -1,0 +1,239 @@
+[
+  {
+    "paper_id": "2605.05054v1",
+    "candidate_problem": "Test whether Stress-test and mitigate few-shot adaptation (FMA) (Jiang et al in the Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation setup addresses a stated limitation in Direct Product Flow Matching: Decoupling Radial and Angular Dynamics for Few-Shot Adaptation.",
+    "reasons": [
+      "Problem evidence appears to describe a limitation the paper claims to solve, not an open candidate."
+    ]
+  },
+  {
+    "paper_id": "2605.05040v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization: First, directly optimizing a KL divergence toward the context-augmented model is unstable and can actively degrade r... addresses a stated failure mode in Preference-Based Self-Distillation: Beyond KL Matching via Reward Regularization.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05104v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Building informative materials datasets beyond targeted objectives: Robust computation of diversity for our framework while making the computation reasonable time consuming is left as future work. addresses a stated future work in Building informative materials datasets beyond targeted objectives.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05104v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Building informative materials datasets beyond targeted objectives: Testing in higher-dimensional settings, and methods to address possible curse of dimensionality effects, are left for future work. addresses a stated future work in Building informative materials datasets beyond targeted objectives.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.04997v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in DualTCN: A Physics-Constrained Temporal Convolutional Network for 2 Time-Domain Marine CSEM Inversion: The retraining pipeline takes < 8 <8 GPU-hours for one million samples; two concrete field-data... addresses a stated future work in DualTCN: A Physics-Constrained Temporal Convolutional Network for 2 Time-Domain Marine CSEM Inversion.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.04997v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in DualTCN: A Physics-Constrained Temporal Convolutional Network for 2 Time-Domain Marine CSEM Inversion: Key limitations include: (i) the two-channel input creates a structural amplitude vulnerability... addresses a stated limitation in DualTCN: A Physics-Constrained Temporal Convolutional Network for 2 Time-Domain Marine CSEM Inversion.",
+    "reasons": [
+      "Specific intervention is generic rather than operational.",
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05125v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation: On the other hand, the dequantization of binary sur... addresses a stated future work in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05125v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation: Our five-criterion reliability framework provides a... addresses a stated future work in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05000v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Agentic Vulnerability Reasoning on Windows COM Binaries: A natural next step is domain-specific fine-tuning or knowledge augmentation to reduce prompt-engineering overhead ( lyu2024knowtuning ; meng... addresses a stated future work in Agentic Vulnerability Reasoning on Windows COM Binaries.",
+    "reasons": [
+      "Specific intervention is generic rather than operational.",
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05000v1",
+    "candidate_problem": "Test whether Stress-test and mitigate sufficient retrieval capacity ( du2025context ; hong2025context ) , motivating structured management approaches that decouple reasoning depth from the raw token budget available to the model in the Agentic Vulnerability Reasoning on... addresses a stated failure mode in Agentic Vulnerability Reasoning on Windows COM Binaries.",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05084v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Order Matters: Improving Domain Adaptation by Reordering Data: I Introduction Machine learning models often underperform when the test data distribution differs from the training distribution, a phe... addresses a stated negative result in Order Matters: Improving Domain Adaptation by Reordering Data.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05020v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Graph-SND: Sparse Aggregation for Behavioral Diversity in Multi-Agent Reinforcement Learning: All RL runs use Independent PPO, with centralized-critic algorithms left for future work. addresses a stated future work in Graph-SND: Sparse Aggregation for Behavioral Diversity in Multi-Agent Reinforcement Learning.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05020v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Graph-SND: Sparse Aggregation for Behavioral Diversity in Multi-Agent Reinforcement Learning: Natural next steps are learned or task-adaptive graphs, larger discrete-action benchmarks, and broader D... addresses a stated future work in Graph-SND: Sparse Aggregation for Behavioral Diversity in Multi-Agent Reinforcement Learning.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05151v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting: Attention heads and residual stream representations may encode add... addresses a stated future work in Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05144v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting: While we took steps to reduce leakage risk, alternative sentiment extraction methods remain an important dire... addresses a stated future work in Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting.",
+    "reasons": [
+      "No public code, data, benchmark, or metric evidence found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05144v1",
+    "candidate_problem": "Test whether Evaluate more diverse cohorts in the Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting setup addresses a stated future work in Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting.",
+    "reasons": [
+      "Candidate requires new human participants, cohorts, surveys, or classroom deployment.",
+      "No public code, data, benchmark, or metric evidence found."
+    ]
+  },
+  {
+    "paper_id": "2605.05134v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction: To address these limitations, we treat the LMM as dynamical system (DS) and propose a novel DS prediction approach... addresses a stated limitation in Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction.",
+    "reasons": [
+      "Problem evidence appears to describe a limitation the paper claims to solve, not an open candidate.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05123v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning: A future direction could be to leverage exploration rollouts to monitor progress dur... addresses a stated future work in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05123v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning: One limitation is that, after each fine-tuning iteration, it requires a considerable... addresses a stated limitation in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05120v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals: Future work will aim to validate these... addresses a stated future work in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05120v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals: Future work will focus on extending th... addresses a stated future work in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05095v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in A Bayesian Approach for Task-Specific Next-Best-View Selection with Uncertain Geometry: We see these as promising future work. addresses a stated future work in A Bayesian Approach for Task-Specific Next-Best-View Selection with Uncertain Geometry.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05066v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in The Impossibility Triangle of Long-Context Modeling: We highlight four directions for future work. addresses a stated future work in The Impossibility Triangle of Long-Context Modeling.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05066v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in The Impossibility Triangle of Long-Context Modeling: Our analysis has several limitations. addresses a stated limitation in The Impossibility Triangle of Long-Context Modeling.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05055v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Adaptive Learning Strategies for AoA-Based Outdoor Localization: A Comprehensive Framework: There are several directions for future work. addresses a stated future work in Adaptive Learning Strategies for AoA-Based Outdoor Localization: A Comprehensive Framework.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05029v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence: The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence Kejun Liu kjliu@suda.edu.cn S... addresses a stated failure mode in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence.",
+    "reasons": [
+      "No public code, data, benchmark, or metric evidence found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05029v1",
+    "candidate_problem": "Test whether Stress-test and mitigate dimension: at N = 100 N=100 , the optimal encoder becomes causally blind (fidelity ∼ 10 − 8 \\sim 10^{-8} ) while achieving 92 % 92\\% lower prediction error than the causal representation in the The Predictive-Causal Gap: An Impossib... addresses a stated failure mode in The Predictive-Causal Gap: An Impossibility Theorem and Large-Scale Neural Evidence.",
+    "reasons": [
+      "No public code, data, benchmark, or metric evidence found."
+    ]
+  },
+  {
+    "paper_id": "2605.05023v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CuBridge: An LLM-Based Framework for Understanding and Reconstructing High-Performance Attention Kernels: We have not yet extended our validation to other high-performance computing tasks, such as s... addresses a stated future work in CuBridge: An LLM-Based Framework for Understanding and Reconstructing High-Performance Attention Kernels.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05023v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CuBridge: An LLM-Based Framework for Understanding and Reconstructing High-Performance Attention Kernels: Moreover, while BSR enables block-level skipping, it does not support score transforms or no... addresses a stated failure mode in CuBridge: An LLM-Based Framework for Understanding and Reconstructing High-Performance Attention Kernels.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05008v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Scalable inference of spatial regions and temporal signatures from time series: Several directions for future work remain. addresses a stated future work in Scalable inference of spatial regions and temporal signatures from time series.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.04971v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Why Geometric Continuity Emerges in Deep Neural Networks: Residual Connections and Rotational Symmetry Breaking: Crucially, a nonlinear but rotation-preserving activation fails to retain continuity,... addresses a stated failure mode in Why Geometric Continuity Emerges in Deep Neural Networks: Residual Connections and Rotational Symmetry Breaking.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.04971v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Why Geometric Continuity Emerges in Deep Neural Networks: Residual Connections and Rotational Symmetry Breaking: A nonlinear-but-rotation-preserving activation (Section 4.3 ) fails to produce contin... addresses a stated failure mode in Why Geometric Continuity Emerges in Deep Neural Networks: Residual Connections and Rotational Symmetry Breaking.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.05115v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior: While we believe our results have enabled significant progress towards the motivating goals, there are re... addresses a stated limitation in Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  }
+]
