@@ -1,0 +1,65 @@
+[
+  {
+    "paper_id": "2605.05104v1",
+    "candidate_problem": "Underexploited failure mode in Building informative materials datasets beyond targeted objectives: Robust computation of diversity for our framework while making the computation reasonable time consuming is left as future work.",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05125v1",
+    "candidate_problem": "Underexploited failure mode in Joint Treatment Effect Estimation from Incomplete Healthcare Data: Temporal Causal Normalizing Flows with LLM-driven Evolutionary MNAR Imputation: Table 1 summarizes per-metric ranks and binary reliability criteria across all four synthetic datas...",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05133v1",
+    "candidate_problem": "Underexploited failure mode in Transformed Latent Variable Multi-Output Gaussian Processes: Future work could address this trade-off by adopting structured variational distributions (Mishkin et al.",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05179v1",
+    "candidate_problem": "Underexploited failure mode in Estimating the expected output of wide random MLPs more efficiently than sampling: By far the most common way to estimate an expected loss in machine learning is to draw samples, compute the loss on each one, and take the empirical average.",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05206v1",
+    "candidate_problem": "Underexploited failure mode in Taming Outlier Tokens in Diffusion Transformers: Prior work has shown that Vision Transformers (ViTs) can produce a small number of high-norm tokens that attract disproportionate attention while carrying limited local information, but their role ...",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05151v1",
+    "candidate_problem": "Underexploited failure mode in Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting: Attention heads and residual stream representations may encode additional structure not captured by this analysis ...",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05144v1",
+    "candidate_problem": "Underexploited failure mode in Human-AI Co-Mentorship in Project-Based Learning: A Case Study in Financial Forecasting: While we took steps to reduce leakage risk, alternative sentiment extraction methods remain an important direction for future work.",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05134v1",
+    "candidate_problem": "Underexploited failure mode in Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction: Extensive testing across three data benchmarks demonstrates that our method achieves state-of-the-art performance with reduced resource overhead.",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  },
+  {
+    "paper_id": "2605.05120v1",
+    "candidate_problem": "Underexploited failure mode in Physiologically Grounded Driver Behavior Classification: SHAP-Driven Elite Feature Selection and Hybrid Gradient Boosting for Multimodal Physiological Signals: This section discusses the implications of these findings, the physiological interpret...",
+    "reasons": [
+      "Safety/legal risk cannot be sandboxed in the described experiment."
+    ]
+  }
+]

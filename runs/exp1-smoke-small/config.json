@@ -1,0 +1,20 @@
+{
+  "days": 3,
+  "categories": [
+    "cs.LG"
+  ],
+  "per_category_fetch": 5,
+  "target_min": 5,
+  "target_max": 5,
+  "abstract_top_k": 3,
+  "candidate_per_paper": 1,
+  "verifier_top_k": 30,
+  "max_evidence_spans": 4,
+  "max_candidates_output": 3,
+  "output_dir": "runs/exp1-smoke-small",
+  "mode": "heuristic",
+  "broad_model": "gemini-3-flash-preview",
+  "verifier_model": "gemini-3-flash-preview",
+  "input_price_per_mtoken_usd": 0,
+  "output_price_per_mtoken_usd": 0
+}

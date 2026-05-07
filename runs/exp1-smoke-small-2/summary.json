@@ -1,0 +1,53 @@
+{
+  "started_at": "2026-05-07T10:30:20.069Z",
+  "finished_at": "2026-05-07T10:30:20.241Z",
+  "config": {
+    "days": 3,
+    "categories": [
+      "cs.LG"
+    ],
+    "per_category_fetch": 5,
+    "target_min": 5,
+    "target_max": 5,
+    "abstract_top_k": 3,
+    "candidate_per_paper": 1,
+    "verifier_top_k": 30,
+    "max_evidence_spans": 4,
+    "max_candidates_output": 3,
+    "output_dir": "runs/exp1-smoke-small-2",
+    "mode": "heuristic",
+    "broad_model": "gemini-3-flash-preview",
+    "verifier_model": "gemini-3-flash-preview",
+    "input_price_per_mtoken_usd": 0,
+    "output_price_per_mtoken_usd": 0
+  },
+  "papers_fetched": 5,
+  "papers_in_window": 5,
+  "abstract_shortlist_size": 3,
+  "raw_candidates": 3,
+  "accepted_candidates": 3,
+  "rejected_candidates": 0,
+  "top_20_evidence_precision": 1,
+  "grade_counts": {
+    "A": 0,
+    "B": 3,
+    "C": 0
+  },
+  "acceptance": {
+    "pass": false,
+    "checks": {
+      "at_least_3_a_grade": false,
+      "at_least_8_a_or_b_grade": false,
+      "top_20_evidence_precision_gt_80pct": true,
+      "at_least_1_under_72h_public_benchmark": true,
+      "low_cost_per_paper": true
+    }
+  },
+  "usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "estimated_cost_usd": 0,
+  "estimated_cost_per_paper_usd": 0
+}

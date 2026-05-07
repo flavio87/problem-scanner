@@ -1,0 +1,26 @@
+{
+  "days": 3,
+  "categories": [
+    "cs.AI",
+    "cs.LG",
+    "stat.ML",
+    "q-bio.QM",
+    "q-bio.GN",
+    "q-bio.PE",
+    "eess"
+  ],
+  "per_category_fetch": 25,
+  "target_min": 20,
+  "target_max": 30,
+  "abstract_top_k": 10,
+  "candidate_per_paper": 1,
+  "verifier_top_k": 30,
+  "max_evidence_spans": 4,
+  "max_candidates_output": 10,
+  "output_dir": "runs/exp1-smoke",
+  "mode": "heuristic",
+  "broad_model": "gemini-3-flash-preview",
+  "verifier_model": "gemini-3-flash-preview",
+  "input_price_per_mtoken_usd": 0,
+  "output_price_per_mtoken_usd": 0
+}

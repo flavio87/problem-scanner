@@ -1,0 +1,30 @@
+[
+  {
+    "paper_id": "2605.05123v1",
+    "candidate_problem": "Underexploited failure mode in Adaptive Policy Selection and Fine-Tuning under Interaction Budgets for Offline-to-Online Reinforcement Learning: We demonstrate that our approach improves upon O2O-RL baselines with various benchmarks.",
+    "evidence_spans": [
+      "We demonstrate that our approach improves upon O2O-RL baselines with various benchmarks."
+    ],
+    "why_hidden_or_underexploited": "Signal appears in limitations/discussion-style content rather than headline claims, so it is likely under-prioritized.",
+    "auto_research_experiment": "Reproduce the paper's baseline setting on public data, add one focused ablation targeting the cited failure mode, and compare outcome against the original baseline under fixed compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A published strong result contains a concrete weakness that can be stress-tested and potentially improved in 24-72h using public resources.",
+    "disqualifiers": [],
+    "confidence": 0.48,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 10,
+      "impact": 10,
+      "storyability": 7,
+      "total": 79
+    },
+    "grade": "B",
+    "rank": 1,
+    "evidence_precision": 1
+  }
+]
