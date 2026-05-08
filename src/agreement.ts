@@ -29,7 +29,12 @@ export interface AgreementCandidate {
   feasibility_evidence_spans: string[];
   auto_research_experiment: string;
   available_data_or_benchmark: string;
+  public_training_or_eval_data: string;
+  scientific_hypothesis: string;
   expected_metric: string;
+  success_threshold: string;
+  failure_condition: string;
+  first_24h_experiment: string;
   specific_intervention: string;
   baseline: string;
   metric: string;
@@ -143,7 +148,12 @@ function toAgreementCandidate(candidate: CandidateLike): AgreementCandidate {
     feasibility_evidence_spans: asStringArray(candidate.feasibility_evidence_spans),
     auto_research_experiment: String(candidate.auto_research_experiment ?? ""),
     available_data_or_benchmark: String(candidate.available_data_or_benchmark ?? ""),
+    public_training_or_eval_data: String(candidate.public_training_or_eval_data ?? ""),
+    scientific_hypothesis: String(candidate.scientific_hypothesis ?? ""),
     expected_metric: String(candidate.expected_metric ?? ""),
+    success_threshold: String(candidate.success_threshold ?? ""),
+    failure_condition: String(candidate.failure_condition ?? ""),
+    first_24h_experiment: String(candidate.first_24h_experiment ?? ""),
     specific_intervention: String(candidate.specific_intervention ?? ""),
     baseline: String(candidate.baseline ?? ""),
     metric: String(candidate.metric ?? ""),
@@ -295,12 +305,13 @@ function promptMarkdown(pool: AgreementCandidate[]): string {
     "Label each candidate independently. Do not infer quality from ordering. Do not assume a candidate is bad just because it is imperfect; decide whether a one-step repair makes it worth tracking.",
     "",
     "Labels:",
-    "- A: would spend 24-72h running this experiment.",
-    "- B: worth tracking or repairable with one concrete step.",
-    "- C: technically plausible but not worth pursuing now.",
-    "- Reject: fatal flaw.",
+    "- A: would run now; public data/artifact, metric, baseline, and scientific hypothesis are clear.",
+    "- B: worth tracking, but needs one concrete repair before running.",
+    "- C: plausible but weak scientific value, weak measurement, or crowded/obvious.",
+    "- Reject: missing data, metric, baseline, hypothesis, falsifiability, or safe 24-72h path.",
     "",
     "For each candidate return JSON with candidate_id, frontier_label, would_run_24_72h, rationale, repair_needed, fatal_blocker.",
+    "In the rationale, identify the strongest evidence span, public training/evaluation asset, measurable endpoint, and scientific hypothesis.",
     "",
     `Candidate count: ${pool.length}`,
   ].join("\n");

@@ -84,6 +84,7 @@ bun run exp1 --mode llm \
 - `--candidatePerPaper` default `2`
 - `--verifierTopK` default `30`
 - `--provider` default `openrouter` when `OPENROUTER_API_KEY` is set, otherwise `google-gemini`
+- `--arxivSource` default `auto`; use `recent-html` when the arXiv export API is rate-limited
 - `--extractionProfile` default `strict`; use `recall` to build a high-recall candidate pool for agreement studies
 - `--outputDir` default `runs/exp1-<timestamp>`
 
@@ -96,6 +97,7 @@ export OPENROUTER_API_KEY=your_key
 export CATS=cs.AI,cs.LG,cs.MA,cs.CL,stat.ML,eess,q-bio.QM,q-bio.GN,q-bio.PE
 
 bun run exp1 --mode llm --provider openrouter \
+  --arxivSource recent-html \
   --categories "$CATS" \
   --perCategoryFetch 35 \
   --targetMin 200 \
@@ -107,6 +109,7 @@ bun run exp1 --mode llm --provider openrouter \
   --outputDir runs/agreement-200/cheap-strict
 
 bun run exp1 --mode llm --provider openrouter \
+  --arxivSource recent-html \
   --extractionProfile recall \
   --categories "$CATS" \
   --perCategoryFetch 35 \
@@ -119,6 +122,7 @@ bun run exp1 --mode llm --provider openrouter \
   --outputDir runs/agreement-200/cheap-recall
 
 bun run exp1 --mode heuristic \
+  --arxivSource recent-html \
   --categories "$CATS" \
   --perCategoryFetch 35 \
   --targetMin 200 \
@@ -175,6 +179,8 @@ Decision thresholds:
 - cheap top queue is useful if `precision@20` is above `0.4`
 - strict verification is too aggressive if it misses more than `10-15%` of frontier `A` candidates
 - recall-first is useful only if it improves frontier `A/B` recall without burying all good candidates below review depth
+
+Candidate extraction is dataset-grounded: candidates must include explicit problem evidence, public training/evaluation data or a reproducible artifact, a scientific hypothesis, baseline, intervention, metric, success threshold, failure condition, and first-24h experiment step.
 
 ## Outputs
 

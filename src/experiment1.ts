@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { appendFileSync, mkdirSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
@@ -27,6 +27,7 @@ export type ImpactType = (typeof IMPACT_TYPES)[number];
 export type RunMode = "heuristic" | "llm";
 export type LlmProvider = "google-gemini" | "openrouter";
 export type ExtractionProfile = "strict" | "recall";
+export type ArxivSource = "auto" | "api" | "recent-html";
 export type EvidenceRole =
   | "limitation"
   | "future_work"
@@ -61,7 +62,12 @@ export interface CandidateProblem {
   why_hidden_or_underexploited: string;
   auto_research_experiment: string;
   available_data_or_benchmark: string;
+  public_training_or_eval_data: string;
+  scientific_hypothesis: string;
   expected_metric: string;
+  success_threshold: string;
+  failure_condition: string;
+  first_24h_experiment: string;
   specific_intervention: string;
   baseline: string;
   metric: string;
@@ -95,7 +101,12 @@ export interface RawCandidate {
   why_hidden_or_underexploited: string;
   auto_research_experiment: string;
   available_data_or_benchmark: string;
+  public_training_or_eval_data: string;
+  scientific_hypothesis: string;
   expected_metric: string;
+  success_threshold: string;
+  failure_condition: string;
+  first_24h_experiment: string;
   specific_intervention: string;
   baseline: string;
   metric: string;
@@ -166,6 +177,7 @@ export interface ExperimentConfig {
   output_dir: string;
   mode: RunMode;
   llm_provider: LlmProvider;
+  arxiv_source: ArxivSource;
   extraction_profile: ExtractionProfile;
   broad_model: string;
   verifier_model: string;
@@ -240,6 +252,12 @@ interface RunSummary {
   usage: TokenUsage;
   estimated_cost_usd: number;
   estimated_cost_per_paper_usd: number;
+  run_errors: {
+    total: number;
+    by_stage: Record<string, number>;
+    jsonl_path: string;
+    json_path: string;
+  };
 }
 
 interface PaperVerification {
@@ -251,6 +269,17 @@ interface PaperVerification {
   code_or_data_urls: string[];
   code_or_data_sources: string[];
   code_or_data_evidence: string[];
+}
+
+interface RunErrorRecord {
+  timestamp: string;
+  stage: string;
+  error: string;
+  paper_id?: string;
+  category?: string;
+  provider?: LlmProvider;
+  model?: string;
+  fallback_used?: string;
 }
 
 const POSITIVE_SIGNAL_TERMS = [
@@ -274,9 +303,9 @@ const POSITIVE_SIGNAL_TERMS = [
 const NEGATIVE_SIGNAL_TERMS = ["survey", "tutorial", "opinion", "position paper"];
 
 const PROBLEM_EVIDENCE_PATTERNS: Array<{ role: EvidenceRole; pattern: RegExp }> = [
-  { role: "limitation", pattern: /\b(limitation|limitations|limited by|we limit|our analysis has several limitations)\b/i },
-  { role: "future_work", pattern: /\b(future work|future direction|future directions|open problem|next step|next steps|promising direction)\b/i },
-  { role: "failure_mode", pattern: /\b(failure mode|fails?|failure|brittle|breaks down|does not generalize|degrades|unstable)\b/i },
+  { role: "limitation", pattern: /\b(limitation|limitations|limited by|we limit|our analysis has several limitations|raises a broader question|currently)\b/i },
+  { role: "future_work", pattern: /\b(future work|future direction|future directions|open direction|open directions|open problem|next step|next steps|promising direction|extension|extensions)\b/i },
+  { role: "failure_mode", pattern: /\b(failure mode|fails?|failure|brittle|breaks down|does not generalize|degrades|unstable|invalidates|invalidated)\b/i },
   { role: "negative_result", pattern: /\b(negative result|underperform|worse than|did not improve|no improvement|unsuccessful)\b/i },
   { role: "benchmark_gap", pattern: /\b(benchmark gap|not covered by|uncovered|missing benchmark|evaluation gap|not evaluated)\b/i },
 ];
@@ -360,7 +389,7 @@ const IGNORED_RESOURCE_URL_PATTERNS = [
 ];
 
 const RAW_CANDIDATE_JSON_SCHEMA =
-  "{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"paper_status_sources\":string[],\"paper_status_evidence\":string[],\"code_or_data_urls\":string[],\"code_or_data_sources\":string[],\"code_or_data_evidence\":string[],\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}";
+  "{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"public_training_or_eval_data\":string,\"scientific_hypothesis\":string,\"expected_metric\":string,\"success_threshold\":string,\"failure_condition\":string,\"first_24h_experiment\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"paper_status_sources\":string[],\"paper_status_evidence\":string[],\"code_or_data_urls\":string[],\"code_or_data_sources\":string[],\"code_or_data_evidence\":string[],\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}";
 
 function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
@@ -463,6 +492,14 @@ function parseExtractionProfile(input: string): ExtractionProfile {
     return normalized as ExtractionProfile;
   }
   return "strict";
+}
+
+function parseArxivSource(input: string): ArxivSource {
+  const normalized = normalizeWhitespace(input.toLowerCase()).replace(/_/g, "-");
+  if (new Set<string>(["auto", "api", "recent-html"]).has(normalized)) {
+    return normalized as ArxivSource;
+  }
+  return "auto";
 }
 
 function parseStringArray(input: unknown, max: number): string[] {
@@ -695,6 +732,74 @@ export function parseArxivFeed(xml: string): ArxivPaper[] {
       pdf_url: pdfUrl,
       published_at: published,
       updated_at: updated,
+    });
+  }
+  return results;
+}
+
+function extractDivByClass(block: string, className: string): string {
+  const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`<div[^>]*class=['"][^'"]*${escaped}[^'"]*['"][^>]*>([\\s\\S]*?)<\\/div>`, "i");
+  return stripHtml(regex.exec(block)?.[1] ?? "").replace(/^Title:\s*/i, "").replace(/^Comments:\s*/i, "").replace(/^Subjects:\s*/i, "");
+}
+
+function subjectCodesFromListText(subjectText: string): string[] {
+  const subjects = new Set<string>();
+  for (const match of subjectText.matchAll(/\(([a-z-]+(?:\.[A-Z]+)?)\)/g)) {
+    subjects.add(match[1]);
+  }
+  return Array.from(subjects);
+}
+
+function listShowValue(maxResults: number): number {
+  for (const value of [25, 50, 100, 250, 500, 1000, 2000]) {
+    if (maxResults <= value) {
+      return value;
+    }
+  }
+  return 2000;
+}
+
+export function parseArxivRecentHtml(html: string, category: string, fetchedAt = new Date().toISOString()): ArxivPaper[] {
+  const results: ArxivPaper[] = [];
+  const itemRegex = /<dt>([\s\S]*?)<\/dt>\s*<dd>([\s\S]*?)<\/dd>/gi;
+  for (const match of html.matchAll(itemRegex)) {
+    const dt = match[1];
+    const dd = match[2];
+    const idMatch = dt.match(/href\s*=\s*["']\/abs\/([^"']+)["']/i);
+    const id = idMatch?.[1]?.trim();
+    if (!id) {
+      continue;
+    }
+
+    const title = extractDivByClass(dd, "list-title");
+    if (!title) {
+      continue;
+    }
+
+    const comments = extractDivByClass(dd, "list-comments");
+    const subjectText = extractDivByClass(dd, "list-subjects");
+    const subjects = subjectCodesFromListText(subjectText);
+    const authors = extractDivByClass(dd, "list-authors")
+      .split(/\s*,\s*/)
+      .map((author) => normalizeWhitespace(author))
+      .filter(Boolean);
+    const pdfMatch = dt.match(/href\s*=\s*["']\/pdf\/([^"']+)["']/i);
+    const canonicalId = canonicalArxivId(id);
+
+    results.push({
+      id,
+      canonical_id: canonicalId,
+      title,
+      abstract: normalizeWhitespace(`${title}. ${comments}`),
+      comments,
+      subjects: subjects.length > 0 ? subjects : [category],
+      primary_subject: subjects[0] ?? category,
+      authors,
+      abs_url: `https://arxiv.org/abs/${id}`,
+      pdf_url: `https://arxiv.org/pdf/${pdfMatch?.[1] ?? id}.pdf`,
+      published_at: fetchedAt,
+      updated_at: fetchedAt,
     });
   }
   return results;
@@ -1129,7 +1234,12 @@ function heuristicCandidatesFromPaper(
         `The candidate is grounded in an explicit ${role.replace(/_/g, " ")} span rather than a positive-result claim.`,
       auto_research_experiment: `Reproduce ${inferBaseline(paper)} Then apply this intervention: ${specificIntervention}. Compare against the baseline under the same data, split, and compute budget.`,
       available_data_or_benchmark: dataHint,
+      public_training_or_eval_data: dataHint,
+      scientific_hypothesis: `The stated ${role.replace(/_/g, " ")} reflects a mechanism that should be measurable by comparing ${specificIntervention} against the reported baseline.`,
       expected_metric: metric,
+      success_threshold: `A clear positive result is an improvement over the reported baseline on ${inferMetricName(metric)} without increasing the stated compute budget.`,
+      failure_condition: `Reject the candidate if the intervention does not improve ${inferMetricName(metric)} or the paper's public data/artifact cannot be used in 24 hours.`,
+      first_24h_experiment: `Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of ${specificIntervention}.`,
       specific_intervention: specificIntervention,
       baseline: inferBaseline(paper),
       metric: inferMetricName(metric),
@@ -1177,7 +1287,12 @@ function normalizeRawCandidate(candidate: Partial<RawCandidate>, paperId: string
     why_hidden_or_underexploited: normalizeWhitespace(candidate.why_hidden_or_underexploited ?? ""),
     auto_research_experiment: normalizeWhitespace(candidate.auto_research_experiment ?? ""),
     available_data_or_benchmark: normalizeWhitespace(candidate.available_data_or_benchmark ?? ""),
+    public_training_or_eval_data: normalizeWhitespace(candidate.public_training_or_eval_data ?? candidate.available_data_or_benchmark ?? ""),
+    scientific_hypothesis: normalizeWhitespace(candidate.scientific_hypothesis ?? ""),
     expected_metric: normalizeWhitespace(candidate.expected_metric ?? ""),
+    success_threshold: normalizeWhitespace(candidate.success_threshold ?? candidate.expected_metric ?? ""),
+    failure_condition: normalizeWhitespace(candidate.failure_condition ?? ""),
+    first_24h_experiment: normalizeWhitespace(candidate.first_24h_experiment ?? candidate.auto_research_experiment ?? ""),
     specific_intervention: normalizeWhitespace(candidate.specific_intervention ?? ""),
     baseline: normalizeWhitespace(candidate.baseline ?? ""),
     metric: normalizeWhitespace(candidate.metric ?? ""),
@@ -1220,7 +1335,32 @@ function parseJsonBlob(input: string): unknown {
     }
   }
 
-  throw new Error("Unable to parse model JSON output");
+  throw new Error(`Unable to parse model JSON output (chars=${raw.length}, prefix=${safeSubstring(raw, 160)})`);
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function recordRunError(
+  errors: RunErrorRecord[],
+  outputDir: string,
+  error: Omit<RunErrorRecord, "timestamp">,
+): void {
+  const record: RunErrorRecord = {
+    timestamp: new Date().toISOString(),
+    ...error,
+  };
+  errors.push(record);
+  appendFileSync(join(outputDir, "run_errors.jsonl"), `${JSON.stringify(record)}\n`, "utf8");
+}
+
+function errorCountsByStage(errors: RunErrorRecord[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const error of errors) {
+    counts[error.stage] = (counts[error.stage] ?? 0) + 1;
+  }
+  return counts;
 }
 
 class GeminiJsonClient {
@@ -1340,34 +1480,30 @@ class OpenRouterJsonClient implements JsonLlmClient {
 function llmV1InstructionLines(config: ExperimentConfig): string[] {
   if (config.extraction_profile === "recall") {
     return [
-      "You are building a high-recall pool of computationally testable latent research leads from a fresh arXiv paper.",
+      "You build a high-recall pool of dataset-grounded, scientifically useful research candidates from a fresh arXiv paper.",
       `Current date: ${new Date().toISOString().slice(0, 10)}.`,
       "Return strict JSON only with this schema:",
       `{"candidates":[${RAW_CANDIDATE_JSON_SCHEMA}]}`,
       `Return at most ${config.candidate_per_paper} candidates.`,
-      "Prefer recall over precision. Include imperfect but plausible leads if they have a source-backed problem signal and a compute-only repair path.",
-      "Problem evidence should come from limitations, future work, error analysis, failure modes, benchmark gaps, or negative results. If the evidence is weak but plausibly repairable, include it and explain the weakness in disqualifiers.",
-      "Do not reject solely because code/data is missing at extraction time. Set code_or_data_status to claimed or unknown, leave code_or_data_urls empty if needed, and add the missing requirement to disqualifiers.",
-      "Each candidate should still try to name a specific intervention, baseline, and metric. If one is missing, include the best concrete repair in auto_research_experiment and disqualifiers.",
-      "Use disqualifiers to prefix the readiness class: readiness:ready, readiness:patchable, or readiness:speculative.",
-      "Hard disqualify only wet-lab/private-data/unbounded-compute leads by marking readiness:speculative and explaining why.",
+      "Prefer recall over precision, but include only leads with explicit problem evidence plus a plausible public train/eval dataset, benchmark, codebase, simulator, or reproducible artifact.",
+      "Each candidate must name the scientific hypothesis, public training/evaluation asset, intervention, baseline, metric, success threshold, failure condition, and first 24h experiment.",
+      "Problem evidence must come from limitations, future work, error analysis, failure modes, benchmark gaps, or negative results. Positive-result-only evidence is invalid.",
+      "Use disqualifiers to prefix readiness:ready, readiness:patchable, or readiness:reject. Use readiness:reject for no public data, no baseline, no metric, private data, wet lab, or unbounded compute.",
       "Do not infer that a paper is synthetic, future-dated, withdrawn, or unavailable from its arXiv ID. Trust the provided metadata and leave paper_status_sources/paper_status_evidence empty unless an explicit status source is visible.",
     ];
   }
 
   return [
-    "You are extracting computationally testable latent research problems from a fresh arXiv paper.",
+    "You extract dataset-grounded, scientifically valuable research candidates from a fresh arXiv paper.",
     `Current date: ${new Date().toISOString().slice(0, 10)}.`,
     "Return strict JSON only with this schema:",
     `{"candidates":[${RAW_CANDIDATE_JSON_SCHEMA}]}`,
     `Return at most ${config.candidate_per_paper} candidates.`,
-    "Reject vague ideas. Each candidate must include author-supported problem evidence and separate feasibility evidence.",
-    "Problem evidence must come from limitations, future work, error analysis, failure modes, benchmark gaps, or negative results. Do not use a positive result as problem evidence.",
-    "Each candidate must name a specific intervention, baseline, and metric. Generic plans like 'reproduce and add an ablation' are invalid.",
+    "A valid candidate must cite explicit problem evidence, name public train/eval data or a reproducible artifact, define a train/run intervention, baseline, metric, scientific hypothesis, success threshold, and failure condition.",
+    "Reject literature-review-only ideas, private/clinical/wet-lab/field-deployment dependencies, vague 'try LLM/agent/RL' ideas, missing public data, missing baseline, missing numeric metric, and positive-result-only evidence.",
+    "Do not accept 'try a stronger model' unless the paper identifies a specific failure mode and the experiment isolates a mechanism.",
     "If you cite code/data availability, include concrete URLs in code_or_data_urls. If no concrete URL is visible, set code_or_data_status to claimed or unknown, not found.",
-    "If venue metadata says withdrawn, set paper_status to withdrawn and include the status source/evidence.",
     "Do not infer that a paper is synthetic, future-dated, withdrawn, or unavailable from its arXiv ID. Trust the provided metadata and leave paper_status_sources/paper_status_evidence empty unless an explicit status source is visible.",
-    "Hard disqualify if wet-lab/private-data/unbounded compute is required.",
   ];
 }
 
@@ -1386,12 +1522,13 @@ function llmV1Prompt(paper: ArxivPaper, paperText: PaperText, config: Experiment
 
 function llmV2InstructionLines(): string[] {
   return [
-    "You are a strict verifier for research-candidate quality.",
+    "You are a strict verifier for dataset-grounded scientific research candidates.",
     `Current date: ${new Date().toISOString().slice(0, 10)}.`,
     "Return strict JSON only with this schema:",
     `{"accepted":boolean,"rejection_reasons":string[],"score_breakdown":{"auto_research_feasibility":number,"falsifiable_evaluation":number,"problem_clarity":number,"novelty_or_neglectedness":number,"impact":number,"storyability":number,"total":number},"candidate_patch":${RAW_CANDIDATE_JSON_SCHEMA}}`,
     "Scoring rubric weights: feasibility 25, falsifiable 20, clarity 15, novelty 15, impact 15, storyability 10.",
-    "Reject if: no source-backed problem evidence; evidence is positive-result-only; no feasibility evidence; no specific intervention/baseline/metric; no verified concrete public code/data/benchmark URL; wet-lab/private data/unavailable compute; pure survey path; unsandboxed legal/safety risk.",
+    "First apply gates: explicit problem evidence, public train/eval data or artifact, concrete intervention, concrete baseline, numeric metric, 24-72h falsification plan, and scientific hypothesis.",
+    "Reject if any gate fails, if evidence is positive-result-only, if the plan is 'try a stronger model' without isolating a mechanism, or if wet-lab/private data/unavailable compute/pure survey/unsandboxed safety risk is required.",
     "Reject withdrawn papers. Do not promote code_or_data_status=found unless a concrete verified URL is present in code_or_data_urls.",
     "Do not infer that a fresh arXiv ID is synthetic, future-dated, withdrawn, or unavailable. Do not add paper_status_sources or paper_status_evidence unless the candidate already has deterministic status evidence.",
   ];
@@ -1416,6 +1553,11 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
     candidate.candidate_problem,
     candidate.auto_research_experiment,
     candidate.available_data_or_benchmark,
+    candidate.public_training_or_eval_data,
+    candidate.scientific_hypothesis,
+    candidate.success_threshold,
+    candidate.failure_condition,
+    candidate.first_24h_experiment,
     candidate.specific_intervention,
     candidate.baseline,
     candidate.metric,
@@ -1444,6 +1586,9 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   if (candidate.feasibility_evidence_spans.length > 0 && /(public|benchmark|dataset|github|kaggle|open|accuracy|f1|auc)/.test(candidateText)) {
     feasibility += 5;
   }
+  if (candidate.public_training_or_eval_data.length >= 20 && candidate.first_24h_experiment.length >= 40) {
+    feasibility += 4;
+  }
   if (candidate.specific_intervention.length >= 30 && candidate.baseline.length >= 20) {
     feasibility += 7;
   }
@@ -1453,10 +1598,13 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   if (candidate.expected_metric.length >= 20 && candidate.metric.length >= 3) {
     falsifiable += 8;
   }
-  if (/(accuracy|f1|auc|error|rate|latency|throughput|cost|success|precision|recall)/.test(`${candidate.expected_metric} ${candidate.metric}`.toLowerCase())) {
+  if (/(accuracy|f1|auc|error|rate|latency|throughput|cost|success|precision|recall)/.test(`${candidate.expected_metric} ${candidate.metric} ${candidate.success_threshold}`.toLowerCase())) {
     falsifiable += 8;
   }
-  if (/\d|%|delta|improv|drop|increase|decrease|baseline|compare|versus/.test(candidate.expected_metric.toLowerCase())) {
+  if (candidate.success_threshold.length >= 20 && candidate.failure_condition.length >= 20) {
+    falsifiable += 5;
+  }
+  if (/\d|%|delta|improv|drop|increase|decrease|baseline|compare|versus/.test(`${candidate.expected_metric} ${candidate.success_threshold}`.toLowerCase())) {
     falsifiable += 4;
   }
   falsifiable = clamp(falsifiable, 0, 20);
@@ -1470,6 +1618,9 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   }
   if (candidate.specific_intervention.length >= 30 && candidate.baseline.length >= 20) {
     clarity += 5;
+  }
+  if (candidate.scientific_hypothesis.length >= 40) {
+    clarity += 3;
   }
   clarity = clamp(clarity, 0, 15);
 
@@ -1530,6 +1681,12 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   }
   if (candidate.evidence_role === "positive_result_only") {
     total = Math.min(total, 45);
+  }
+  if (candidate.public_training_or_eval_data.length < 20 || candidate.scientific_hypothesis.length < 30) {
+    total = Math.min(total, 62);
+  }
+  if (candidate.success_threshold.length < 20 || candidate.failure_condition.length < 20) {
+    total = Math.min(total, 64);
   }
 
   return {
@@ -1604,7 +1761,12 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
     candidate.candidate_problem,
     candidate.auto_research_experiment,
     candidate.available_data_or_benchmark,
+    candidate.public_training_or_eval_data,
+    candidate.scientific_hypothesis,
     candidate.expected_metric,
+    candidate.success_threshold,
+    candidate.failure_condition,
+    candidate.first_24h_experiment,
     candidate.code_or_data_evidence.join(" "),
     candidate.paper_status_evidence.join(" "),
     candidate.disqualifiers.join(" "),
@@ -1618,10 +1780,6 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
 
   if (candidate.evidence_role === "positive_result_only") {
     reasons.push("Evidence role is positive_result_only, not a stated problem, limitation, future work, or failure mode.");
-  }
-
-  if (candidate.problem_evidence_spans.some((span) => classifyEvidenceRole(span) === "positive_result_only")) {
-    reasons.push("Problem evidence span does not state a problem role.");
   }
 
   if (candidate.problem_evidence_spans.some((span) => SOLVED_PRIOR_ART_PATTERN.test(span))) {
@@ -1644,12 +1802,12 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
     reasons.push("Paper is withdrawn according to arXiv or external venue metadata.");
   }
 
-  if (candidate.code_or_data_status === "not_found" || candidate.code_or_data_status === "unknown") {
+  if ((candidate.code_or_data_status === "not_found" || candidate.code_or_data_status === "unknown") && candidate.code_or_data_urls.length === 0) {
     reasons.push("No public code, data, benchmark, or metric evidence found.");
   }
 
-  if (candidate.code_or_data_status !== "found" || candidate.code_or_data_urls.length === 0) {
-    reasons.push("No verified concrete public code, data, or benchmark URL found.");
+  if (candidate.code_or_data_urls.length === 0) {
+    reasons.push("No concrete public code, data, or benchmark URL found.");
   }
 
   if (evidencePrecisionForCandidate(candidate, paperText) === 0) {
@@ -1672,6 +1830,22 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
     reasons.push("No measurable success/failure criterion.");
   }
 
+  if (candidate.public_training_or_eval_data.length < 12) {
+    reasons.push("No public training/evaluation data, benchmark, simulator, or reproducible artifact named.");
+  }
+
+  if (candidate.scientific_hypothesis.length < 30) {
+    reasons.push("No scientific hypothesis or mechanism stated.");
+  }
+
+  if (candidate.success_threshold.length < 12 || candidate.failure_condition.length < 12) {
+    reasons.push("No concrete success threshold and failure condition.");
+  }
+
+  if (candidate.first_24h_experiment.length < 40) {
+    reasons.push("No executable first-24h experiment step.");
+  }
+
   if (candidate.auto_research_experiment.length < 40) {
     reasons.push("Experiment path is too vague to execute.");
   }
@@ -1686,6 +1860,10 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
 
   if (GENERIC_INTERVENTION_PATTERN.test(candidate.specific_intervention)) {
     reasons.push("Specific intervention is generic rather than operational.");
+  }
+
+  if (/\b(stronger|larger|frontier|better)\s+(?:llm|model|agent)\b/.test(fullText) && !/\b(mechanism|failure mode|ablation|causal|isolate)\b/.test(fullText)) {
+    reasons.push("Experiment is mainly trying a stronger model without isolating a scientific mechanism.");
   }
 
   if (candidate.baseline.length < 20) {
@@ -1767,13 +1945,32 @@ async function fetchArxivCategory(category: string, maxResults: number): Promise
   throw new Error(`arXiv query failed for ${category}: exhausted retries`);
 }
 
-async function fetchRecentPapers(config: ExperimentConfig): Promise<{ allFetched: number; filtered: ArxivPaper[] }> {
+async function fetchArxivCategoryRecentHtml(category: string, maxResults: number): Promise<ArxivPaper[]> {
+  const url = new URL(`https://arxiv.org/list/${category}/recent`);
+  url.searchParams.set("skip", "0");
+  url.searchParams.set("show", String(listShowValue(maxResults)));
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    headers: { "User-Agent": "problem-scanner/0.1 (+https://arxiv.org)" },
+  });
+  if (!response.ok) {
+    throw new Error(`arXiv recent HTML failed for ${category}: ${response.status}`);
+  }
+  return parseArxivRecentHtml(await response.text(), category).slice(0, maxResults);
+}
+
+async function fetchRecentPapers(
+  config: ExperimentConfig,
+  recordError?: (error: Omit<RunErrorRecord, "timestamp">) => void,
+): Promise<{ allFetched: number; filtered: ArxivPaper[] }> {
   const paperMap = new Map<string, ArxivPaper>();
   let allFetched = 0;
 
   for (const category of config.categories) {
     try {
-      const papers = await fetchArxivCategory(category, config.per_category_fetch);
+      const papers = config.arxiv_source === "recent-html"
+        ? await fetchArxivCategoryRecentHtml(category, config.per_category_fetch)
+        : await fetchArxivCategory(category, config.per_category_fetch);
       allFetched += papers.length;
 
       for (const paper of papers) {
@@ -1783,13 +1980,48 @@ async function fetchRecentPapers(config: ExperimentConfig): Promise<{ allFetched
         }
       }
     } catch (error) {
+      const message = errorMessage(error);
+      recordError?.({
+        stage: "fetch_category_error",
+        category,
+        error: message,
+        fallback_used: config.arxiv_source === "api" ? undefined : "recent-html",
+      });
       console.warn(
         JSON.stringify({
           stage: "fetch_category_error",
           category,
-          error: error instanceof Error ? error.message : String(error),
+          error: message,
         }),
       );
+      if (config.arxiv_source === "api") {
+        continue;
+      }
+      try {
+        const papers = await fetchArxivCategoryRecentHtml(category, config.per_category_fetch);
+        allFetched += papers.length;
+        console.warn(JSON.stringify({ stage: "fetch_category_html_fallback", category, papers: papers.length }));
+        for (const paper of papers) {
+          const existing = paperMap.get(paper.canonical_id);
+          if (!existing || new Date(paper.updated_at).getTime() > new Date(existing.updated_at).getTime()) {
+            paperMap.set(paper.canonical_id, paper);
+          }
+        }
+      } catch (fallbackError) {
+        const message = errorMessage(fallbackError);
+        recordError?.({
+          stage: "fetch_category_html_fallback_error",
+          category,
+          error: message,
+        });
+        console.warn(
+          JSON.stringify({
+            stage: "fetch_category_html_fallback_error",
+            category,
+            error: message,
+          }),
+        );
+      }
     }
   }
 
@@ -2246,6 +2478,8 @@ function markdownReport(
   lines.push(`- Top-20 problem-evidence precision: ${Math.round(summary.top_20_problem_evidence_precision * 100)}%`);
   lines.push(`- Estimated cost: $${summary.estimated_cost_usd}`);
   lines.push(`- Estimated cost per scanned paper: $${summary.estimated_cost_per_paper_usd}`);
+  lines.push(`- Run errors/fallbacks: ${summary.run_errors.total}`);
+  lines.push(`- Run error log: \`${summary.run_errors.jsonl_path}\``);
   lines.push("");
 
   lines.push("## LLM And Prompt Audit");
@@ -2350,9 +2584,29 @@ function markdownReport(
       lines.push("");
       lines.push(candidate.available_data_or_benchmark || "Not specified.");
       lines.push("");
+      lines.push("Public training/evaluation data:");
+      lines.push("");
+      lines.push(candidate.public_training_or_eval_data || "Not specified.");
+      lines.push("");
+      lines.push("Scientific hypothesis:");
+      lines.push("");
+      lines.push(candidate.scientific_hypothesis || "Not specified.");
+      lines.push("");
       lines.push("Expected metric:");
       lines.push("");
       lines.push(candidate.expected_metric || "Not specified.");
+      lines.push("");
+      lines.push("Success threshold:");
+      lines.push("");
+      lines.push(candidate.success_threshold || "Not specified.");
+      lines.push("");
+      lines.push("Failure condition:");
+      lines.push("");
+      lines.push(candidate.failure_condition || "Not specified.");
+      lines.push("");
+      lines.push("First 24h experiment:");
+      lines.push("");
+      lines.push(candidate.first_24h_experiment || "Not specified.");
       lines.push("");
       lines.push("Specific intervention:");
       lines.push("");
@@ -2448,6 +2702,8 @@ function printHelp(): void {
     "  --mode heuristic|llm           Force mode (default: llm if selected provider key present, else heuristic)",
     "  --provider google-gemini|openrouter",
     "                                  LLM provider (default: openrouter if OPENROUTER_API_KEY is set, else google-gemini)",
+    "  --arxivSource auto|api|recent-html",
+    "                                  Paper source (default: auto; recent-html skips the export API)",
     "  --extractionProfile strict|recall",
     "                                  Strict precision-first extraction or recall-first candidate pooling",
     "  --broadModel <name>            Broad extraction model (default depends on provider)",
@@ -2491,6 +2747,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
       outputDir: { type: "string" },
       mode: { type: "string" },
       provider: { type: "string" },
+      arxivSource: { type: "string" },
       extractionProfile: { type: "string" },
       broadModel: { type: "string" },
       verifierModel: { type: "string" },
@@ -2542,6 +2799,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
     output_dir: outputDir,
     mode,
     llm_provider: llmProvider,
+    arxiv_source: parseArxivSource(String(parsed.values.arxivSource ?? "auto")),
     extraction_profile: parseExtractionProfile(String(parsed.values.extractionProfile ?? "strict")),
     broad_model: String(parsed.values.broadModel ?? defaultModelForProvider(llmProvider)),
     verifier_model: String(parsed.values.verifierModel ?? defaultModelForProvider(llmProvider)),
@@ -2598,13 +2856,16 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   const selectedApiKey = apiKeyForConfig(config);
   const llmInvoked = isLlmMode(config) && Boolean(selectedApiKey);
   const promptAuditPath = join(config.output_dir, "prompts.md");
+  const runErrors: RunErrorRecord[] = [];
+  const recordError = (error: Omit<RunErrorRecord, "timestamp">): void =>
+    recordRunError(runErrors, config.output_dir, error);
 
   writeJson(join(config.output_dir, "config.json"), publicRunConfig);
   writeJson(join(config.output_dir, "reproducibility.json"), runMetadata());
   writeFileSync(promptAuditPath, promptAuditMarkdown(config, llmInvoked), "utf8");
 
   console.log(JSON.stringify({ stage: "fetch", categories: config.categories, days: config.days }));
-  const fetched = await fetchRecentPapers(config);
+  const fetched = await fetchRecentPapers(config, recordError);
   writeJson(join(config.output_dir, "papers.json"), fetched.filtered);
 
   const ranked = fetched.filtered
@@ -2667,7 +2928,8 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     verifier = createJsonClient(config.llm_provider, selectedApiKey, config.verifier_model);
   }
 
-  for (const shortlistEntry of shortlist) {
+  for (let index = 0; index < shortlist.length; index += 1) {
+    const shortlistEntry = shortlist[index];
     const paper = shortlistEntry.paper;
     const paperText = textByPaperId.get(paper.id);
     if (!paperText) {
@@ -2685,11 +2947,20 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
           rawCandidates.push(enrichCandidateWithVerification(normalized, verificationByPaperId.get(paper.id)));
         }
       } catch (error) {
+        const message = errorMessage(error);
+        recordError({
+          stage: "extract_fallback",
+          paper_id: paper.id,
+          provider: config.llm_provider,
+          model: config.broad_model,
+          error: message,
+          fallback_used: "heuristicCandidatesFromPaper",
+        });
         console.warn(
           JSON.stringify({
             stage: "extract_fallback",
             paper_id: paper.id,
-            error: error instanceof Error ? error.message : String(error),
+            error: message,
           }),
         );
         rawCandidates.push(
@@ -2703,6 +2974,17 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
         ...heuristicCandidatesFromPaper(paper, paperText, config).map((candidate) =>
           enrichCandidateWithVerification(candidate, verificationByPaperId.get(paper.id)),
         ),
+      );
+    }
+    if ((index + 1) % 10 === 0 || index + 1 === shortlist.length) {
+      console.log(
+        JSON.stringify({
+          stage: "extract_progress",
+          processed: index + 1,
+          total: shortlist.length,
+          raw_candidates: rawCandidates.length,
+          run_errors: runErrors.length,
+        }),
       );
     }
   }
@@ -2722,8 +3004,23 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
 
   const accepted: CandidateProblem[] = [];
   const rejected: RejectionRecord[] = [];
+  const logVerifyProgress = (processed: number, total: number): void => {
+    if (processed % 25 === 0 || processed === total) {
+      console.log(
+        JSON.stringify({
+          stage: "verify_progress",
+          processed,
+          total,
+          accepted_candidates: accepted.length,
+          rejected_candidates: rejected.length,
+          run_errors: runErrors.length,
+        }),
+      );
+    }
+  };
 
-  for (const candidate of rawCandidates) {
+  for (let index = 0; index < rawCandidates.length; index += 1) {
+    const candidate = rawCandidates[index];
     const paper = paperById.get(candidate.paper_id);
     const paperText = textByPaperId.get(candidate.paper_id);
     if (!paper || !paperText) {
@@ -2732,6 +3029,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
         candidate_problem: candidate.candidate_problem,
         reasons: ["Missing paper context for candidate validation."],
       });
+      logVerifyProgress(index + 1, rawCandidates.length);
       continue;
     }
 
@@ -2753,11 +3051,19 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
           verifierReasons.push(...(result.data.rejection_reasons ?? []));
         }
       } catch (error) {
+        const message = errorMessage(error);
+        recordError({
+          stage: "verify_fallback",
+          paper_id: candidate.paper_id,
+          provider: config.llm_provider,
+          model: config.verifier_model,
+          error: message,
+        });
         console.warn(
           JSON.stringify({
             stage: "verify_fallback",
             paper_id: candidate.paper_id,
-            error: error instanceof Error ? error.message : String(error),
+            error: message,
           }),
         );
       }
@@ -2774,6 +3080,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
         candidate_problem: working.candidate_problem,
         reasons: Array.from(new Set(reasons)),
       });
+      logVerifyProgress(index + 1, rawCandidates.length);
       continue;
     }
 
@@ -2787,6 +3094,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
       problem_evidence_precision: problemEvidencePrecision,
       feasibility_evidence_precision: feasibilityEvidencePrecision,
     });
+    logVerifyProgress(index + 1, rawCandidates.length);
   }
 
   accepted.sort((a, b) => b.score_breakdown.total - a.score_breakdown.total);
@@ -2863,8 +3171,15 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     usage,
     estimated_cost_usd: Number(cost.total.toFixed(6)),
     estimated_cost_per_paper_usd: Number(estimatedCostPerPaper.toFixed(6)),
+    run_errors: {
+      total: runErrors.length,
+      by_stage: errorCountsByStage(runErrors),
+      jsonl_path: "run_errors.jsonl",
+      json_path: "run_errors.json",
+    },
   };
 
+  writeJson(join(config.output_dir, "run_errors.json"), runErrors);
   writeJson(join(config.output_dir, "candidates.final.json"), trimmedAccepted);
   writeJson(join(config.output_dir, "candidates.rejected.json"), rejected);
   writeJson(join(config.output_dir, "summary.json"), summary);

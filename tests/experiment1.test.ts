@@ -7,9 +7,18 @@ import {
   extractSectionsFromHtml,
   parseCliArgs,
   parseArxivFeed,
+  parseArxivRecentHtml,
   type PaperText,
   type RawCandidate,
 } from "../src/experiment1.js";
+
+const DATASET_GROUNDED_FIELDS = {
+  public_training_or_eval_data: "The paper-linked public benchmark or repository artifact.",
+  scientific_hypothesis: "The intervention should isolate a measurable mechanism behind the stated paper limitation.",
+  success_threshold: "Success means a measurable improvement over the reported baseline on the named metric.",
+  failure_condition: "Failure means no measurable improvement or no usable public artifact within 24 hours.",
+  first_24h_experiment: "Set up the public artifact, reproduce the baseline, and run a small pilot intervention.",
+};
 
 describe("parseArxivFeed", () => {
   it("parses key fields from arXiv Atom XML", () => {
@@ -38,6 +47,36 @@ describe("parseArxivFeed", () => {
     expect(parsed[0].primary_subject).toBe("cs.AI");
     expect(parsed[0].authors).toEqual(["Alice"]);
     expect(parsed[0].pdf_url).toContain("2605.12345v1.pdf");
+  });
+});
+
+describe("parseArxivRecentHtml", () => {
+  it("parses arXiv recent-list fallback entries", () => {
+    const html = `
+      <dt>
+        <a href="/abs/2605.06651" title="Abstract" id="2605.06651">arXiv:2605.06651</a>
+        [<a href="/pdf/2605.06651" title="Download PDF">pdf</a>]
+      </dt>
+      <dd>
+        <div class='meta'>
+          <div class='list-title mathjax'><span class='descriptor'>Title:</span> AI Co-Mathematician </div>
+          <div class='list-authors'><a>Daniel Zheng</a>, <a>Ingrid von Glehn</a></div>
+          <div class='list-comments mathjax'><span class='descriptor'>Comments:</span> 22 pages</div>
+          <div class='list-subjects'><span class='descriptor'>Subjects:</span>
+            <span class="primary-subject">Artificial Intelligence (cs.AI)</span>; Machine Learning (cs.LG)
+          </div>
+        </div>
+      </dd>
+    `;
+
+    const parsed = parseArxivRecentHtml(html, "cs.AI", "2026-05-08T00:00:00.000Z");
+
+    expect(parsed).toHaveLength(1);
+    expect(parsed[0].id).toBe("2605.06651");
+    expect(parsed[0].title).toBe("AI Co-Mathematician");
+    expect(parsed[0].authors).toEqual(["Daniel Zheng", "Ingrid von Glehn"]);
+    expect(parsed[0].subjects).toContain("cs.AI");
+    expect(parsed[0].subjects).toContain("cs.LG");
   });
 });
 
@@ -105,6 +144,7 @@ describe("applyHardRejectionGates", () => {
       why_hidden_or_underexploited: "",
       auto_research_experiment: "Do a wet lab assay.",
       available_data_or_benchmark: "Private dataset",
+      ...DATASET_GROUNDED_FIELDS,
       expected_metric: "",
       specific_intervention: "",
       baseline: "",
@@ -154,6 +194,7 @@ describe("applyHardRejectionGates", () => {
       why_hidden_or_underexploited: "This is only a result.",
       auto_research_experiment: "Reproduce the result and compare against a baseline.",
       available_data_or_benchmark: "Public benchmarks are mentioned.",
+      ...DATASET_GROUNDED_FIELDS,
       expected_metric: "Accuracy versus baseline.",
       specific_intervention: "Repeat the same positive-result experiment.",
       baseline: "The reported baseline.",
@@ -205,6 +246,7 @@ describe("applyHardRejectionGates", () => {
       why_hidden_or_underexploited: "The span is explicit future work.",
       auto_research_experiment: "Recruit additional participants and compare outcomes against the reported baseline.",
       available_data_or_benchmark: "Public benchmark mentioned.",
+      ...DATASET_GROUNDED_FIELDS,
       expected_metric: "Accuracy versus baseline.",
       specific_intervention: "Evaluate more diverse cohorts in the reported classroom setting.",
       baseline: "The reported baseline.",
@@ -253,6 +295,7 @@ describe("applyHardRejectionGates", () => {
       why_hidden_or_underexploited: "The span is explicit future work.",
       auto_research_experiment: "Reproduce the reported baseline, add adaptive retrieval, and compare accuracy.",
       available_data_or_benchmark: "Public benchmark mentioned.",
+      ...DATASET_GROUNDED_FIELDS,
       expected_metric: "Accuracy delta versus baseline.",
       specific_intervention: "Evaluate adaptive retrieval in the reported setup.",
       baseline: "The reported baseline.",
@@ -272,7 +315,7 @@ describe("applyHardRejectionGates", () => {
     };
 
     const reasons = applyHardRejectionGates(candidate, paperText);
-    expect(reasons.join(" ").toLowerCase()).toContain("verified concrete public code");
+    expect(reasons.join(" ").toLowerCase()).toContain("concrete public code");
   });
 
   it("rejects externally withdrawn papers", () => {
@@ -304,6 +347,7 @@ describe("applyHardRejectionGates", () => {
       why_hidden_or_underexploited: "The span is explicit future work.",
       auto_research_experiment: "Reproduce the reported baseline, add adaptive retrieval, and compare accuracy.",
       available_data_or_benchmark: "Verified repository.",
+      ...DATASET_GROUNDED_FIELDS,
       expected_metric: "Accuracy delta versus baseline.",
       specific_intervention: "Evaluate adaptive retrieval in the reported setup.",
       baseline: "The reported baseline.",
@@ -350,6 +394,7 @@ describe("parseCliArgs", () => {
 
       expect(config.mode).toBe("llm");
       expect(config.llm_provider).toBe("openrouter");
+      expect(config.arxiv_source).toBe("auto");
       expect(config.broad_model).toBe("google/gemini-3-flash-preview");
       expect(config.verifier_model).toBe("google/gemini-3-flash-preview");
       expect(config.openrouter_api_key).toBe("test-openrouter-key");
@@ -420,6 +465,12 @@ describe("parseCliArgs", () => {
       }
     }
   });
+
+  it("parses recent-html arXiv source", () => {
+    const config = parseCliArgs(["--mode", "heuristic", "--arxivSource", "recent-html"]);
+
+    expect(config.arxiv_source).toBe("recent-html");
+  });
 });
 
 describe("agreement metrics", () => {
@@ -433,6 +484,7 @@ describe("agreement metrics", () => {
       feasibility_evidence_spans: [],
       auto_research_experiment: "",
       available_data_or_benchmark: "",
+      ...DATASET_GROUNDED_FIELDS,
       expected_metric: "",
       specific_intervention: "",
       baseline: "",
