@@ -181,6 +181,10 @@ export interface ExperimentConfig {
   extraction_profile: ExtractionProfile;
   broad_model: string;
   verifier_model: string;
+  llm_extract_concurrency: number;
+  llm_verify_concurrency: number;
+  llm_max_output_tokens: number;
+  llm_max_retries: number;
   gemini_api_key?: string;
   openrouter_api_key?: string;
   input_price_per_mtoken_usd: number;
@@ -196,6 +200,7 @@ interface TokenUsage {
 interface LlmJsonResult<T> {
   data: T;
   usage: TokenUsage;
+  repaired_json: boolean;
 }
 
 interface JsonLlmClient {
@@ -282,6 +287,8 @@ interface RunErrorRecord {
   fallback_used?: string;
 }
 
+type RunErrorRecorder = (error: Omit<RunErrorRecord, "timestamp">) => void;
+
 const POSITIVE_SIGNAL_TERMS = [
   "limitation",
   "limitations",
@@ -362,6 +369,7 @@ const UNSANDBOXED_RISK_PATTERNS = [
 ];
 
 const REQUEST_TIMEOUT_MS = 45_000;
+const LLM_RETRY_BASE_DELAY_MS = 750;
 const RESOURCE_VERIFY_TIMEOUT_MS = 12_000;
 
 const RESOURCE_HOST_PATTERNS = [
@@ -430,6 +438,17 @@ function toPositiveInt(input: string | undefined, fallback: number, name: string
   }
   const parsed = Number.parseInt(input, 10);
   if (!Number.isFinite(parsed) || parsed <= 0) {
+    throw new Error(`Invalid --${name}: ${input}`);
+  }
+  return parsed;
+}
+
+function toNonNegativeInt(input: string | undefined, fallback: number, name: string): number {
+  if (!input) {
+    return fallback;
+  }
+  const parsed = Number.parseInt(input, 10);
+  if (!Number.isFinite(parsed) || parsed < 0) {
     throw new Error(`Invalid --${name}: ${input}`);
   }
   return parsed;
@@ -1316,26 +1335,165 @@ function normalizeRawCandidate(candidate: Partial<RawCandidate>, paperId: string
   };
 }
 
-function parseJsonBlob(input: string): unknown {
+interface JsonParseResult {
+  value: unknown;
+  repaired: boolean;
+}
+
+function stripJsonFence(input: string): string {
   const trimmed = input.trim();
   if (!trimmed) {
     throw new Error("Model returned empty text");
   }
 
   const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  const raw = fenced ? fenced[1].trim() : trimmed;
+  return fenced ? fenced[1].trim() : trimmed;
+}
+
+function jsonBalanceSuffix(input: string): string | null {
+  const stack: string[] = [];
+  let inString = false;
+  let escaped = false;
+
+  for (const char of input) {
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === "\\") {
+        escaped = true;
+      } else if (char === "\"") {
+        inString = false;
+      }
+      continue;
+    }
+
+    if (char === "\"") {
+      inString = true;
+    } else if (char === "{") {
+      stack.push("}");
+    } else if (char === "[") {
+      stack.push("]");
+    } else if (char === "}" || char === "]") {
+      if (stack.at(-1) !== char) {
+        return null;
+      }
+      stack.pop();
+    }
+  }
+
+  if (inString) {
+    return null;
+  }
+
+  return stack.reverse().join("");
+}
+
+function truncateToLastCompleteJsonBoundary(input: string): string[] {
+  const candidates = new Set<string>();
+  const trimmed = input.trim().replace(/,\s*$/, "");
+  candidates.add(trimmed);
+
+  let inString = false;
+  let escaped = false;
+  let lastComma = -1;
+  let lastOpenContainer = -1;
+
+  for (let index = 0; index < trimmed.length; index += 1) {
+    const char = trimmed[index];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === "\\") {
+        escaped = true;
+      } else if (char === "\"") {
+        inString = false;
+      }
+      continue;
+    }
+
+    if (char === "\"") {
+      inString = true;
+    } else if (char === ",") {
+      lastComma = index;
+    } else if (char === "{" || char === "[") {
+      lastOpenContainer = index;
+    }
+  }
+
+  if (inString) {
+    let quoteIndex = -1;
+    for (let index = trimmed.length - 1; index >= 0; index -= 1) {
+      if (trimmed[index] === "\"" && trimmed[index - 1] !== "\\") {
+        quoteIndex = index;
+        break;
+      }
+    }
+    if (quoteIndex >= 0) {
+      candidates.add(trimmed.slice(0, quoteIndex).trim().replace(/,\s*$/, ""));
+    }
+  }
+
+  if (lastComma >= 0) {
+    candidates.add(trimmed.slice(0, lastComma).trim().replace(/,\s*$/, ""));
+  }
+
+  if (lastOpenContainer >= 0) {
+    candidates.add(trimmed.slice(0, lastOpenContainer + 1).trim());
+  }
+
+  return Array.from(candidates).filter(Boolean);
+}
+
+function repairTruncatedJson(raw: string): unknown | null {
+  const firstBrace = raw.indexOf("{");
+  if (firstBrace < 0) {
+    return null;
+  }
+
+  const jsonish = raw.slice(firstBrace).trim();
+  const candidates = truncateToLastCompleteJsonBoundary(jsonish);
+  for (const candidate of candidates) {
+    const suffix = jsonBalanceSuffix(candidate);
+    if (suffix === null) {
+      continue;
+    }
+    try {
+      return JSON.parse(`${candidate}${suffix}`);
+    } catch {
+      // Try the next truncation boundary.
+    }
+  }
+
+  return null;
+}
+
+function parseJsonBlobWithDiagnostics(input: string): JsonParseResult {
+  const raw = stripJsonFence(input);
 
   try {
-    return JSON.parse(raw);
+    return { value: JSON.parse(raw), repaired: false };
   } catch {
     const firstBrace = raw.indexOf("{");
     const lastBrace = raw.lastIndexOf("}");
     if (firstBrace >= 0 && lastBrace > firstBrace) {
-      return JSON.parse(raw.slice(firstBrace, lastBrace + 1));
+      try {
+        return { value: JSON.parse(raw.slice(firstBrace, lastBrace + 1)), repaired: true };
+      } catch {
+        // Fall through to truncation repair.
+      }
     }
   }
 
+  const repaired = repairTruncatedJson(raw);
+  if (repaired !== null) {
+    return { value: repaired, repaired: true };
+  }
+
   throw new Error(`Unable to parse model JSON output (chars=${raw.length}, prefix=${safeSubstring(raw, 160)})`);
+}
+
+export function parseJsonBlob(input: string): unknown {
+  return parseJsonBlobWithDiagnostics(input).value;
 }
 
 function errorMessage(error: unknown): string {
@@ -1364,7 +1522,11 @@ function errorCountsByStage(errors: RunErrorRecord[]): Record<string, number> {
 }
 
 class GeminiJsonClient {
-  constructor(private readonly apiKey: string, private readonly model: string) {}
+  constructor(
+    private readonly apiKey: string,
+    private readonly model: string,
+    private readonly maxOutputTokens: number,
+  ) {}
 
   async generateJson<T>(prompt: string): Promise<LlmJsonResult<T>> {
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
@@ -1383,6 +1545,7 @@ class GeminiJsonClient {
         generationConfig: {
           temperature: 0.2,
           responseMimeType: "application/json",
+          maxOutputTokens: this.maxOutputTokens,
         },
       }),
     });
@@ -1404,21 +1567,26 @@ class GeminiJsonClient {
     const responseText =
       body.candidates?.[0]?.content?.parts?.map((part) => part.text ?? "").join("\n") ?? "";
 
-    const parsed = parseJsonBlob(responseText) as T;
+    const parsed = parseJsonBlobWithDiagnostics(responseText);
 
     return {
-      data: parsed,
+      data: parsed.value as T,
       usage: {
         prompt_tokens: body.usageMetadata?.promptTokenCount ?? 0,
         completion_tokens: body.usageMetadata?.candidatesTokenCount ?? 0,
         total_tokens: body.usageMetadata?.totalTokenCount ?? 0,
       },
+      repaired_json: parsed.repaired,
     };
   }
 }
 
 class OpenRouterJsonClient implements JsonLlmClient {
-  constructor(private readonly apiKey: string, private readonly model: string) {}
+  constructor(
+    private readonly apiKey: string,
+    private readonly model: string,
+    private readonly maxOutputTokens: number,
+  ) {}
 
   async generateJson<T>(prompt: string): Promise<LlmJsonResult<T>> {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -1434,6 +1602,7 @@ class OpenRouterJsonClient implements JsonLlmClient {
         model: this.model,
         messages: [{ role: "user", content: prompt }],
         temperature: 0.2,
+        max_tokens: this.maxOutputTokens,
         response_format: { type: "json_object" },
       }),
     });
@@ -1464,15 +1633,16 @@ class OpenRouterJsonClient implements JsonLlmClient {
       ? content.map((part) => part.text ?? "").join("\n")
       : content ?? "";
 
-    const parsed = parseJsonBlob(responseText) as T;
+    const parsed = parseJsonBlobWithDiagnostics(responseText);
 
     return {
-      data: parsed,
+      data: parsed.value as T,
       usage: {
         prompt_tokens: body.usage?.prompt_tokens ?? 0,
         completion_tokens: body.usage?.completion_tokens ?? 0,
         total_tokens: body.usage?.total_tokens ?? 0,
       },
+      repaired_json: parsed.repaired,
     };
   }
 }
@@ -2329,7 +2499,8 @@ async function mapWithConcurrency<T, U>(
     }
   }
 
-  const workers = Array.from({ length: Math.min(concurrency, values.length) }, () => worker());
+  const workerCount = Math.min(Math.max(1, Math.floor(concurrency)), values.length);
+  const workers = Array.from({ length: workerCount }, () => worker());
   await Promise.all(workers);
   return results;
 }
@@ -2370,16 +2541,94 @@ function endpointPattern(provider: LlmProvider): string {
     : "https://generativelanguage.googleapis.com/v1beta/models/<model>:generateContent";
 }
 
-function generationConfigDescription(provider: LlmProvider): string {
+function generationConfigDescription(provider: LlmProvider, maxOutputTokens: number): string {
   return isOpenRouterProvider(provider)
-    ? "temperature=0.2, response_format={type:\"json_object\"}"
-    : "temperature=0.2, responseMimeType=application/json";
+    ? `temperature=0.2, max_tokens=${maxOutputTokens}, response_format={type:"json_object"}`
+    : `temperature=0.2, maxOutputTokens=${maxOutputTokens}, responseMimeType=application/json`;
 }
 
-function createJsonClient(provider: LlmProvider, apiKey: string, model: string): JsonLlmClient {
+function createJsonClient(
+  provider: LlmProvider,
+  apiKey: string,
+  model: string,
+  maxOutputTokens: number,
+): JsonLlmClient {
   return isOpenRouterProvider(provider)
-    ? new OpenRouterJsonClient(apiKey, model)
-    : new GeminiJsonClient(apiKey, model);
+    ? new OpenRouterJsonClient(apiKey, model, maxOutputTokens)
+    : new GeminiJsonClient(apiKey, model, maxOutputTokens);
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableLlmError(error: unknown): boolean {
+  const message = errorMessage(error).toLowerCase();
+  if (message.includes("402")) {
+    return false;
+  }
+  if (/\b(?:400|401|403|404)\b/.test(message)) {
+    return false;
+  }
+  return (
+    message.includes("unable to parse model json output") ||
+    message.includes("model returned empty text") ||
+    message.includes("timeout") ||
+    message.includes("aborted") ||
+    message.includes("fetch failed") ||
+    /\b(?:429|500|502|503|504)\b/.test(message)
+  );
+}
+
+async function generateJsonWithRetry<T>(
+  client: JsonLlmClient,
+  prompt: string,
+  options: {
+    stage: "extract" | "verify";
+    paperId: string;
+    provider: LlmProvider;
+    model: string;
+    maxRetries: number;
+    recordError: RunErrorRecorder;
+  },
+): Promise<LlmJsonResult<T>> {
+  const maxAttempts = options.maxRetries + 1;
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      const result = await client.generateJson<T>(prompt);
+      if (result.repaired_json) {
+        options.recordError({
+          stage: `${options.stage}_json_repair`,
+          paper_id: options.paperId,
+          provider: options.provider,
+          model: options.model,
+          error: "Recovered malformed or truncated model JSON using local repair.",
+          fallback_used: "json_repair",
+        });
+      }
+      return result;
+    } catch (error) {
+      lastError = error;
+      const retryable = isRetryableLlmError(error);
+      if (!retryable || attempt >= maxAttempts) {
+        break;
+      }
+
+      options.recordError({
+        stage: `${options.stage}_retry`,
+        paper_id: options.paperId,
+        provider: options.provider,
+        model: options.model,
+        error: `${errorMessage(error)} (attempt ${attempt}/${maxAttempts})`,
+        fallback_used: "retry",
+      });
+      await sleep(LLM_RETRY_BASE_DELAY_MS * attempt);
+    }
+  }
+
+  throw lastError;
 }
 
 function publicConfig(config: ExperimentConfig): PublicExperimentConfig {
@@ -2427,7 +2676,10 @@ function promptAuditMarkdown(config: ExperimentConfig, llmInvoked: boolean): str
     `- Broad scan model: \`${config.broad_model}\``,
     `- Verifier model: \`${config.verifier_model}\``,
     `- Endpoint pattern: \`${endpointPattern(config.llm_provider)}\``,
-    `- Generation config: \`${generationConfigDescription(config.llm_provider)}\``,
+    `- Generation config: \`${generationConfigDescription(config.llm_provider, config.llm_max_output_tokens)}\``,
+    `- LLM extract concurrency: ${config.llm_extract_concurrency}`,
+    `- LLM verify concurrency: ${config.llm_verify_concurrency}`,
+    `- LLM max retries: ${config.llm_max_retries}`,
     "",
     `If \`LLM invoked\` is \`no\`, these are the exact prompt templates the pipeline would use in LLM mode, but no prompt text was sent for this run. Selected key: \`${apiKeyEnvName(config.llm_provider)}\`.`,
     "",
@@ -2490,6 +2742,10 @@ function markdownReport(
   lines.push(`- Extraction profile: \`${summary.config.extraction_profile}\``);
   lines.push(`- Broad scan model: \`${summary.llm.broad_model}\``);
   lines.push(`- Verifier model: \`${summary.llm.verifier_model}\``);
+  lines.push(`- LLM extract concurrency: ${summary.config.llm_extract_concurrency}`);
+  lines.push(`- LLM verify concurrency: ${summary.config.llm_verify_concurrency}`);
+  lines.push(`- LLM max output tokens: ${summary.config.llm_max_output_tokens}`);
+  lines.push(`- LLM max retries: ${summary.config.llm_max_retries}`);
   lines.push(`- Prompt audit file: \`${summary.llm.prompt_audit_path}\``);
   if (!summary.llm.llm_invoked) {
     lines.push("- Note: no LLM prompts were sent in this run because mode was heuristic or the selected provider API key was not configured.");
@@ -2708,6 +2964,10 @@ function printHelp(): void {
     "                                  Strict precision-first extraction or recall-first candidate pooling",
     "  --broadModel <name>            Broad extraction model (default depends on provider)",
     "  --verifierModel <name>         Verifier model (default depends on provider)",
+    "  --llmExtractConcurrency <n>    Concurrent broad-scan LLM calls (default: 4)",
+    "  --llmVerifyConcurrency <n>     Concurrent verifier LLM calls (default: 2)",
+    "  --llmMaxOutputTokens <n>       Max output tokens per LLM call (default: 8192)",
+    "  --llmMaxRetries <n>            Retry count for retryable LLM failures (default: 2)",
     "  --outputDir <path>             Output directory (default: runs/exp1-<timestamp>)",
     "  --inputPricePerMTokenUSD <n>   Input price for cost estimate",
     "  --outputPricePerMTokenUSD <n>  Output price for cost estimate",
@@ -2751,6 +3011,10 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
       extractionProfile: { type: "string" },
       broadModel: { type: "string" },
       verifierModel: { type: "string" },
+      llmExtractConcurrency: { type: "string" },
+      llmVerifyConcurrency: { type: "string" },
+      llmMaxOutputTokens: { type: "string" },
+      llmMaxRetries: { type: "string" },
       inputPricePerMTokenUSD: { type: "string" },
       outputPricePerMTokenUSD: { type: "string" },
       help: { type: "boolean" },
@@ -2803,6 +3067,26 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
     extraction_profile: parseExtractionProfile(String(parsed.values.extractionProfile ?? "strict")),
     broad_model: String(parsed.values.broadModel ?? defaultModelForProvider(llmProvider)),
     verifier_model: String(parsed.values.verifierModel ?? defaultModelForProvider(llmProvider)),
+    llm_extract_concurrency: clamp(
+      toPositiveInt(parsed.values.llmExtractConcurrency as string | undefined, 4, "llmExtractConcurrency"),
+      1,
+      16,
+    ),
+    llm_verify_concurrency: clamp(
+      toPositiveInt(parsed.values.llmVerifyConcurrency as string | undefined, 2, "llmVerifyConcurrency"),
+      1,
+      16,
+    ),
+    llm_max_output_tokens: clamp(
+      toPositiveInt(parsed.values.llmMaxOutputTokens as string | undefined, 8192, "llmMaxOutputTokens"),
+      512,
+      65_536,
+    ),
+    llm_max_retries: clamp(
+      toNonNegativeInt(parsed.values.llmMaxRetries as string | undefined, 2, "llmMaxRetries"),
+      0,
+      5,
+    ),
     gemini_api_key: geminiApiKey,
     openrouter_api_key: openrouterApiKey,
     input_price_per_mtoken_usd: toNonNegativeFloat(
@@ -2924,70 +3208,89 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   let verifier: JsonLlmClient | null = null;
 
   if (isLlmMode(config) && selectedApiKey) {
-    extractor = createJsonClient(config.llm_provider, selectedApiKey, config.broad_model);
-    verifier = createJsonClient(config.llm_provider, selectedApiKey, config.verifier_model);
+    extractor = createJsonClient(config.llm_provider, selectedApiKey, config.broad_model, config.llm_max_output_tokens);
+    verifier = createJsonClient(config.llm_provider, selectedApiKey, config.verifier_model, config.llm_max_output_tokens);
   }
 
-  for (let index = 0; index < shortlist.length; index += 1) {
-    const shortlistEntry = shortlist[index];
-    const paper = shortlistEntry.paper;
-    const paperText = textByPaperId.get(paper.id);
-    if (!paperText) {
-      continue;
-    }
-
-    if (extractor) {
-      try {
-        const result = await extractor.generateJson<V1CandidateEnvelope>(llmV1Prompt(paper, paperText, config));
-        addUsage(usage, result.usage);
-
-        const candidates = Array.isArray(result.data.candidates) ? result.data.candidates : [];
-        for (const candidate of candidates) {
-          const normalized = normalizeRawCandidate(candidate, paper.id);
-          rawCandidates.push(enrichCandidateWithVerification(normalized, verificationByPaperId.get(paper.id)));
-        }
-      } catch (error) {
-        const message = errorMessage(error);
-        recordError({
-          stage: "extract_fallback",
-          paper_id: paper.id,
-          provider: config.llm_provider,
-          model: config.broad_model,
-          error: message,
-          fallback_used: "heuristicCandidatesFromPaper",
-        });
-        console.warn(
-          JSON.stringify({
-            stage: "extract_fallback",
-            paper_id: paper.id,
-            error: message,
-          }),
-        );
-        rawCandidates.push(
-          ...heuristicCandidatesFromPaper(paper, paperText, config).map((candidate) =>
-            enrichCandidateWithVerification(candidate, verificationByPaperId.get(paper.id)),
-          ),
-        );
-      }
-    } else {
-      rawCandidates.push(
-        ...heuristicCandidatesFromPaper(paper, paperText, config).map((candidate) =>
-          enrichCandidateWithVerification(candidate, verificationByPaperId.get(paper.id)),
-        ),
-      );
-    }
-    if ((index + 1) % 10 === 0 || index + 1 === shortlist.length) {
+  let extractedPaperCount = 0;
+  let extractedCandidateCount = 0;
+  const logExtractProgress = (): void => {
+    if (extractedPaperCount % 10 === 0 || extractedPaperCount === shortlist.length) {
       console.log(
         JSON.stringify({
           stage: "extract_progress",
-          processed: index + 1,
+          processed: extractedPaperCount,
           total: shortlist.length,
-          raw_candidates: rawCandidates.length,
+          raw_candidates: extractedCandidateCount,
           run_errors: runErrors.length,
         }),
       );
     }
-  }
+  };
+  const candidateGroups = await mapWithConcurrency(
+    shortlist,
+    extractor ? config.llm_extract_concurrency : 1,
+    async (shortlistEntry) => {
+      const paper = shortlistEntry.paper;
+      const paperText = textByPaperId.get(paper.id);
+      if (!paperText) {
+        extractedPaperCount += 1;
+        logExtractProgress();
+        return [];
+      }
+
+      let candidatesForPaper: RawCandidate[];
+      if (extractor) {
+        try {
+          const result = await generateJsonWithRetry<V1CandidateEnvelope>(
+            extractor,
+            llmV1Prompt(paper, paperText, config),
+            {
+              stage: "extract",
+              paperId: paper.id,
+              provider: config.llm_provider,
+              model: config.broad_model,
+              maxRetries: config.llm_max_retries,
+              recordError,
+            },
+          );
+          addUsage(usage, result.usage);
+
+          const candidates = Array.isArray(result.data.candidates) ? result.data.candidates : [];
+          candidatesForPaper = candidates.map((candidate) => normalizeRawCandidate(candidate, paper.id));
+        } catch (error) {
+          const message = errorMessage(error);
+          recordError({
+            stage: "extract_fallback",
+            paper_id: paper.id,
+            provider: config.llm_provider,
+            model: config.broad_model,
+            error: message,
+            fallback_used: "heuristicCandidatesFromPaper",
+          });
+          console.warn(
+            JSON.stringify({
+              stage: "extract_fallback",
+              paper_id: paper.id,
+              error: message,
+            }),
+          );
+          candidatesForPaper = heuristicCandidatesFromPaper(paper, paperText, config);
+        }
+      } else {
+        candidatesForPaper = heuristicCandidatesFromPaper(paper, paperText, config);
+      }
+
+      const enriched = candidatesForPaper.map((candidate) =>
+        enrichCandidateWithVerification(candidate, verificationByPaperId.get(paper.id)),
+      );
+      extractedPaperCount += 1;
+      extractedCandidateCount += enriched.length;
+      logExtractProgress();
+      return enriched;
+    },
+  );
+  rawCandidates.push(...candidateGroups.flat());
 
   writeJson(join(config.output_dir, "candidates.raw.json"), rawCandidates);
 
@@ -3002,100 +3305,129 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     preliminary.slice(0, Math.min(config.verifier_top_k, preliminary.length)).map((item) => item.candidate),
   );
 
-  const accepted: CandidateProblem[] = [];
-  const rejected: RejectionRecord[] = [];
-  const logVerifyProgress = (processed: number, total: number): void => {
-    if (processed % 25 === 0 || processed === total) {
+  let verifiedCandidateCount = 0;
+  let acceptedCandidateCount = 0;
+  let rejectedCandidateCount = 0;
+  const logVerifyProgress = (): void => {
+    if (verifiedCandidateCount % 25 === 0 || verifiedCandidateCount === rawCandidates.length) {
       console.log(
         JSON.stringify({
           stage: "verify_progress",
-          processed,
-          total,
-          accepted_candidates: accepted.length,
-          rejected_candidates: rejected.length,
+          processed: verifiedCandidateCount,
+          total: rawCandidates.length,
+          accepted_candidates: acceptedCandidateCount,
+          rejected_candidates: rejectedCandidateCount,
           run_errors: runErrors.length,
         }),
       );
     }
   };
 
-  for (let index = 0; index < rawCandidates.length; index += 1) {
-    const candidate = rawCandidates[index];
-    const paper = paperById.get(candidate.paper_id);
-    const paperText = textByPaperId.get(candidate.paper_id);
-    if (!paper || !paperText) {
-      rejected.push({
-        paper_id: candidate.paper_id,
-        candidate_problem: candidate.candidate_problem,
-        reasons: ["Missing paper context for candidate validation."],
-      });
-      logVerifyProgress(index + 1, rawCandidates.length);
-      continue;
-    }
-
-    let working = candidate;
-    let score = scoreCandidate(working);
-    const verifierReasons: string[] = [];
-
-    if (verifier && verifierBudgetIds.has(candidate)) {
-      try {
-        const result = await verifier.generateJson<V2Verification>(llmV2Prompt(working, paper, paperText));
-        addUsage(usage, result.usage);
-        working = enrichCandidateWithVerification(
-          candidateWithPatch(working, result.data.candidate_patch),
-          verificationByPaperId.get(working.paper_id),
-        );
-        const mergedScore = mergeScoreBreakdown(result.data.score_breakdown, scoreCandidate(working));
-        score = mergedScore;
-        if (!result.data.accepted) {
-          verifierReasons.push(...(result.data.rejection_reasons ?? []));
-        }
-      } catch (error) {
-        const message = errorMessage(error);
-        recordError({
-          stage: "verify_fallback",
+  const validationOutcomes = await mapWithConcurrency(
+    rawCandidates,
+    verifier ? config.llm_verify_concurrency : 1,
+    async (candidate): Promise<{ accepted?: CandidateProblem; rejected?: RejectionRecord }> => {
+      const paper = paperById.get(candidate.paper_id);
+      const paperText = textByPaperId.get(candidate.paper_id);
+      if (!paper || !paperText) {
+        const rejectedOutcome = {
           paper_id: candidate.paper_id,
-          provider: config.llm_provider,
-          model: config.verifier_model,
-          error: message,
-        });
-        console.warn(
-          JSON.stringify({
+          candidate_problem: candidate.candidate_problem,
+          reasons: ["Missing paper context for candidate validation."],
+        };
+        verifiedCandidateCount += 1;
+        rejectedCandidateCount += 1;
+        logVerifyProgress();
+        return { rejected: rejectedOutcome };
+      }
+
+      let working = candidate;
+      let score = scoreCandidate(working);
+      const verifierReasons: string[] = [];
+
+      if (verifier && verifierBudgetIds.has(candidate)) {
+        try {
+          const result = await generateJsonWithRetry<V2Verification>(
+            verifier,
+            llmV2Prompt(working, paper, paperText),
+            {
+              stage: "verify",
+              paperId: candidate.paper_id,
+              provider: config.llm_provider,
+              model: config.verifier_model,
+              maxRetries: config.llm_max_retries,
+              recordError,
+            },
+          );
+          addUsage(usage, result.usage);
+          working = enrichCandidateWithVerification(
+            candidateWithPatch(working, result.data.candidate_patch),
+            verificationByPaperId.get(working.paper_id),
+          );
+          const mergedScore = mergeScoreBreakdown(result.data.score_breakdown, scoreCandidate(working));
+          score = mergedScore;
+          if (!result.data.accepted) {
+            verifierReasons.push(...(result.data.rejection_reasons ?? []));
+          }
+        } catch (error) {
+          const message = errorMessage(error);
+          recordError({
             stage: "verify_fallback",
             paper_id: candidate.paper_id,
+            provider: config.llm_provider,
+            model: config.verifier_model,
             error: message,
-          }),
-        );
+          });
+          console.warn(
+            JSON.stringify({
+              stage: "verify_fallback",
+              paper_id: candidate.paper_id,
+              error: message,
+            }),
+          );
+        }
       }
-    }
 
-    const reasons = [...applyHardRejectionGates(working, paperText), ...verifierReasons];
-    const evidencePrecision = evidencePrecisionForCandidate(working, paperText);
-    const problemEvidencePrecision = problemEvidencePrecisionForCandidate(working, paperText);
-    const feasibilityEvidencePrecision = feasibilityEvidencePrecisionForCandidate(working, paperText);
+      const reasons = [...applyHardRejectionGates(working, paperText), ...verifierReasons];
+      const evidencePrecision = evidencePrecisionForCandidate(working, paperText);
+      const problemEvidencePrecision = problemEvidencePrecisionForCandidate(working, paperText);
+      const feasibilityEvidencePrecision = feasibilityEvidencePrecisionForCandidate(working, paperText);
 
-    if (reasons.length > 0) {
-      rejected.push({
-        paper_id: working.paper_id,
-        candidate_problem: working.candidate_problem,
-        reasons: Array.from(new Set(reasons)),
-      });
-      logVerifyProgress(index + 1, rawCandidates.length);
-      continue;
-    }
+      if (reasons.length > 0) {
+        const rejectedOutcome = {
+          paper_id: working.paper_id,
+          candidate_problem: working.candidate_problem,
+          reasons: Array.from(new Set(reasons)),
+        };
+        verifiedCandidateCount += 1;
+        rejectedCandidateCount += 1;
+        logVerifyProgress();
+        return { rejected: rejectedOutcome };
+      }
 
-    const grade = toGrade(score.total);
-    accepted.push({
-      ...working,
-      score_breakdown: score,
-      grade,
-      rank: 0,
-      evidence_precision: Math.min(evidencePrecision, problemEvidencePrecision),
-      problem_evidence_precision: problemEvidencePrecision,
-      feasibility_evidence_precision: feasibilityEvidencePrecision,
-    });
-    logVerifyProgress(index + 1, rawCandidates.length);
-  }
+      const grade = toGrade(score.total);
+      const acceptedOutcome = {
+        ...working,
+        score_breakdown: score,
+        grade,
+        rank: 0,
+        evidence_precision: Math.min(evidencePrecision, problemEvidencePrecision),
+        problem_evidence_precision: problemEvidencePrecision,
+        feasibility_evidence_precision: feasibilityEvidencePrecision,
+      };
+      verifiedCandidateCount += 1;
+      acceptedCandidateCount += 1;
+      logVerifyProgress();
+      return { accepted: acceptedOutcome };
+    },
+  );
+
+  const accepted = validationOutcomes
+    .map((outcome) => outcome.accepted)
+    .filter((candidate): candidate is CandidateProblem => Boolean(candidate));
+  const rejected = validationOutcomes
+    .map((outcome) => outcome.rejected)
+    .filter((candidate): candidate is RejectionRecord => Boolean(candidate));
 
   accepted.sort((a, b) => b.score_breakdown.total - a.score_breakdown.total);
 

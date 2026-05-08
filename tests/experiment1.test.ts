@@ -8,6 +8,7 @@ import {
   parseCliArgs,
   parseArxivFeed,
   parseArxivRecentHtml,
+  parseJsonBlob,
   type PaperText,
   type RawCandidate,
 } from "../src/experiment1.js";
@@ -114,6 +115,28 @@ describe("extractEvidenceSentences", () => {
     const spans = extractEvidenceSentences(text, 1);
     expect(spans[0]).toContain("Mishkin et al. 2024");
     expect(spans[0]).toContain("benchmark setting");
+  });
+});
+
+describe("parseJsonBlob", () => {
+  it("extracts fenced JSON", () => {
+    expect(parseJsonBlob("```json\n{\"ok\":true}\n```")).toEqual({ ok: true });
+  });
+
+  it("repairs JSON truncated after a complete array item", () => {
+    const parsed = parseJsonBlob("{\"candidates\":[{\"candidate_problem\":\"x\",\"evidence_spans\":[\"y\"]}");
+
+    expect(parsed).toEqual({
+      candidates: [{ candidate_problem: "x", evidence_spans: ["y"] }],
+    });
+  });
+
+  it("repairs JSON truncated inside an incomplete string by dropping the partial item", () => {
+    const parsed = parseJsonBlob("{\"candidates\":[{\"candidate_problem\":\"x\",\"evidence_spans\":[\"lim");
+
+    expect(parsed).toEqual({
+      candidates: [{ candidate_problem: "x", evidence_spans: [] }],
+    });
   });
 });
 
@@ -470,6 +493,26 @@ describe("parseCliArgs", () => {
     const config = parseCliArgs(["--mode", "heuristic", "--arxivSource", "recent-html"]);
 
     expect(config.arxiv_source).toBe("recent-html");
+  });
+
+  it("parses LLM concurrency, output-token, and retry controls", () => {
+    const config = parseCliArgs([
+      "--mode",
+      "heuristic",
+      "--llmExtractConcurrency",
+      "6",
+      "--llmVerifyConcurrency",
+      "3",
+      "--llmMaxOutputTokens",
+      "12000",
+      "--llmMaxRetries",
+      "1",
+    ]);
+
+    expect(config.llm_extract_concurrency).toBe(6);
+    expect(config.llm_verify_concurrency).toBe(3);
+    expect(config.llm_max_output_tokens).toBe(12000);
+    expect(config.llm_max_retries).toBe(1);
   });
 });
 

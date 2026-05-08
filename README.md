@@ -86,6 +86,10 @@ bun run exp1 --mode llm \
 - `--provider` default `openrouter` when `OPENROUTER_API_KEY` is set, otherwise `google-gemini`
 - `--arxivSource` default `auto`; use `recent-html` when the arXiv export API is rate-limited
 - `--extractionProfile` default `strict`; use `recall` to build a high-recall candidate pool for agreement studies
+- `--llmExtractConcurrency` default `4`; broad-scan LLM calls are bounded-concurrent
+- `--llmVerifyConcurrency` default `2`; verifier LLM calls are bounded-concurrent
+- `--llmMaxOutputTokens` default `8192`; sent as `max_tokens` on OpenRouter and `maxOutputTokens` on Gemini
+- `--llmMaxRetries` default `2`; retryable parse/timeout/429/5xx errors are retried before fallback
 - `--outputDir` default `runs/exp1-<timestamp>`
 
 ## 200-Paper Agreement Study
@@ -105,6 +109,10 @@ bun run exp1 --mode llm --provider openrouter \
   --abstractTopK 120 \
   --candidatePerPaper 2 \
   --verifierTopK 80 \
+  --llmExtractConcurrency 4 \
+  --llmVerifyConcurrency 2 \
+  --llmMaxOutputTokens 8192 \
+  --llmMaxRetries 2 \
   --maxCandidatesOutput 100 \
   --outputDir runs/agreement-200/cheap-strict
 
@@ -118,6 +126,9 @@ bun run exp1 --mode llm --provider openrouter \
   --abstractTopK 120 \
   --candidatePerPaper 4 \
   --verifierTopK 0 \
+  --llmExtractConcurrency 4 \
+  --llmMaxOutputTokens 8192 \
+  --llmMaxRetries 2 \
   --maxCandidatesOutput 200 \
   --outputDir runs/agreement-200/cheap-recall
 
@@ -196,6 +207,10 @@ Each run writes to `runs/exp1-<timestamp>/`:
 - `candidates.final.json`
 - `summary.json`
 - `report.md`
+- `run_errors.jsonl`
+- `run_errors.json`
+
+LLM retry, JSON-repair, and fallback events are recorded in `run_errors.jsonl` as they happen. A completed run also writes the aggregate `run_errors.json` and includes run-error counts in `summary.json` and `report.md`.
 
 The agreement evaluator writes:
 
