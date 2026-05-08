@@ -26,6 +26,7 @@ export const IMPACT_TYPES = [
 export type ImpactType = (typeof IMPACT_TYPES)[number];
 export type RunMode = "heuristic" | "llm";
 export type LlmProvider = "google-gemini" | "openrouter";
+export type ExtractionProfile = "strict" | "recall";
 export type EvidenceRole =
   | "limitation"
   | "future_work"
@@ -165,6 +166,7 @@ export interface ExperimentConfig {
   output_dir: string;
   mode: RunMode;
   llm_provider: LlmProvider;
+  extraction_profile: ExtractionProfile;
   broad_model: string;
   verifier_model: string;
   gemini_api_key?: string;
@@ -453,6 +455,14 @@ function parseCodeOrDataStatus(input: string): CodeOrDataStatus {
     return normalized as CodeOrDataStatus;
   }
   return "unknown";
+}
+
+function parseExtractionProfile(input: string): ExtractionProfile {
+  const normalized = normalizeWhitespace(input.toLowerCase()).replace(/[\s-]+/g, "_");
+  if (new Set<string>(["strict", "recall"]).has(normalized)) {
+    return normalized as ExtractionProfile;
+  }
+  return "strict";
 }
 
 function parseStringArray(input: unknown, max: number): string[] {
@@ -1328,6 +1338,23 @@ class OpenRouterJsonClient implements JsonLlmClient {
 }
 
 function llmV1InstructionLines(config: ExperimentConfig): string[] {
+  if (config.extraction_profile === "recall") {
+    return [
+      "You are building a high-recall pool of computationally testable latent research leads from a fresh arXiv paper.",
+      `Current date: ${new Date().toISOString().slice(0, 10)}.`,
+      "Return strict JSON only with this schema:",
+      `{"candidates":[${RAW_CANDIDATE_JSON_SCHEMA}]}`,
+      `Return at most ${config.candidate_per_paper} candidates.`,
+      "Prefer recall over precision. Include imperfect but plausible leads if they have a source-backed problem signal and a compute-only repair path.",
+      "Problem evidence should come from limitations, future work, error analysis, failure modes, benchmark gaps, or negative results. If the evidence is weak but plausibly repairable, include it and explain the weakness in disqualifiers.",
+      "Do not reject solely because code/data is missing at extraction time. Set code_or_data_status to claimed or unknown, leave code_or_data_urls empty if needed, and add the missing requirement to disqualifiers.",
+      "Each candidate should still try to name a specific intervention, baseline, and metric. If one is missing, include the best concrete repair in auto_research_experiment and disqualifiers.",
+      "Use disqualifiers to prefix the readiness class: readiness:ready, readiness:patchable, or readiness:speculative.",
+      "Hard disqualify only wet-lab/private-data/unbounded-compute leads by marking readiness:speculative and explaining why.",
+      "Do not infer that a paper is synthetic, future-dated, withdrawn, or unavailable from its arXiv ID. Trust the provided metadata and leave paper_status_sources/paper_status_evidence empty unless an explicit status source is visible.",
+    ];
+  }
+
   return [
     "You are extracting computationally testable latent research problems from a fresh arXiv paper.",
     `Current date: ${new Date().toISOString().slice(0, 10)}.`,
@@ -2164,6 +2191,7 @@ function promptAuditMarkdown(config: ExperimentConfig, llmInvoked: boolean): str
     `- Run mode: \`${config.mode}\``,
     `- LLM invoked: ${llmInvoked ? "yes" : "no"}`,
     `- Provider: ${providerDisplayName(config.llm_provider)}`,
+    `- Extraction profile: \`${config.extraction_profile}\``,
     `- Broad scan model: \`${config.broad_model}\``,
     `- Verifier model: \`${config.verifier_model}\``,
     `- Endpoint pattern: \`${endpointPattern(config.llm_provider)}\``,
@@ -2225,6 +2253,7 @@ function markdownReport(
   lines.push(`- Run mode: \`${summary.llm.mode}\``);
   lines.push(`- LLM invoked: ${summary.llm.llm_invoked ? "yes" : "no"}`);
   lines.push(`- Provider: ${summary.llm.provider}`);
+  lines.push(`- Extraction profile: \`${summary.config.extraction_profile}\``);
   lines.push(`- Broad scan model: \`${summary.llm.broad_model}\``);
   lines.push(`- Verifier model: \`${summary.llm.verifier_model}\``);
   lines.push(`- Prompt audit file: \`${summary.llm.prompt_audit_path}\``);
@@ -2419,6 +2448,8 @@ function printHelp(): void {
     "  --mode heuristic|llm           Force mode (default: llm if selected provider key present, else heuristic)",
     "  --provider google-gemini|openrouter",
     "                                  LLM provider (default: openrouter if OPENROUTER_API_KEY is set, else google-gemini)",
+    "  --extractionProfile strict|recall",
+    "                                  Strict precision-first extraction or recall-first candidate pooling",
     "  --broadModel <name>            Broad extraction model (default depends on provider)",
     "  --verifierModel <name>         Verifier model (default depends on provider)",
     "  --outputDir <path>             Output directory (default: runs/exp1-<timestamp>)",
@@ -2460,6 +2491,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
       outputDir: { type: "string" },
       mode: { type: "string" },
       provider: { type: "string" },
+      extractionProfile: { type: "string" },
       broadModel: { type: "string" },
       verifierModel: { type: "string" },
       inputPricePerMTokenUSD: { type: "string" },
@@ -2510,6 +2542,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
     output_dir: outputDir,
     mode,
     llm_provider: llmProvider,
+    extraction_profile: parseExtractionProfile(String(parsed.values.extractionProfile ?? "strict")),
     broad_model: String(parsed.values.broadModel ?? defaultModelForProvider(llmProvider)),
     verifier_model: String(parsed.values.verifierModel ?? defaultModelForProvider(llmProvider)),
     gemini_api_key: geminiApiKey,

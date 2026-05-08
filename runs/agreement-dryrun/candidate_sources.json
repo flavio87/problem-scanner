@@ -1,0 +1,74 @@
+[
+  {
+    "candidate_id": "cand_be44ecb37ebe7e8a",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 1,
+        "score": 89,
+        "grade": "A",
+        "source_path": "runs/exp1-smoke-50-openrouter-v2/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a85c4f1daf96ca19",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 1,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/exp1-smoke-50-openrouter-v2/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6e18604db37421b8",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 2,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/exp1-smoke-50-openrouter-v2/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8a44ec0f0e9fc762",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 3,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/exp1-smoke-50-openrouter-v2/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_1c2ddf538f207152",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 4,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/exp1-smoke-50-openrouter-v2/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_0d965958595ef947",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 5,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/exp1-smoke-50-openrouter-v2/candidates.raw.json"
+      }
+    ]
+  }
+]

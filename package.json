@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "exp1": "bun src/index.ts",
+    "agreement": "bun src/agreement.ts",
     "test": "bun test",
     "typecheck": "bunx tsc --noEmit"
   },

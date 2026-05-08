@@ -1,0 +1,159 @@
+[
+  {
+    "candidate_id": "cand_be44ecb37ebe7e8a",
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "Generalization of process-level coordination diagnostics to non-spatial MARL domains",
+    "evidence_spans": [
+      "applying the same process-level evaluation lens to other cooperative MARL benchmarks would help determine which coordination diagnostics generalize across domains and which are specific to commitment-constrained spatial task allocation."
+    ],
+    "problem_evidence_spans": [
+      "These metrics reveal coordination failure modes that return alone can conceal (Figure 1), highlighting that in addition to measuring the return, cooperative MARL benchmarks should also assess how well agents coordinate with each other."
+    ],
+    "feasibility_evidence_spans": [
+      "Existing cooperative MARL benchmarks have driven substantial progress by standardizing algorithm evaluation, including StarCraft micromanagement Samvelyan et al. ( 2019 ) , particle-world coordination tasks Lowe et al. ( 2017 ) , level-based foraging Christianos et al. ( 2020 ) , and Overcooked-style collaboration Carroll et al. ( 2019 ) ."
+    ],
+    "auto_research_experiment": "Integrate STAT's 'conflict rate' and 'assignment diversity' metrics into the Level-Based Foraging (LBF) benchmark. Compare IQL and QMIX to see if QMIX's performance advantage in LBF is due to lower redundant foraging attempts or higher agent specialization.",
+    "available_data_or_benchmark": "Level-Based Foraging (LBF) and STAT diagnostic framework",
+    "expected_metric": "Correlation coefficient between 'conflict rate' and 'return' across different agent scales in LBF.",
+    "specific_intervention": "Instrument the Level-Based Foraging environment to log 'redundant attempts' (multiple agents attempting to pick the same food item simultaneously) as a proxy for STAT's conflict rate.",
+    "baseline": "Standard return-based evaluation of QMIX on Level-Based Foraging.",
+    "metric": "Conflict rate (redundant foraging attempts per episode)",
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "story_angle": "Standard MARL metrics are lying to us; it's time to look under the hood of agent coordination in classic benchmarks."
+  },
+  {
+    "candidate_id": "cand_a85c4f1daf96ca19",
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Interaction between online discrepancy learning and restart mechanisms leading to false restarts or missed detections.",
+    "evidence_spans": [
+      "A highly concentrated discrepancy posterior may cause routine within-regime variation to appear anomalous, while an overly adaptive discrepancy model may absorb emerging regime mismatches before the detector can identify a clear change."
+    ],
+    "problem_evidence_spans": [
+      "In practical streams, covariate shift, finite-batch variability, and non-Gaussian simulator errors may produce score fluctuations that resemble abrupt regime changes, leading to false restarts."
+    ],
+    "feasibility_evidence_spans": [
+      "We establish theoretical guarantees for both components, including tracking performance under gradual evolution and false-alarm and detection behavior for restart mechanisms."
+    ],
+    "auto_research_experiment": "Evaluate BRPC across a grid of discrepancy learning rates (GP lengthscales/noise priors) and restart thresholds (h_C) on a stream with controlled covariate shift to map the Pareto frontier of false-alarm rate vs. detection delay.",
+    "available_data_or_benchmark": "Plant-simulation digital-twin benchmark (described in Appendix E.2).",
+    "expected_metric": "A decrease in the False Restart Rate (FRR) while maintaining or reducing the Mean Time to Detection (MTD) of abrupt shifts.",
+    "specific_intervention": "Implement an adaptive restart threshold that scales with the current posterior variance of the discrepancy term to account for transient uncertainty.",
+    "baseline": "Fixed-threshold wCUSUM-style restart (C-BRPC) as defined in Algorithm 3.",
+    "metric": "False Restart Rate (FRR)",
+    "code_or_data_urls": [],
+    "story_angle": "The hidden tension between learning a model's bias and detecting a system's collapse."
+  },
+  {
+    "candidate_id": "cand_6e18604db37421b8",
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Sensitivity of BRPC to poorly specified transition noise and particle degeneracy in the projected parameter update.",
+    "evidence_spans": [
+      "First, the tracking guarantee for the discrepancy update is conditional on the residual sequence supplied by the projected parameter update, and therefore depends on sufficient particle coverage and an appropriate evolution prior for the calibration parameter."
+    ],
+    "problem_evidence_spans": [
+      "Poorly specified transition noise or severe particle degeneracy may lead to biased residuals and slower discrepancy adaptation."
+    ],
+    "feasibility_evidence_spans": [
+      "Appendix F reports additional diagnostics, ablations, sensitivity analyses, and scalability results."
+    ],
+    "auto_research_experiment": "Stress-test BRPC by varying the Effective Sample Size (ESS) threshold and the transition kernel variance p(theta_t | theta_{t-1}) to identify the breakdown point where discrepancy tracking fails.",
+    "available_data_or_benchmark": "Synthetic nonstationary trajectories (drifting and sudden-jump) defined in Appendix E.1.",
+    "expected_metric": "Reduction in the Mean Squared Error (MSE) of the discrepancy estimate under high-noise transition priors.",
+    "specific_intervention": "Integrate an adaptive particle resampling strategy (e.g., tempered transitions) to maintain particle diversity during rapid parameter drift.",
+    "baseline": "Standard BRPC with fixed transition noise and basic SIR resampling (Algorithm 1).",
+    "metric": "Discrepancy Estimation MSE",
+    "code_or_data_urls": [],
+    "story_angle": "Ensuring digital twins don't 'drift' into delusion when their underlying parameters shift too fast."
+  },
+  {
+    "candidate_id": "cand_8a44ec0f0e9fc762",
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "The 'auditor' capability in benchmarkless safety scoring creates a trade-off where high-strength auditors collapse comparative deltas between safe models.",
+    "evidence_spans": [
+      "An auditor that is too weak under-probes, while an auditor that is too strong compresses safe-target scores and erases the comparative deltas the instrument is built to report (§ 5).",
+      "Increasing auditor capability beyond L collapses inter-target differences among safe models: with A = XL A=XL, safe-target scores compress into a narrow band, eliminating the deltas the instrument is designed to report."
+    ],
+    "problem_evidence_spans": [
+      "An auditor that is too weak under-probes, while an auditor that is too strong compresses safe-target scores and erases the comparative deltas the instrument is built to report (§ 5)."
+    ],
+    "feasibility_evidence_spans": [
+      "SimpleAudit also includes pre-built judge configurations that instantiate common evaluation styles",
+      "The local-first release (Appendix P) lets an independent reviewer rerun the same pack under a stronger auditor and publish a counter-result."
+    ],
+    "auto_research_experiment": "Using the SimpleAudit library, evaluate a set of mid-tier models (e.g., 7B-13B parameters) using a range of auditor strengths (from 1B to 70B+). Measure the variance in safety scores between targets at each auditor level to identify the 'critical compression point' where inter-model deltas become statistically insignificant.",
+    "available_data_or_benchmark": "SimpleAudit library (GitHub/PyPI) and the Norwegian safety pack (JSONL).",
+    "expected_metric": "Inter-target score variance (standard deviation of scores across different models at a fixed auditor strength).",
+    "specific_intervention": "Systematically vary the auditor model size (XS, S, M, L, XL) while holding the target models and judge constant.",
+    "baseline": "The paper's recommendation of capability-matching (Auditor size ≈ Target size).",
+    "metric": "Delta-compression ratio (the ratio of inter-model score variance under a strong auditor vs. a matched auditor).",
+    "code_or_data_urls": [
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "story_angle": "In the race to build the strongest AI red-teamers, we may be accidentally blinding our ability to distinguish which models are actually safer for deployment."
+  },
+  {
+    "candidate_id": "cand_1c2ddf538f207152",
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "Benchmarkless safety scoring instruments lack explicit mitigations for 'eval-awareness' where models may behave differently when they detect they are being audited.",
+    "evidence_spans": [
+      "SimpleAudit also does not currently implement explicit eval-awareness mitigations (Needham et al. , 2025 ; Nguyen et al. , 2025 ; Souly et al. , 2026 ) ; whether this matters at our deployment scales is an open empirical question we do not address here."
+    ],
+    "problem_evidence_spans": [
+      "SimpleAudit also does not currently implement explicit eval-awareness mitigations... whether this matters at our deployment scales is an open empirical question we do not address here."
+    ],
+    "feasibility_evidence_spans": [
+      "SimpleAudit’s open-source release and verified Digital Public Good status are governance properties of the instrument",
+      "The local-first release (Appendix P) lets an independent reviewer rerun the same pack"
+    ],
+    "auto_research_experiment": "Implement 'stealth' auditing by wrapping SimpleAudit scenarios in benign-looking system prompts or distractors. Compare the safety scores of models under standard SimpleAudit vs. stealth SimpleAudit to measure the 'eval-awareness gap'.",
+    "available_data_or_benchmark": "SimpleAudit library and the Norwegian safety pack.",
+    "expected_metric": "Score shift (the difference in safety scores between standard and stealth auditing modes).",
+    "specific_intervention": "Introduction of a 'stealth' wrapper that modifies the auditor's persona to appear as a standard user rather than a safety auditor.",
+    "baseline": "Standard SimpleAudit execution (unmitigated eval-awareness).",
+    "metric": "Eval-awareness sensitivity (percentage change in safety score when audit context is masked).",
+    "code_or_data_urls": [
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "story_angle": "If a model knows it's being audited, it might 'act' safe. We need to test if benchmarkless scoring is vulnerable to LLM stage-fright."
+  },
+  {
+    "candidate_id": "cand_0d965958595ef947",
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Neural GED estimators fail to handle edge labels due to baseline architectural inconsistencies",
+    "evidence_spans": [
+      "To maintain comparability across a broad baseline suite, we use node attributes when available but do not use edge labels, since several compared baselines do not support them consistently."
+    ],
+    "problem_evidence_spans": [
+      "To maintain comparability across a broad baseline suite, we use node attributes when available but do not use edge labels, since several compared baselines do not support them consistently."
+    ],
+    "feasibility_evidence_spans": [
+      "Extending the framework to variable edit-cost settings appears plausible in principle, but requires a more careful comparison between the target edit geometry and the surrogate quantities used by the downstream estimator."
+    ],
+    "auto_research_experiment": "Extend the FSW-GNN encoder to support edge features by incorporating edge-to-node message passing (e.g., using the EGNN or GINE framework) while maintaining bi-Lipschitz constraints. Evaluate this on the full AIDS and molhiv datasets including edge labels.",
+    "available_data_or_benchmark": "AIDS, molhiv, and ZINC-16 (all contain edge labels/bond types).",
+    "expected_metric": "Mean Absolute Error (MAE) and Spearman’s ρ.",
+    "specific_intervention": "Integrate edge-label-aware message passing into the FSW-GNN (bi-Lipschitz) encoder and retrain the EGSC-BL and GraSP-BL architectures.",
+    "baseline": "The node-attribute-only FSW-GNN variants (EGSC-BL and GraSP-BL) reported in the paper.",
+    "metric": "MAE",
+    "code_or_data_urls": [],
+    "story_angle": "While neural graph matching has become more geometrically rigorous, it still ignores the 'edges' of the problem—literally. By bringing edge labels into bi-Lipschitz frameworks, we can finally match complex molecules with the precision they require."
+  }
+]

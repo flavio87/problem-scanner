@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+import { candidateId, scoreAgreement, type AgreementCandidate, type FrontierLabelRecord } from "../src/agreement.js";
 import {
   applyHardRejectionGates,
   extractConcreteResourceUrls,
@@ -391,5 +392,76 @@ describe("parseCliArgs", () => {
         process.env.GEMINI_API_KEY = previousGeminiKey;
       }
     }
+  });
+
+  it("parses recall extraction profile", () => {
+    const previousOpenRouterKey = process.env.OPENROUTER_API_KEY;
+    const previousGeminiKey = process.env.GEMINI_API_KEY;
+
+    try {
+      delete process.env.OPENROUTER_API_KEY;
+      delete process.env.GEMINI_API_KEY;
+
+      const config = parseCliArgs(["--mode", "heuristic", "--extractionProfile", "recall"]);
+
+      expect(config.mode).toBe("heuristic");
+      expect(config.extraction_profile).toBe("recall");
+    } finally {
+      if (previousOpenRouterKey === undefined) {
+        delete process.env.OPENROUTER_API_KEY;
+      } else {
+        process.env.OPENROUTER_API_KEY = previousOpenRouterKey;
+      }
+
+      if (previousGeminiKey === undefined) {
+        delete process.env.GEMINI_API_KEY;
+      } else {
+        process.env.GEMINI_API_KEY = previousGeminiKey;
+      }
+    }
+  });
+});
+
+describe("agreement metrics", () => {
+  it("computes cheap-vs-frontier recall and false negatives", () => {
+    const acceptedCandidate: AgreementCandidate = {
+      candidate_id: candidateId({ paper_id: "2605.1v1", candidate_problem: "Accepted candidate" }),
+      paper_id: "2605.1v1",
+      candidate_problem: "Accepted candidate",
+      evidence_spans: [],
+      problem_evidence_spans: [],
+      feasibility_evidence_spans: [],
+      auto_research_experiment: "",
+      available_data_or_benchmark: "",
+      expected_metric: "",
+      specific_intervention: "",
+      baseline: "",
+      metric: "",
+      code_or_data_urls: [],
+      story_angle: "",
+      sources: [{ arm: "strict", rank: 1, score: 90, grade: "A", source_path: "strict.json" }],
+    };
+
+    const missedCandidate: AgreementCandidate = {
+      ...acceptedCandidate,
+      candidate_id: candidateId({ paper_id: "2605.2v1", candidate_problem: "Missed candidate" }),
+      paper_id: "2605.2v1",
+      candidate_problem: "Missed candidate",
+      sources: [{ arm: "recall", rank: 1, score: null, grade: null, source_path: "recall.json" }],
+    };
+
+    const labels: FrontierLabelRecord[] = [
+      { candidate_id: acceptedCandidate.candidate_id, frontier_label: "A" },
+      { candidate_id: missedCandidate.candidate_id, frontier_label: "B" },
+    ];
+
+    const metrics = scoreAgreement([acceptedCandidate, missedCandidate], labels, [1, 2]);
+    const strict = metrics.arms.find((arm) => arm.arm === "strict");
+
+    expect(metrics.frontier_ab).toBe(2);
+    expect(strict?.precision_at_k["1"]).toBe(1);
+    expect(strict?.recall_at_k["2"]).toBe(0.5);
+    expect(strict?.missed_frontier_ab).toBe(1);
+    expect(strict?.false_negative_ids).toContain(missedCandidate.candidate_id);
   });
 });
