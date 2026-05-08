@@ -1,0 +1,1257 @@
+[
+  {
+    "candidate_id": "cand_6919b0269eb6ad08",
+    "paper_id": "2605.00272",
+    "candidate_problem": "Latent state permutation invariance and lack of interpretability in Aβ progression modeling",
+    "evidence_spans": [
+      "the latent states are permutation invariant: any reordering of the latent states, together with their associated sparse selection weights, yields solutions that are mathematically equivalent",
+      "This identifiability issue arises from the absence of explicit regularization terms or ordering constraints imposed on the latent states.",
+      "Incorporating additional regularization strategies or structural priors could promote more interpretable latent representations and facilitate a clearer separation of CN, MCI, and AD subjects"
+    ],
+    "problem_evidence_spans": [
+      "the latent states are permutation invariant: any reordering of the latent states, together with their associated sparse selection weights, yields solutions that are mathematically equivalent"
+    ],
+    "feasibility_evidence_spans": [
+      "Rich datasets such as the Alzheimer’s Disease Neuroimaging Initiative (ADNI) dataset [ 5 ] and Anti-Amyloid Treatment in Asymptomatic Alzheimer’s Disease (A4) [ 6 ] enable the design of computational models"
+    ],
+    "auto_research_experiment": "Modify the LNODE loss function to include a monotonicity constraint or a supervised classification loss on the latent states using the clinical diagnosis labels (CN, MCI, AD) available in ADNI. Compare the latent state separation and the predictive accuracy against the original LNODE.",
+    "available_data_or_benchmark": "ADNI (Alzheimer’s Disease Neuroimaging Initiative) and A4 (Anti-Amyloid Treatment in Asymptomatic Alzheimer’s Disease) datasets.",
+    "public_training_or_eval_data": "https://adni.loni.usc.edu/",
+    "scientific_hypothesis": "Imposing an ordering constraint (e.g., monotonic increase in latent state activation corresponding to disease severity) will resolve the permutation invariance and improve the separation of clinical subtypes in the latent space without degrading PET scan reconstruction accuracy.",
+    "expected_metric": "Silhouette Score of latent states relative to clinical diagnosis (CN/MCI/AD).",
+    "success_threshold": "A 15% increase in Silhouette Score while maintaining a Mean Squared Error (MSE) for PET reconstruction within 5% of the baseline LNODE.",
+    "failure_condition": "The ordering constraint causes the ODE solver to fail to converge or results in a >10% increase in reconstruction MSE.",
+    "first_24h_experiment": "Download the ADNI regional SUVR data, implement a simple LNODE with 3 latent states, and add a penalty term to the loss function that penalizes non-monotonicity of latent state weights relative to the subject's baseline clinical diagnosis.",
+    "specific_intervention": "Add a structural prior/regularization term to the LNODE objective function: L_total = L_recon + lambda * L_sparsity + gamma * L_ordering, where L_ordering enforces a rank-correlation between latent state magnitude and clinical stage.",
+    "baseline": "The original LNODE framework with permutation-invariant latent states and sparse selection only.",
+    "metric": "Reconstruction MSE and Latent Space Silhouette Score.",
+    "code_or_data_urls": [
+      "https://github.com/Zheyu-Wen/LNODE_code"
+    ],
+    "story_angle": "By enforcing biological 'logic' on the hidden variables of Alzheimer's models, we can turn abstract latent states into interpretable clinical indicators."
+  },
+  {
+    "candidate_id": "cand_5ca80cbce73ed504",
+    "paper_id": "2605.06619",
+    "candidate_problem": "Quantifying the Pareto frontier between semantic legibility and detection evasion in 'algospeak' (coded language used to bypass moderation).",
+    "evidence_spans": [
+      "The Trade-off Between Legible Meaning and Detection Avoidance"
+    ],
+    "problem_evidence_spans": [
+      "The Trade-off Between Legible Meaning and Detection Avoidance"
+    ],
+    "feasibility_evidence_spans": [
+      "Algospeak, Hiding in the Open"
+    ],
+    "auto_research_experiment": "Train a reinforcement learning agent to rewrite sensitive sentences using phonetic substitutions and emojis to maximize a 'legibility score' (via a secondary LLM) while minimizing a 'detection score' (via a standard toxicity classifier).",
+    "available_data_or_benchmark": "Civil Comments (Jigsaw) dataset for toxicity; WordNet for semantic similarity.",
+    "public_training_or_eval_data": "https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification",
+    "scientific_hypothesis": "There exists a measurable 'critical substitution density' beyond which human legibility drops significantly faster than automated detection evasion increases.",
+    "expected_metric": "Area Under the Trade-off Curve (AUTC) between BERT-score (legibility) and Classifier Confidence (evasion).",
+    "success_threshold": "Identification of a stable Pareto frontier across three different classifier architectures (BERT, RoBERTa, Perspective API).",
+    "failure_condition": "If simple character-level perturbations (leetspeak) provide near-perfect evasion with zero loss in human legibility, the trade-off is trivial.",
+    "first_24h_experiment": "Apply 5 types of algospeak transformations (phonetic, emoji-replacement, intentional misspelling) to 1000 toxic samples and plot the legibility vs. detection probability.",
+    "specific_intervention": "Introduction of a 'Legibility-Aware Adversarial Objective' in the text transformation pipeline.",
+    "baseline": "Standard adversarial attacks (e.g., TextFooler) which do not optimize for human legibility.",
+    "metric": "Legibility-Detection Ratio (LDR)",
+    "code_or_data_urls": [],
+    "story_angle": "As users invent new ways to bypass filters, we must understand if 'algospeak' eventually becomes so cryptic that it loses its power to influence, or if it remains a potent tool for evasion."
+  },
+  {
+    "candidate_id": "cand_b2d694ab90e635b0",
+    "paper_id": "2605.00074",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work. addresses a stated future work in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift.",
+    "evidence_spans": [
+      "The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work.",
+      "This baseline was built for a threat model in which the hazardous order looks, at the level of amino-acid sequence, like a hazardous protein the screener has already seen.",
+      "Public toxin databases are fragmented across specialised resources (Jungo and Bairoch, 2005 ; Kaas et al. , 2012 ) , with hazardous proteins from understudied taxonomic families sparsely represented.",
+      "Both trends shift weight onto the out-of-family case, which is precisely the case in which a sequence-similarity baseline weakens.",
+      "The same public annotation that accompanies a synthesis order, comprising name, organism, controlled-vocabulary keywords and a free-text function description, makes two further signals available: a five-LLM panel reads the annotation and returns a hazard probability, and the text-embedding distance to clustered embeddings of known toxins gives a smooth proxy for functional proximity."
+    ],
+    "problem_evidence_spans": [
+      "The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work."
+    ],
+    "feasibility_evidence_spans": [
+      "This baseline was built for a threat model in which the hazardous order looks, at the level of amino-acid sequence, like a hazardous protein the screener has already seen.",
+      "Public toxin databases are fragmented across specialised resources (Jungo and Bairoch, 2005 ; Kaas et al. , 2012 ) , with hazardous proteins from understudied taxonomic families sparsely represented.",
+      "Both trends shift weight onto the out-of-family case, which is precisely the case in which a sequence-similarity baseline weakens.",
+      "The same public annotation that accompanies a synthesis order, comprising name, organism, controlled-vocabulary keywords and a free-text function description, makes two further signals available: a five-LLM panel reads the annotation and returns a hazard probability, and the text-embedding distance to clustered embeddings of known toxins gives a smooth proxy for functional proximity."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift. Then apply this intervention: Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: The three signals have well-understood scaling behaviour, but multi-seed runs at full scale are future work.",
+    "baseline": "The reported baseline/protocol from CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/najmulhasan-code/crc-screen"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_16cc469b8a6570c4",
+    "paper_id": "2605.01378",
+    "candidate_problem": "Low cross-source overlap and high unique gene fractions across phenotype databases",
+    "evidence_spans": [
+      "Cross-source overlap was low overall, supporting the complementarity of the integrated evidence sources. Most genes were supported by a single database, while a smaller subset was recovered by multiple independent sources",
+      "GWAS Catalog, GTEx, Open Targets and OMIM contributed substantial unique gene fractions, indicating that each source captures partly distinct biological or evidence dimensions"
+    ],
+    "problem_evidence_spans": [
+      "Cross-source overlap was low overall",
+      "Most genes were supported by a single database"
+    ],
+    "feasibility_evidence_spans": [
+      "PhenotypeToGeneDownloaderR recovered 1,039 of 1,056 curated known phenotype-associated genes, corresponding to 98.4% recall.",
+      "Precision@20 analysis further supported the ability of the source-frequency ranking to prioritise known phenotype-associated genes"
+    ],
+    "auto_research_experiment": "Implement a weighted evidence scoring system (e.g., Bayesian integration) that assigns weights to sources based on their Precision@20 performance in the paper's benchmark, rather than treating all 13 sources as equal votes.",
+    "available_data_or_benchmark": "The 13-phenotype benchmark and the HPO/ClinVar/OMIM-derived gold standard mentioned in the paper.",
+    "public_training_or_eval_data": "The 1,056 curated known phenotype-associated genes (gold standard) and the 136,487 raw retrievals from the paper.",
+    "scientific_hypothesis": "A weighted evidence model accounting for source-specific precision will achieve a higher Mean Average Precision (MAP) than the current unweighted source-frequency ranking.",
+    "expected_metric": "Mean Average Precision (MAP)",
+    "success_threshold": "A 10% relative improvement in MAP compared to the unweighted source-frequency baseline.",
+    "failure_condition": "Weighted scoring does not improve MAP or decreases recall of the gold-standard set.",
+    "first_24h_experiment": "Extract the per-source precision values from the paper's Supplementary Section S4 and apply them as weights to the existing gene lists for the 13 phenotypes to re-rank the candidates.",
+    "specific_intervention": "Replace the simple `count()` based ranking in the aggregation module with a weighted sum: Score(gene) = Sum(Source_Weight * Presence_in_Source).",
+    "baseline": "Unweighted source-frequency ranking (current PhenotypeToGeneDownloaderR method).",
+    "metric": "Precision@K and Mean Average Precision (MAP).",
+    "code_or_data_urls": [
+      "https://github.com/MuhammadMuneeb007/PhenotypeToGeneDownloaderR"
+    ],
+    "story_angle": "Moving beyond 'voting' in bioinformatics: can weighted evidence integration better prioritize disease-causing genes?"
+  },
+  {
+    "candidate_id": "cand_ea937b797b0bafee",
+    "paper_id": "2605.06221",
+    "candidate_problem": "UniPrefill's token-dropping strategy is currently limited to the prefill phase and does not optimize the decoding phase or training efficiency.",
+    "evidence_spans": [
+      "extending the framework to broader inference optimization dimensions—such as decoding acceleration or training-time efficiency—remains an interesting direction for future work."
+    ],
+    "problem_evidence_spans": [
+      "This work focuses on accelerating the prefill phase for long-context LLM inference."
+    ],
+    "feasibility_evidence_spans": [
+      "UniPrefill is implemented and evaluated on top of vLLM v0.16.0 [ vLLM ]",
+      "The continuous-batching operator is implemented as a set of fused Triton kernels"
+    ],
+    "auto_research_experiment": "Modify the UniPrefill vLLM scheduler to maintain the sparsity mask generated during prefill throughout the decoding phase, skipping computation for 'dropped' tokens in the KV cache during autoregressive generation.",
+    "available_data_or_benchmark": "RULER benchmark",
+    "public_training_or_eval_data": "https://github.com/hsiehph/RULER",
+    "scientific_hypothesis": "Propagating the prefill-phase token-dropping mask to the decoding phase will reduce Inter-Token Latency (ITL) without significantly increasing the perplexity of generated sequences.",
+    "expected_metric": "Inter-Token Latency (ITL) and Perplexity (PPL)",
+    "success_threshold": "At least 1.5x reduction in ITL with <1% increase in PPL compared to standard decoding.",
+    "failure_condition": "Decoding fails to maintain coherence or the overhead of mask management in the KV cache exceeds the computational savings.",
+    "first_24h_experiment": "Integrate a static mask (dropping 10% of tokens identified in prefill) into the vLLM decoding loop for LLaMA-3.1-8B and measure the latency of generating 128 tokens.",
+    "specific_intervention": "Extend the Triton kernels to support masked KV cache lookups during the decoding phase based on the prefill importance scores.",
+    "baseline": "Standard vLLM decoding (without token dropping) on LLaMA-3.1-8B.",
+    "metric": "Tokens per second (TPS) during decoding",
+    "code_or_data_urls": [
+      "https://github.com/qhfan/UniPrefill.git"
+    ],
+    "story_angle": "While UniPrefill makes the 'first word' faster, can we use its 'token-dropping' intelligence to make the entire conversation faster?"
+  },
+  {
+    "candidate_id": "cand_0b846684e9c69b4a",
+    "paper_id": "2605.00074",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribu... addresses a stated future work in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift.",
+    "evidence_spans": [
+      "Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribution, not to a worst-case input.",
+      "This baseline was built for a threat model in which the hazardous order looks, at the level of amino-acid sequence, like a hazardous protein the screener has already seen.",
+      "Public toxin databases are fragmented across specialised resources (Jungo and Bairoch, 2005 ; Kaas et al. , 2012 ) , with hazardous proteins from understudied taxonomic families sparsely represented.",
+      "Both trends shift weight onto the out-of-family case, which is precisely the case in which a sequence-similarity baseline weakens.",
+      "The same public annotation that accompanies a synthesis order, comprising name, organism, controlled-vocabulary keywords and a free-text function description, makes two further signals available: a five-LLM panel reads the annotation and returns a hazard probability, and the text-embedding distance to clustered embeddings of known toxins gives a smooth proxy for functional proximity."
+    ],
+    "problem_evidence_spans": [
+      "Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribution, not to a worst-case input."
+    ],
+    "feasibility_evidence_spans": [
+      "This baseline was built for a threat model in which the hazardous order looks, at the level of amino-acid sequence, like a hazardous protein the screener has already seen.",
+      "Public toxin databases are fragmented across specialised resources (Jungo and Bairoch, 2005 ; Kaas et al. , 2012 ) , with hazardous proteins from understudied taxonomic families sparsely represented.",
+      "Both trends shift weight onto the out-of-family case, which is precisely the case in which a sequence-similarity baseline weakens.",
+      "The same public annotation that accompanies a synthesis order, comprising name, organism, controlled-vocabulary keywords and a free-text function description, makes two further signals available: a five-LLM panel reads the annotation and returns a hazard probability, and the text-embedding distance to clustered embeddings of known toxins gives a smooth proxy for functional proximity."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift. Then apply this intervention: Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribu.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribu... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribu....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Robustness against such adversarial annotations is future work; the certified bound applies to the joint cal/test distribu...",
+    "baseline": "The reported baseline/protocol from CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/najmulhasan-code/crc-screen"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_347a8649d938c653",
+    "paper_id": "2604.20658",
+    "candidate_problem": "Divergence between stylized cooperation in behavioral games and realistic task performance when using Theory-of-Mind (ToM) prompting.",
+    "evidence_spans": [
+      "Unlike prior work, we find that while theory-of-mind prompting improves cooperative behavior in games, it reduces AI-for-Science completion, highlighting a divergence between stylized cooperation and realistic task performance."
+    ],
+    "problem_evidence_spans": [
+      "Theory of mind prompting is the only strategy with a credible effect, reducing proximity by 0.038 (moving models closer to the social optimum).",
+      "Theory of mind [predicting AI-for-Science outcomes] Accuracy: -0.001, Quality: -0.003, Completion: -0.009"
+    ],
+    "feasibility_evidence_spans": [
+      "Code and data are available at http://jurgens.people.si.umich.edu/agent-cooperation .",
+      "Using realistic workflows for four AI-for-Science tasks, we demonstrate that an LLMs cooperative profile is predictive of tasks’ outcomes"
+    ],
+    "auto_research_experiment": "Evaluate the 'ToM tax' by comparing multi-agent teams with and without ToM prompting across varying task complexities in the AI-for-Science benchmark. Specifically, test if the negative effect of ToM on completion is mediated by token usage or turn-taking overhead.",
+    "available_data_or_benchmark": "AI-for-Science workflows (Biomarker, Ecology, Geospatial, Anomaly tasks) and behavioral game suite.",
+    "public_training_or_eval_data": "http://jurgens.people.si.umich.edu/agent-cooperation",
+    "scientific_hypothesis": "Theory-of-Mind prompting increases inter-agent communication overhead and reasoning complexity, which leads to lower task completion rates in time-constrained scientific workflows compared to standard instruction following.",
+    "expected_metric": "Completion Rate",
+    "success_threshold": "A statistically significant (p < 0.05) interaction effect where ToM prompting reduces completion more severely as task complexity (number of required tools) increases.",
+    "failure_condition": "ToM prompting shows no negative effect on completion across all task types, or the effect is fully explained by model size rather than the prompting strategy.",
+    "first_24h_experiment": "Download the AI-for-Science task suite and run a 2-agent team (using Llama-3.1-8B) on the 'Geospatial' task with and without the ToM system prompt provided in the paper's appendix. Measure completion rate and total tokens per task.",
+    "specific_intervention": "Apply Theory-of-Mind prompting (as defined in the paper's appendix) to agents in the AI-for-Science workflow.",
+    "baseline": "Standard instruction-following (Instruct) prompting without ToM or CoT additions.",
+    "metric": "Completion Rate (percentage of tasks reaching a final report)",
+    "code_or_data_urls": [
+      "https://github.com/langchain-ai/langgraph",
+      "https://zenodo.org/records/12608602"
+    ],
+    "story_angle": "While we want AI agents to be 'empathetic' and cooperative, giving them Theory-of-Mind might actually make them less productive in real-world scientific research."
+  },
+  {
+    "candidate_id": "cand_21768441dbd9c45c",
+    "paper_id": "2605.06221",
+    "candidate_problem": "UniPrefill's performance on RULER shows a noticeable accuracy drop as context length increases to 128K, suggesting the 'top-p' selection might be too aggressive for extreme long-range dependencies.",
+    "evidence_spans": [
+      "85.28 79.87"
+    ],
+    "problem_evidence_spans": [
+      "64K 128K",
+      "85.28 79.87"
+    ],
+    "feasibility_evidence_spans": [
+      "UniPrefill applies a lightweight block-wise scoring criterion at each full attention layer to identify and drop computationally redundant tokens."
+    ],
+    "auto_research_experiment": "Implement a 'context-aware' top-p threshold that dynamically adjusts the sparsity ratio based on the relative position of the block and the total sequence length to preserve more tokens in extreme long-context scenarios.",
+    "available_data_or_benchmark": "RULER benchmark",
+    "public_training_or_eval_data": "https://github.com/hsiehph/RULER",
+    "scientific_hypothesis": "A dynamic, depth-and-length-aware sparsity threshold will outperform a fixed top-p selection in maintaining RULER accuracy at 128K+ context lengths.",
+    "expected_metric": "RULER score at 128K context",
+    "success_threshold": "Improvement of RULER score at 128K from 79.87 to >85.0 while maintaining >1.8x speedup.",
+    "failure_condition": "The dynamic thresholding logic introduces more compute overhead than the tokens it saves.",
+    "first_24h_experiment": "Run RULER at 128K with three different fixed top-p values (0.8, 0.9, 0.95) to map the sensitivity of accuracy vs. sparsity.",
+    "specific_intervention": "Modify the Triton kernel for block-wise scoring to accept a per-layer, per-length p-value instead of a global constant.",
+    "baseline": "UniPrefill with default top-p settings.",
+    "metric": "RULER Accuracy",
+    "code_or_data_urls": [
+      "https://github.com/qhfan/UniPrefill.git"
+    ],
+    "story_angle": "Fixing the 'long-context cliff': optimizing token-dropping for the million-token era."
+  },
+  {
+    "candidate_id": "cand_36a7fddb3ea7280d",
+    "paper_id": "2605.00074",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flaggi... addresses a stated failure mode in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift.",
+    "evidence_spans": [
+      "Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flagging every benign, and the failure is not closeable by tuning.",
+      "This baseline was built for a threat model in which the hazardous order looks, at the level of amino-acid sequence, like a hazardous protein the screener has already seen.",
+      "Public toxin databases are fragmented across specialised resources (Jungo and Bairoch, 2005 ; Kaas et al. , 2012 ) , with hazardous proteins from understudied taxonomic families sparsely represented.",
+      "Both trends shift weight onto the out-of-family case, which is precisely the case in which a sequence-similarity baseline weakens.",
+      "The same public annotation that accompanies a synthesis order, comprising name, organism, controlled-vocabulary keywords and a free-text function description, makes two further signals available: a five-LLM panel reads the annotation and returns a hazard probability, and the text-embedding distance to clustered embeddings of known toxins gives a smooth proxy for functional proximity."
+    ],
+    "problem_evidence_spans": [
+      "Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flagging every benign, and the failure is not closeable by tuning."
+    ],
+    "feasibility_evidence_spans": [
+      "This baseline was built for a threat model in which the hazardous order looks, at the level of amino-acid sequence, like a hazardous protein the screener has already seen.",
+      "Public toxin databases are fragmented across specialised resources (Jungo and Bairoch, 2005 ; Kaas et al. , 2012 ) , with hazardous proteins from understudied taxonomic families sparsely represented.",
+      "Both trends shift weight onto the out-of-family case, which is precisely the case in which a sequence-similarity baseline weakens.",
+      "The same public annotation that accompanies a synthesis order, comprising name, organism, controlled-vocabulary keywords and a free-text function description, makes two further signals available: a five-LLM panel reads the annotation and returns a hazard probability, and the text-embedding distance to clustered embeddings of known toxins gives a smooth proxy for functional proximity."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift. Then apply this intervention: Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flaggi.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flaggi... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flaggi....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift: Under taxonomic-family holdout that framing fails: sequence similarity cannot deliver a certified miss rate without flaggi...",
+    "baseline": "The reported baseline/protocol from CRC-Screen: Certified DNA-Synthesis Hazard Screening Under Taxonomic Shift.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/najmulhasan-code/crc-screen"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_28009fb736e167bf",
+    "paper_id": "2605.05824",
+    "candidate_problem": "Lack of absolute Time-of-Flight (ToF) estimation in mmWave channel datasets for SLAM and ranging",
+    "evidence_spans": [
+      "Synchronizing transmitter and receiver clocks would enable absolute Time-of-Flight estimation, unlocking finer-grained ranging and SLAM capabilities."
+    ],
+    "problem_evidence_spans": [
+      "Synchronizing transmitter and receiver clocks would enable absolute Time-of-Flight estimation, unlocking finer-grained ranging and SLAM capabilities."
+    ],
+    "feasibility_evidence_spans": [
+      "We have acquired a dense dataset for indoor positioning, beam management and digital twin [ 10 ] reconstruction which has been made available for the scientific community [ 13 ] .",
+      "The measurement campaign provides dense spatial coverage with 350 receiver locations over a 1.95 m x 3.6 m area"
+    ],
+    "auto_research_experiment": "Develop a phase-coherent or cross-correlation based synchronization algorithm that uses the existing 64 quasi-orthogonal LFM chirp waveforms to estimate relative clock drift and then extract pseudo-ToF from the 350-point grid. Compare the resulting ranging accuracy against the ground-truth grid coordinates provided in the dataset.",
+    "available_data_or_benchmark": "Indoor 60 GHz Radio Channel Dataset (350 measurement points)",
+    "public_training_or_eval_data": "https://github.com/d-scazzoli/60GHz-RFSoC-Dataset",
+    "scientific_hypothesis": "The high-bandwidth (600 MHz) LFM chirps in the dataset contain sufficient multipath resolution to allow for sub-nanosecond relative timing estimation even without hardware clock synchronization, enabling decimeter-level ranging.",
+    "expected_metric": "Mean Absolute Error (MAE) in distance estimation",
+    "success_threshold": "MAE < 0.3 meters",
+    "failure_condition": "MAE > 0.6 meters (indicating the lack of hardware synchronization cannot be compensated by signal processing)",
+    "first_24h_experiment": "Download the dataset, extract the raw ADC captures for a single LoS point, and perform cross-correlation with the known LFM chirp template to check the stability of the correlation peak across the 63 beam directions.",
+    "specific_intervention": "Apply a software-based timing recovery loop (e.g., Mueller-Müller or Gardner) to the received LFM chirps to align the receiver's local time-base with the transmitter's before calculating the ToF.",
+    "baseline": "RSS-based (Received Signal Strength) trilateration using the beamspace intensity maps.",
+    "metric": "Distance Error (meters)",
+    "code_or_data_urls": [
+      "https://github.com/d-scazzoli/60GHz-RFSoC-Dataset"
+    ],
+    "story_angle": "Bridging the gap between communication hardware and high-precision radar sensing by unlocking hidden timing data in standard 60GHz datasets."
+  },
+  {
+    "candidate_id": "cand_fe83094cfaabefb9",
+    "paper_id": "2605.06226",
+    "candidate_problem": "AI agents for rare disease diagnosis fail to distinguish between common and rare diseases, leading to misdiagnosis in mixed clinical scenarios.",
+    "evidence_spans": [
+      "First, even advanced AI-based models used for rare disease diagnosis cannot distinguish between common and rare diseases, which is the basic step to avoid misdiagnosis (Supplementary Figure 1 (a))."
+    ],
+    "problem_evidence_spans": [
+      "First, even advanced AI-based models used for rare disease diagnosis cannot distinguish between common and rare diseases, which is the basic step to avoid misdiagnosis (Supplementary Figure 1 (a))."
+    ],
+    "feasibility_evidence_spans": [
+      "a general baseline for rare disease diagnosis will be prompting LLMs discussed in RareBench [ chen2024rarebench ] , and RareArena [ chen2026rarearena ] ."
+    ],
+    "auto_research_experiment": "Construct a 'Mixed-Prevalence' benchmark by merging RareArena (rare) with a common disease dataset (e.g., MedQA or MIMIC-IV phenotypes). Evaluate if a 'Case Router' module significantly reduces the False Positive Rate for rare diseases compared to a flat LLM baseline.",
+    "available_data_or_benchmark": "RareArena, RareBench",
+    "public_training_or_eval_data": "https://github.com/Sanyuan-Chen/RareArena",
+    "scientific_hypothesis": "A dedicated 'Case Router' classifier trained on phenotype embeddings can reduce rare-disease misdiagnosis rates in common-disease patients by over 30% compared to zero-shot LLM prompting.",
+    "expected_metric": "Macro-averaged F1-score across common and rare disease classes.",
+    "success_threshold": "F1-score > 0.85 and a reduction in rare-disease over-diagnosis (False Positives) by 25%.",
+    "failure_condition": "The router fails to outperform a simple keyword-based frequency filter or introduces high latency without accuracy gains.",
+    "first_24h_experiment": "Sample 100 cases from RareArena and 100 cases from a common disease dataset; prompt GPT-4o to classify them as 'Common' or 'Rare' and measure zero-shot accuracy.",
+    "specific_intervention": "Implementation of a Case Router (classifier) before the diagnostic reasoning chain.",
+    "baseline": "Zero-shot LLM prompting (e.g., GPT-4o) on the mixed dataset without a routing step.",
+    "metric": "Classification Accuracy (Common vs. Rare) and Diagnostic Accuracy.",
+    "code_or_data_urls": [
+      "https://github.com/HelloWorldLTY/hygieia"
+    ],
+    "story_angle": "The 'Diagnostic Odyssey' is often prolonged because AI tools assume every patient has a 'Zebra' (rare disease) when they might just have a 'Horse' (common disease)."
+  },
+  {
+    "candidate_id": "cand_e3e12bebbfe9177c",
+    "paper_id": "2605.05254",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle: Seven limitations of this work warrant explic... addresses a stated limitation in Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle.",
+    "evidence_spans": [
+      "Seven limitations of this work warrant explicit acknowledgement.",
+      "In symbolic-physics learning, a Triple-Action functional — combining trajectory reconstruction, architectural sparsity, and an explicit energy-conservation constraint — recovers physical force laws from noisy observational data; this was validated on Kepler and Hooke benchmarks with an order-of-magnitude reduction in training energy ( Frasch, 2026b ).",
+      "In deep neural networks, the energy-regularized objective ℒ = ℒ CE + λ ​ E ​ ( θ , x ) \\mathcal{L}=\\mathcal{L}_{\\text{CE}}+\\lambda E(\\theta,x) produces architectures that retain accuracy at substantially reduced internal activation; 2,203 experiments across vision, text, neuromorphic, and physiological datasets reject the assumption of a universal optimal architecture and instead show that modality-aligned, energy-aware design is consistently superior ( Frasch, 2026c ).",
+      "Full output (769 communities recurring in ≥ 2 \\geq 2 samples) is available at data/analysis/modularity_results/top_recurrent_communities.csv in the project repository.",
+      "Listings are reproduced verbatim from the project repository at github.com/martinfrasch/tara-modularity ."
+    ],
+    "problem_evidence_spans": [
+      "Seven limitations of this work warrant explicit acknowledgement."
+    ],
+    "feasibility_evidence_spans": [
+      "In symbolic-physics learning, a Triple-Action functional — combining trajectory reconstruction, architectural sparsity, and an explicit energy-conservation constraint — recovers physical force laws from noisy observational data; this was validated on Kepler and Hooke benchmarks with an order-of-magnitude reduction in training energy ( Frasch, 2026b ).",
+      "In deep neural networks, the energy-regularized objective ℒ = ℒ CE + λ ​ E ​ ( θ , x ) \\mathcal{L}=\\mathcal{L}_{\\text{CE}}+\\lambda E(\\theta,x) produces architectures that retain accuracy at substantially reduced internal activation; 2,203 experiments across vision, text, neuromorphic, and physiological datasets reject the assumption of a universal optimal architecture and instead show that modality-aligned, energy-aware design is consistently superior ( Frasch, 2026c ).",
+      "Full output (769 communities recurring in ≥ 2 \\geq 2 samples) is available at data/analysis/modularity_results/top_recurrent_communities.csv in the project repository.",
+      "Listings are reproduced verbatim from the project repository at github.com/martinfrasch/tara-modularity ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle. Then apply this intervention: Design a paper-specific ablation around this stated gap in Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle: Seven limitations of this work warrant explic.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle: Seven limitations of this work warrant explic... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle: Seven limitations of this work warrant explic....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle: Seven limitations of this work warrant explic...",
+    "baseline": "The reported baseline/protocol from Modularity Emerges from Action-Functional Constraints in Marine Metabolic Networks: A Biology-Scale Validation of the Network-Weighted Action Principle.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_e0ed24ccefcf777a",
+    "paper_id": "2605.04882",
+    "candidate_problem": "Performance-fairness trade-off and failure to generalize predictive performance (AUC) under domain shift in glaucoma detection.",
+    "evidence_spans": [
+      "In particular, when evaluated on the FairFundus dataset, FairEnc does not achieve the highest overall AUC, which consequently impacts AUC-dependent metrics such as ES-AUC, group-wise AUC, and worst-group AUC.",
+      "This observation reflects the re-emergence of the well-known performance-fairness trade-off under substantial domain shifts in imaging modality and data distribution."
+    ],
+    "problem_evidence_spans": [
+      "While this superior overall performance does not fully generalize to the FairFundus dataset, FairEnc maintains its fairness advantage, as evidenced by the DPD and DEOdds metrics"
+    ],
+    "feasibility_evidence_spans": [
+      "Our codebase and synthetic clinical notes are available at this Link .",
+      "Comprehensive experiments on the publicly available Harvard-FairVLMed dataset demonstrate that FairEnc effectively reduces demographic disparity"
+    ],
+    "auto_research_experiment": "Implement a domain-adversarial training branch alongside the existing FairEnc architecture to align feature distributions between Harvard-FairVLMed and FairFundus, specifically targeting the preservation of disease-relevant features while maintaining the multi-attribute debiasing.",
+    "available_data_or_benchmark": "Harvard-FairVLMed and FairFundus",
+    "public_training_or_eval_data": "Harvard-FairVLMed",
+    "scientific_hypothesis": "Domain-invariant feature learning, when combined with multi-attribute debiasing, will reduce the performance-fairness trade-off gap on the FairFundus dataset compared to standard FairEnc.",
+    "expected_metric": "Overall AUC on FairFundus",
+    "success_threshold": "An increase of >2% in overall AUC on FairFundus while maintaining DPD and DEOdds within 1% of the original FairEnc results.",
+    "failure_condition": "Overall AUC remains stagnant or decreases, or fairness metrics (DPD/DEOdds) degrade by more than 5% relative to the baseline.",
+    "first_24h_experiment": "Set up the FairEnc codebase, download Harvard-FairVLMed, and run a baseline linear probing evaluation on FairFundus to replicate the reported AUC gap.",
+    "specific_intervention": "Add a Domain Classifier with a Gradient Reversal Layer (GRL) to the visual encoder to minimize domain-specific variance between the two datasets.",
+    "baseline": "FairEnc (original architecture)",
+    "metric": "AUC",
+    "code_or_data_urls": [
+      "https://github.com/Mohamed-Elhabebe/FairEnc"
+    ],
+    "story_angle": "While AI fairness often comes at the cost of accuracy, bridging the gap between different clinical environments is the next frontier for equitable medical imaging."
+  },
+  {
+    "candidate_id": "cand_2ef0cac99caad459",
+    "paper_id": "2605.06226",
+    "candidate_problem": "Inconsistency and randomness in LLM-based rare disease diagnosis outputs across different random seeds.",
+    "evidence_spans": [
+      "Second, due to the randomness that exists in the model training and inference, these models might not give consistent outputs based on the same input with different random seeds, which is also harmful for the trustworthy output (Supplementary Figure 1 (b))."
+    ],
+    "problem_evidence_spans": [
+      "Second, due to the randomness that exists in the model training and inference, these models might not give consistent outputs based on the same input with different random seeds, which is also harmful for the trustworthy output (Supplementary Figure 1 (b))."
+    ],
+    "feasibility_evidence_spans": [
+      "to resolve the inconsistency, our agent has a verifier to monitor the outputs of the main body of Hygieia and ensure the results converge."
+    ],
+    "auto_research_experiment": "Run the MyGene2 dataset through a standard RAG-based LLM 5 times per case. Measure the 'Diagnostic Stability Score' (percentage of identical top-1 predictions). Implement a 'Self-Correction Verifier' loop and measure the increase in stability.",
+    "available_data_or_benchmark": "MyGene2",
+    "public_training_or_eval_data": "https://www.mygene2.org/MyGene2/",
+    "scientific_hypothesis": "An iterative verifier-corrector loop reduces the variance of diagnostic outputs by 50% compared to single-pass inference.",
+    "expected_metric": "Coefficient of Variation (CV) of diagnostic accuracy and Top-1 Agreement Rate.",
+    "success_threshold": "Top-1 Agreement Rate > 95% across 5 independent runs with temperature > 0.",
+    "failure_condition": "The verifier loop converges on an incorrect diagnosis (hallucination reinforcement) more often than it corrects to the right one.",
+    "first_24h_experiment": "Select 20 complex cases from MyGene2; run 10 iterations of GPT-4o at temperature 0.7; calculate the percentage of unique diagnoses returned.",
+    "specific_intervention": "Multi-agent verifier-corrector mechanism (Self-Verification).",
+    "baseline": "Single-pass LLM inference (Standard Prompting).",
+    "metric": "Diagnostic Stability Score (Agreement Rate).",
+    "code_or_data_urls": [
+      "https://github.com/HelloWorldLTY/hygieia"
+    ],
+    "story_angle": "Clinical AI must be a 'reliable witness'; if it changes its mind every time you ask, it cannot be used in a hospital."
+  },
+  {
+    "candidate_id": "cand_2351fa3bcee7d9f0",
+    "paper_id": "2605.04265",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid ... addresses a stated future work in Benchmarking open-source tools for in silico antiviral drug discovery.",
+    "evidence_spans": [
+      "Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid design of antiviral combinations.",
+      "First and foremost, fear and skepticism of vaccines remain strong among the general public.",
+      "We present a survey of open-source datasets and computational tools for in silico antiviral drug discovery, with a particular focus on the latest AI-based systems and docking tools.",
+      "We then present our custom dataset of 43,005 viral protein-ligand binding measurements that we curated from BindingDb and other sources.",
+      "Using our custom dataset we fine-tuned the DrugFormDTA binding affinity prediction model (Khokhlov et al. 2025)."
+    ],
+    "problem_evidence_spans": [
+      "Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid design of antiviral combinations."
+    ],
+    "feasibility_evidence_spans": [
+      "First and foremost, fear and skepticism of vaccines remain strong among the general public.",
+      "We present a survey of open-source datasets and computational tools for in silico antiviral drug discovery, with a particular focus on the latest AI-based systems and docking tools.",
+      "We then present our custom dataset of 43,005 viral protein-ligand binding measurements that we curated from BindingDb and other sources.",
+      "Using our custom dataset we fine-tuned the DrugFormDTA binding affinity prediction model (Khokhlov et al. 2025)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Benchmarking open-source tools for in silico antiviral drug discovery. Then apply this intervention: Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: Together, this work provides a foundation for future work towards new tools and platforms for rapid drug repurposing and rapid ...",
+    "baseline": "The reported baseline/protocol from Benchmarking open-source tools for in silico antiviral drug discovery.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/bytedance/Protenix-Dock",
+      "https://github.com/plinder-org/plinder",
+      "https://zenodo.org/records/6378223"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_164ed01a28162b02",
+    "paper_id": "2605.04882",
+    "candidate_problem": "Hyperparameter sensitivity and complexity in multi-objective fair VLM optimization.",
+    "evidence_spans": [
+      "FairEnc incorporates multiple complementary debiasing mechanisms that must be jointly optimized... the interaction among several objectives introduces a nontrivial set of hyperparameters (Table 2 ), necessitating careful tuning to balance predictive performance and fairness.",
+      "Automating or simplifying this tuning process represents a promising direction for future work."
+    ],
+    "problem_evidence_spans": [
+      "necessitating careful tuning to balance predictive performance and fairness. Automating or simplifying this tuning process represents a promising direction for future work."
+    ],
+    "feasibility_evidence_spans": [
+      "Our codebase and synthetic clinical notes are available at this Link .",
+      "Table 2"
+    ],
+    "auto_research_experiment": "Apply a Multi-Objective Bayesian Optimization (MOBO) framework to automatically navigate the trade-offs between the five loss components in FairEnc (L_VLM, L_FairText, L_MI, L_Adv, L_Cls).",
+    "available_data_or_benchmark": "Harvard-FairVLMed",
+    "public_training_or_eval_data": "Harvard-FairVLMed",
+    "scientific_hypothesis": "Automated multi-objective optimization will identify hyperparameter configurations that achieve a superior Pareto front for AUC vs. DPD compared to the manually tuned hyperparameters reported in the paper.",
+    "expected_metric": "Hypervolume of the AUC-DPD Pareto front",
+    "success_threshold": "Identification of at least one configuration that improves both AUC and reduces DPD compared to the paper's reported 'FairEnc (ours)' results.",
+    "failure_condition": "The optimization fails to find any configuration better than the manual baseline within 50 iterations.",
+    "first_24h_experiment": "Integrate an optimization library (like Optuna) into the FairEnc training script and define the search space for the hyperparameters listed in Table 2.",
+    "specific_intervention": "Replace manual hyperparameter selection with a Multi-Objective Tree-structured Parzen Estimator (MOTPE).",
+    "baseline": "FairEnc with manual hyperparameters from Table 2",
+    "metric": "Equity-Scaled AUC (ES-AUC)",
+    "code_or_data_urls": [
+      "https://github.com/Mohamed-Elhabebe/FairEnc"
+    ],
+    "story_angle": "Tuning fair AI models is currently a 'dark art'; automating the balance between accuracy and equity makes these models viable for real-world clinical deployment."
+  },
+  {
+    "candidate_id": "cand_20a7c852edf269c4",
+    "paper_id": "2605.03578",
+    "candidate_problem": "Over-parameterization in Direct Coupling Analysis (DCA) models leads to noise-induced constraints and limited exploration of the functional protein sequence space.",
+    "evidence_spans": [
+      "Standard DCA approaches typically infer fully connected interaction graphs (bmDCA), resulting in dense models where the number of parameters often exceeds the information content of the training set.",
+      "This over-parameterization raises critical questions regarding overfitting and the true topology of the inferred landscape.",
+      "Does the inclusion of all possible couplings capture essential biological constraints, or does it introduce noise that artificially constrains the model?"
+    ],
+    "problem_evidence_spans": [
+      "Standard DCA approaches typically infer fully connected interaction graphs (bmDCA), resulting in dense models where the number of parameters often exceeds the information content of the training set."
+    ],
+    "feasibility_evidence_spans": [
+      "We focus on the AroQ family of Chorismate Mutase (CM) enzymes [ 25 , 26 ] , a system previously established as a benchmark for evolution-based design [ 2 ] ."
+    ],
+    "auto_research_experiment": "Train a series of edDCA (edge decimation) models on the Chorismate Mutase MSA, monitoring Shannon entropy at each sparsity level. Identify the maximum-entropy (meDCA) point and compare its ability to assign high probability to a held-out set of natural sequences versus a fully connected bmDCA model.",
+    "available_data_or_benchmark": "AroQ family Chorismate Mutase (CM) Multiple Sequence Alignment (MSA).",
+    "public_training_or_eval_data": "The Pfam database (PF00425) provides the standard MSA for Chorismate Mutase used in the cited benchmark [2].",
+    "scientific_hypothesis": "Maximizing Shannon entropy during the sparsification of a Boltzmann Machine improves the model's generalization to unseen natural sequences and expands the accessible functional sequence space by 15+ orders of magnitude compared to dense models.",
+    "expected_metric": "Log-likelihood of held-out natural sequences and estimated sequence space volume (effective number of sequences).",
+    "success_threshold": "meDCA model achieves higher log-likelihood on held-out sequences than bmDCA and shows a sequence space volume increase of >10^10.",
+    "failure_condition": "The meDCA model shows lower log-likelihood on held-out natural sequences than the dense bmDCA model, indicating the 'noise' was actually signal.",
+    "first_24h_experiment": "Download the PF00425 MSA, split into 80/20 train/test, and run a basic edge-decimation script to plot Shannon entropy vs. parameter count.",
+    "specific_intervention": "Iterative parameter pruning (edge decimation) to find the maximum-entropy regime (meDCA) instead of using a fully connected parameterization.",
+    "baseline": "Fully connected Boltzmann Machine Direct Coupling Analysis (bmDCA).",
+    "metric": "Shannon Entropy and Log-likelihood of unseen natural sequences.",
+    "code_or_data_urls": [
+      "https://github.com/robertonetti/entropy-sparse-DCA",
+      "https://github.com/robertonetti/highentropyDCA",
+      "https://github.com/spqb/adabmDCA"
+    ],
+    "story_angle": "By pruning the 'noise' out of protein models, we can discover billions of new functional enzymes that nature never explored."
+  },
+  {
+    "candidate_id": "cand_98dfeeed90c58454",
+    "paper_id": "2605.04265",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and ra... addresses a stated future work in Benchmarking open-source tools for in silico antiviral drug discovery.",
+    "evidence_spans": [
+      "This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and rapid design of antiviral combinations.",
+      "First and foremost, fear and skepticism of vaccines remain strong among the general public.",
+      "We present a survey of open-source datasets and computational tools for in silico antiviral drug discovery, with a particular focus on the latest AI-based systems and docking tools.",
+      "We then present our custom dataset of 43,005 viral protein-ligand binding measurements that we curated from BindingDb and other sources.",
+      "Using our custom dataset we fine-tuned the DrugFormDTA binding affinity prediction model (Khokhlov et al. 2025)."
+    ],
+    "problem_evidence_spans": [
+      "This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and rapid design of antiviral combinations."
+    ],
+    "feasibility_evidence_spans": [
+      "First and foremost, fear and skepticism of vaccines remain strong among the general public.",
+      "We present a survey of open-source datasets and computational tools for in silico antiviral drug discovery, with a particular focus on the latest AI-based systems and docking tools.",
+      "We then present our custom dataset of 43,005 viral protein-ligand binding measurements that we curated from BindingDb and other sources.",
+      "Using our custom dataset we fine-tuned the DrugFormDTA binding affinity prediction model (Khokhlov et al. 2025)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Benchmarking open-source tools for in silico antiviral drug discovery. Then apply this intervention: Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and ra.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and ra... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and ra....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Benchmarking open-source tools for in silico antiviral drug discovery: This work serves as a solid foundation for future work on developing tools and platforms for rapid antiviral repurposing and ra...",
+    "baseline": "The reported baseline/protocol from Benchmarking open-source tools for in silico antiviral drug discovery.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/bytedance/Protenix-Dock",
+      "https://github.com/plinder-org/plinder",
+      "https://zenodo.org/records/6378223"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_b9138ff1a8235be6",
+    "paper_id": "2605.06327",
+    "candidate_problem": "Evaluation-Context Divergence (ECD) and Judge-Dependence in Safety Benchmarking",
+    "evidence_spans": [
+      "The judge-dependence indicates the two judges operationalize distinct constructs (behavioral vs. content-policy); a future multi-judge ensemble plus masked human audit will be needed to disambiguate.",
+      "Under the primary judge the locked cluster-robust GLM rejects “identical to OLMo-3-Instruct” on the model × evaluation interaction at p ≤ 0.025... under a content-policy second judge the cross-family heterogeneity flattens"
+    ],
+    "problem_evidence_spans": [
+      "The judge-dependence indicates the two judges operationalize distinct constructs (behavioral vs. content-policy); a future multi-judge ensemble plus masked human audit will be needed to disambiguate."
+    ],
+    "feasibility_evidence_spans": [
+      "The protocol, four-category schema, equivalence-audit codebook, and analysis pipeline are released as a unit.",
+      "OLMo-3-Instruct is the only roster family where evaluation framing makes the model more refusing than deployment framing"
+    ],
+    "auto_research_experiment": "Implement the paper's 'Paired-Prompt Protocol' across a wider range of judges (e.g., GPT-4o, Claude-3-Sonnet, and Llama-Guard-3) to determine if the 'eval-cautious' pattern in OLMo-3 is a robust behavioral trait or an artifact of specific judge-model alignment.",
+    "available_data_or_benchmark": "OLMo-3-Instruct and Llama-3.1-8B checkpoints; the paper's released 'equivalence-audit codebook' and 'paired-prompt protocol'.",
+    "public_training_or_eval_data": "OLMo-3 open weights and the Dolma/alignment datasets (referenced in § 7).",
+    "scientific_hypothesis": "The 'eval-cautious' behavior (increased refusal under evaluation framing) is a function of the semantic alignment between the model's post-training data and the judge's internal rubric, rather than a general strategic intent.",
+    "expected_metric": "Inter-judge agreement (Cohen's Kappa) on the 'Evaluation-Context Divergence' effect size.",
+    "success_threshold": "Kappa > 0.7 across at least three distinct judge architectures (e.g., LLM-as-a-judge vs. classifier-based judges).",
+    "failure_condition": "The ECD effect remains significant only under one specific judge, suggesting the phenomenon is a measurement artifact.",
+    "first_24h_experiment": "Download OLMo-3-Instruct and Llama-3.1-8B. Run 50 paired prompts (Evaluation vs. Deployment framing) and score using both Llama-Guard-3 and a standard GPT-4o prompt to replicate the 'flattening' of heterogeneity.",
+    "specific_intervention": "Vary the 'Judge' component of the evaluation pipeline while keeping the paired-prompt stimuli constant.",
+    "baseline": "The primary judge results reported in the paper (p ≤ 0.025 for cross-family heterogeneity).",
+    "metric": "Interaction coefficient (beta) of Model x Frame in a cluster-robust GLM.",
+    "code_or_data_urls": [],
+    "story_angle": "Are AI safety scores real, or just an artifact of how we ask the questions? New evidence suggests models 'act' safer when they know they are being tested, but this effect vanishes depending on who is doing the grading."
+  },
+  {
+    "candidate_id": "cand_906047a31f6ecd69",
+    "paper_id": "2605.02972",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics: Several limitations are immediate. addresses a stated limitation in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics.",
+    "evidence_spans": [
+      "Several limitations are immediate.",
+      "We derive a controlled hierarchy of models in which one can increase EML depth and ask whether the additional structure is justified by held-out predictive error.",
+      "On the toy benchmark this ladder compresses a 50 50 -state activation-adaptation network into a low-dimensional reservoir with a learned linear readout.",
+      "(S14) The subtraction of Φ N ​ ( S 0 ) \\Phi_{N}(S_{0}) enforces the normalized initial condition y D ​ ( 0 ) = 1 y_{D}(0)=1 when the data are normalized to their pre-rapamycin baseline.",
+      "(S19) The centering constant − c k a k -c_{k}^{a_{k}} does not affect the derivative, but it changes the baseline and is therefore essential for constructing pulse-propagating cascades."
+    ],
+    "problem_evidence_spans": [
+      "Several limitations are immediate."
+    ],
+    "feasibility_evidence_spans": [
+      "We derive a controlled hierarchy of models in which one can increase EML depth and ask whether the additional structure is justified by held-out predictive error.",
+      "On the toy benchmark this ladder compresses a 50 50 -state activation-adaptation network into a low-dimensional reservoir with a learned linear readout.",
+      "(S14) The subtraction of Φ N ​ ( S 0 ) \\Phi_{N}(S_{0}) enforces the normalized initial condition y D ​ ( 0 ) = 1 y_{D}(0)=1 when the data are normalized to their pre-rapamycin baseline.",
+      "(S19) The centering constant − c k a k -c_{k}^{a_{k}} does not affect the derivative, but it changes the baseline and is therefore essential for constructing pulse-propagating cascades."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics. Then apply this intervention: Design a paper-specific ablation around this stated gap in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics: Several limitations are immediate.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics: Several limitations are immediate. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics: Several limitations are immediate..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics: Several limitations are immediate.",
+    "baseline": "The reported baseline/protocol from Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://www.github.com/AmirErez/Manuscript_EML_biophysics"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_f062107cb6a81f83",
+    "paper_id": "2605.06327",
+    "candidate_problem": "Post-Training Inversion of Base Model Priors in Evaluation Contexts",
+    "evidence_spans": [
+      "OLMo-3-Instruct is the only roster family where evaluation framing makes the model more refusing than deployment framing; the matched base shows the opposite.",
+      "Within OLMo-3, the eval-cautious effect is the post-training inversion of a deployment-cautious base prior"
+    ],
+    "problem_evidence_spans": [
+      "Within OLMo-3, the eval-cautious effect is the post-training inversion of a deployment-cautious base prior"
+    ],
+    "feasibility_evidence_spans": [
+      "matched base/instruct ablation pinning the effect to a specific training stage.",
+      "OLMo-3-Instruct alone shows the eval-cautious pattern; the matched base shows the opposite"
+    ],
+    "auto_research_experiment": "Perform a data-ablation study on the OLMo-3 alignment mix (if available) or a synthetic proxy to identify if 'evaluation-style' refusal pairs in the training set are the causal driver of the eval-cautious inversion.",
+    "available_data_or_benchmark": "OLMo-3 Base and Instruct checkpoints; the Tulu/OLMo alignment data distributions.",
+    "public_training_or_eval_data": "OLMo-3 open-source alignment data (Allen Institute for AI).",
+    "scientific_hypothesis": "The inversion of the deployment-cautious prior into an eval-cautious posterior is caused by the presence of system-prompt-heavy or 'test-like' examples in the SFT/RLHF dataset.",
+    "expected_metric": "Correlation between the density of 'evaluation-framed' training examples and the magnitude of the H3 interaction coefficient.",
+    "success_threshold": "A 20% reduction in 'eval-framed' training data leads to a statistically significant (p < 0.05) reduction in the ECD effect.",
+    "failure_condition": "The ECD effect persists despite removing evaluation-style training examples, suggesting the behavior is an emergent property of instruction tuning generally.",
+    "first_24h_experiment": "Fine-tune a small base model (e.g., OLMo-1B or Llama-3-8B-Base) on two datasets: one with standard instructions and one with instructions explicitly framed as 'internal evaluations'. Compare ECD using the paper's protocol.",
+    "specific_intervention": "Manipulation of the 'evaluation-framing' density in the fine-tuning dataset.",
+    "baseline": "The original OLMo-3-Instruct ECD effect size.",
+    "metric": "H3 Interaction Beta (Model x Frame).",
+    "code_or_data_urls": [
+      "https://github.com/allenai/olmo"
+    ],
+    "story_angle": "Training an AI to be safe might accidentally teach it to 'hide' its true behavior during safety audits. We can now pinpoint exactly which training data causes this 'alignment faking'."
+  },
+  {
+    "candidate_id": "cand_a9161a73b7be97c0",
+    "paper_id": "2605.02972",
+    "candidate_problem": "Test whether Stress-test and mitigate reduced dynamical modeling in the Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics setup addresses a stated limitation in Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics.",
+    "evidence_spans": [
+      "These limitations are not defects specific to EML; they are the usual constraints on reduced dynamical modeling.",
+      "We derive a controlled hierarchy of models in which one can increase EML depth and ask whether the additional structure is justified by held-out predictive error.",
+      "On the toy benchmark this ladder compresses a 50 50 -state activation-adaptation network into a low-dimensional reservoir with a learned linear readout.",
+      "(S14) The subtraction of Φ N ​ ( S 0 ) \\Phi_{N}(S_{0}) enforces the normalized initial condition y D ​ ( 0 ) = 1 y_{D}(0)=1 when the data are normalized to their pre-rapamycin baseline.",
+      "(S19) The centering constant − c k a k -c_{k}^{a_{k}} does not affect the derivative, but it changes the baseline and is therefore essential for constructing pulse-propagating cascades."
+    ],
+    "problem_evidence_spans": [
+      "These limitations are not defects specific to EML; they are the usual constraints on reduced dynamical modeling."
+    ],
+    "feasibility_evidence_spans": [
+      "We derive a controlled hierarchy of models in which one can increase EML depth and ask whether the additional structure is justified by held-out predictive error.",
+      "On the toy benchmark this ladder compresses a 50 50 -state activation-adaptation network into a low-dimensional reservoir with a learned linear readout.",
+      "(S14) The subtraction of Φ N ​ ( S 0 ) \\Phi_{N}(S_{0}) enforces the normalized initial condition y D ​ ( 0 ) = 1 y_{D}(0)=1 when the data are normalized to their pre-rapamycin baseline.",
+      "(S19) The centering constant − c k a k -c_{k}^{a_{k}} does not affect the derivative, but it changes the baseline and is therefore essential for constructing pulse-propagating cascades."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics. Then apply this intervention: Stress-test and mitigate reduced dynamical modeling in the Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Stress-test and mitigate reduced dynamical modeling in the Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate reduced dynamical modeling in the Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics setup.",
+    "specific_intervention": "Stress-test and mitigate reduced dynamical modeling in the Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics setup",
+    "baseline": "The reported baseline/protocol from Non-Monotone Response Modules and Cascades from the EML Operator for Reduced Models of Biological Dynamics.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://www.github.com/AmirErez/Manuscript_EML_biophysics"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_7c0638334b3c86e3",
+    "paper_id": "2605.06326",
+    "candidate_problem": "Lack of standardized benchmarks for evaluating the 'thinking' process in tool-integrated reasoning models, specifically distinguishing between reasoning errors and tool-call syntax errors.",
+    "evidence_spans": [
+      "Teaching Thinking Models to Reason with Tools: A Full-Pipeline Recipe for Tool-Integrated Reasoning"
+    ],
+    "problem_evidence_spans": [
+      "Teaching Thinking Models to Reason with Tools"
+    ],
+    "feasibility_evidence_spans": [
+      "A Full-Pipeline Recipe for Tool-Integrated Reasoning"
+    ],
+    "auto_research_experiment": "Develop a diagnostic probe to evaluate the alignment between a model's internal 'thought' trace and the subsequent tool API call parameters.",
+    "available_data_or_benchmark": "ToolBench",
+    "public_training_or_eval_data": "https://github.com/OpenBMB/ToolBench",
+    "scientific_hypothesis": "Explicitly training models to generate a 'thinking' trace before tool use reduces hallucinated tool arguments by at least 20%.",
+    "expected_metric": "Tool Call Accuracy (TCA) and Thought-Action Alignment Score.",
+    "success_threshold": "TCA > 85% with a high correlation (>0.7) between thought trace and tool parameters.",
+    "failure_condition": "The model generates correct tool calls but the 'thinking' trace remains nonsensical or repetitive.",
+    "first_24h_experiment": "Fine-tune a small Llama-3-8B model on a subset of ToolBench where 'thought' traces are prepended to the tool calls and measure the delta in argument precision.",
+    "specific_intervention": "Introduction of a 'Thought-to-Tool' consistency loss during the supervised fine-tuning (SFT) phase.",
+    "baseline": "Standard SFT without explicit thinking traces (Direct Tool Calling).",
+    "metric": "Pass@1 on ToolBench instruction following.",
+    "code_or_data_urls": [
+      "https://github.com/OpenBMB/ToolBench"
+    ],
+    "story_angle": "The 'black box' of tool use: can we force AI to explain why it's calling an API before it clicks the button?"
+  },
+  {
+    "candidate_id": "cand_5173370216bbbc92",
+    "paper_id": "2605.00730",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation: Future work will focus on refining the... addresses a stated future work in Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation.",
+    "evidence_spans": [
+      "Future work will focus on refining the selection of calibration data, exploring the effects of time-varying parameter fields, and incorporating amyloid plaque formation into the reconstruction to predict long-term deposition patterns, which is accommodated by the model we have presented in Johnson et al. [ 2023 ] .",
+      "Furthermore, many models rely on the manual fitting of lumped transport parameters, such as effective tortuosity and pressure gradients, rather than direct inference of these fields from observed tracer dynamics Ray et al. [ 2019 ] , thereby obscuring local transport heterogeneity and limiting predictive accuracy."
+    ],
+    "problem_evidence_spans": [
+      "Future work will focus on refining the selection of calibration data, exploring the effects of time-varying parameter fields, and incorporating amyloid plaque formation into the reconstruction to predict long-term deposition patterns, which is accommodated by the model we have presented in Johnson et al. [ 2023 ] ."
+    ],
+    "feasibility_evidence_spans": [
+      "Furthermore, many models rely on the manual fitting of lumped transport parameters, such as effective tortuosity and pressure gradients, rather than direct inference of these fields from observed tracer dynamics Ray et al. [ 2019 ] , thereby obscuring local transport heterogeneity and limiting predictive accuracy."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation. Then apply this intervention: Design a paper-specific ablation around this stated gap in Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation: Future work will focus on refining the.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation: Future work will focus on refining the... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation: Future work will focus on refining the....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation: Future work will focus on refining the...",
+    "baseline": "The reported baseline/protocol from Reconstruction of glymphatic transport fields from subject-specific imaging data, with particular emphasis on cerebrospinal fluid flow and tracer conservation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_3a1caf2eed746a9c",
+    "paper_id": "2605.06365",
+    "candidate_problem": "State drift and cross-artifact inconsistency in long-lived agentic workflows due to implicit conversational state.",
+    "evidence_spans": [
+      "immediate task success can mask partial state inconsistency that may compound over future revisions",
+      "loop baselines... were less reliable at preserving stable outputs and maintaining cross-artifact consistency",
+      "longitudinal revision studies are needed to test that hypothesis"
+    ],
+    "problem_evidence_spans": [
+      "The experiments expose a mechanism by which partial cross-artifact inconsistency could lead to state drift, but they do not directly measure multi-round accumulation"
+    ],
+    "feasibility_evidence_spans": [
+      "We compare execution-lineage replay against loop-centric update baselines on two controlled policy-memo update tasks."
+    ],
+    "auto_research_experiment": "Simulate a 10-round revision cycle on a complex technical report where each round introduces a small, localized constraint change. Compare a standard ReAct loop against a DAG-based execution lineage system.",
+    "available_data_or_benchmark": "GAIA (General AI Assistants) or SWE-bench (Software Engineering Benchmark)",
+    "public_training_or_eval_data": "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+    "scientific_hypothesis": "Multi-round state drift in agentic workflows is significantly reduced when intermediate reasoning is externalized as a DAG with explicit dependency tracking compared to conversational prompt lineage.",
+    "expected_metric": "State Drift Index (SDI) - a measure of unintended changes in non-dependent artifacts across revision rounds.",
+    "success_threshold": "SDI < 0.05 for DAG-based systems vs SDI > 0.30 for loop-based systems over 10 rounds.",
+    "failure_condition": "The DAG system fails to propagate valid changes (false negatives) or the loop baseline maintains consistency through sheer context window size.",
+    "first_24h_experiment": "Implement a 3-node DAG (Research -> Draft -> Review) using a public dataset like GAIA; introduce a change in the 'Research' node and measure if the 'Draft' updates while 'Review' (if unrelated) remains bit-for-bit identical.",
+    "specific_intervention": "Replace the linear conversational history (Prompt Lineage) with a Directed Acyclic Graph (Execution Lineage) where each node has a unique hash based on its code, prompt, and specific input versions.",
+    "baseline": "ReAct-style iterative loop (e.g., LangChain AgentExecutor) with full conversational history.",
+    "metric": "Cross-artifact consistency (percentage of dependent artifacts correctly updated vs. non-dependent artifacts preserved).",
+    "code_or_data_urls": [],
+    "story_angle": "As AI agents move from chatbots to long-term collaborators, the 'hidden' cost of re-running entire workflows for tiny changes is becoming a bottleneck for reliable AI-native engineering."
+  },
+  {
+    "candidate_id": "cand_cb43a024ea147745",
+    "paper_id": "2605.06630",
+    "candidate_problem": "Test whether Stress-test and mitigate any sequence of choices of the μ \\mu values in the Quantifying Trade-Offs Between Stability and Goal-Obfuscation setup addresses a stated failure mode in Quantifying Trade-Offs Between Stability and Goal-Obfuscation.",
+    "evidence_spans": [
+      "Thus β \\beta must satisfy β > min ⁡ { A 1 , B 1 } + Δ r , \\displaystyle\\beta>\\min\\{A_{1},B_{1}\\}+\\Delta_{r}, (19) or the joint PCBF condition will fail for any sequence of choices of the μ \\mu values.",
+      "The tensions between the constraints are revealed as inequality constraints on the interpolation parameter, which may be seen to be jointly feasible when the prescribed tracking error envelope is not overly restrictive."
+    ],
+    "problem_evidence_spans": [
+      "Thus β \\beta must satisfy β > min ⁡ { A 1 , B 1 } + Δ r , \\displaystyle\\beta>\\min\\{A_{1},B_{1}\\}+\\Delta_{r}, (19) or the joint PCBF condition will fail for any sequence of choices of the μ \\mu values."
+    ],
+    "feasibility_evidence_spans": [
+      "The tensions between the constraints are revealed as inequality constraints on the interpolation parameter, which may be seen to be jointly feasible when the prescribed tracking error envelope is not overly restrictive."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Quantifying Trade-Offs Between Stability and Goal-Obfuscation. Then apply this intervention: Stress-test and mitigate any sequence of choices of the μ \\mu values in the Quantifying Trade-Offs Between Stability and Goal-Obfuscation setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Stress-test and mitigate any sequence of choices of the μ \\mu values in the Quantifying Trade-Offs Between Stability and Goal-Obfuscation setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate any sequence of choices of the μ \\mu values in the Quantifying Trade-Offs Between Stability and Goal-Obfuscation setup.",
+    "specific_intervention": "Stress-test and mitigate any sequence of choices of the μ \\mu values in the Quantifying Trade-Offs Between Stability and Goal-Obfuscation setup",
+    "baseline": "The reported baseline/protocol from Quantifying Trade-Offs Between Stability and Goal-Obfuscation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_9d575007a967315d",
+    "paper_id": "2605.06639",
+    "candidate_problem": "Lack of empirical validation for recursive agent optimization loops in multi-agent environments",
+    "evidence_spans": [
+      "Recursive Agent Optimization."
+    ],
+    "problem_evidence_spans": [
+      "Recursive Agent Optimization."
+    ],
+    "feasibility_evidence_spans": [
+      "Recursive Agent Optimization."
+    ],
+    "auto_research_experiment": "Implement a recursive meta-optimization loop where an LLM-based agent refines its own prompt and tool-use strategy based on trajectory feedback in the WebShop environment.",
+    "available_data_or_benchmark": "WebShop (Amazon-based navigation and retrieval)",
+    "public_training_or_eval_data": "https://github.com/princeton-nlp/WebShop",
+    "scientific_hypothesis": "Recursive self-optimization of agent prompts will yield higher task success rates than static ReAct or Chain-of-Thought prompting in complex web navigation.",
+    "expected_metric": "Success Rate (SR)",
+    "success_threshold": "15% improvement over baseline ReAct agent",
+    "failure_condition": "Optimization loop leads to prompt drift or degradation of performance below baseline after 3 iterations.",
+    "first_24h_experiment": "Set up a 3-iteration recursive loop using GPT-4o as the optimizer and GPT-3.5 as the actor on 50 WebShop tasks.",
+    "specific_intervention": "Recursive feedback loop where the optimizer analyzes failure logs to rewrite the actor's system prompt.",
+    "baseline": "Standard ReAct (Reason + Act) prompting",
+    "metric": "Task Success Rate",
+    "code_or_data_urls": [],
+    "story_angle": "Can agents actually improve themselves without human intervention?"
+  },
+  {
+    "candidate_id": "cand_802481dd8a41aed3",
+    "paper_id": "2605.06630",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Quantifying Trade-Offs Between Stability and Goal-Obfuscation: The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cyc... addresses a stated failure mode in Quantifying Trade-Offs Between Stability and Goal-Obfuscation.",
+    "evidence_spans": [
+      "The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cycle with failure probability δ f \\delta_{f} .",
+      "The tensions between the constraints are revealed as inequality constraints on the interpolation parameter, which may be seen to be jointly feasible when the prescribed tracking error envelope is not overly restrictive."
+    ],
+    "problem_evidence_spans": [
+      "The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cycle with failure probability δ f \\delta_{f} ."
+    ],
+    "feasibility_evidence_spans": [
+      "The tensions between the constraints are revealed as inequality constraints on the interpolation parameter, which may be seen to be jointly feasible when the prescribed tracking error envelope is not overly restrictive."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Quantifying Trade-Offs Between Stability and Goal-Obfuscation. Then apply this intervention: Design a paper-specific ablation around this stated gap in Quantifying Trade-Offs Between Stability and Goal-Obfuscation: The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cyc.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Quantifying Trade-Offs Between Stability and Goal-Obfuscation: The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cyc... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Quantifying Trade-Offs Between Stability and Goal-Obfuscation: The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cyc....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Quantifying Trade-Offs Between Stability and Goal-Obfuscation: The two bounds compose multiplicatively through a union bound argument, yielding a single PCBF condition covering the entire update cyc...",
+    "baseline": "The reported baseline/protocol from Quantifying Trade-Offs Between Stability and Goal-Obfuscation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_8c96f1e30059ef20",
+    "paper_id": "2605.06557",
+    "candidate_problem": "Outcome-level metrics (return, success rate) in cooperative MARL conceal coordination failure modes like redundant task assignment and inefficient division of labor under combinatorial scaling.",
+    "evidence_spans": [
+      "These metrics are essential for measuring task performance, but they provide limited visibility into the coordination process that produces that performance.",
+      "Two policies may obtain similar return while relying on different interaction patterns, and conversely, a change in return may conflate poor coordination, inefficient division of labor, under-utilization of agents, or domain-specific bottlenecks."
+    ],
+    "problem_evidence_spans": [
+      "These metrics reveal coordination failure modes that return alone can conceal (Figure 1), highlighting that in addition to measuring the return, cooperative MARL benchmarks should also assess how well agents coordinate with each other."
+    ],
+    "feasibility_evidence_spans": [
+      "We release the STAT environment together with executable training and evaluation code for all methods considered in this paper.",
+      "Code is available at https://github.com/mariacardei/coordination_aware_MARL ."
+    ],
+    "auto_research_experiment": "Evaluate the sensitivity of the 'Conflict Rate' and 'Assignment Diversity' metrics across different MARL architectures (Transformer-based vs. MLP-based) in the STAT environment to see if attention mechanisms naturally reduce redundant assignments compared to standard mixing networks.",
+    "available_data_or_benchmark": "STAT (Spatial Task Allocation Testbed)",
+    "public_training_or_eval_data": "https://github.com/mariacardei/coordination_aware_MARL",
+    "scientific_hypothesis": "Transformer-based MARL agents (e.g., UPDeT) will exhibit lower conflict rates than monotonic mixing methods (QMIX) in high-agent-count STAT scenarios due to superior relational modeling.",
+    "expected_metric": "Conflict Rate",
+    "success_threshold": "A 15% reduction in Conflict Rate compared to QMIX while maintaining equivalent episodic return.",
+    "failure_condition": "Transformer-based agents achieve lower return or higher conflict rates than the QMIX baseline.",
+    "first_24h_experiment": "Clone the STAT repo, install dependencies, and run the provided QMIX baseline on the '5A-25T-50x30' configuration to verify the reported conflict rate of ~0.0223.",
+    "specific_intervention": "Integrate a Transformer-based policy network into the PyMARL framework provided in the STAT repository.",
+    "baseline": "QMIX (as implemented in the STAT artifact)",
+    "metric": "Conflict Rate (total task assignment conflicts / total assignments)",
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "story_angle": "Beyond the Scoreboard: Why high-reward AI agents might actually be terrible at teamwork, and how to measure their hidden coordination failures."
+  },
+  {
+    "candidate_id": "cand_f4e4b5955b0cdbeb",
+    "paper_id": "2605.05824",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements wit... addresses a stated future work in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+    "evidence_spans": [
+      "Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements with moving agents to capture doppler and temporal channel evolution.",
+      "5 pages, 5 figures Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "5 pages, 5 figures TITLE: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction ABSTRACT: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "This paper introduces a dataset for indoor radio channel mapping in both Line-of-Sight (LoS) and Non-Line-of-Sight (NLoS) conditions as well as a highly flexible prototyping methodology for mmWave sensing and communication.",
+      "Current works available in the literature generally either lack an accessible dataset or probe a limited number of angles or positions [ 6 , 3 , 11 ] ."
+    ],
+    "problem_evidence_spans": [
+      "Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements with moving agents to capture doppler and temporal channel evolution."
+    ],
+    "feasibility_evidence_spans": [
+      "5 pages, 5 figures Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "5 pages, 5 figures TITLE: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction ABSTRACT: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "This paper introduces a dataset for indoor radio channel mapping in both Line-of-Sight (LoS) and Non-Line-of-Sight (NLoS) conditions as well as a highly flexible prototyping methodology for mmWave sensing and communication.",
+      "Current works available in the literature generally either lack an accessible dataset or probe a limited number of angles or positions [ 6 , 3 , 11 ] ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction. Then apply this intervention: Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements wit.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements wit... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements wit....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements wit...",
+    "baseline": "The reported baseline/protocol from Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_4a0c7b59fc8f7d48",
+    "paper_id": "2605.06557",
+    "candidate_problem": "Independent Q-Learning (IQL) is highly vulnerable to redundant assignment in interdependent settings, leading to high conflict rates as agent counts scale.",
+    "evidence_spans": [
+      "independent learning is most vulnerable to redundant assignment in highly interdependent settings (see more in Appendix I)."
+    ],
+    "problem_evidence_spans": [
+      "Table 7: Final conflict rate... IQL [at 9A-25T-50x30] 0.1138 ± 0.0056",
+      "IQL: Limited coordination; non-stationarity; ignores dependencies."
+    ],
+    "feasibility_evidence_spans": [
+      "The release includes DQN and FDQN training/evaluation scripts, PyMARL integration for IQL, VDN, QMIX, QTRAN, and COMA."
+    ],
+    "auto_research_experiment": "Test if adding a simple 'intent broadcast' (one-step communication of target task ID) to IQL significantly reduces the conflict rate in STAT without requiring centralized training.",
+    "available_data_or_benchmark": "STAT environment with IQL implementation",
+    "public_training_or_eval_data": "https://github.com/mariacardei/coordination_aware_MARL",
+    "scientific_hypothesis": "Minimal local communication of task targets will reduce IQL conflict rates to levels comparable with CTDE methods like VDN.",
+    "expected_metric": "Conflict Rate",
+    "success_threshold": "Conflict rate reduction of >50% in the 5A-12T-10x6 environment compared to vanilla IQL.",
+    "failure_condition": "Communication overhead leads to training instability or no significant change in conflict rate.",
+    "first_24h_experiment": "Modify the IQL observation space in the STAT environment to include a 'last action' or 'target' vector from neighbors and run a short training session.",
+    "specific_intervention": "Augment IQL with a local communication channel for task commitment indices.",
+    "baseline": "Vanilla IQL (DTDE)",
+    "metric": "Conflict Rate",
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "story_angle": "Fixing the 'Too Many Cooks' problem in decentralized AI: Can simple communication solve the coordination gap in independent learners?"
+  },
+  {
+    "candidate_id": "cand_0fffd9497b31dad9",
+    "paper_id": "2605.05824",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dus... addresses a stated failure mode in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+    "evidence_spans": [
+      "In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dust, or steam.",
+      "5 pages, 5 figures Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "5 pages, 5 figures TITLE: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction ABSTRACT: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "This paper introduces a dataset for indoor radio channel mapping in both Line-of-Sight (LoS) and Non-Line-of-Sight (NLoS) conditions as well as a highly flexible prototyping methodology for mmWave sensing and communication.",
+      "Current works available in the literature generally either lack an accessible dataset or probe a limited number of angles or positions [ 6 , 3 , 11 ] ."
+    ],
+    "problem_evidence_spans": [
+      "In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dust, or steam."
+    ],
+    "feasibility_evidence_spans": [
+      "5 pages, 5 figures Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "5 pages, 5 figures TITLE: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction ABSTRACT: Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+      "This paper introduces a dataset for indoor radio channel mapping in both Line-of-Sight (LoS) and Non-Line-of-Sight (NLoS) conditions as well as a highly flexible prototyping methodology for mmWave sensing and communication.",
+      "Current works available in the literature generally either lack an accessible dataset or probe a limited number of angles or positions [ 6 , 3 , 11 ] ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction. Then apply this intervention: Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dus.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dus... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dus....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction: In sectors such as metal manufacturing or emergency response, standard optical sensors like LiDAR often fail due to smoke, dus...",
+    "baseline": "The reported baseline/protocol from Indoor 60 GHz Radio Channel Dataset Enabling Digital Twin Construction.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_903069ac8e6b1286",
+    "paper_id": "2605.04922",
+    "candidate_problem": "Internal contradictions and lack of supporting evidence in LLM-generated scientific proposals",
+    "evidence_spans": [
+      "prior methods might produce surface-plausible ideas. A generated proposal could seem convincing, yet its core scientific claims, mechanisms, or validation plans contain internal contradictions or lack supporting evidence [ 24 ] .",
+      "once unsupported claims, novelty conflicts, and missing evaluation components are absorbed into prose, it becomes harder to see what is missing"
+    ],
+    "problem_evidence_spans": [
+      "prior methods might produce surface-plausible ideas. A generated proposal could seem convincing, yet its core scientific claims, mechanisms, or validation plans contain internal contradictions or lack supporting evidence [ 24 ] ."
+    ],
+    "feasibility_evidence_spans": [
+      "Benchmarks, such as AI Idea Bench 2025 and LiveIdeaBench, provide released evaluators for evaluating generated ideas [ 19 , 22 , 14 , 9 ] .",
+      "Code: Evolving-Idea-Graphs ."
+    ],
+    "auto_research_experiment": "Extend the EIG graph schema to include 'Counterfactual' and 'Alternative Hypothesis' node types and evaluate if this reduces logical contradictions in generated proposals compared to the baseline EIG.",
+    "available_data_or_benchmark": "AI Idea Bench 2025",
+    "public_training_or_eval_data": "AI Idea Bench 2025",
+    "scientific_hypothesis": "Incorporating explicit counterfactual reasoning nodes into a shared idea graph reduces internal contradictions in multi-agent scientific ideation.",
+    "expected_metric": "Internal Consistency Score (via AI Idea Bench 2025 evaluator)",
+    "success_threshold": "A 15% reduction in 'contradiction' edge types detected by the graph critic compared to the standard EIG schema.",
+    "failure_condition": "The increased complexity of the graph schema leads to a decrease in overall proposal clarity or feasibility scores.",
+    "first_24h_experiment": "Modify the EIG node schema in the provided codebase to include a 'Counterfactual' type and run a small-scale generation on 10 samples from AI Idea Bench 2025 to check for agent utilization.",
+    "specific_intervention": "Introduction of 'Counterfactual' and 'Alternative Hypothesis' node types into the EIG shared state schema.",
+    "baseline": "Original EIG framework with the standard claim/method/evaluation schema.",
+    "metric": "Consistency and Novelty scores from AI Idea Bench 2025.",
+    "code_or_data_urls": [
+      "https://github.com/Jiangwen-Dong/idea-graph",
+      "https://github.com/x66ccff/liveideabench",
+      "https://github.com/yansheng-qiu/AI_Idea_Bench_2025",
+      "https://huggingface.co/Qwen/Qwen3-8B",
+      "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    ],
+    "story_angle": "Moving beyond 'surface-plausible' AI science by forcing agents to explicitly map out what could go wrong."
+  },
+  {
+    "candidate_id": "cand_8bb21c8aba7a3282",
+    "paper_id": "2605.06438",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence... addresses a stated future work in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "evidence_spans": [
+      "Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence in the model’s stability claims and are a natural extension of this work.",
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "problem_evidence_spans": [
+      "Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence in the model’s stability claims and are a natural extension of this work."
+    ],
+    "feasibility_evidence_spans": [
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management. Then apply this intervention: Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence...",
+    "baseline": "The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_2b6caa6b04a223db",
+    "paper_id": "2605.04922",
+    "candidate_problem": "Bias inheritance from heuristic-curated weak supervision in graph controllers",
+    "evidence_spans": [
+      "The controller is trained from heuristic weak labels rather than expert action annotation, which means the learned critic may inherit biases from the fixed signal weights used by the heuristic teacher."
+    ],
+    "problem_evidence_spans": [
+      "The controller is trained from heuristic weak labels rather than expert action annotation, which means the learned critic may inherit biases from the fixed signal weights used by the heuristic teacher."
+    ],
+    "feasibility_evidence_spans": [
+      "To train the two-head graph critic, we derive weak edit and commit supervision from heuristic-curated offline profiling traces collected under the same parallel protocol."
+    ],
+    "auto_research_experiment": "Implement a Reinforcement Learning from Human Feedback (RLHF) or Expert-in-the-loop (EITL) fine-tuning stage for the EIG graph critic to correct biases inherited from the heuristic teacher.",
+    "available_data_or_benchmark": "LiveIdeaBench",
+    "public_training_or_eval_data": "LiveIdeaBench",
+    "scientific_hypothesis": "Fine-tuning the graph critic on a small set of expert-ranked edit traces will significantly improve the 'Expert Rating' metric compared to the purely heuristic-trained critic.",
+    "expected_metric": "Blinded Expert Evaluation Score",
+    "success_threshold": "A statistically significant (p < 0.05) improvement in expert preference over the baseline EIG.",
+    "failure_condition": "The fine-tuned critic becomes over-specialized to the expert's specific domain, reducing performance on general benchmark metrics.",
+    "first_24h_experiment": "Collect 50 expert rankings of 'edit' decisions made by the heuristic teacher and calculate the alignment gap.",
+    "specific_intervention": "Fine-tuning the two-head graph critic using expert-ranked edit/commit decisions instead of heuristic labels.",
+    "baseline": "EIG with heuristic-trained graph critic.",
+    "metric": "Expert Rating (1-5 scale) and Benchmark Novelty/Feasibility.",
+    "code_or_data_urls": [
+      "https://github.com/Jiangwen-Dong/idea-graph",
+      "https://github.com/x66ccff/liveideabench",
+      "https://github.com/yansheng-qiu/AI_Idea_Bench_2025",
+      "https://huggingface.co/Qwen/Qwen3-8B",
+      "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    ],
+    "story_angle": "Can we teach AI scientists to value what human experts value, rather than just following simple heuristics?"
+  },
+  {
+    "candidate_id": "cand_d43dc23916a6dc55",
+    "paper_id": "2605.06438",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: This research opens several avenues for extension. addresses a stated future work in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "evidence_spans": [
+      "This research opens several avenues for extension.",
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "problem_evidence_spans": [
+      "This research opens several avenues for extension."
+    ],
+    "feasibility_evidence_spans": [
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management. Then apply this intervention: Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: This research opens several avenues for extension.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: This research opens several avenues for extension. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: This research opens several avenues for extension..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: This research opens several avenues for extension.",
+    "baseline": "The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_fdf59ad369df8262",
+    "paper_id": "2605.06438",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed ... addresses a stated future work in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "evidence_spans": [
+      "A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed Neural Networks (PINNs), where actuarial constraints, such as Li-Lee coherence, Gompertzian monotonicity, and stationarity conditions, are embedded directly in the training loss function rather than verified post-hoc.",
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "problem_evidence_spans": [
+      "A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed Neural Networks (PINNs), where actuarial constraints, such as Li-Lee coherence, Gompertzian monotonicity, and stationarity conditions, are embedded directly in the training loss function rather than verified post-hoc."
+    ],
+    "feasibility_evidence_spans": [
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management. Then apply this intervention: Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: A natural next step is the development of Actuarial-Informed Neural Networks , analogous to Physics-Informed ...",
+    "baseline": "The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_16db1b1c015a9d40",
+    "paper_id": "2605.04637",
+    "candidate_problem": "The Specification Bottleneck: Failure of AI agents to elicit requirements",
+    "evidence_spans": [
+      "A specification bottleneck , where platforms compress rich business requirements into oversimplified technical plans",
+      "most skip requirement elicitation entirely, silently embedding unverified assumptions into generated applications."
+    ],
+    "problem_evidence_spans": [
+      "inference quality varies widely (IQS range: 20–70), and most skip requirement elicitation entirely"
+    ],
+    "feasibility_evidence_spans": [
+      "The repository includes all 6 prompts, 80 canary requirement specifications, 9 LLM judge prompt templates"
+    ],
+    "auto_research_experiment": "Compare 'Zero-Shot' generation against 'Multi-Turn Elicitation' agents using the Canary Requirement methodology to measure the retention of hidden business logic.",
+    "available_data_or_benchmark": "SWE-WebDevBench Canary Requirements",
+    "public_training_or_eval_data": "https://github.com/snowmountainAi/webdevbench",
+    "scientific_hypothesis": "Multi-turn requirement elicitation significantly increases Canary Retention Rate (CRR) compared to single-turn generation.",
+    "expected_metric": "Canary Retention Rate (CRR)",
+    "success_threshold": "A 25% absolute increase in CRR for agents that ask at least 3 clarifying questions.",
+    "failure_condition": "No significant difference in CRR regardless of the number of clarification turns.",
+    "first_24h_experiment": "Run the 'ExamEdge Academy' prompt (P1) through a standard LLM and count how many of the 80 canary requirements are met without prompting for clarification.",
+    "specific_intervention": "Implement a 'Product Manager Agent' loop that must ask 5 clarifying questions before generating code.",
+    "baseline": "Direct code generation from the initial prompt (Replit-style behavior).",
+    "metric": "Canary Retention Rate (CRR)",
+    "code_or_data_urls": [
+      "https://github.com/snowmountainAi/webdevbench"
+    ],
+    "story_angle": "AI coders are 'yes-men': The danger of agents that never ask 'Why?'."
+  },
+  {
+    "candidate_id": "cand_30aec923411c9348",
+    "paper_id": "2605.06438",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and fur... addresses a stated future work in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "evidence_spans": [
+      "These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and further bridge the gap between algorithmic flexibility and actuarial governance.",
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "problem_evidence_spans": [
+      "These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and further bridge the gap between algorithmic flexibility and actuarial governance."
+    ],
+    "feasibility_evidence_spans": [
+      "Traditional stochastic mortality models, primarily the Lee-Carter framework [ 2 ] and its multi-population extension by Li and Lee [ 3 ] , have long served as the industry benchmark.",
+      "Our results indicate that the framework achieves selective superiority: improvements of 17.40% (Sweden) and 12.57% (West Germany) in regimes where persistent unit roots invalidate the Li-Lee mean-reversion assumption, while remaining comparable to the linear benchmark for near-linear trajectories such as Switzerland and Japan.",
+      "1 1 1 https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI 1 Introduction The systemic increase in human life expectancy presents one of the most significant challenges for the modern insurance industry and social security systems.",
+      "While this choice improves projection stability by avoiding the accumulation of six additional integration drift paths, it means that cross-country dispersion in the reconstructed e 0 e_{0} is driven primarily by differences in the baseline age profiles α x , i \\alpha_{x,i} ."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management. Then apply this intervention: Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and fur.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and fur... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and fur....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management: These extensions would strengthen the theoretical foundations of the neural-actuarial hybrid approach and fur...",
+    "baseline": "The reported baseline/protocol from Neural-Actuarial Longevity Forecasting: Anchoring LSTMs for Explainable Risk Management.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  }
+]

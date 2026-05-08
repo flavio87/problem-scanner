@@ -1,0 +1,2301 @@
+[
+  {
+    "candidate_id": "cand_c22009b9a057752f",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 1,
+        "score": 94,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_5628f7e52ed2cb18",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 1,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6632847c4bb7d4f6",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 1,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8f5ea295fb30e3c4",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 2,
+        "score": 93,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_cd26b1bf63c773ac",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 2,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_16ab56455d72fa57",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 2,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_dcb96e6d7bee0ae0",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 3,
+        "score": 92,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_1d995ed506025b58",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 3,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8b9e29fe8867d7bf",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 3,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_d8c3636f8d63ae1f",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 4,
+        "score": 92,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3ba40637ec8ed7ad",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 4,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_df9e8c5677243c86",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 4,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8d847c37bbb0d4cf",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 5,
+        "score": 92,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2b4dfba31a5d0294",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 5,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8c6b701cf186d892",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 5,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e552310ed9a0de66",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 6,
+        "score": 92,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      },
+      {
+        "arm": "recall",
+        "rank": 42,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_48cb982d009e28ba",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 6,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4267832886b0537e",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 6,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_33e791047f0092c0",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 7,
+        "score": 92,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_28200f3dbc9771de",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 7,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8feb8bda97bd7d28",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 7,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_93fea71e42023da2",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 8,
+        "score": 92,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ffe5eafc8ffeecde",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 8,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3396f0c7422b267a",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 8,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_091ef06485d2408f",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 9,
+        "score": 91,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e179ec87dd0fd1f9",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 9,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a76b16aa694f4a3a",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 9,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2a140b0fddde6ca7",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 10,
+        "score": 91,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_be06d9dc0d5fed7c",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 10,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f62a2f7d9c45f8a5",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 10,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_47ae1e4a3b705ba5",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 11,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2f0360bec26f3fc3",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 11,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_08814bb6c234aab3",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 11,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e48e7249ff6360d7",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 12,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_08ea6fefba90f970",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 12,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_cbd34be8d24dbca9",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 12,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f4e83aa89545be05",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 13,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_62e44089b683f498",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 13,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a4e6fd8726322198",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 13,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_9c2cc719129915ee",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 14,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a1377ec16fb0803c",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 14,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_58445a3166477a73",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 14,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a4ea3353bb5be89c",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 15,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ba8c9384dbb58f3c",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 15,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6a92a39295b5630e",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 15,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f2be7ddc4d8efd6e",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 16,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ac6100d6556eb9bd",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 16,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_df0447fbc9b610d4",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 16,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6093a37f93231fce",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 17,
+        "score": 90,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2d997a4c8696e022",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 17,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_1a76c1ca913cb8c6",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 17,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8096e045bc4b9ebd",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 18,
+        "score": 89,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_b22321380abd6f8a",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 18,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3ccc05297dfaafa6",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 18,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_41df9d0c380d0602",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 19,
+        "score": 89,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_5d786dd0a725c63a",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 19,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f33f505f08311f7a",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 19,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_b6afc90200b7bb23",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 20,
+        "score": 88,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_7688b88e342cb07b",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 20,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_789ae1fd321fbfbf",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 20,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3b9bff60df4d2be4",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 21,
+        "score": 88,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_c0548a37dc7e45da",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 21,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_677f70aeddfaa363",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 21,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ccfd43f1b3255750",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 22,
+        "score": 88,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_03cb35d6176d32ea",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 22,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4fe94615be9f8394",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 22,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_16a2c07ece632733",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 23,
+        "score": 88,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_45b2c350dd6374bb",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 23,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f8cb3bd455807a77",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 23,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f6f4647738d36aae",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 24,
+        "score": 87,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8bdfda98e6ee5a29",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 24,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_d3ae4e0e9aa9e864",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 24,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_08d6b9c057b61cc3",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 25,
+        "score": 87,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6f4abc67c772de1d",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 25,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_80d2f8115f6604d6",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 25,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_64eff7f97fb029fc",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 26,
+        "score": 87,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_fedf342165c1138e",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 26,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_b1aea8a0f9f2ddc0",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 26,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6919b0269eb6ad08",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 27,
+        "score": 87,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_5ca80cbce73ed504",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 27,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_b2d694ab90e635b0",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 27,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_16cc469b8a6570c4",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 28,
+        "score": 86,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ea937b797b0bafee",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 28,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_0b846684e9c69b4a",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 28,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_347a8649d938c653",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 29,
+        "score": 84,
+        "grade": "A",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_21768441dbd9c45c",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 29,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_36a7fddb3ea7280d",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 29,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_28009fb736e167bf",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 30,
+        "score": 64,
+        "grade": "C",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_fe83094cfaabefb9",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 30,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e3e12bebbfe9177c",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 30,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e0ed24ccefcf777a",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 31,
+        "score": 62,
+        "grade": "C",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2ef0cac99caad459",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 31,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2351fa3bcee7d9f0",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 31,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_164ed01a28162b02",
+    "sources": [
+      {
+        "arm": "strict",
+        "rank": 32,
+        "score": 62,
+        "grade": "C",
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-strict/candidates.final.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_20a7c852edf269c4",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 32,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_98dfeeed90c58454",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 32,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_b9138ff1a8235be6",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 33,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_906047a31f6ecd69",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 33,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f062107cb6a81f83",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 34,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a9161a73b7be97c0",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 34,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_7c0638334b3c86e3",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 35,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_5173370216bbbc92",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 35,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3a1caf2eed746a9c",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 36,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_cb43a024ea147745",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 36,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_9d575007a967315d",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 37,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_802481dd8a41aed3",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 37,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8c96f1e30059ef20",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 38,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f4e4b5955b0cdbeb",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 38,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4a0c7b59fc8f7d48",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 39,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_0fffd9497b31dad9",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 39,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_903069ac8e6b1286",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 40,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8bb21c8aba7a3282",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 40,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2b6caa6b04a223db",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 41,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_d43dc23916a6dc55",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 41,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_fdf59ad369df8262",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 42,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_16db1b1c015a9d40",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 43,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_30aec923411c9348",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 43,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_834118b1b9562f7a",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 44,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_500ce1cb65a72a21",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 44,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_275c5704ab1140c5",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 45,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_0b180de4853570e2",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 45,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_76a253335add909e",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 46,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2081d2fa700bd306",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 46,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2d88ca0ffac18adf",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 47,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3140d4d491ebc990",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 47,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_0e172d1ee6d755a5",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 48,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_7870f55c7b899b96",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 48,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_71a5a04d88a52f57",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 49,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_1f280a84f647efd4",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 49,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6930e34e45deaf91",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 50,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_1fe2f35c4b6b2e53",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 50,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_8b2f3d050315d4aa",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 51,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_90de0579bcff33db",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 51,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_555bf214f62333fb",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 52,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_543a1245d5a8f629",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 52,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4fdcf56bd8766b50",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 53,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_9029f672fae000d5",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 53,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2de1ded06c782415",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 54,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_cdb210dffaaf7ff0",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 54,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ae33c438adbabfa9",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 55,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_d412e6d557d21ddc",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 55,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_733f5ea4b26bd85f",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 56,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_21a0f40f14e748ac",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 56,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3021f127d0651782",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 57,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e8bca283891f1cd2",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 57,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_fc5fc762cd79629f",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 58,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_2132a5845df35d80",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 58,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_805398fae0cf9936",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 59,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a9c455bb202fb702",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 59,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_814cf438c26ef9bc",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 60,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_5edc1f9bf472a005",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 60,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_6204c6eae5b4523d",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 61,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_70601bc8d4f761b4",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 61,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_05f3bc089856fc28",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 62,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_380356daa3902d17",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 62,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_23dd7358d0d5c6e0",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 63,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_383673d4fb42b480",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 63,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_3bd8409fb0fc809b",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 64,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_755c72c8d07d84ba",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 64,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4846a8e0d6cd75fd",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 65,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4ed086de1279dd29",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 65,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_af1e0fa57ebdcb6d",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 66,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f5d034e578e11115",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 66,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_d1098915eb2093e3",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 67,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f52793f5b503739a",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 67,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_4fd4df0254d66174",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 68,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_ffbe3cbe178f24ec",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 68,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_26043ce417bb735e",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 69,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_9f0c0e8825d3b5c7",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 69,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_67151920862913d2",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 70,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_899d68ffa911fc45",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 70,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e670ee12b3c0fbfc",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 71,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_600a197297868400",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 71,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_b20126c54834d271",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 72,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a038778d4b3371ae",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 72,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_5f676714101c4583",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 73,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_c9af7b2f60eac41d",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 73,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_13b6e0f1d2a3a595",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 74,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_a0e31e299a00d11a",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 74,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_70b341df01ce701c",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 75,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_89d544bc3a98f8c5",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 75,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_644fa5089a6ec154",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 76,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e8d53ba297ee1625",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 76,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_65da4edba4d23178",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 77,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_7b64e0313e7407ff",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 77,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_f53c348759885fe5",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 78,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_213f873981587a57",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 78,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_e41d0e5fcf74ed83",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 79,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_7036c6f76fbe2642",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 79,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_850750346f49d91f",
+    "sources": [
+      {
+        "arm": "recall",
+        "rank": 80,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/cheap-recall/candidates.raw.json"
+      }
+    ]
+  },
+  {
+    "candidate_id": "cand_da8e4547336396ee",
+    "sources": [
+      {
+        "arm": "heuristic",
+        "rank": 80,
+        "score": null,
+        "grade": null,
+        "source_path": "runs/agreement-200-dataset-grounded-20260508-170934/heuristic/candidates.raw.json"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1270 @@
+[
+  {
+    "candidate_id": "cand_9c2cc719129915ee",
+    "paper_id": "2605.04225",
+    "candidate_problem": "Decoupled task allocation and routing in multi-agent systems leads to local optima and ignores the coupled nature of the objective function.",
+    "evidence_spans": [
+      "heuristic approaches offer faster solutions but are prone to getting trapped in local optima [ 9 ] . This is largely because they tend to decouple the problem (i.e., solving allocation and routing sequentially) thereby ignoring the coupled nature of the objective function [ 25 ] ."
+    ],
+    "problem_evidence_spans": [
+      "Existing learning-based frameworks exhibit various limitations when applied to the multi-stage map coverage problem. The majority of current literature focuses either on decentralized architectures... or on “flat” encoding schemes that fail to capture the hierarchical dependencies"
+    ],
+    "feasibility_evidence_spans": [
+      "The proposed architecture autoregressively generates a solution by decoding the hierarchical structure of the problem in a single pass.",
+      "The proposed method achieves a speedup of four orders of magnitude over traditional exact solvers."
+    ],
+    "auto_research_experiment": "Train an ARMATA-style autoregressive transformer on the Multi-Agent Traveling Salesman Problem (mTSP) using synthetic coordinate data. Compare the joint decoding strategy against a decoupled baseline where tasks are first clustered (K-Means) and then routed (LKH-3).",
+    "available_data_or_benchmark": "Google OR-Tools (Routing Library) and LKH-3 solver for generating baselines on synthetic spatial distributions.",
+    "public_training_or_eval_data": "https://github.com/google/or-tools",
+    "scientific_hypothesis": "A centralized autoregressive model that decodes assignment and routing tokens in a single sequence will achieve lower total path costs than a two-stage pipeline because it can account for routing costs during the assignment phase.",
+    "expected_metric": "Total Path Cost (Sum of distances)",
+    "success_threshold": "15% reduction in total path cost compared to the decoupled K-Means + LKH-3 baseline.",
+    "failure_condition": "The model fails to converge or produces invalid tours (e.g., missing nodes or duplicate visits) that require more post-processing than the heuristic baseline.",
+    "first_24h_experiment": "Generate 10,000 synthetic mTSP instances with 20 nodes and 3 agents. Implement a basic Pointer Network with a multi-token output (agent_id, node_id) and measure the initial loss convergence.",
+    "specific_intervention": "Implement a multi-stage decoding mechanism where the model predicts the next node and the assigned agent ID simultaneously in an autoregressive sequence.",
+    "baseline": "Decoupled pipeline: K-Means clustering for assignment followed by LKH-3 for routing.",
+    "metric": "Solution Quality (Total Distance)",
+    "code_or_data_urls": [
+      "https://github.com/google/or-tools"
+    ],
+    "story_angle": "By treating multi-agent logistics as a single autoregressive sequence rather than two separate math problems, we can solve NP-hard routing tasks in milliseconds instead of hours."
+  },
+  {
+    "candidate_id": "cand_a1377ec16fb0803c",
+    "paper_id": "2605.05284",
+    "candidate_problem": "The state-of-the-art Adam optimizer is evolutionarily unfaithful because its additive momentum term allows for deterministic movement in the absence of selection pressure, which is an evolutionary impossibility.",
+    "evidence_spans": [
+      "A notable outlier, however, is the state-of-the-art Adam optimizer. In order to be brought into strict evolutionary compliance, Adam’s momentum term requires some minor but principled mathematical surgery.",
+      "A notable outlier is Adam, whose inertial momentum term permits deterministic movement in the absence of selection pressure — an evolutionary impossibility."
+    ],
+    "problem_evidence_spans": [
+      "A notable outlier is Adam, whose inertial momentum term permits deterministic movement in the absence of selection pressure — an evolutionary impossibility."
+    ],
+    "feasibility_evidence_spans": [
+      "Code available at https://github.com/danielgrimmer/adam-dls",
+      "As the Rosenbrock benchmark (Fig. 5 ) confirms, this surgery preserves Adam’s capacity to navigate ill-conditioned landscapes."
+    ],
+    "auto_research_experiment": "Compare the evolutionary fidelity of standard Adam versus 'Surgical Adam' (DLS-compliant) by measuring the deviation from the Price equation in a population-based simulation across various selection pressures.",
+    "available_data_or_benchmark": "Rosenbrock function, Physics-Informed Neural Networks (PINNs) benchmarks.",
+    "public_training_or_eval_data": "https://github.com/danielgrimmer/adam-dls",
+    "scientific_hypothesis": "Replacing Adam's additive momentum with a rank-1 projection (DLS surgery) maintains optimization performance on ill-conditioned landscapes while satisfying the DLS noise relation for evolutionary fidelity.",
+    "expected_metric": "Optimization convergence speed and 'Evolutionary Fidelity Score' (adherence to the Price equation).",
+    "success_threshold": "Surgical Adam achieves <10% deviation from the Price equation while maintaining convergence within 1.5x of standard Adam on the Rosenbrock benchmark.",
+    "failure_condition": "Surgical Adam fails to converge on ill-conditioned PINN landscapes where standard Adam succeeds.",
+    "first_24h_experiment": "Clone the provided repository, run the Rosenbrock benchmark (Fig 5) comparing standard Adam and the DLS-modified Adam, and log the gradient alignment over time.",
+    "specific_intervention": "Implement the 'minor mathematical surgery' on Adam's momentum: replace additive momentum with a rank-1 projection that amplifies selection pressure only along historically successful directions.",
+    "baseline": "Standard Adam optimizer (Kingma & Ba, 2014).",
+    "metric": "Convergence rate (loss vs. iterations) and DLS noise relation compliance.",
+    "code_or_data_urls": [
+      "https://github.com/danielgrimmer/adam-dls"
+    ],
+    "story_angle": "Fixing the 'evolutionary impossibility' in our most popular AI optimizer to turn engineering tools into scientific simulators."
+  },
+  {
+    "candidate_id": "cand_58445a3166477a73",
+    "paper_id": "2605.03281",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification. addresses a stated future work in Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+    "evidence_spans": [
+      "CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification.",
+      "Code: this https URL Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "Code: this https URL TITLE: Donor-Aware scRNA-seq Benchmarks for IBD Classification ABSTRACT: Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "We then benchmark, across two independent cohorts, five classifiers (logistic regression, linear SVM, ElasticNet, XGBoost, and CatBoost) on three feature representations: (1) CLR-transformed cell type composition; (2) GatedStructuralCFN embeddings; and (3) scVI latent embeddings.",
+      "We additionally evaluate cross-dataset transfer between the UC and CD cohorts using the four cell types present in both atlases, and assess the structural stability of the learned CFN dependency matrices across cross-validation folds."
+    ],
+    "problem_evidence_spans": [
+      "CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification."
+    ],
+    "feasibility_evidence_spans": [
+      "Code: this https URL Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "Code: this https URL TITLE: Donor-Aware scRNA-seq Benchmarks for IBD Classification ABSTRACT: Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "We then benchmark, across two independent cohorts, five classifiers (logistic regression, linear SVM, ElasticNet, XGBoost, and CatBoost) on three feature representations: (1) CLR-transformed cell type composition; (2) GatedStructuralCFN embeddings; and (3) scVI latent embeddings.",
+      "We additionally evaluate cross-dataset transfer between the UC and CD cohorts using the four cell types present in both atlases, and assess the structural stability of the learned CFN dependency matrices across cross-validation folds."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Donor-Aware scRNA-seq Benchmarks for IBD Classification. Then apply this intervention: Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: CFN on compartment composition is the most promising direction for further development in structured IBD patient stratification.",
+    "baseline": "The reported baseline/protocol from Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Jonathan-321/sfn-scrna-study",
+      "https://github.com/fanglioc/StructuralCFN-public"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_a4ea3353bb5be89c",
+    "paper_id": "2605.06562",
+    "candidate_problem": "Variance-based feature selection fails to distinguish between subtype-discriminative signals and non-biological technical variation in breast cancer subtyping.",
+    "evidence_spans": [
+      "variance-based feature selection is a heuristic that does not distinguish between subtype-discriminative signal and other sources of biological or technical variation",
+      "Genes selected by variance may capture non-subtype-related variation"
+    ],
+    "problem_evidence_spans": [
+      "Model errors were primarily concentrated in minority and biologically overlapping subtypes. The BRCA_Normal subtype... exhibited the most variability."
+    ],
+    "feasibility_evidence_spans": [
+      "future work incorporating pathway-based or supervised feature selection methods may improve biological interpretability."
+    ],
+    "auto_research_experiment": "Compare Variance-based selection against Pathway-based selection (using MSigDB Hallmark gene sets) and Supervised selection (Recursive Feature Elimination) using Logistic Regression on TCGA-BRCA data.",
+    "available_data_or_benchmark": "TCGA-BRCA RNA-seq data and MSigDB pathway database.",
+    "public_training_or_eval_data": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "scientific_hypothesis": "Supervised feature selection (RFE) or pathway-informed selection will significantly improve the Macro F1 score for the minority 'BRCA_Normal' subtype compared to unsupervised variance-based selection.",
+    "expected_metric": "Subtype-specific F1 score for BRCA_Normal",
+    "success_threshold": "A 15% relative increase in F1 score for the BRCA_Normal subtype.",
+    "failure_condition": "No improvement in minority class F1 score or a decrease in overall Macro F1 score.",
+    "first_24h_experiment": "Map TCGA-BRCA gene IDs to MSigDB Hallmark pathways and train a Logistic Regression model using only genes present in the 'Hallmark' sets.",
+    "specific_intervention": "Replace variance-based filtering with Recursive Feature Elimination (RFE) and Pathway-based filtering.",
+    "baseline": "Variance-based feature selection with Logistic Regression (as reported in the paper).",
+    "metric": "Macro F1 Score",
+    "code_or_data_urls": [
+      "https://www.gsea-msigdb.org/gsea/msigdb/"
+    ],
+    "story_angle": "Moving from 'noisy' variance to 'biological' signal: can we fix the misclassification of rare breast cancer subtypes?"
+  },
+  {
+    "candidate_id": "cand_ba8c9384dbb58f3c",
+    "paper_id": "2605.05284",
+    "candidate_problem": "Existing evolutionary-gradient bridges like GO-EA are limited to isotropic approximations (SGD) and cannot produce advanced pre-conditioned algorithms like Natural Gradient Descent or quasi-Newton methods.",
+    "evidence_spans": [
+      "because the GO-EA algorithmic framework relies on random sampling and a greedy search to approximate the gradient, its updates remain effectively isotropic. By contrast, it follows directly from the Price equation, Eq. ( 3 ), that the population’s variance naturally acts as an anisotropic pre-conditioner."
+    ],
+    "problem_evidence_spans": [
+      "it is structurally unable to produce a wider family of pre-conditioned gradient algorithms (such as Adam, Natural Gradient Descent, or quasi-Newton methods)."
+    ],
+    "feasibility_evidence_spans": [
+      "By defining V g via L-BFGS or quasi-Newton pre-conditioning and coupling it with the DLS noise relation, an evolutionary simulation is now available that brings exactly the anisotropic variance these ill-conditioned landscapes demand."
+    ],
+    "auto_research_experiment": "Implement a DLS simulation where the variance schedule is determined by the L-BFGS Hessian approximation and verify it outperforms isotropic GO-EA on stiff PINN loss landscapes.",
+    "available_data_or_benchmark": "Physics-Informed Neural Networks (PINNs) loss landscapes (Rathore et al., 2024).",
+    "public_training_or_eval_data": "https://github.com/danielgrimmer/adam-dls",
+    "scientific_hypothesis": "Anisotropic DLS simulations using quasi-Newton pre-conditioning (L-BFGS) will converge significantly faster than isotropic evolutionary algorithms on ill-conditioned fitness landscapes.",
+    "expected_metric": "Condition number reduction and convergence iterations.",
+    "success_threshold": "Reduction of the condition number of the Hessian by a factor of 1000x compared to isotropic methods.",
+    "failure_condition": "The DLS noise relation becomes computationally intractable when coupled with full-rank pre-conditioners.",
+    "first_24h_experiment": "Modify the DLS codebase to use an L-BFGS pre-conditioner instead of a diagonal one and test on a 2D ill-conditioned quadratic bowl.",
+    "specific_intervention": "Define the population variance schedule V_g using L-BFGS pre-conditioning and couple it with the DLS noise relation.",
+    "baseline": "Isotropic GO-EA (Gillespie-Orr Evolutionary Algorithm).",
+    "metric": "Convergence speed on ill-conditioned landscapes.",
+    "code_or_data_urls": [
+      "https://github.com/danielgrimmer/adam-dls"
+    ],
+    "story_angle": "Unlocking the power of Newton's method for evolutionary biology by treating population variance as a pre-conditioner."
+  },
+  {
+    "candidate_id": "cand_6a92a39295b5630e",
+    "paper_id": "2605.06353",
+    "candidate_problem": "Test whether Evaluate it to additional languages, modalities, and longer interactions in the SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following setup addresses a stated future work in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "evidence_spans": [
+      "Future work may extend it to additional languages, modalities, and longer interactions.",
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "problem_evidence_spans": [
+      "Future work may extend it to additional languages, modalities, and longer interactions."
+    ],
+    "feasibility_evidence_spans": [
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following. Then apply this intervention: Evaluate it to additional languages, modalities, and longer interactions in the SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Evaluate it to additional languages, modalities, and longer interactions in the SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Evaluate it to additional languages, modalities, and longer interactions in the SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following setup.",
+    "specific_intervention": "Evaluate it to additional languages, modalities, and longer interactions in the SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following setup",
+    "baseline": "The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/BeatrizCanaverde/SEQUOR",
+      "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words",
+      "https://github.com/huggingface/datatrove"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_f2be7ddc4d8efd6e",
+    "paper_id": "2605.05706",
+    "candidate_problem": "Insufficient temporal granularity for high-frequency ICU interventions",
+    "evidence_spans": [
+      "Third, our hourly modeling intervals may provide insufficient temporal granularity for time-sensitive interventions such as vasopressor administration, where clinical effects manifest within minutes. Multi-resolution temporal modeling could address this limitation"
+    ],
+    "problem_evidence_spans": [
+      "Third, our hourly modeling intervals may provide insufficient temporal granularity for time-sensitive interventions such as vasopressor administration, where clinical effects manifest within minutes."
+    ],
+    "feasibility_evidence_spans": [
+      "Multi-resolution temporal modeling could address this limitation while expanding applicability to additional high-impact interventions"
+    ],
+    "auto_research_experiment": "Develop a Multi-Resolution GITO (MR-GITO) that uses a dual-stream encoder: one stream processing hourly trends and another processing high-frequency (1-minute) vital sign bursts around treatment changes, aligned via sMMD at both scales.",
+    "available_data_or_benchmark": "MIMIC-III Waveform Database (matched with Clinical Database)",
+    "public_training_or_eval_data": "https://physionet.org/content/mimic3wdb/1.0/",
+    "scientific_hypothesis": "Multi-resolution modeling will improve the recall of acute hypotensive episodes following treatment changes by at least 15% compared to hourly-only models.",
+    "expected_metric": "Recall of acute deterioration events (e.g., MAP < 60 mmHg) within the first 15 minutes of a treatment change.",
+    "success_threshold": "Recall improvement of >15% over the hourly GITO baseline without decreasing overall AUC.",
+    "failure_condition": "High-frequency noise in the 1-minute stream leads to increased false positives (reduced precision) or model instability during sMMD alignment.",
+    "first_24h_experiment": "Pre-process a subset of MIMIC-III patients with both waveform and clinical data. Create 1-minute resolution windows for Heart Rate and MAP around vasopressor start times.",
+    "specific_intervention": "Integrate a high-frequency CNN/Transformer encoder stream into the GITO architecture to capture sub-hourly physiological dynamics.",
+    "baseline": "Standard GITO (hourly resolution).",
+    "metric": "Recall",
+    "code_or_data_urls": [
+      "https://huggingface.co/spaces/peisongzhang/TreatmentOutcomePredictionSystem"
+    ],
+    "story_angle": "Capturing the 'golden minutes' in the ICU: why hourly AI models miss critical patient shifts and how to fix it."
+  },
+  {
+    "candidate_id": "cand_ac6100d6556eb9bd",
+    "paper_id": "2605.02972",
+    "candidate_problem": "Inability of standard monotone response functions (e.g., Hill functions) to parsimoniously model non-monotone biological responses like overshoot and adaptation.",
+    "evidence_spans": [
+      "The well-known Hill functions remain an appropriate null model for monotone saturating responses... Its purpose is to provide an alternative when the observed response is nonmonotone, adaptive, or shaped by competing positive and negative processes",
+      "Standard saturating primitives, e.g. the Hill function, are monotone and require at least a difference of two such blocks to produce the same shape."
+    ],
+    "problem_evidence_spans": [
+      "In such cases, a monotone response function is insufficient, whereas our EML module, Eq. 2, supports an internal optimum with a small number of parameters."
+    ],
+    "feasibility_evidence_spans": [
+      "The Nanda et al. analysis (Fig. 2, Fig. 3) makes this concrete: at depth one.",
+      "AIC and BIC both select K = 6 as the optimal cascade depth (Table S4), one depth below the held-out wMSE plateau"
+    ],
+    "auto_research_experiment": "Compare the EML-ODE grammar against a standard Hill-function-difference baseline on a diverse set of non-monotone time-series data from the BioModels database to determine if EML consistently achieves lower AIC/BIC at low depth.",
+    "available_data_or_benchmark": "Rho-GTPase perturbation data from Nanda et al. (2023) and PKA regulatory-subunit relocalization data from LaCroix et al. (2022).",
+    "public_training_or_eval_data": "https://github.com/paultlandon/eml-biological-dynamics (implied repository for paper code/data)",
+    "scientific_hypothesis": "An EML-based operator (exp(x) - ln(y)) provides a more parsimonious (fewer parameters) representation of biphasic biological responses than a linear combination of monotone Hill functions.",
+    "expected_metric": "AIC (Akaike Information Criterion)",
+    "success_threshold": "EML-ODE models achieve lower AIC than Hill-difference models in >75% of non-monotone biological time-series samples.",
+    "failure_condition": "Hill-difference models achieve equal or lower AIC with the same or fewer parameters.",
+    "first_24h_experiment": "Download the Nanda et al. Rho-GTPase dataset, implement the EML depth-1 module and a difference-of-two-Hills model, and compare their AIC on the four reported response traces.",
+    "specific_intervention": "Replace the standard Hill function primitive with the EML-generated module R^alpha - beta*R in the ODE target function.",
+    "baseline": "A difference of two Hill functions (H1(R) - H2(R)) representing competing activation and inhibition.",
+    "metric": "Weighted Mean Squared Error (wMSE) on held-out time points.",
+    "code_or_data_urls": [
+      "https://www.github.com/AmirErez/Manuscript_EML_biophysics"
+    ],
+    "story_angle": "Biological systems often 'overshoot' or adapt, yet our mathematical tools for modeling them are often either too simple or too complex. A new operator, EML, provides a 'Goldilocks' grammar for discovering the hidden logic of these dynamics."
+  },
+  {
+    "candidate_id": "cand_df0447fbc9b610d4",
+    "paper_id": "2605.06353",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Across all regimes, constraint-following accuracy degrades as conversations become longer. addresses a stated failure mode in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "evidence_spans": [
+      "Across all regimes, constraint-following accuracy degrades as conversations become longer.",
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "problem_evidence_spans": [
+      "Across all regimes, constraint-following accuracy degrades as conversations become longer."
+    ],
+    "feasibility_evidence_spans": [
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following. Then apply this intervention: Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Across all regimes, constraint-following accuracy degrades as conversations become longer.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Across all regimes, constraint-following accuracy degrades as conversations become longer. against the reported baseline.",
+    "expected_metric": "Primary benchmark accuracy/error improvement against baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on accuracy without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve accuracy or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Across all regimes, constraint-following accuracy degrades as conversations become longer..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Across all regimes, constraint-following accuracy degrades as conversations become longer.",
+    "baseline": "The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "metric": "accuracy",
+    "code_or_data_urls": [
+      "https://github.com/BeatrizCanaverde/SEQUOR",
+      "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words",
+      "https://github.com/huggingface/datatrove"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_6093a37f93231fce",
+    "paper_id": "2605.06407",
+    "candidate_problem": "The reconstruction-fidelity gap in SSL-based speech representations due to the loss of high-frequency acoustic cues during discriminative training.",
+    "evidence_spans": [
+      "SSL encoders are trained with discriminative objectives that intentionally discard high-frequency, phase-sensitive acoustic cues indispensable for high-fidelity speech synthesis.",
+      "Naively decoding SSL features therefore yields perceptibly degraded speech."
+    ],
+    "problem_evidence_spans": [
+      "Naively decoding SSL features therefore yields perceptibly degraded speech."
+    ],
+    "feasibility_evidence_spans": [
+      "Stage 2 unfreezes the SSL encoder and jointly optimizes the entire pipeline with an end-to-end speech reconstruction objective",
+      "semantic anchoring regularizer strictly tethers both the fine-tuned encoder features and the auto-encoder output to the frozen SSL reference"
+    ],
+    "auto_research_experiment": "Perform a controlled fine-tuning of a WavLM-Large encoder on the LibriTTS dataset. Compare two methods: 1) Standard fine-tuning for reconstruction (MSE loss only), and 2) WavCube's Stage 2 (Reconstruction loss + Semantic Anchoring loss). Evaluate on the SUPERB benchmark to see which method better preserves original understanding performance while improving Mel-cepstral distortion (MCD).",
+    "available_data_or_benchmark": "LibriTTS (for high-fidelity reconstruction), SUPERB (for semantic preservation).",
+    "public_training_or_eval_data": "http://www.openslr.org/60/",
+    "scientific_hypothesis": "A semantic anchoring loss is necessary during acoustic fine-tuning of SSL models to prevent 'catastrophic forgetting' of the semantic manifold while gaining acoustic reconstruction fidelity.",
+    "expected_metric": "SUPERB Score (Average across tasks)",
+    "success_threshold": "Maintain >95% of the original WavLM-Large SUPERB score while reducing MCD by at least 1.5 dB.",
+    "failure_condition": "SUPERB score drops by >10%, indicating the 'acoustic enrichment' destroyed the semantic utility of the representation.",
+    "first_24h_experiment": "Fine-tune the last 2 layers of WavLM-Large on 10 hours of LibriTTS with a simple linear decoder and measure the change in Phoneme Recognition (PR) accuracy on the SUPERB dev set.",
+    "specific_intervention": "Jointly optimize the SSL encoder and an acoustic decoder using a weighted sum of reconstruction loss and a semantic anchoring loss (KL divergence or MSE against frozen SSL features).",
+    "baseline": "Frozen SSL encoder with a trained acoustic decoder (Stage 1 only).",
+    "metric": "Mel-cepstral distortion (MCD)",
+    "code_or_data_urls": [
+      "https://github.com/yanghaha0908/WavCube"
+    ],
+    "story_angle": "Bridging the gap between 'understanding' and 'hearing': how to teach a semantic AI model to care about high-fidelity sound without losing its mind."
+  },
+  {
+    "candidate_id": "cand_2d997a4c8696e022",
+    "paper_id": "2605.02972",
+    "candidate_problem": "The 'universality risk' of EML-generated symbolic regression leading to overfitting without a restricted grammar.",
+    "evidence_spans": [
+      "The universality of EML is a risk as well as a strength. Without a restricted grammar and explicit penalties, EML can generate arbitrary curve-fitting expressions."
+    ],
+    "problem_evidence_spans": [
+      "Otherwise, a sufficiently expressive symbolic system becomes a language for overfitting."
+    ],
+    "feasibility_evidence_spans": [
+      "Model selection used the held-out score S(E) = ... + lambda_d * d(E) + lambda_n * n(E), where d(E) is EML depth and n(E) is node count."
+    ],
+    "auto_research_experiment": "Systematically vary the penalty coefficients (lambda_d, lambda_n) in the EML search grammar across varying noise levels in the toy 50-state activation-adaptation network to find the optimal regularization path.",
+    "available_data_or_benchmark": "The 50-state activation-adaptation network simulation described in the Appendix.",
+    "public_training_or_eval_data": "Synthetic data generator based on Eqs. S28-S33.",
+    "scientific_hypothesis": "A depth-proportional penalty (lambda_d) is more effective than a node-count penalty (lambda_n) at preventing overfitting in EML-based dynamical model discovery.",
+    "expected_metric": "Generalization Error (Held-out wMSE)",
+    "success_threshold": "Depth-penalized models show significantly lower variance in held-out error across different noise realizations compared to node-penalized models.",
+    "failure_condition": "Node-count penalties or no penalties perform equally well in preventing overfitting.",
+    "first_24h_experiment": "Replicate the toy benchmark simulation (Eqs. S28-S33) and perform a grid search over lambda_d and lambda_n to map the Pareto front of complexity vs. error.",
+    "specific_intervention": "Varying the structural penalty terms in the model selection objective function.",
+    "baseline": "Unpenalized EML-ODE search (lambda_d = lambda_n = 0).",
+    "metric": "Held-out wMSE",
+    "code_or_data_urls": [
+      "https://www.github.com/AmirErez/Manuscript_EML_biophysics"
+    ],
+    "story_angle": "To prevent 'mathematical hallucinations' in biological modeling, researchers are testing new structural penalties that favor dynamical depth over raw complexity."
+  },
+  {
+    "candidate_id": "cand_1a76c1ca913cb8c6",
+    "paper_id": "2605.06353",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 ). addresses a stated limitation in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "evidence_spans": [
+      "We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 ).",
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "problem_evidence_spans": [
+      "We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 )."
+    ],
+    "feasibility_evidence_spans": [
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following. Then apply this intervention: Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 ).. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 ). against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 )..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: We evaluated several modern LLMs on Sequor , revealing consistent limitations in long-horizon instruction-following (§ 4 ).",
+    "baseline": "The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/BeatrizCanaverde/SEQUOR",
+      "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words",
+      "https://github.com/huggingface/datatrove"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_8096e045bc4b9ebd",
+    "paper_id": "2605.03310",
+    "candidate_problem": "The paper identifies a gap in mapping specific multi-agent coordination architectures to predictable failure modes (MAST taxonomy), specifically noting that sequential pipelines are prone to task-verification gaps (FM-3) due to lack of architectural verification opportunities.",
+    "evidence_spans": [
+      "The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent misalignment, and task-verification gaps.",
+      "a configuration with strict stage ordering and no architectural opportunity for upstream verification (sequential pipeline) is a plausible breeding ground for FM-3.",
+      "Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s specification alone —the goal articulated in Section 2.1 —appears feasible at the resolution of this experiment."
+    ],
+    "problem_evidence_spans": [
+      "a configuration with strict stage ordering and no architectural opportunity for upstream verification (sequential pipeline) is a plausible breeding ground for FM-3."
+    ],
+    "feasibility_evidence_spans": [
+      "All code, data, and infrastructure for this paper are publicly released and pinned to specific commits: • Harness, configurations, analysis: https://github.com/ForesightFlow/coordination-experiment"
+    ],
+    "auto_research_experiment": "Using the provided 'coordination-experiment' harness, scale the evaluation of the 'sequential pipeline' and 'consensus alignment' architectures from n=100 to n=500 markets. Specifically, measure the frequency of FM-3 (task-verification gaps) in the sequential pipeline versus the baseline consensus model using the Murphy decomposition and trace analysis.",
+    "available_data_or_benchmark": "Polymarket binary markets and the Foresight Arena live agent harness.",
+    "public_training_or_eval_data": "https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100",
+    "scientific_hypothesis": "Increasing the sample size to n=500 will statistically confirm that sequential pipeline architectures exhibit a significantly higher rate of FM-3 (task-verification) failures compared to architectures with built-in verification layers.",
+    "expected_metric": "Frequency of FM-3 failure signatures in execution traces.",
+    "success_threshold": "Statistically significant difference (p < 0.05 after Bonferroni correction) in FM-3 rates between sequential and consensus architectures.",
+    "failure_condition": "The FM-3 failure rate does not significantly differ between architectures even at n=500, suggesting the failure is model-bound rather than architecture-bound.",
+    "first_24h_experiment": "Clone the repository, verify the harness runs on a subset of 10 new Polymarket IDs, and confirm the trace-logger correctly flags 'inadequate output checking' (FM-3).",
+    "specific_intervention": "Scaling the sample size to n=500 and isolating the 'sequential pipeline' architecture to measure FM-3 frequency.",
+    "baseline": "The 'consensus alignment' architecture (reported as having lower FM-3 risk but higher FM-2 risk).",
+    "metric": "FM-3 failure frequency per 100 runs",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "Moving from 'engineering convenience' to 'architectural science' by proving that how we connect agents deterministically creates specific failure types."
+  },
+  {
+    "candidate_id": "cand_b22321380abd6f8a",
+    "paper_id": "2605.00730",
+    "candidate_problem": "Spurious divergence in image-derived glymphatic velocity fields violating conservation of mass",
+    "evidence_spans": [
+      "Measurement and reconstruction errors in image-derived velocity fields commonly manifest as spurious divergence of the velocity field, leading to the violation of the conservation of mass.",
+      "reconstructed velocity fields frequently reflect experimental artifacts rather than the underlying physics."
+    ],
+    "problem_evidence_spans": [
+      "Measurement and reconstruction errors in image-derived velocity fields commonly manifest as spurious divergence of the velocity field, leading to the violation of the conservation of mass."
+    ],
+    "feasibility_evidence_spans": [
+      "In preclinical mouse brain models—the focus of the present work—glymphatic transport is typically captured via contrast-enhanced MRI (CE-MRI)",
+      "The resulting modified advection-diffusion equation is solved using an immersed finite element method within an isogeometric analysis (IGA) framework."
+    ],
+    "auto_research_experiment": "Implement the Hughes-Wells (HW) additive decomposition as a physics-based regularizer within a Newton-based inverse solver to recover solenoidal velocity fields from noisy CE-MRI tracer data.",
+    "available_data_or_benchmark": "Preclinical contrast-enhanced MRI (CE-MRI) time-series of tracer transport in mouse brains.",
+    "public_training_or_eval_data": "The 'Glymphatic MRI' dataset or similar open-access preclinical neuroimaging repositories (e.g., ADNI or specialized mouse glymphatic datasets like those from Mestre et al. 2018).",
+    "scientific_hypothesis": "Enforcing a divergence-free constraint via the Hughes-Wells formulation in an inverse setting will significantly reduce tracer conservation errors compared to unconstrained finite-difference velocity extraction.",
+    "expected_metric": "Conservation error (L2 norm of the divergence of the velocity field) and tracer concentration RMSE.",
+    "success_threshold": "Divergence of the reconstructed field < 1e-6 and tracer mass conservation error < 1% over the simulation duration.",
+    "failure_condition": "The Newton solver fails to converge or the corrective velocity component dominates the physical signal, leading to non-physiological transport patterns.",
+    "first_24h_experiment": "Generate a synthetic 3D tracer transport dataset with known solenoidal velocity and added Gaussian noise; attempt to recover the velocity field using the HW-modified inverse solver vs. a standard unconstrained solver.",
+    "specific_intervention": "Hughes-Wells (HW) additive velocity decomposition (u = u_bar + grad(phi)) applied as a regularizer in the inverse advection-diffusion problem.",
+    "baseline": "Standard unconstrained inverse reconstruction or direct finite-difference estimation from voxelized intensity changes.",
+    "metric": "Velocity field divergence (s^-1)",
+    "code_or_data_urls": [],
+    "story_angle": "By treating the brain's waste-clearance system as a fluid dynamics problem with strict conservation laws, we can finally see the 'invisible' currents that flush out Alzheimer's-linked proteins."
+  },
+  {
+    "candidate_id": "cand_3ccc05297dfaafa6",
+    "paper_id": "2605.06353",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Our experiments reveal key limitations of current LLMs. addresses a stated limitation in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "evidence_spans": [
+      "Our experiments reveal key limitations of current LLMs.",
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "problem_evidence_spans": [
+      "Our experiments reveal key limitations of current LLMs."
+    ],
+    "feasibility_evidence_spans": [
+      "SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "TITLE: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following ABSTRACT: SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+      "This makes evaluation challenging, as current instruction-following benchmarks evaluate models in single-turn or short multi-turn settings, using either programmatically verifiable or LLM-generated instructions that are not representative of real-world use cases (Zheng et al., 2023 ; Zhou et al., 2023 ; Qin et al., 2024 ; He et al., 2024 ; Kwan et al., 2024 ; Jiang et al., 2024 ; Dussolle et al., 2025 ; Pyatkin et al., 2025 ; Xia et al., 2024 ; Bai et al., 2024 ; Jiang et ...",
+      "To bridge this gap, we present Sequor , 2 2 2 Sequor is a Latin verb meaning “I follow.” an automatic benchmark that measures instruction-following capabilities in multi-turn open-domain conversations."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following. Then apply this intervention: Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Our experiments reveal key limitations of current LLMs.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Our experiments reveal key limitations of current LLMs. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Our experiments reveal key limitations of current LLMs..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following: Our experiments reveal key limitations of current LLMs.",
+    "baseline": "The reported baseline/protocol from SEQUOR: A Multi-Turn Benchmark for Realistic Constraint Following.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/BeatrizCanaverde/SEQUOR",
+      "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words",
+      "https://github.com/huggingface/datatrove"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_41df9d0c380d0602",
+    "paper_id": "2605.03310",
+    "candidate_problem": "The paper identifies a gap in predicting which specific MAST (Multi-Agent Systems Taxonomy) failure modes (e.g., FM-2 communication breakdown vs FM-3 verification gaps) will emerge from a given coordination configuration's specification alone.",
+    "evidence_spans": [
+      "Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s specification alone —the goal articulated in Section 2.1 —appears feasible at the resolution of this experiment."
+    ],
+    "problem_evidence_spans": [
+      "Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s specification alone —the goal articulated in Section 2.1 —appears feasible at the resolution of this experiment."
+    ],
+    "feasibility_evidence_spans": [
+      "Harness, configurations, analysis: https://github.com/ForesightFlow/coordination-experiment (tag paper-v05 , commit 3047e1d ).",
+      "Open trace dataset: https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100 (tag coordination-traces-100-v1 , commit 67d44ea )."
+    ],
+    "auto_research_experiment": "Reproduce the five coordination configurations (sequential, peer-critique, consensus, etc.) using the provided harness. Scale the evaluation to n=500 markets as suggested in the paper's power analysis. Measure the frequency of MAST failure modes (FM-2 vs FM-3) across configurations to verify if 'strict stage ordering' consistently triggers FM-3 and 'all-to-all communication' triggers FM-2.",
+    "available_data_or_benchmark": "Polymarket binary markets and the Foresight Arena live-agent harness.",
+    "public_training_or_eval_data": "https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100",
+    "scientific_hypothesis": "Coordination configurations with strict stage ordering and no architectural verification (sequential pipelines) exhibit a significantly higher ratio of MAST FM-3 (verification gaps) than FM-2 (misalignment) compared to all-to-all peer-critique configurations.",
+    "expected_metric": "Ratio of FM-3 to FM-2 failure occurrences per configuration.",
+    "success_threshold": "A statistically significant (p < 0.05) difference in failure mode distribution between sequential and peer-critique architectures at n=500.",
+    "failure_condition": "The distribution of failure modes is uniform across architectures or the sample size increase does not resolve the contrasts.",
+    "first_24h_experiment": "Clone the coordination-experiment repo, verify the environment, and run the sequential and peer-critique configurations on a 20-market subset to categorize failures using the MAST taxonomy.",
+    "specific_intervention": "Scaling the sample size to n=500 and applying the MAST failure mode classification to the resulting traces.",
+    "baseline": "The n=100 results and the three qualitative case studies (Markets 66, 32, 92) reported in the paper.",
+    "metric": "Failure mode frequency (MAST FM-x)",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "By scaling the author's own experimental framework, we can move from qualitative 'plausible breeding grounds' for agent failure to a predictive law of multi-agent architecture."
+  },
+  {
+    "candidate_id": "cand_5d786dd0a725c63a",
+    "paper_id": "2605.00730",
+    "candidate_problem": "Scale mismatch between discrete microscopic transport pathways and coarse voxel-averaged clinical imaging",
+    "evidence_spans": [
+      "reduced-order or homogenized approximations Solheim et al. [ 2025 ] , which attenuate local velocity peaks and create scale mismatch between the discrete microscopic pathways of fluid transport and the coarse, voxel-averaged observations captured by clinical imaging"
+    ],
+    "problem_evidence_spans": [
+      "attenuate local velocity peaks and create scale mismatch between the discrete microscopic pathways of fluid transport and the coarse, voxel-averaged observations captured by clinical imaging"
+    ],
+    "feasibility_evidence_spans": [
+      "IGA facilitates the projection of these high-dimensional image data and transport fields onto B-spline basis functions, naturally providing regularization and smoothing."
+    ],
+    "auto_research_experiment": "Compare B-spline basis function order (p=2 vs p=4) in an IGA framework to determine the minimum resolution required to preserve local velocity peaks in the perivascular space (PVS) without increasing noise sensitivity.",
+    "available_data_or_benchmark": "High-resolution micro-CT or synchrotron-based imaging of mouse vasculature paired with CE-MRI.",
+    "public_training_or_eval_data": "The 'Mouse Brain Vasculature' dataset (e.g., from the Allen Institute or similar high-res vascular atlases).",
+    "scientific_hypothesis": "Higher-order B-spline basis functions in an immersed IGA framework can recover sub-voxel velocity peaks in perivascular spaces that are lost in standard voxel-based finite element methods.",
+    "expected_metric": "Peak Velocity Recovery Ratio (PVRR) compared to ground truth high-res simulations.",
+    "success_threshold": "Recovery of >80% of local velocity peaks within the PVS at standard MRI resolutions (approx 100um).",
+    "failure_condition": "High-order splines introduce oscillatory artifacts (Runge's phenomenon) that destabilize the advection-diffusion solver.",
+    "first_24h_experiment": "Create a 1D synthetic signal with sharp peaks representing PVS flow; compare B-spline interpolation vs. linear interpolation in the presence of 5% noise.",
+    "specific_intervention": "High-order B-spline basis functions (p >= 3) in an Isogeometric Analysis (IGA) framework.",
+    "baseline": "Standard linear Finite Element Method (FEM) on a voxel-conforming mesh.",
+    "metric": "Local Velocity Peak Amplitude (mm/s)",
+    "code_or_data_urls": [],
+    "story_angle": "Standard brain scans are too blurry to see the tiny 'pipes' that clean the brain; new mathematical 'lenses' using B-splines might sharpen our view without needing better hardware."
+  },
+  {
+    "candidate_id": "cand_f33f505f08311f7a",
+    "paper_id": "2605.03360",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural exten... addresses a stated future work in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion.",
+    "evidence_spans": [
+      "Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural extension to non-canonical amino acids.",
+      "The landscape of computational biology was fundamentally altered by the emergence of AlphaFold 2 (AF2) [ 17 ] , which demonstrated that deep neural networks could learn the intricate mapping from sequence to structure with near-experimental accuracy and was further extended to possess the unified all-atom predictive power in AlphaFold 3 [ 1 ] (AF3) more recently.",
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "A-CODE demonstrate superior generation quality, achieving new SOTA designability and codesignability on the unconditional benchmark and significantly better one-stage binder design performance across all ten tasks.",
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "problem_evidence_spans": [
+      "Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural extension to non-canonical amino acids."
+    ],
+    "feasibility_evidence_spans": [
+      "The landscape of computational biology was fundamentally altered by the emergence of AlphaFold 2 (AF2) [ 17 ] , which demonstrated that deep neural networks could learn the intricate mapping from sequence to structure with near-experimental accuracy and was further extended to possess the unified all-atom predictive power in AlphaFold 3 [ 1 ] (AF3) more recently.",
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "A-CODE demonstrate superior generation quality, achieving new SOTA designability and codesignability on the unconditional benchmark and significantly better one-stage binder design performance across all ten tasks.",
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion. Then apply this intervention: Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural exten.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural exten... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural exten....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Our fully atomic design not only facilitates the synergistic generation of the two modalities but also enables natural exten...",
+    "baseline": "The reported baseline/protocol from A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_b6afc90200b7bb23",
+    "paper_id": "2605.04498",
+    "candidate_problem": "The instability of symbolic coding thresholds in multi-channel signaling games leads to 'strategic collapse' where agents fail to stabilize a shared code.",
+    "evidence_spans": [
+      "coding innovations may be vulnerable to strategic collapse due to multichannel failures, thus increasing the risk of systemic fragility and evolutionary dead ends.",
+      "Our game-theoretic analysis is intended to shift the interpretation of “hard steps” from elusive improbability to equilibrium structure, arguing that algorithmic bottlenecks correspond to unstable equilibria where signaling, coordination, and control must tightly align."
+    ],
+    "problem_evidence_spans": [
+      "defection — whether by minimizing signaling effort or exploiting shared resources — is tempting.",
+      "These dynamics must not only stabilize themselves, but also invent new information architectures that unlock further evolutionary phase spaces"
+    ],
+    "feasibility_evidence_spans": [
+      "The emergence of technological society can be modeled as an iterated or evolutionary n-player Prisoner’s Dilemma (Commons Dilemma)",
+      "Table 1: Conceptual mapping between genetic and linguistic coding systems."
+    ],
+    "auto_research_experiment": "Simulate an evolutionary multi-agent reinforcement learning (MARL) environment where agents must develop a shared symbolic mapping (a 'code') to solve a coordination task. Introduce 'signaling cost' and 'multi-channel noise'. Test if the population collapses into a non-communicative state (stagnation) when the complexity of the task requires a 'coding threshold' (mapping discrete symbols to abstract functions) versus simple indexical signaling.",
+    "available_data_or_benchmark": "The 'Emergent Communication' (EmerComms) benchmarks in MARL, specifically the 'Lewis Signaling Games' or 'Referential Games' frameworks.",
+    "public_training_or_eval_data": "EGG (Emergence of Language in Games) toolkit by Facebook Research.",
+    "scientific_hypothesis": "The transition from indexical signaling to symbolic coding is an unstable equilibrium; increasing the number of signaling channels or the cost of high-fidelity translation will cause a population to revert to low-complexity signaling (the 'Great Filter' bottleneck) unless a specific 'JOOTS' (Jump Out Of The System) mechanism is present.",
+    "expected_metric": "Code Stability Index (CSI) and Task Success Rate.",
+    "success_threshold": "CSI > 0.8 in high-noise environments with symbolic mapping.",
+    "failure_condition": "Agents converge to a 'babbling' equilibrium where symbols have no consistent functional mapping (CSI < 0.2).",
+    "first_24h_experiment": "Set up a standard Lewis Game using the EGG toolkit. Introduce a 'mutation' rate in the symbol-to-meaning mapping and a 'metabolic cost' for using more than 5 distinct symbols. Measure the population's ability to maintain a 10-symbol lexicon over 1000 generations.",
+    "specific_intervention": "Introduce a 'translation machinery' cost (simulating the ribosome or grammar) that must be paid collectively to unlock higher-order rewards.",
+    "baseline": "Standard Sender-Receiver game without symbolic mapping costs (purely indexical).",
+    "metric": "Topographic Similarity (correlation between symbol distance and meaning distance).",
+    "code_or_data_urls": [
+      "https://github.com/facebookresearch/EGG"
+    ],
+    "story_angle": "The 'Great Filter' might not be a lack of life, but a mathematical trap where complex communication systems collapse under their own strategic weight before they can stabilize."
+  },
+  {
+    "candidate_id": "cand_7688b88e342cb07b",
+    "paper_id": "2605.06630",
+    "candidate_problem": "Infeasibility of joint goal-obfuscation and tracking under tight envelope constraints",
+    "evidence_spans": [
+      "It is demonstrated that large uncertainties of the RBPF representation of the the agent’s state can render the joint mission infeasible in the presence of tight tracking envelope constraints.",
+      "Further study of convergence properties of the RBPF is necessary to produce results establishing the infeasibility of obfuscation if practical stability of tracking errors is enforced."
+    ],
+    "problem_evidence_spans": [
+      "Further study of convergence properties of the RBPF is necessary to produce results establishing the infeasibility of obfuscation if practical stability of tracking errors is enforced."
+    ],
+    "feasibility_evidence_spans": [
+      "The work of Dragan et al. ( 2013 ) showed that trajectories optimizing a task cost are inherently legible",
+      "Prior work Wang et al. ( 2025b ) formalized and quantified this legibility for continuous-state systems... maintaining N >> 0 weighted particles... via a Rao-Blackwellized particle filter (RBPF)"
+    ],
+    "auto_research_experiment": "Simulate a goal-directed agent (e.g., a 2D quadrotor or mobile robot) using the proposed PCBF controller against a standard RBPF adversary. Systematically tighten the tracking error envelope (rho) and measure the time-to-convergence of the adversary's posterior belief. Identify the critical rho value where the PCBF becomes infeasible (QP solver failure).",
+    "available_data_or_benchmark": "The RBPF adversary framework from Wang et al. (2025b) and the standard 2D navigation benchmarks used in Dragan et al. (2013).",
+    "public_training_or_eval_data": "Open-source robotics simulators like PyBullet or OpenAI Gym (specifically navigation tasks).",
+    "scientific_hypothesis": "There exists a phase transition in the tracking error bound below which any stabilizing controller must reveal the goal state to a Bayesian observer within a finite time horizon.",
+    "expected_metric": "Adversary Posterior Entropy / Time to Goal",
+    "success_threshold": "Identify a statistically significant correlation (p < 0.01) between tracking precision and goal-inference speed across 1000+ simulated trajectories.",
+    "failure_condition": "The agent can maintain perfect tracking while keeping adversary entropy high (indicating the trade-off is not fundamental or the adversary is weak).",
+    "first_24h_experiment": "Implement a 2D point-mass simulation with a Lyapunov-based tracking controller and a Rao-Blackwellized Particle Filter observer. Log the KL-divergence of the observer's belief as the tracking gain is increased.",
+    "specific_intervention": "Vary the tracking envelope parameter (rho) and the interpolation parameter (mu) to observe the impact on the RBPF's KL-divergence growth.",
+    "baseline": "Standard Lyapunov-based tracking controller (no obfuscation) and the Dragan et al. (2013) legibility-optimized controller.",
+    "metric": "KL-divergence between adversary belief and true goal location.",
+    "code_or_data_urls": [],
+    "story_angle": "As autonomous systems become more predictable to observers, we must find the mathematical limit where 'being safe' and 'being private' become mutually exclusive."
+  },
+  {
+    "candidate_id": "cand_789ae1fd321fbfbf",
+    "paper_id": "2605.03360",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Despite its current superior performance over the baselines, we note limitations in A-CODE. addresses a stated limitation in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion.",
+    "evidence_spans": [
+      "Despite its current superior performance over the baselines, we note limitations in A-CODE.",
+      "The landscape of computational biology was fundamentally altered by the emergence of AlphaFold 2 (AF2) [ 17 ] , which demonstrated that deep neural networks could learn the intricate mapping from sequence to structure with near-experimental accuracy and was further extended to possess the unified all-atom predictive power in AlphaFold 3 [ 1 ] (AF3) more recently.",
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "A-CODE demonstrate superior generation quality, achieving new SOTA designability and codesignability on the unconditional benchmark and significantly better one-stage binder design performance across all ten tasks.",
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "problem_evidence_spans": [
+      "Despite its current superior performance over the baselines, we note limitations in A-CODE."
+    ],
+    "feasibility_evidence_spans": [
+      "The landscape of computational biology was fundamentally altered by the emergence of AlphaFold 2 (AF2) [ 17 ] , which demonstrated that deep neural networks could learn the intricate mapping from sequence to structure with near-experimental accuracy and was further extended to possess the unified all-atom predictive power in AlphaFold 3 [ 1 ] (AF3) more recently.",
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "A-CODE demonstrate superior generation quality, achieving new SOTA designability and codesignability on the unconditional benchmark and significantly better one-stage binder design performance across all ten tasks.",
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion. Then apply this intervention: Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Despite its current superior performance over the baselines, we note limitations in A-CODE.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Despite its current superior performance over the baselines, we note limitations in A-CODE. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Despite its current superior performance over the baselines, we note limitations in A-CODE..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: Despite its current superior performance over the baselines, we note limitations in A-CODE.",
+    "baseline": "The reported baseline/protocol from A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_3b9bff60df4d2be4",
+    "paper_id": "2605.05284",
+    "candidate_problem": "First-order isotropic evolutionary algorithms (like GO-EA or basic SGA) struggle to navigate the ill-conditioned, stiff loss landscapes of Physics-Informed Neural Networks (PINNs).",
+    "evidence_spans": [
+      "Because PINNs embed partial differential equations directly into the loss function, the resulting loss landscape is notoriously ill-conditioned and riddled with degenerate saddle points... First-order isotropic methods (like basic SGA) or even diagonal methods (like RMSProp) struggle profoundly in such stiff landscapes.",
+      "By defining V g via L-BFGS or quasi-Newton pre-conditioning and coupling it with the DLS noise relation, an evolutionary simulation is now available that brings exactly the anisotropic variance these ill-conditioned landscapes demand."
+    ],
+    "problem_evidence_spans": [
+      "First-order isotropic methods (like basic SGA) or even diagonal methods (like RMSProp) struggle profoundly in such stiff landscapes because the simulated dynamics cannot reliably follow the sharp fitness ridges"
+    ],
+    "feasibility_evidence_spans": [
+      "utilizing quasi-Newton pre-conditioning (e.g., L-BFGS) has been empirically proven to reduce the magnitude of the eigenvalues and the condition number of the PINN Hessian by a factor of 1000 or more"
+    ],
+    "auto_research_experiment": "Apply the DLS framework with L-BFGS pre-conditioning and DLS noise to train a Physics-Informed Neural Network (PINN) on a standard PDE (e.g., Burgers' equation) and compare convergence rates against isotropic evolutionary algorithms.",
+    "available_data_or_benchmark": "Burgers' equation or Navier-Stokes PDE residuals for PINN training.",
+    "public_training_or_eval_data": "https://github.com/danielgrimmer/adam-dls",
+    "scientific_hypothesis": "Anisotropic DLS (using L-BFGS pre-conditioning) will converge significantly faster than isotropic evolutionary methods on PINN landscapes by effectively following sharp fitness ridges while maintaining evolutionary fidelity.",
+    "expected_metric": "PDE residual error (MSE) vs. generation count.",
+    "success_threshold": "DLS with L-BFGS pre-conditioning reaches a residual error of 1e-4 in 10x fewer generations than isotropic SGA.",
+    "failure_condition": "The addition of DLS noise to the L-BFGS pre-conditioned gradient destabilizes the PINN training, leading to divergence or slower convergence than the deterministic baseline.",
+    "first_24h_experiment": "Set up a simple PINN for Burgers' equation and implement a DLS-certified L-BFGS optimizer (L-BFGS gradient + DLS noise) to observe initial convergence behavior.",
+    "specific_intervention": "Integrate L-BFGS pre-conditioning into the DLS framework by setting the variance schedule V_g to the inverse Hessian approximation and adding the required DLS noise term.",
+    "baseline": "Isotropic Stochastic Gradient Ascent (SGA) or GO-EA.",
+    "metric": "Mean Squared Error (MSE) of the PDE residual.",
+    "code_or_data_urls": [
+      "https://github.com/danielgrimmer/adam-dls"
+    ],
+    "story_angle": "Using evolutionary first principles to solve the 'stiffness' problem in Physics-Informed Neural Networks."
+  },
+  {
+    "candidate_id": "cand_c0548a37dc7e45da",
+    "paper_id": "2605.06630",
+    "candidate_problem": "Lack of hardware validation for PCBF-based intent privacy",
+    "evidence_spans": [
+      "Further work developing numerical and hardware experiments is necessary for validation."
+    ],
+    "problem_evidence_spans": [
+      "Further work developing numerical and hardware experiments is necessary for validation."
+    ],
+    "feasibility_evidence_spans": [
+      "The framework has been deployed across a wide range of domains including legged locomotion, adaptive cruise control, and multi-robot coordination Ames et al. ( 2019 ) ."
+    ],
+    "auto_research_experiment": "Deploy the PCBF controller on a physical TurtleBot3 or similar low-cost mobile robot. Use an external camera (OptiTrack or similar) to act as the 'adversary' observer. Measure if the theoretical privacy-in-probability guarantees hold under real-world sensor noise.",
+    "available_data_or_benchmark": "TurtleBot3 ROS2 navigation stack.",
+    "public_training_or_eval_data": "Robot Operating System (ROS) standard navigation packages and datasets.",
+    "scientific_hypothesis": "Real-world sensor noise and actuation jitter act as a natural obfuscator, potentially relaxing the theoretical requirements for the PCBF controller.",
+    "expected_metric": "Empirical Failure Probability (delta_f)",
+    "success_threshold": "The empirical rate of goal-inference by the adversary matches or is lower than the theoretical bound derived in Theorem 2.",
+    "failure_condition": "Hardware latency causes the PCBF quadratic program to become unsolvable in real-time (frequency < 10Hz).",
+    "first_24h_experiment": "Set up a ROS2 simulation (Gazebo) of a mobile robot and implement the RBPF observer to see if it can handle simulated sensor noise before moving to hardware.",
+    "specific_intervention": "Introduce varying levels of Gaussian and salt-and-pepper noise to the robot's position measurements provided to the adversary.",
+    "baseline": "Nominal CLF-CBF controller without the privacy-preserving interpolation.",
+    "metric": "Success rate of the adversary in identifying the goal within the first 50% of the trajectory.",
+    "code_or_data_urls": [],
+    "story_angle": "Bridging the gap between the elegant math of Probabilistic Control Barrier Functions and the messy reality of robot hardware."
+  },
+  {
+    "candidate_id": "cand_677f70aeddfaa363",
+    "paper_id": "2605.03360",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approa... addresses a stated limitation in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion.",
+    "evidence_spans": [
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "The landscape of computational biology was fundamentally altered by the emergence of AlphaFold 2 (AF2) [ 17 ] , which demonstrated that deep neural networks could learn the intricate mapping from sequence to structure with near-experimental accuracy and was further extended to possess the unified all-atom predictive power in AlphaFold 3 [ 1 ] (AF3) more recently.",
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "A-CODE demonstrate superior generation quality, achieving new SOTA designability and codesignability on the unconditional benchmark and significantly better one-stage binder design performance across all ten tasks.",
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "problem_evidence_spans": [
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures."
+    ],
+    "feasibility_evidence_spans": [
+      "The landscape of computational biology was fundamentally altered by the emergence of AlphaFold 2 (AF2) [ 17 ] , which demonstrated that deep neural networks could learn the intricate mapping from sequence to structure with near-experimental accuracy and was further extended to possess the unified all-atom predictive power in AlphaFold 3 [ 1 ] (AF3) more recently.",
+      "The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approach but remain limited by the accuracy of their structure VAEs at recovering all-atom structures.",
+      "A-CODE demonstrate superior generation quality, achieving new SOTA designability and codesignability on the unconditional benchmark and significantly better one-stage binder design performance across all ten tasks.",
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion. Then apply this intervention: Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approa.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approa... against the reported baseline.",
+    "expected_metric": "Primary benchmark accuracy/error improvement against baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on accuracy without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve accuracy or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approa....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion: The latent-based generative models, such as La-Proteina [ 15 ] and PLAID [ 22 ] , offer an alternative, more flexible approa...",
+    "baseline": "The reported baseline/protocol from A-CODE: Fully Atomic Protein Co-Design with Unified Multimodal Diffusion.",
+    "metric": "accuracy",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_ccfd43f1b3255750",
+    "paper_id": "2605.04807",
+    "candidate_problem": "Euclidean distance-based connectivity in dynamic occupancy models fails to account for landscape resistance and barriers, leading to biased environmental inference for species like the Eurasian otter.",
+    "evidence_spans": [
+      "Integrating a resistance-based formulation of connectivity would be particularly relevant for species like the otter which primarily disperse along rivers and coastlines",
+      "Euclidean distance is often replaced in connectivity analyses by functional metrics like least-cost path",
+      "environmental effects appeared comparatively moderate in our case (Fig. 4), with a high and relatively homogeneous installation probability across the country. This suggests that, at least in France, part of the observed association between otter presence and environmental variables arises from dispersal history rather than habitat selection."
+    ],
+    "problem_evidence_spans": [
+      "The model can be improved by incorporating more functional definitions of connectivity. Indeed, we defined connectivity as a function of Euclidean distance between sites.",
+      "dispersal is often constrained by anthropogenic or natural barriers that Euclidean distance alone cannot capture."
+    ],
+    "feasibility_evidence_spans": [
+      "we introduce a dispersal-pressure formulation that provides a flexible and ecologically interpretable representation of the colonization process, and develop a sparse distance matrix implementation that enables application to large study areas comprising several thousand sites."
+    ],
+    "auto_research_experiment": "Replace the Euclidean distance matrix in the paper's sparse implementation with a Least-Cost Path (LCP) distance matrix derived from a river-network resistance surface for the Eurasian otter (Lutra lutra) dataset. Compare the model fit (WAIC) and the magnitude of environmental coefficients (e.g., cropland, riparian vegetation) between the Euclidean and LCP versions.",
+    "available_data_or_benchmark": "The paper uses French national monitoring data for Eurasian otters (Lutra lutra) and Grey wolves (Canis lupus).",
+    "public_training_or_eval_data": "The French National Biodiversity Observatory (ONB) and the French Biodiversity Agency (OFB) provide species occurrence data; environmental layers (Corine Land Cover) are public.",
+    "scientific_hypothesis": "Incorporating river-network-based functional connectivity (Least-Cost Path) will significantly increase the estimated effect size of environmental covariates (habitat selection) for otters by correctly attributing historical colonization lags to landscape resistance rather than environmental suitability.",
+    "expected_metric": "Widely Applicable Information Criterion (WAIC)",
+    "success_threshold": "A reduction in WAIC of >10 units and a statistically significant change (non-overlapping 95% CI) in the 'cropland' or 'riparian' coefficient estimates compared to the Euclidean baseline.",
+    "failure_condition": "The LCP model fails to converge or shows no improvement in WAIC, suggesting Euclidean distance is a sufficient proxy for dispersal in this specific landscape.",
+    "first_24h_experiment": "Download the Corine Land Cover and French river network (BD Carthage). Generate a 5km x 5km grid resistance surface where river pixels have low resistance and non-river pixels have high resistance. Compute a sparse LCP distance matrix for the first 1000 sites.",
+    "specific_intervention": "Substitute the Euclidean distance calculation in the 'dispersal-pressure' kernel with a Least-Cost Path distance calculated over a resistance surface.",
+    "baseline": "The paper's original Euclidean distance-based dynamic occupancy model.",
+    "metric": "Posterior mean and 95% Credible Intervals of environmental coefficients (alpha_xi) and model deviance.",
+    "code_or_data_urls": [
+      "https://github.com/SimLacombe/PB-DOM"
+    ],
+    "story_angle": "Moving beyond 'as the crow flies'—how accounting for river networks reveals the true habitat needs of recovering species."
+  },
+  {
+    "candidate_id": "cand_03cb35d6176d32ea",
+    "paper_id": "2605.05824",
+    "candidate_problem": "Lack of absolute Time-of-Flight (ToF) estimation in current 60 GHz radio channel datasets prevents fine-grained ranging and high-precision SLAM.",
+    "evidence_spans": [
+      "Synchronizing transmitter and receiver clocks would enable absolute Time-of-Flight estimation, unlocking finer-grained ranging and SLAM capabilities."
+    ],
+    "problem_evidence_spans": [
+      "Synchronizing transmitter and receiver clocks would enable absolute Time-of-Flight estimation, unlocking finer-grained ranging and SLAM capabilities."
+    ],
+    "feasibility_evidence_spans": [
+      "The dataset was collected using a fully programmable RFSoC-based platform integrated with a commercial 60 GHz phased-array front-end",
+      "We have acquired a dense dataset for indoor positioning, beam management and digital twin [ 10 ] reconstruction which has been made available for the scientific community [ 13 ]"
+    ],
+    "auto_research_experiment": "Develop a synthetic clock-offset correction algorithm that uses the known geometry of the 350 measurement points to 'back-calculate' the clock drift and convert the existing relative phase/timing data into pseudo-absolute ToF for improved SLAM.",
+    "available_data_or_benchmark": "The 60 GHz Radio Channel Dataset (350 measurement points, 63x63 beamspace).",
+    "public_training_or_eval_data": "https://github.com/scazzoli/60GHz-RFSoC-Dataset (referenced as [13] in paper)",
+    "scientific_hypothesis": "A geometry-aware synchronization algorithm can recover absolute ToF from unsynchronized RFSoC captures by exploiting the spatial consistency of the 350-point grid.",
+    "expected_metric": "Mean Absolute Error (MAE) in ranging.",
+    "success_threshold": "MAE < 10cm (standard for high-precision indoor mmWave).",
+    "failure_condition": "Clock jitter in the RFSoC hardware exceeds the chirp duration's stability, making phase recovery impossible.",
+    "first_24h_experiment": "Download the dataset and analyze the phase stability of the 64 quasi-orthogonal chirps across consecutive captures at a single fixed position to quantify the unsynchronized drift.",
+    "specific_intervention": "Apply a Least-Squares optimization to estimate the clock offset at each of the 350 grid points using the known physical distance to the TX.",
+    "baseline": "Intensity-only (RSSI) based localization.",
+    "metric": "Localization Error (RMSE)",
+    "code_or_data_urls": [
+      "https://github.com/scazzoli/60GHz-RFSoC-Dataset"
+    ],
+    "story_angle": "Turning 'dumb' signal intensity into 'smart' timing data: Can we retroactively synchronize 6G testbeds using spatial geometry?"
+  },
+  {
+    "candidate_id": "cand_4fe94615be9f8394",
+    "paper_id": "2605.05657",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution ... addresses a stated future work in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+    "evidence_spans": [
+      "Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution — the same argument yields an expected-budget guarantee, and an Azuma–Hoeffding tail bound under bounded per-step costs is sketched in Appendix H ; a tighter Bernstein-style bound exploiting per-step variance is left for future work.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review TITLE: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation ABSTRACT: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review INTRODUCTION: LLM-driven code generation has moved in a few years from single-function completion to autonomous, repository-level bug repair Yang et al. ( 2024 ); Wang et al. ( 2024 ) .",
+      "Multi-agent architectures — specialised sub-agents for planning, coding, testing, and review — are now the dominant approach on complex tasks, with MetaGPT Hong et al. ( 2024 ) , AOrchestra Ruan et al. ( 2026 ) , and Magentic-One Fourney et al. ( 2024 ) leading public benchmarks."
+    ],
+    "problem_evidence_spans": [
+      "Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution — the same argument yields an expected-budget guarantee, and an Azuma–Hoeffding tail bound under bounded per-step costs is sketched in Appendix H ; a tighter Bernstein-style bound exploiting per-step variance is left for future work."
+    ],
+    "feasibility_evidence_spans": [
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review TITLE: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation ABSTRACT: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review INTRODUCTION: LLM-driven code generation has moved in a few years from single-function completion to autonomous, repository-level bug repair Yang et al. ( 2024 ); Wang et al. ( 2024 ) .",
+      "Multi-agent architectures — specialised sub-agents for planning, coding, testing, and review — are now the dominant approach on complex tasks, with MetaGPT Hong et al. ( 2024 ) , AOrchestra Ruan et al. ( 2026 ) , and Magentic-One Fourney et al. ( 2024 ) leading public benchmarks."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation. Then apply this intervention: Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution ... against the reported baseline.",
+    "expected_metric": "Safety benchmark success/failure rate and false-positive/false-negative trade-offs.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under stochastic costs — non-zero sampling temperatures, non-deterministic tool execution ...",
+    "baseline": "The reported baseline/protocol from Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Significant-Gravitas/AutoGPT",
+      "https://github.com/VectifyAI/PageIndex",
+      "https://github.com/langchain-ai/langgraph",
+      "https://github.com/openai/openai-agents-python",
+      "https://github.com/scaleapi/SWE-bench_Pro-os"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_16a2c07ece632733",
+    "paper_id": "2605.05844",
+    "candidate_problem": "Trajectory-induced distribution shift in radio map reconstruction",
+    "evidence_spans": [
+      "RadioUNet trained on random samples degrades sharply when tested on trajectory samples, with MAE, RMSE, and NMSE increasing by 7.20 ×, 3.02 ×, and 9.14 ×, respectively",
+      "trajectory-sampled RM reconstruction should be treated as a structured completion problem rather than a conventional random sparse interpolation task."
+    ],
+    "problem_evidence_spans": [
+      "RadioUNet trained on random samples degrades sharply when tested on trajectory samples, with MAE, RMSE, and NMSE increasing by 7.20 ×, 3.02 ×, and 9.14 ×, respectively"
+    ],
+    "feasibility_evidence_spans": [
+      "We further introduce RadioFlow-LDM, a latent flow-based generative backbone, and instantiate TGPP on RadioUNet, RME-GAN, RadioGAT, and RadioFlow-LDM"
+    ],
+    "auto_research_experiment": "Train a standard RadioUNet and a TGPP-enhanced RadioUNet on the RadioMapSeer dataset using trajectory-based masks (simulating UAV paths) instead of random masks. Evaluate the performance gap when testing on unseen trajectory geometries vs. random sampling.",
+    "available_data_or_benchmark": "RadioMapSeer",
+    "public_training_or_eval_data": "https://github.com/levat0r/RadioMapSeer",
+    "scientific_hypothesis": "Explicitly modeling the trajectory geometry as a guidance map (input-space risk awareness) and a guide feature (representation-space fusion) allows models to generalize to off-trajectory regions better than standard interpolation backbones.",
+    "expected_metric": "NMSE (Normalized Mean Square Error)",
+    "success_threshold": "A reduction in NMSE of at least 30% compared to the base RadioUNet when tested on trajectory-sampled data.",
+    "failure_condition": "The TGPP-enhanced model performs within 5% of the baseline RadioUNet, suggesting the trajectory guidance does not provide additional spatial priors beyond standard convolution.",
+    "first_24h_experiment": "Generate trajectory-based masks for the RadioMapSeer dataset using a simple random walk or waypoint-based path generator. Train a baseline RadioUNet on these masks and measure the NMSE.",
+    "specific_intervention": "Integrate a dual-path guidance module (TGPP) that takes the trajectory mask as input to generate a risk-awareness map and a latent feature vector that is concatenated with the backbone's skip connections.",
+    "baseline": "RadioUNet (standard U-Net architecture for radio map reconstruction)",
+    "metric": "NMSE",
+    "code_or_data_urls": [
+      "https://github.com/levat0r/RadioMapSeer"
+    ],
+    "story_angle": "As 6G moves toward environment-aware communications, the way we collect radio data (via drones and robots) creates 'blind spots' that standard AI models can't see. This research explores how to turn the path of the sensor itself into a mathematical guide to predict signal strength in unvisited areas."
+  },
+  {
+    "candidate_id": "cand_45b2c350dd6374bb",
+    "paper_id": "2605.05824",
+    "candidate_problem": "Current mmWave sensing datasets are static and fail to capture Doppler and temporal channel evolution necessary for dynamic Industrial IoT (IIoT) environments.",
+    "evidence_spans": [
+      "Future extensions of the dataset may include multi-transmitter deployments, multi-user scenarios, and dynamic measurements with moving agents to capture doppler and temporal channel evolution."
+    ],
+    "problem_evidence_spans": [
+      "Future extensions of the dataset may include... dynamic measurements with moving agents to capture doppler and temporal channel evolution."
+    ],
+    "feasibility_evidence_spans": [
+      "the system achieves a full transmitter beam scan in under 200 μs"
+    ],
+    "auto_research_experiment": "Simulate dynamic agents (moving robots) by interpolating between the 350 static grid points using the 200us scan rate as a temporal constraint to create a 'pseudo-dynamic' dataset for Doppler-resilient beam tracking.",
+    "available_data_or_benchmark": "The 60 GHz Radio Channel Dataset (350 measurement points).",
+    "public_training_or_eval_data": "https://github.com/scazzoli/60GHz-RFSoC-Dataset",
+    "scientific_hypothesis": "High-speed beam scanning (200us) allows for the reconstruction of dynamic channel trajectories from dense static spatial samples via spatio-temporal interpolation.",
+    "expected_metric": "Beam Tracking Accuracy (BTA)",
+    "success_threshold": "BTA > 90% for simulated agent speeds up to 2m/s.",
+    "failure_condition": "Spatial sparsity of the 1.95m x 3.6m grid (350 points) leads to aliasing in the simulated temporal signal.",
+    "first_24h_experiment": "Calculate the spatial correlation between adjacent grid points in the dataset to determine if the 350 points are dense enough for smooth interpolation of a moving receiver.",
+    "specific_intervention": "Implement a Kalman Filter-based beam tracker on the interpolated dataset.",
+    "baseline": "Static beam selection (choosing the strongest beam from the last known position).",
+    "metric": "Signal-to-Interference-plus-Noise Ratio (SINR) loss during movement",
+    "code_or_data_urls": [
+      "https://github.com/scazzoli/60GHz-RFSoC-Dataset"
+    ],
+    "story_angle": "From snapshots to cinema: Can we animate static 60GHz datasets to train the next generation of 6G motion-aware beamformers?"
+  },
+  {
+    "candidate_id": "cand_f8cb3bd455807a77",
+    "paper_id": "2605.05657",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, ... addresses a stated future work in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+    "evidence_spans": [
+      "Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, KVCOMM Ye et al. ( 2025 ) composition, and a learned-router successor.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review TITLE: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation ABSTRACT: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review INTRODUCTION: LLM-driven code generation has moved in a few years from single-function completion to autonomous, repository-level bug repair Yang et al. ( 2024 ); Wang et al. ( 2024 ) .",
+      "Multi-agent architectures — specialised sub-agents for planning, coding, testing, and review — are now the dominant approach on complex tasks, with MetaGPT Hong et al. ( 2024 ) , AOrchestra Ruan et al. ( 2026 ) , and Magentic-One Fourney et al. ( 2024 ) leading public benchmarks."
+    ],
+    "problem_evidence_spans": [
+      "Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, KVCOMM Ye et al. ( 2025 ) composition, and a learned-router successor."
+    ],
+    "feasibility_evidence_spans": [
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review TITLE: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation ABSTRACT: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review INTRODUCTION: LLM-driven code generation has moved in a few years from single-function completion to autonomous, repository-level bug repair Yang et al. ( 2024 ); Wang et al. ( 2024 ) .",
+      "Multi-agent architectures — specialised sub-agents for planning, coding, testing, and review — are now the dominant approach on complex tasks, with MetaGPT Hong et al. ( 2024 ) , AOrchestra Ruan et al. ( 2026 ) , and Magentic-One Fourney et al. ( 2024 ) leading public benchmarks."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation. Then apply this intervention: Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Future work: SWE-bench Pro / LiveCodeBench v6 end-to-end runs, richer complexity signals, ...",
+    "baseline": "The reported baseline/protocol from Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Significant-Gravitas/AutoGPT",
+      "https://github.com/VectifyAI/PageIndex",
+      "https://github.com/langchain-ai/langgraph",
+      "https://github.com/openai/openai-agents-python",
+      "https://github.com/scaleapi/SWE-bench_Pro-os"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_f6f4647738d36aae",
+    "paper_id": "2605.06438",
+    "candidate_problem": "Epistemic uncertainty underestimation in neural mortality models",
+    "evidence_spans": [
+      "The negligible contribution of MC Dropout to the total uncertainty budget raises a broader question about the role of epistemic uncertainty in neural mortality models.",
+      "Robustness checks across random seeds and alternative train/validation splits would strengthen the confidence in the model’s stability claims and are a natural extension of this work."
+    ],
+    "problem_evidence_spans": [
+      "The negligible contribution of MC Dropout to the total uncertainty budget raises a broader question about the role of epistemic uncertainty in neural mortality models."
+    ],
+    "feasibility_evidence_spans": [
+      "The complete codebase, including data processing, model training, and validation notebooks, is publicly available.",
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI"
+    ],
+    "auto_research_experiment": "Train an ensemble of 10 Hybrid-Lift LSTMs with different random seeds and lookback windows (10-15 years) on the Human Mortality Database (HMD) subset provided in the repo. Compare the resulting variance in Expected Shortfall (ES 99.0%) to the existing MC Dropout variance.",
+    "available_data_or_benchmark": "Human Mortality Database (HMD) for Sweden, West Germany, Netherlands, Switzerland, Japan, and France (1956–2020).",
+    "public_training_or_eval_data": "https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI",
+    "scientific_hypothesis": "A Deep Ensemble of LSTMs will capture a significantly higher and more realistic proportion of epistemic uncertainty in longevity risk than MC Dropout, leading to a more conservative and regulatory-compliant Solvency Capital Requirement (SCR).",
+    "expected_metric": "Ratio of Epistemic Uncertainty to Total Uncertainty Budget",
+    "success_threshold": "Epistemic uncertainty contribution increases from 'negligible' (<1%) to >10% of the total uncertainty budget.",
+    "failure_condition": "Ensemble variance remains lower than or equal to MC Dropout variance, or the resulting ES 99.0% becomes numerically unstable.",
+    "first_24h_experiment": "Clone the repo, run the existing training script 5 times with different seeds, and calculate the standard deviation of the predicted mortality factor K_t across seeds.",
+    "specific_intervention": "Replace MC Dropout layers with a Deep Ensemble (M=10) and vary the lookback window hyperparameter.",
+    "baseline": "The original Hybrid-Lift model using MC Dropout for epistemic uncertainty.",
+    "metric": "Standard Deviation of Predicted Life Expectancy (e0) at 2020 horizon",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "As human lifespans extend, the math used by insurance giants to stay solvent is breaking. This experiment tests if 'ensembles' of AI models can better predict the unknown risks that single models miss."
+  },
+  {
+    "candidate_id": "cand_8bdfda98e6ee5a29",
+    "paper_id": "2605.06438",
+    "candidate_problem": "Neural mortality models exhibit conservative bias and fail to capture fat-tailed exogenous shocks like the 2020 pandemic due to Gaussian process noise assumptions.",
+    "evidence_spans": [
+      "it exhibits a conservative bias during extreme volatility (e.g., the 2020 pandemic shock)",
+      "the Gaussian assumption underlying the process noise term may fail to capture the fat-tailed nature of extreme exogenous shocks"
+    ],
+    "problem_evidence_spans": [
+      "the Gaussian assumption underlying the process noise term may fail to capture the fat-tailed nature of extreme exogenous shocks, where the actual probability of large deviations exceeds what a normal distribution predicts."
+    ],
+    "feasibility_evidence_spans": [
+      "The complete codebase, including data processing, model training, and validation notebooks, is publicly available.",
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI"
+    ],
+    "auto_research_experiment": "Replace the Gaussian process noise component in the Hybrid-Lift framework with a Student's t-distribution or a Lévy flight process to better model fat-tailed mortality shocks.",
+    "available_data_or_benchmark": "Human Mortality Database (HMD) via the provided GitHub repository scripts.",
+    "public_training_or_eval_data": "https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI",
+    "scientific_hypothesis": "Replacing Gaussian noise with a fat-tailed distribution in the process noise calibration will reduce the conservative bias during high-volatility years (2020-2022) and improve Value-at-Risk (VaR) coverage.",
+    "expected_metric": "VaR Coverage Ratio (percentage of actual mortality shocks within the predicted 99.5% interval).",
+    "success_threshold": "VaR Coverage Ratio >= 99.0% during the 2020-2022 period.",
+    "failure_condition": "The fat-tailed distribution leads to excessively wide confidence intervals that make the model unusable for capital efficiency (SCR becomes too high).",
+    "first_24h_experiment": "Modify the noise calibration script in the provided repository to use a Student's t-distribution and re-run the 2020 backtest for the Sweden dataset.",
+    "specific_intervention": "Swap Gaussian process noise for a Student's t-distribution in the uncertainty quantification module.",
+    "baseline": "Original Hybrid-Lift with Gaussian process noise.",
+    "metric": "Mean Absolute Scaled Error (MASE) and VaR 99.5% violation count.",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "Fixing the 'Stationarity Paradox' in insurance: making neural networks resilient to global pandemics."
+  },
+  {
+    "candidate_id": "cand_d3ae4e0e9aa9e864",
+    "paper_id": "2605.05657",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under distribution shift — unfamiliar repositories, languages outside our tree-sitter gram... addresses a stated failure mode in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+    "evidence_spans": [
+      "Under distribution shift — unfamiliar repositories, languages outside our tree-sitter grammars — the complexity vector degrades and RGAO’s advantage narrows; we quantify this in Appendix I .",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review TITLE: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation ABSTRACT: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review INTRODUCTION: LLM-driven code generation has moved in a few years from single-function completion to autonomous, repository-level bug repair Yang et al. ( 2024 ); Wang et al. ( 2024 ) .",
+      "Multi-agent architectures — specialised sub-agents for planning, coding, testing, and review — are now the dominant approach on complex tasks, with MetaGPT Hong et al. ( 2024 ) , AOrchestra Ruan et al. ( 2026 ) , and Magentic-One Fourney et al. ( 2024 ) leading public benchmarks."
+    ],
+    "problem_evidence_spans": [
+      "Under distribution shift — unfamiliar repositories, languages outside our tree-sitter grammars — the complexity vector degrades and RGAO’s advantage narrows; we quantify this in Appendix I ."
+    ],
+    "feasibility_evidence_spans": [
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review TITLE: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation ABSTRACT: Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+      "NeurIPS 2026 Evaluations and Datasets Track Submission Under review INTRODUCTION: LLM-driven code generation has moved in a few years from single-function completion to autonomous, repository-level bug repair Yang et al. ( 2024 ); Wang et al. ( 2024 ) .",
+      "Multi-agent architectures — specialised sub-agents for planning, coding, testing, and review — are now the dominant approach on complex tasks, with MetaGPT Hong et al. ( 2024 ) , AOrchestra Ruan et al. ( 2026 ) , and Magentic-One Fourney et al. ( 2024 ) leading public benchmarks."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation. Then apply this intervention: Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under distribution shift — unfamiliar repositories, languages outside our tree-sitter gram.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under distribution shift — unfamiliar repositories, languages outside our tree-sitter gram... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under distribution shift — unfamiliar repositories, languages outside our tree-sitter gram....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation: Under distribution shift — unfamiliar repositories, languages outside our tree-sitter gram...",
+    "baseline": "The reported baseline/protocol from Retrieval-Conditioned Topology Selection with Provable Budget Conservation for Multi-Agent Code Generation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Significant-Gravitas/AutoGPT",
+      "https://github.com/VectifyAI/PageIndex",
+      "https://github.com/langchain-ai/langgraph",
+      "https://github.com/openai/openai-agents-python",
+      "https://github.com/scaleapi/SWE-bench_Pro-os"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_08d6b9c057b61cc3",
+    "paper_id": "2605.02142",
+    "candidate_problem": "Inability to model nucleus-to-nucleus variability in gene program co-activation structure",
+    "evidence_spans": [
+      "the model aggregates attention over nuclei within each condition and cell type, which stabilizes the P × P estimate but precludes modeling nucleus-to-nucleus variability in co-activation.",
+      "Disease-associated heterogeneity within an annotated cell type is therefore not directly observable, and a hierarchical extension learning per-nucleus attention distributions alongside population means is a natural next step."
+    ],
+    "problem_evidence_spans": [
+      "the model aggregates attention over nuclei within each condition and cell type, which stabilizes the P × P estimate but precludes modeling nucleus-to-nucleus variability in co-activation."
+    ],
+    "feasibility_evidence_spans": [
+      "Applied to 191,890 prefrontal cortex nuclei from an AD atlas (Morabito et al., 2021 ) across three independent pathway vocabularies, ORBIT recovers biologically interpretable co-activation structure",
+      "ORBIT’s framework is vocabulary- and architecture-agnostic, and the intervention-consistent objective applies wherever features can be partitioned into meaningful groups"
+    ],
+    "auto_research_experiment": "Modify the ORBIT architecture to output a per-cell attention matrix A_i by conditioning the transformer on a cell-specific latent embedding. Train using the existing intervention-consistent loss but applied at the single-cell level, and evaluate if the variance in attention weights correlates with disease severity (Braak stage) within the same cell type.",
+    "available_data_or_benchmark": "Morabito et al. (2021) AD snRNA-seq atlas (191,890 nuclei).",
+    "public_training_or_eval_data": "https://www.synapse.org/#!Synapse:syn25808537",
+    "scientific_hypothesis": "A hierarchical ORBIT model that learns per-nucleus attention distributions will identify sub-populations of cells within a single cell-type (e.g., Microglia) that exhibit 'pre-rewiring' signatures before global cell-type-level changes are detectable.",
+    "expected_metric": "Variance of attention weights (Var(A)) across nuclei within a cell type.",
+    "success_threshold": "The hierarchical model identifies a sub-cluster of nuclei with significantly different attention weights (p < 0.01, permutation test) that correlates with individual patient pathology scores better than the cell-type mean.",
+    "failure_condition": "Per-nucleus attention weights are dominated by technical noise (dropout) and fail to show stable Jaccard stability (threshold < 0.50) across subsamples.",
+    "first_24h_experiment": "Implement a Variational Autoencoder (VAE) bottleneck to generate cell-specific conditioning vectors for the ORBIT attention block and run on a subset (10,000 nuclei) of the Morabito dataset.",
+    "specific_intervention": "Replace the global attention matrix A with a dynamic attention mechanism A(h_i) where h_i is a latent representation of cell i.",
+    "baseline": "The original ORBIT model (cell-type aggregated attention).",
+    "metric": "Correlation between per-nucleus attention variance and patient-level amyloid plaque density.",
+    "code_or_data_urls": [
+      "https://www.synapse.org/"
+    ],
+    "story_angle": "Moving from 'average' cell behavior to identifying the specific 'renegade' cells that drive disease rewiring in the brain."
+  },
+  {
+    "candidate_id": "cand_6f4abc67c772de1d",
+    "paper_id": "2605.06438",
+    "candidate_problem": "The Hybrid-Lift model omits country-specific terms in life expectancy reconstruction, potentially understating cross-country divergence.",
+    "evidence_spans": [
+      "omitting the explicit country-specific terms b_{x,i}k_{t,i}",
+      "This simplification may understate the true cross-country divergence in scenarios where specific factors exhibit strong persistent trends"
+    ],
+    "problem_evidence_spans": [
+      "This simplification may understate the true cross-country divergence in scenarios where specific factors exhibit strong persistent trends, and partially limits the claim that country-specific dynamics are fully exploited"
+    ],
+    "feasibility_evidence_spans": [
+      "The complete codebase, including data processing, model training, and validation notebooks, is publicly available."
+    ],
+    "auto_research_experiment": "Re-introduce the country-specific factor (k_{t,i}) into the reconstruction formula using a secondary LSTM layer to model the residuals of the common factor.",
+    "available_data_or_benchmark": "Human Mortality Database (HMD) for the 6-nation frontier cluster.",
+    "public_training_or_eval_data": "https://github.com/davide-rindori/Actuarial-DS-Portfolio/tree/main/04_Multi_Population_Longevity_XAI",
+    "scientific_hypothesis": "Modeling country-specific residuals with a secondary LSTM will capture the 'unit root' behavior in Sweden and West Germany more accurately than the common-factor-only reconstruction.",
+    "expected_metric": "Root Mean Square Error (RMSE) of reconstructed life expectancy (e0).",
+    "success_threshold": "5% reduction in RMSE for Sweden and West Germany compared to the common-factor baseline.",
+    "failure_condition": "The inclusion of country-specific terms leads to 'integration drift' where long-term projections become biologically implausible (e.g., crossing mortality curves).",
+    "first_24h_experiment": "Extract the residuals from the current Hybrid-Lift common factor and perform a unit root test (ADF) to confirm the signal remains uncaptured.",
+    "specific_intervention": "Add a residual-tracking LSTM to the reconstruction pipeline.",
+    "baseline": "Hybrid-Lift common-factor-only reconstruction.",
+    "metric": "RMSE and Mean Bias Error (MBE).",
+    "code_or_data_urls": [
+      "https://github.com/davide-rindori/Actuarial-DS-Portfolio"
+    ],
+    "story_angle": "Beyond the Average: Capturing unique national mortality trends with hierarchical neural networks."
+  },
+  {
+    "candidate_id": "cand_80d2f8115f6604d6",
+    "paper_id": "2605.05284",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a prod... addresses a stated future work in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles.",
+    "evidence_spans": [
+      "Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a productive direction for future work — and a logical next step in fulfilling evolutionary computation’s long-promised scientific mandate.",
+      "Code available at: this https URL INTRODUCTION: 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "1 Introduction 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "As the Rosenbrock benchmark (Fig. 5 ) confirms, this surgery preserves Adam’s capacity to navigate ill-conditioned landscapes.",
+      "First-order isotropic methods (like basic SGA) or even diagonal methods (like RMSProp) struggle profoundly in such stiff landscapes because the simulated dynamics cannot reliably follow the sharp fitness ridges (recall Fig. 5 )."
+    ],
+    "problem_evidence_spans": [
+      "Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a productive direction for future work — and a logical next step in fulfilling evolutionary computation’s long-promised scientific mandate."
+    ],
+    "feasibility_evidence_spans": [
+      "Code available at: this https URL INTRODUCTION: 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "1 Introduction 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "As the Rosenbrock benchmark (Fig. 5 ) confirms, this surgery preserves Adam’s capacity to navigate ill-conditioned landscapes.",
+      "First-order isotropic methods (like basic SGA) or even diagonal methods (like RMSProp) struggle profoundly in such stiff landscapes because the simulated dynamics cannot reliably follow the sharp fitness ridges (recall Fig. 5 )."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles. Then apply this intervention: Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a prod.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a prod... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a prod....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Establishing the precise biological interpretation of their covariance dynamics under the DLS framework is a prod...",
+    "baseline": "The reported baseline/protocol from Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/danielgrimmer/adam-dls"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_64eff7f97fb029fc",
+    "paper_id": "2605.04372",
+    "candidate_problem": "Fixed mixture component specification in Zero-Inflated Beta Mixture (ZIBM) models for microbiome mediation analysis",
+    "evidence_spans": [
+      "The number of mixture components need to be specified in advance, which may affect model performance, and computational burden may increase in high-dimensional microbiome settings.",
+      "Future work includes data-driven selection of mixture components."
+    ],
+    "problem_evidence_spans": [
+      "The number of mixture components need to be specified in advance, which may affect model performance"
+    ],
+    "feasibility_evidence_spans": [
+      "The real data analysis demonstrates the utility of the proposed model for microbiome studies with sparse and compositional mediators.",
+      "Compared to the MarZIC method’s application of the Arthur et al. ( 2013 ) study, the ZIBM framework identified eight additional bacterial families"
+    ],
+    "auto_research_experiment": "Implement a Dirichlet Process Mixture Model (DPMM) extension to the ZIBM framework to allow for an infinite mixture of Beta distributions where the number of components is learned from the data via MCMC or Variational Inference. Compare this against the fixed-component ZIBM on the Arthur et al. (2013) CRC dataset.",
+    "available_data_or_benchmark": "Arthur et al. (2013) Colorectal Cancer (CRC) microbiome dataset (16S rRNA sequencing).",
+    "public_training_or_eval_data": "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA190557",
+    "scientific_hypothesis": "A data-driven, non-parametric selection of mixture components (e.g., via Dirichlet Process) will yield lower Bayesian Information Criterion (BIC) scores and higher sensitivity in identifying causal mediators compared to a fixed 2-component ZIBM model.",
+    "expected_metric": "Bayesian Information Criterion (BIC) and Number of Validated Causal Mediators.",
+    "success_threshold": "The automated selection model achieves a lower BIC in >70% of taxa and identifies at least 2 additional biologically relevant mediators confirmed by literature.",
+    "failure_condition": "The computational overhead of non-parametric estimation leads to non-convergence in high-dimensional settings (taxa > 500) or the model collapses to a single component for all taxa.",
+    "first_24h_experiment": "Download the Arthur et al. (2013) OTU table, implement a basic Beta Mixture Model with a GIBBS sampler for component selection, and test it on the top 10 most abundant taxa.",
+    "specific_intervention": "Replace the fixed-component likelihood in the ZIBM framework with a Dirichlet Process Beta Mixture likelihood.",
+    "baseline": "The fixed-component ZIBM model described in the paper.",
+    "metric": "BIC (Bayesian Information Criterion)",
+    "code_or_data_urls": [
+      "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA190557"
+    ],
+    "story_angle": "Moving beyond rigid statistical assumptions in microbiome research by allowing the data itself to dictate the complexity of microbial interactions."
+  },
+  {
+    "candidate_id": "cand_fedf342165c1138e",
+    "paper_id": "2605.05973",
+    "candidate_problem": "Overestimation of LLM performance in adaptive benchmarking due to selection bias (Winner's Curse).",
+    "evidence_spans": [
+      "Correcting the Winner's Curse in Adaptive Benchmarking"
+    ],
+    "problem_evidence_spans": [
+      "Correcting the Winner's Curse in Adaptive Benchmarking"
+    ],
+    "feasibility_evidence_spans": [
+      "Towards Reliable LLM Evaluation"
+    ],
+    "auto_research_experiment": "Implement a bootstrap-based correction or a James-Stein estimator to adjust the leaderboard scores of top-performing models on MMLU and GSM8K.",
+    "available_data_or_benchmark": "MMLU (Massive Multitask Language Understanding)",
+    "public_training_or_eval_data": "https://github.com/hendrycks/test",
+    "scientific_hypothesis": "Applying a shrinkage estimator to adaptive benchmarking results will reduce the gap between reported leaderboard performance and true out-of-distribution generalization.",
+    "expected_metric": "Mean Absolute Error (MAE) between predicted and actual performance on a held-out test set.",
+    "success_threshold": "A reduction in MAE by at least 15% compared to uncorrected 'best-of-N' reporting.",
+    "failure_condition": "The correction leads to underestimation of performance or does not significantly differ from the raw maximum in low-variance settings.",
+    "first_24h_experiment": "Download MMLU results for 10 open-source models, simulate 'adaptive selection' by picking the best of 5 prompts, and calculate the bias relative to the average prompt performance.",
+    "specific_intervention": "Apply a statistical correction factor (e.g., empirical Bayes shrinkage) to the top-performing model scores.",
+    "baseline": "Raw maximum score (Winner's Curse baseline).",
+    "metric": "Bias-corrected Accuracy",
+    "code_or_data_urls": [],
+    "story_angle": "As LLMs compete for the top spot on leaderboards, we are likely measuring noise rather than progress; this research provides the 'statistical glasses' to see the true winners."
+  },
+  {
+    "candidate_id": "cand_b1aea8a0f9f2ddc0",
+    "paper_id": "2605.05284",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an exp... addresses a stated limitation in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles.",
+    "evidence_spans": [
+      "Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an explosion of publications introducing supposedly novel algorithms that rely on superficial biological metaphors with little to no actual algorithmic innovation.",
+      "Code available at: this https URL INTRODUCTION: 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "1 Introduction 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "As the Rosenbrock benchmark (Fig. 5 ) confirms, this surgery preserves Adam’s capacity to navigate ill-conditioned landscapes.",
+      "First-order isotropic methods (like basic SGA) or even diagonal methods (like RMSProp) struggle profoundly in such stiff landscapes because the simulated dynamics cannot reliably follow the sharp fitness ridges (recall Fig. 5 )."
+    ],
+    "problem_evidence_spans": [
+      "Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an explosion of publications introducing supposedly novel algorithms that rely on superficial biological metaphors with little to no actual algorithmic innovation."
+    ],
+    "feasibility_evidence_spans": [
+      "Code available at: this https URL INTRODUCTION: 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "1 Introduction 0 0 footnotetext: Code available at https://github.com/danielgrimmer/adam-dls .",
+      "As the Rosenbrock benchmark (Fig. 5 ) confirms, this surgery preserves Adam’s capacity to navigate ill-conditioned landscapes.",
+      "First-order isotropic methods (like basic SGA) or even diagonal methods (like RMSProp) struggle profoundly in such stiff landscapes because the simulated dynamics cannot reliably follow the sharp fitness ridges (recall Fig. 5 )."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles. Then apply this intervention: Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an exp.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an exp... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an exp....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles: Contrastingly, the engineering strand is currently facing a “paradox of success” (Molina et al. , 2025 ) : an exp...",
+    "baseline": "The reported baseline/protocol from Direct From Darwin: Deriving Advanced Optimizers From Evolutionary First Principles.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/danielgrimmer/adam-dls"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  }
+]

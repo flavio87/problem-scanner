@@ -1,0 +1,332 @@
+{
+  "reviewer": "chunk-02",
+  "labels": [
+    {
+      "candidate_id": "cand_9c2cc719129915ee",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: decoupled allocation and routing ignores the coupled objective and can hit local optima. Asset: public OR-Tools plus synthetic mTSP instances and LKH-style routing baselines. Endpoint: total path cost against K-Means plus LKH-3. Hypothesis: joint autoregressive assignment-routing decoding should reduce distance by accounting for routing cost during assignment. The first 24h pilot is bounded to small synthetic 20-node, 3-agent instances.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_a1377ec16fb0803c",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: Adam's inertial momentum is claimed to permit movement without selection pressure, and the paper provides code. Asset: https://github.com/danielgrimmer/adam-dls with Rosenbrock/PINN-style benchmarks. Endpoint: convergence and DLS/Price-equation compliance versus standard Adam. Hypothesis: DLS surgical momentum preserves optimization while improving evolutionary fidelity. The clone-and-run Rosenbrock pilot is a clear 24h path.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_58445a3166477a73",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: CFN on compartment composition is identified as promising, with reported classifier and representation comparisons. Asset: the listed sfn-scrna-study and StructuralCFN-public repositories, but the public cohort/split is only described generically. Endpoint: stated only as a pre-registered benchmark delta. Hypothesis: a CFN compartment-composition ablation should improve structured IBD stratification versus the reported protocol. It is plausible but too templated for A.",
+      "repair_needed": "Name the exact public IBD cohorts, donor-aware split, and concrete endpoint such as AUROC or macro-F1 for the CFN compartment-composition ablation.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_a4ea3353bb5be89c",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: variance-based feature selection may capture non-subtype technical or biological variation rather than subtype signal. Asset: TCGA-BRCA is named and MSigDB is linked, but the actual TCGA extraction and reported split/artifact are not specified. Endpoint: macro-F1 or BRCA_Normal F1 versus variance-filtered logistic regression. Hypothesis: RFE or pathway-informed features improve minority subtype classification. The idea is runnable after tightening the public data path.",
+      "repair_needed": "Provide a direct public TCGA-BRCA expression/label artifact and exact train/test protocol from the paper before running.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_ba8c9384dbb58f3c",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: GO-EA is described as effectively isotropic while Price-equation variance can act as an anisotropic preconditioner. Asset: the public adam-dls repository. Endpoint: condition number or convergence iterations versus isotropic GO-EA/SGA on an ill-conditioned toy or PINN landscape. Hypothesis: L-BFGS-shaped DLS variance converges faster than isotropic evolutionary updates. The 2D quadratic pilot is safe within 24h.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_6a92a39295b5630e",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: SEQUOR future work mentions additional languages, modalities, and longer interactions. Asset: SEQUOR and supporting public repositories are listed. Endpoint: currently only a generic pre-registered benchmark delta versus the reported protocol. Hypothesis: extending SEQUOR should expose measurable constraint-following differences. The intervention is too broad to run as A.",
+      "repair_needed": "Pick one extension, such as one target language or a fixed longer-turn setting, and define the exact constraint-following accuracy metric and baseline model set.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_f2be7ddc4d8efd6e",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: hourly ICU modeling intervals may miss minute-scale vasopressor effects. Asset: PhysioNet MIMIC-III waveform data and a treatment-outcome demo are listed, but credentialing/alignment with clinical records is not made turnkey. Endpoint: recall of MAP deterioration within 15 minutes versus hourly GITO. Hypothesis: multi-resolution waveform plus hourly modeling improves acute-event recall. Strong idea, but the data-access and preprocessing path is the gating repair.",
+      "repair_needed": "Provide a preprocessed public matched waveform/clinical subset or a credential-free reproduction path for the vasopressor windows.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_ac6100d6556eb9bd",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: Hill functions are monotone and require composed blocks to model non-monotone responses, while EML is positioned as a parsimonious alternative. Asset: the Manuscript_EML_biophysics repository and cited Nanda/LaCroix data path. Endpoint: AIC/BIC or held-out wMSE versus a difference-of-two-Hill-functions baseline. Hypothesis: EML operators fit biphasic biological responses with fewer parameters. The four-trace AIC pilot is bounded.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_df0447fbc9b610d4",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: SEQUOR reports that constraint-following accuracy degrades as conversations become longer. Asset: the public SEQUOR repository and supporting data repositories. Endpoint: accuracy versus the reported SEQUOR protocol. Hypothesis: a targeted long-context ablation should change the length-degradation curve. The failure mode and asset are clear, but the candidate leaves the actual ablation as a placeholder.",
+      "repair_needed": "Specify the concrete ablation, such as constraint restatement, memory compression, or window length, and pre-register the length-binned accuracy comparison.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_6093a37f93231fce",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: discriminative SSL speech encoders discard high-frequency cues and naive decoding degrades speech. Asset: LibriTTS/OpenSLR, SUPERB, and the public WavCube repository. Endpoint: MCD and SUPERB/phoneme-recognition preservation versus a frozen or MSE-only SSL baseline. Hypothesis: semantic anchoring prevents catastrophic semantic forgetting while improving reconstruction. A 10-hour LibriTTS fine-tune of the last layers is a credible 24-72h pilot.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_2d997a4c8696e022",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: EML universality risks arbitrary curve fitting without restricted grammar and explicit penalties. Asset: the Manuscript_EML_biophysics repository and synthetic generator from specified equations. Endpoint: held-out wMSE/generalization error versus unpenalized EML search. Hypothesis: depth penalties prevent overfitting better than node-count penalties. The grid over lambda_d/lambda_n on the toy generator is directly executable.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_1a76c1ca913cb8c6",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: SEQUOR reports general long-horizon instruction-following limitations. Asset: SEQUOR repositories are listed. Endpoint: only a generic pre-registered delta. Hypothesis: a placeholder ablation should improve the reported baseline. This lacks a concrete intervention and measurable failure slice, so it is not independently runnable.",
+      "repair_needed": "Reframe as a specific SEQUOR experiment with named model set, long-horizon slice, intervention, and metric.",
+      "fatal_blocker": "The candidate is a templated placeholder rather than a falsifiable experiment."
+    },
+    {
+      "candidate_id": "cand_8096e045bc4b9ebd",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: sequential pipelines are described as breeding grounds for MAST FM-3 task-verification gaps. Asset: public coordination-experiment harness and coordination-traces-100 dataset. Endpoint: FM-3 frequency per 100 runs versus consensus alignment. Hypothesis: strict stage ordering without upstream verification yields more FM-3 failures. A 10-market harness/trace-logger check is a clear first-day run.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_b22321380abd6f8a",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: image-derived glymphatic velocity fields can show spurious divergence and violate mass conservation. Asset: no concrete public CE-MRI dataset or code URL is provided; the suggested first run is synthetic. Endpoint: divergence norm and tracer RMSE versus an unconstrained inverse solver. Hypothesis: Hughes-Wells constraints reduce conservation error. The scientific test is blocked by missing public data/artifact.",
+      "repair_needed": "Identify a downloadable CE-MRI tracer dataset and an inverse-solver implementation or provide a reproducible synthetic benchmark as the declared public artifact.",
+      "fatal_blocker": "No concrete public data or code artifact is specified for the actual glymphatic reconstruction task."
+    },
+    {
+      "candidate_id": "cand_3ccc05297dfaafa6",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: SEQUOR says current LLMs have key limitations, but no specific limitation is selected. Asset: SEQUOR repositories are listed. Endpoint: generic accuracy against the reported protocol. Hypothesis: an unspecified ablation should improve a limitation. This is too generic to falsify or execute independently.",
+      "repair_needed": "Choose a specific SEQUOR failure mode and intervention with a fixed metric and model set.",
+      "fatal_blocker": "Missing concrete hypothesis and intervention."
+    },
+    {
+      "candidate_id": "cand_41df9d0c380d0602",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: the paper states that predicting MAST failure modes from configuration specification appears feasible. Asset: public coordination-experiment harness, coordination-traces-100, and related ForesightFlow repositories. Endpoint: FM-3/FM-2 failure ratio by coordination configuration. Hypothesis: sequential pipelines show more verification-gap failures than all-to-all peer critique. The 20-market subset run is bounded.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_5d786dd0a725c63a",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: homogenized glymphatic approximations can attenuate local velocity peaks and create scale mismatch. Asset: the high-resolution vasculature dataset is only described vaguely and no code/data URL is provided. Endpoint: peak velocity recovery ratio versus linear FEM. Hypothesis: higher-order B-splines recover sub-voxel peaks. The first 24h experiment is a synthetic interpolation toy, not the stated public benchmark.",
+      "repair_needed": "Provide a specific public paired high-resolution vasculature and CE-MRI artifact, or narrow the claim to a synthetic benchmark with declared ground truth.",
+      "fatal_blocker": "Missing concrete public data/artifact for the real scale-mismatch claim."
+    },
+    {
+      "candidate_id": "cand_f33f505f08311f7a",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: A-CODE may extend to non-canonical amino acids, while the paper notes no widely acknowledged ncAA datasets or benchmarks. Asset: no code or data URL is listed. Endpoint: generic pre-registered benchmark delta versus reported protocol. Hypothesis: a placeholder ablation would test the extension. This fails the public artifact and metric requirements.",
+      "repair_needed": "Supply a public A-CODE artifact and a concrete ncAA benchmark or choose an existing canonical-amino-acid ablation with a standard designability metric.",
+      "fatal_blocker": "No public artifact and no accepted ncAA benchmark are specified."
+    },
+    {
+      "candidate_id": "cand_b6afc90200b7bb23",
+      "frontier_label": "C",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: coding innovations may suffer strategic collapse under multichannel failures. Asset: Facebook EGG is a public emergent-communication toolkit. Endpoint: topographic similarity, code stability, and task success versus a simple sender-receiver baseline. Hypothesis: signaling cost/noise destabilizes symbolic coding. Although executable, the framing is speculative and overlaps crowded emergent-communication benchmarks, so I would not prioritize it as A.",
+      "repair_needed": "Narrow the speculative Great Filter framing to a standard emergent-communication question with a pre-registered environment, seeds, and statistical test.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_7688b88e342cb07b",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: RBPF uncertainty can make obfuscation infeasible under tight tracking-envelope constraints. Asset: only generic PyBullet/OpenAI Gym navigation simulators are named, with no paper code URL. Endpoint: adversary belief KL or posterior entropy versus CLF/legibility baselines. Hypothesis: a tight tracking bound forces finite-time goal revelation. The model is concrete, but the runnable public artifact is underspecified.",
+      "repair_needed": "Name or provide a public PCBF/RBPF implementation and fixed 2D navigation benchmark with solver settings.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_789ae1fd321fbfbf",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: A-CODE has unspecified limitations, and ncAA evaluation is preliminary. Asset: no public code/data URL is listed. Endpoint: generic pre-registered benchmark delta. Hypothesis: a placeholder ablation would compare against the reported baseline. The candidate lacks specificity and public artifacts.",
+      "repair_needed": "Replace the placeholder with a named A-CODE limitation, public artifact, baseline, and metric.",
+      "fatal_blocker": "Missing concrete intervention, public artifact, and measurable endpoint."
+    },
+    {
+      "candidate_id": "cand_3b9bff60df4d2be4",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: PINN losses are ill-conditioned and isotropic evolutionary methods struggle on stiff landscapes. Asset: public adam-dls repository with DLS machinery and synthetic PDE/PINN setup. Endpoint: PDE residual MSE versus isotropic SGA/GO-EA. Hypothesis: L-BFGS-preconditioned DLS converges faster while preserving evolutionary interpretation. A simple Burgers-equation PINN pilot is feasible in 24-72h.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_c0548a37dc7e45da",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: the paper calls for numerical and hardware validation of PCBF intent privacy. Asset: only ROS/Gazebo and generic TurtleBot hardware are named, with no public experimental dataset or code. Endpoint: empirical adversary success versus nominal CLF-CBF. Hypothesis: real sensor noise may relax PCBF requirements. The actual hardware claim cannot be tested safely in 24-72h from public artifacts.",
+      "repair_needed": "Provide a public ROS/Gazebo implementation and logged robot trajectories, or re-scope to simulation-only validation.",
+      "fatal_blocker": "Requires unavailable hardware validation or an absent public logged dataset."
+    },
+    {
+      "candidate_id": "cand_677f70aeddfaa363",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: latent protein generative models can be limited by structure VAE recovery of all-atom structures. Asset: no code/data URL is listed for A-CODE or the baselines. Endpoint: generic accuracy or benchmark improvement. Hypothesis: a placeholder ablation would test all-atom recovery. This lacks a concrete public artifact, metric, and intervention.",
+      "repair_needed": "Name the exact public protein design benchmark, VAE baseline artifact, and all-atom recovery metric.",
+      "fatal_blocker": "No public artifact and no executable ablation are specified."
+    },
+    {
+      "candidate_id": "cand_ccfd43f1b3255750",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: otter dispersal along rivers/coasts makes resistance-based connectivity more relevant than Euclidean distance. Asset: PB-DOM GitHub plus public French occurrence/environmental layers named in the candidate. Endpoint: WAIC, deviance, and environmental coefficient shifts versus the Euclidean dynamic occupancy model. Hypothesis: river-network least-cost connectivity separates dispersal history from habitat selection. The first-day sparse LCP matrix pilot is bounded.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_03cb35d6176d32ea",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: clock synchronization would enable absolute ToF and finer ranging/SLAM. Asset: public 60GHz-RFSoC-Dataset with 350 measurement points. Endpoint: ranging MAE or localization RMSE versus RSSI/intensity-only localization. Hypothesis: geometry-aware synchronization can recover pseudo-absolute ToF from spatial consistency. The phase-stability analysis at fixed positions is a clear 24h first run.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_4fe94615be9f8394",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: the paper leaves a tighter Bernstein-style stochastic-cost bound for future work. Asset: only general agent/tool repositories are listed, not an author artifact or cost-trace dataset. Endpoint: mismatched generic safety success/failure or benchmark delta. Hypothesis: a placeholder ablation would improve the protocol. The statistical claim is not tied to a measurable public dataset.",
+      "repair_needed": "Provide logged per-step cost traces and define the Bernstein-bound evaluation against the existing Azuma-Hoeffding bound.",
+      "fatal_blocker": "Missing concrete data/artifact and endpoint for the stochastic-cost bound."
+    },
+    {
+      "candidate_id": "cand_16a2c07ece632733",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: RadioUNet trained on random samples degrades sharply on trajectory samples, indicating trajectory-induced distribution shift. Asset: public RadioMapSeer repository. Endpoint: NMSE versus a standard RadioUNet baseline on trajectory masks. Hypothesis: TGPP-style geometry guidance improves off-trajectory reconstruction. Generating masks and training/evaluating a small RadioUNet pilot is feasible in 24-72h.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_45b2c350dd6374bb",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: future extensions may include dynamic measurements with moving agents for Doppler and temporal evolution. Asset: the public 60GHz-RFSoC static dataset. Endpoint: beam tracking accuracy or SINR loss versus static beam selection. Hypothesis: dense static scans can synthesize dynamic trajectories. The public data lack true motion/Doppler ground truth, so the proposed pseudo-dynamic test cannot falsify the stated dynamic-measurement claim.",
+      "repair_needed": "Use an actual public dynamic mmWave dataset or restrict the claim to spatial interpolation without Doppler conclusions.",
+      "fatal_blocker": "Missing dynamic/Doppler evaluation data for the candidate's core claim."
+    },
+    {
+      "candidate_id": "cand_f8cb3bd455807a77",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: future work names SWE-bench Pro/LiveCodeBench runs, richer complexity signals, KVCOMM composition, and a learned router. Asset: public benchmark/framework repositories are listed. Endpoint: currently only a generic benchmark delta versus the reported protocol. Hypothesis: one of the proposed extensions should improve multi-agent code generation under budget. It needs narrowing before it is executable.",
+      "repair_needed": "Select one extension and one public benchmark subset, define pass@1/cost/conservation metrics, and specify the baseline topology/router.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_f6f4647738d36aae",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: MC Dropout contributes negligibly to the uncertainty budget and seed/split robustness is a natural extension. Asset: public Actuarial-DS-Portfolio Hybrid-Lift code and HMD data path. Endpoint: epistemic uncertainty share or e0 prediction standard deviation versus MC Dropout. Hypothesis: deep ensembles expose more epistemic uncertainty in longevity forecasts. Running 5-10 seeded trainings is a bounded 24-72h experiment.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_8bdfda98e6ee5a29",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: Hybrid-Lift shows conservative bias during the 2020 pandemic shock and Gaussian process noise may miss fat tails. Asset: public Actuarial-DS-Portfolio repository and HMD scripts. Endpoint: MASE and VaR 99.5 percent violation count versus Gaussian process noise. Hypothesis: Student-t or Levy noise improves shock coverage and reduces bias. A single-country Student-t backtest is a clear 24h run.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_d3ae4e0e9aa9e864",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: distribution shift from unfamiliar repositories or unsupported tree-sitter languages degrades the complexity vector and narrows RGAO's advantage. Asset: public agent/benchmark repositories are listed, but no author artifact or fixed shifted slice is specified. Endpoint: generic benchmark delta. Hypothesis: a distribution-shift ablation should quantify RGAO degradation. This is trackable but not yet a concrete run.",
+      "repair_needed": "Define the exact shifted language/repository subset, baseline topology, and pass-rate/cost metric using a public benchmark.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_08d6b9c057b61cc3",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: ORBIT aggregates attention within condition/cell type and therefore cannot model nucleus-to-nucleus co-activation variability. Asset: Synapse Morabito AD snRNA-seq atlas is listed, but no ORBIT code artifact or credential-free subset is provided. Endpoint: correlation of per-nucleus attention variance with pathology versus aggregated ORBIT. Hypothesis: hierarchical per-nucleus attention reveals pre-rewiring subpopulations. The concept is strong but the artifact/access path is not turnkey.",
+      "repair_needed": "Provide ORBIT code plus a directly accessible preprocessed subset or confirm the Synapse dataset access requirements and minimal pilot split.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_6f4abc67c772de1d",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: Hybrid-Lift omits explicit country-specific terms and may understate cross-country divergence. Asset: public Actuarial-DS-Portfolio Hybrid-Lift code and HMD data path. Endpoint: e0 RMSE/MBE for Sweden and West Germany versus common-factor-only reconstruction. Hypothesis: residual country-specific LSTMs capture persistent unit-root dynamics. The residual extraction and ADF test is an immediate first-day check.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_80d2f8115f6604d6",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: biological interpretation of covariance dynamics under DLS is named as future work. Asset: adam-dls is listed. Endpoint: only a generic pre-registered benchmark delta. Hypothesis: a placeholder ablation would measure biological interpretation. This is not a falsifiable calibration experiment as stated.",
+      "repair_needed": "Define a concrete covariance diagnostic, biological interpretation criterion, baseline optimizer, and measurable success metric.",
+      "fatal_blocker": "The key outcome, biological interpretation, is not operationalized."
+    },
+    {
+      "candidate_id": "cand_64eff7f97fb029fc",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence: ZIBM requires pre-specifying mixture components and future work includes data-driven component selection. Asset: public Arthur et al. CRC microbiome BioProject PRJNA190557. Endpoint: BIC and mediator detection versus fixed-component ZIBM. Hypothesis: a Dirichlet-process beta mixture selects components better and improves sensitivity. A top-10-taxa Gibbs-sampler pilot is feasible in 24-72h.",
+      "repair_needed": "None.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_fedf342165c1138e",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: the candidate centers on correcting winner's curse in adaptive benchmarking, but the evidence span is only a title-level statement. Asset: MMLU is linked, yet no public table of repeated prompt/model results or held-out leaderboard outcomes is specified. Endpoint: MAE between predicted and actual held-out performance versus raw max. Hypothesis: shrinkage reduces adaptive-selection bias. The statistical idea is good, but the required evaluation artifact is missing.",
+      "repair_needed": "Identify a public logged benchmark-results dataset with repeated prompts/models and a held-out split, or reduce the first run to a fully specified simulation.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_b1aea8a0f9f2ddc0",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence: the paper critiques superficial biological metaphors and little algorithmic innovation. Asset: adam-dls is listed. Endpoint: generic benchmark delta versus reported protocol. Hypothesis: a placeholder ablation would address the paradox of success. The critique is not turned into a falsifiable public-data experiment.",
+      "repair_needed": "Turn the critique into a concrete benchmark, such as classifying named optimizer variants by DLS compliance and measuring performance/fidelity tradeoffs.",
+      "fatal_blocker": "Missing falsifiable hypothesis and measurable endpoint."
+    }
+  ],
+  "top_a_candidate_ids": [
+    "cand_a1377ec16fb0803c",
+    "cand_16a2c07ece632733",
+    "cand_f6f4647738d36aae",
+    "cand_8bdfda98e6ee5a29",
+    "cand_41df9d0c380d0602",
+    "cand_6093a37f93231fce",
+    "cand_64eff7f97fb029fc"
+  ],
+  "notes": [
+    "Applied a strict A threshold: public data or artifact, concrete metric, baseline, hypothesis, and bounded 24-72h path all had to be present.",
+    "Templated candidates with phrases such as pre-registered benchmark delta or Design a paper-specific ablation were not labeled A unless the surrounding fields made the actual experiment concrete.",
+    "Public-but-credentialed or underspecified biomedical datasets were generally labeled B unless the candidate supplied a direct runnable artifact or preprocessed subset.",
+    "Rejected candidates mainly lacked a concrete public artifact, a falsifiable intervention, or evaluation data for the stated claim."
+  ]
+}

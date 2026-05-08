@@ -1,0 +1,1125 @@
+[
+  {
+    "candidate_id": "cand_383673d4fb42b480",
+    "paper_id": "2605.06557",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning: Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-po... addresses a stated future work in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning.",
+    "evidence_spans": [
+      "Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-policy methods remains important future work.",
+      "This limitation is especially important for benchmarks intended to evaluate scaling behavior, where increasing the number of agents, tasks, or available choices may change not only task difficulty but also the structure of coordination itself.",
+      "This motivates a coordination-aware evaluation perspective, in which cooperative MARL benchmarks report process-level diagnostics that characterize how agents coordinate, in addition to their achieved return.",
+      "Existing cooperative MARL benchmarks have driven substantial progress by standardizing algorithm evaluation, including StarCraft micromanagement Samvelyan et al. ( 2019 ) , particle-world coordination tasks Lowe et al. ( 2017 ) , level-based foraging Christianos et al. ( 2020 ) , and Overcooked-style collaboration Carroll et al. ( 2019 ) .",
+      "These benchmarks capture challenges such as partial observability, communication, credit assignment, and collaborative planning."
+    ],
+    "problem_evidence_spans": [
+      "Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-policy methods remains important future work."
+    ],
+    "feasibility_evidence_spans": [
+      "This limitation is especially important for benchmarks intended to evaluate scaling behavior, where increasing the number of agents, tasks, or available choices may change not only task difficulty but also the structure of coordination itself.",
+      "This motivates a coordination-aware evaluation perspective, in which cooperative MARL benchmarks report process-level diagnostics that characterize how agents coordinate, in addition to their achieved return.",
+      "Existing cooperative MARL benchmarks have driven substantial progress by standardizing algorithm evaluation, including StarCraft micromanagement Samvelyan et al. ( 2019 ) , particle-world coordination tasks Lowe et al. ( 2017 ) , level-based foraging Christianos et al. ( 2020 ) , and Overcooked-style collaboration Carroll et al. ( 2019 ) .",
+      "These benchmarks capture challenges such as partial observability, communication, credit assignment, and collaborative planning."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning. Then apply this intervention: Design a paper-specific ablation around this stated gap in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning: Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-po.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning: Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-po... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning: Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-po....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning: Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-po...",
+    "baseline": "The reported baseline/protocol from Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_3bd8409fb0fc809b",
+    "paper_id": "2605.01680",
+    "candidate_problem": "Inability to quantify the 'computational power' gained by societal restructuring and hierarchy during scaling",
+    "evidence_spans": [
+      "arguably, these restructurings provide greater computational power, enabling societies to solve coordination problems at previously unimaginable scales [ 105 , 184 ]",
+      "What has not traditionally been examined is the computational nature of these social processes: the resources they require, how hard they are to solve or even approximate"
+    ],
+    "problem_evidence_spans": [
+      "What has not traditionally been examined is the computational nature of these social processes: the resources they require, how hard they are to solve or even approximate"
+    ],
+    "feasibility_evidence_spans": [
+      "non-uniform complexity and distributed computing formalize constraints and structure of problem solving in real world architectures, such as Boolean circuits, capturing modularity and hierarchy"
+    ],
+    "auto_research_experiment": "Map historical social hierarchies (from the Seshat Global History Databank) to Boolean circuit depth and width. Test if the 'computational depth' of a society correlates with its ability to manage complex resource allocation tasks.",
+    "available_data_or_benchmark": "Seshat: Global History Databank.",
+    "public_training_or_eval_data": "https://seshatdatabank.info/data/",
+    "scientific_hypothesis": "Societal transition from egalitarian to hierarchical structures corresponds to a transition from shallow, wide circuits to deep, modular circuits, optimizing for communication latency over raw processing power.",
+    "expected_metric": "Circuit Depth (hierarchy levels) and Structural Complexity Index.",
+    "success_threshold": "A statistically significant correlation (p < 0.01) between Seshat complexity scores and the calculated circuit depth of the administrative hierarchy.",
+    "failure_condition": "No correlation found between administrative levels and the complexity of tasks the society successfully managed.",
+    "first_24h_experiment": "Download Seshat 'Social Complexity' variables and perform a preliminary mapping of 'Levels of Hierarchy' to a circuit depth model for 10 diverse historical polities.",
+    "specific_intervention": "Model the administrative hierarchy as a decision tree and calculate the information-theoretic entropy of the decision-making process.",
+    "baseline": "Standard allometric scaling models (e.g., Bettencourt's urban scaling).",
+    "metric": "Information processing capacity (bits per unit time).",
+    "code_or_data_urls": [
+      "https://github.com/SeshatData/seshat-data"
+    ],
+    "story_angle": "By viewing ancient empires as biological computers, we can finally explain why they 'crashed' when their administrative circuits became too deep to handle noise."
+  },
+  {
+    "candidate_id": "cand_755c72c8d07d84ba",
+    "paper_id": "2605.06557",
+    "candidate_problem": "Test whether Stress-test and mitigate scale and can help future benchmarks distinguish task performance from the coordination processes that produce it in the Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning setup addresses a stated failure mode in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning.",
+    "evidence_spans": [
+      "Coordination-aware diagnostics provide a more interpretable view of failure modes under scale and can help future benchmarks distinguish task performance from the coordination processes that produce it.",
+      "This limitation is especially important for benchmarks intended to evaluate scaling behavior, where increasing the number of agents, tasks, or available choices may change not only task difficulty but also the structure of coordination itself.",
+      "This motivates a coordination-aware evaluation perspective, in which cooperative MARL benchmarks report process-level diagnostics that characterize how agents coordinate, in addition to their achieved return.",
+      "Existing cooperative MARL benchmarks have driven substantial progress by standardizing algorithm evaluation, including StarCraft micromanagement Samvelyan et al. ( 2019 ) , particle-world coordination tasks Lowe et al. ( 2017 ) , level-based foraging Christianos et al. ( 2020 ) , and Overcooked-style collaboration Carroll et al. ( 2019 ) .",
+      "These benchmarks capture challenges such as partial observability, communication, credit assignment, and collaborative planning."
+    ],
+    "problem_evidence_spans": [
+      "Coordination-aware diagnostics provide a more interpretable view of failure modes under scale and can help future benchmarks distinguish task performance from the coordination processes that produce it."
+    ],
+    "feasibility_evidence_spans": [
+      "This limitation is especially important for benchmarks intended to evaluate scaling behavior, where increasing the number of agents, tasks, or available choices may change not only task difficulty but also the structure of coordination itself.",
+      "This motivates a coordination-aware evaluation perspective, in which cooperative MARL benchmarks report process-level diagnostics that characterize how agents coordinate, in addition to their achieved return.",
+      "Existing cooperative MARL benchmarks have driven substantial progress by standardizing algorithm evaluation, including StarCraft micromanagement Samvelyan et al. ( 2019 ) , particle-world coordination tasks Lowe et al. ( 2017 ) , level-based foraging Christianos et al. ( 2020 ) , and Overcooked-style collaboration Carroll et al. ( 2019 ) .",
+      "These benchmarks capture challenges such as partial observability, communication, credit assignment, and collaborative planning."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning. Then apply this intervention: Stress-test and mitigate scale and can help future benchmarks distinguish task performance from the coordination processes that produce it in the Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Stress-test and mitigate scale and can help future benchmarks distinguish task performance from the coordination processes that produce it in the Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate scale and can help future benchmarks distinguish task performance from the coordination processes that produce it in the Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning setup.",
+    "specific_intervention": "Stress-test and mitigate scale and can help future benchmarks distinguish task performance from the coordination processes that produce it in the Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning setup",
+    "baseline": "The reported baseline/protocol from Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_4846a8e0d6cd75fd",
+    "paper_id": "2605.06562",
+    "candidate_problem": "Lack of statistical significance in model performance comparisons due to low-power cross-validation",
+    "evidence_spans": [
+      "pairwise Wilcoxon signed-rank tests did not reach statistical significance at the 0.05 threshold (LR vs RF: p = 0.0625, LR vs SVM: p = 0.0625)",
+      "likely due to the limited statistical power of 5-fold cross-validation.",
+      "Future work using repeated cross-validation or larger datasets may provide sufficient power for formal significance testing."
+    ],
+    "problem_evidence_spans": [
+      "The observed performance differences should be interpreted as practically meaningful trends rather than formally validated conclusions."
+    ],
+    "feasibility_evidence_spans": [
+      "This study relies on a single dataset, TCGA-BRCA",
+      "External validation on an independent dataset such as METABRIC would strengthen the generalizability"
+    ],
+    "auto_research_experiment": "Perform a 10-fold repeated cross-validation (10 repeats) on the TCGA-BRCA dataset and integrate the METABRIC dataset to increase sample size and statistical power for the Wilcoxon signed-rank test.",
+    "available_data_or_benchmark": "TCGA-BRCA (The Cancer Genome Atlas Breast Invasive Carcinoma) and METABRIC (Molecular Taxonomy of Breast Cancer International Consortium).",
+    "public_training_or_eval_data": "cBioPortal (TCGA-BRCA and METABRIC RNA-seq data).",
+    "scientific_hypothesis": "Increasing the number of paired observations through repeated cross-validation and multi-cohort integration will demonstrate that Logistic Regression significantly outperforms Random Forest in macro F1 score (p < 0.05).",
+    "expected_metric": "p-value from Wilcoxon signed-rank test on Macro F1 scores.",
+    "success_threshold": "p < 0.05",
+    "failure_condition": "p >= 0.05 despite increased sample size/repeats, suggesting the models are truly indistinguishable.",
+    "first_24h_experiment": "Download METABRIC gene expression data and run a 10-fold CV with Logistic Regression and Random Forest to check if the p-value drops below 0.0625.",
+    "specific_intervention": "Repeated 10-fold cross-validation and multi-cohort (TCGA + METABRIC) data pooling.",
+    "baseline": "5-fold cross-validation on TCGA-BRCA only (as per the original paper).",
+    "metric": "Macro F1 Score",
+    "code_or_data_urls": [
+      "https://portal.gdc.cancer.gov/projects/TCGA-BRCA"
+    ],
+    "story_angle": "The 'simpler is better' hypothesis in genomics is currently a 'trend'—we can turn it into a statistically significant law by fixing the evaluation power."
+  },
+  {
+    "candidate_id": "cand_4ed086de1279dd29",
+    "paper_id": "2605.06443",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization: To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end p... addresses a stated limitation in AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization.",
+    "evidence_spans": [
+      "To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end precoding derivation directly from user-level communication requirements.",
+      "Although recent deep learning (DL)-based methods can learn precoding mappings directly from large dataset [ 7 , 24 , 25 , 2 ] and reduce the need for problem-specific derivation, they typically degrade once deployment conditions differ from the training setup and also do not explicitly capture the mathematical structure of precoding problems.",
+      "Figure 4: Feasibility matrix of AgenticPrecoding compared with baseline methods across different SNR levels."
+    ],
+    "problem_evidence_spans": [
+      "To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end precoding derivation directly from user-level communication requirements."
+    ],
+    "feasibility_evidence_spans": [
+      "Although recent deep learning (DL)-based methods can learn precoding mappings directly from large dataset [ 7 , 24 , 25 , 2 ] and reduce the need for problem-specific derivation, they typically degrade once deployment conditions differ from the training setup and also do not explicitly capture the mathematical structure of precoding problems.",
+      "Figure 4: Feasibility matrix of AgenticPrecoding compared with baseline methods across different SNR levels."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization. Then apply this intervention: Design a paper-specific ablation around this stated gap in AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization: To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end p.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization: To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end p... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization: To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end p....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization: To address this limitation, we propose AgenticPrecoding , a universal multi-agent framework that automates end-to-end p...",
+    "baseline": "The reported baseline/protocol from AgenticPrecoding: LLM-Empowered Multi-Agent System for Precoding Optimization.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_af1e0fa57ebdcb6d",
+    "paper_id": "2605.06562",
+    "candidate_problem": "Poor classification of minority and biologically overlapping subtypes (BRCA_Normal and BRCA_LumB)",
+    "evidence_spans": [
+      "Model errors were primarily concentrated in minority and biologically overlapping subtypes.",
+      "The BRCA_Normal subtype... exhibited the most variability in classification performance",
+      "The BRCA_LumB subtype also demonstrated reduced performance compared to BRCA_LumA, suggesting partial overlap"
+    ],
+    "problem_evidence_spans": [
+      "Random forest consistently underperformed on this class",
+      "classification errors are driven by both class imbalance and intrinsic biological similarity"
+    ],
+    "feasibility_evidence_spans": [
+      "More advanced techniques for handling class imbalance, such as synthetic oversampling or cost-sensitive learning, could improve performance"
+    ],
+    "auto_research_experiment": "Implement SMOTE (Synthetic Minority Over-sampling Technique) and Cost-Sensitive Logistic Regression to penalize misclassification of BRCA_Normal and LumB subtypes.",
+    "available_data_or_benchmark": "TCGA-BRCA RNA-seq data with PAM50 labels.",
+    "public_training_or_eval_data": "TCGA-BRCA via GDC Data Portal.",
+    "scientific_hypothesis": "Cost-sensitive learning will improve the per-class F1 score for BRCA_Normal by at least 15% compared to standard Logistic Regression without degrading overall accuracy.",
+    "expected_metric": "Per-class F1 score for BRCA_Normal and BRCA_LumB.",
+    "success_threshold": "F1 score for BRCA_Normal > 0.75 (currently 'variable/moderate').",
+    "failure_condition": "Overall Macro F1 decreases or BRCA_Normal F1 remains stagnant.",
+    "first_24h_experiment": "Apply SMOTE to the TCGA-BRCA training folds and evaluate a Logistic Regression model specifically on the BRCA_Normal class recall.",
+    "specific_intervention": "SMOTE oversampling and Cost-Sensitive Learning (class_weight='balanced').",
+    "baseline": "Standard Logistic Regression with variance-based feature selection (paper's best model).",
+    "metric": "Per-class F1 Score",
+    "code_or_data_urls": [
+      "https://github.com/cBioPortal/cbioportal"
+    ],
+    "story_angle": "We are missing the 'Normal-like' and 'Luminal B' cancer subtypes because they look too much like their neighbors; specialized sampling can fix this clinical blind spot."
+  },
+  {
+    "candidate_id": "cand_f5d034e578e11115",
+    "paper_id": "2605.06320",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling ... addresses a stated future work in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "evidence_spans": [
+      "The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling LATTE to tackle a broader range of open-ended reasoning tasks in future work.",
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "problem_evidence_spans": [
+      "The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling LATTE to tackle a broader range of open-ended reasoning tasks in future work."
+    ],
+    "feasibility_evidence_spans": [
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs. Then apply this intervention: Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: The current operator set could be extended to support less structured forms of task discovery and decomposition, enabling ...",
+    "baseline": "The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/emieczkowski/latte"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_d1098915eb2093e3",
+    "paper_id": "2605.06562",
+    "candidate_problem": "Variance-based feature selection captures non-discriminative biological noise",
+    "evidence_spans": [
+      "variance-based feature selection is a heuristic that does not distinguish between subtype-discriminative signal and other sources of biological or technical variation",
+      "Genes selected by variance may capture non-subtype-related variation"
+    ],
+    "problem_evidence_spans": [
+      "future work incorporating pathway-based or supervised feature selection methods may improve biological interpretability."
+    ],
+    "feasibility_evidence_spans": [
+      "exploring alternative feature selection methods beyond variance, such as pathway-based approaches, may provide more biologically interpretable results."
+    ],
+    "auto_research_experiment": "Replace variance-based filtering with a Pathway-Enriched Feature Selection (PEFS) using the MSigDB hallmark gene sets to select features with known oncogenic relevance.",
+    "available_data_or_benchmark": "TCGA-BRCA RNA-seq data and MSigDB (Molecular Signatures Database).",
+    "public_training_or_eval_data": "MSigDB hallmark gene sets (publicly available from Broad Institute).",
+    "scientific_hypothesis": "Pathway-based feature selection will yield higher model stability and better generalization to the METABRIC dataset than variance-based selection.",
+    "expected_metric": "Transfer accuracy (Model trained on TCGA, tested on METABRIC).",
+    "success_threshold": "Transfer Macro F1 improvement of > 0.05.",
+    "failure_condition": "Pathway-based features result in lower Macro F1 than variance-based features.",
+    "first_24h_experiment": "Filter TCGA-BRCA features to only include genes in the PAM50 and Hallmark Gene Sets and compare LR performance against the variance-only baseline.",
+    "specific_intervention": "Pathway-informed feature selection (MSigDB).",
+    "baseline": "Unsupervised variance-based feature selection.",
+    "metric": "Macro F1 Score",
+    "code_or_data_urls": [
+      "https://www.gsea-msigdb.org/gsea/msigdb/"
+    ],
+    "story_angle": "Stop picking genes just because they are 'loud' (high variance); pick them because they are 'meaningful' (biological pathways)."
+  },
+  {
+    "candidate_id": "cand_f52793f5b503739a",
+    "paper_id": "2605.06320",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to... addresses a stated future work in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "evidence_spans": [
+      "Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to future work.",
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "problem_evidence_spans": [
+      "Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to future work."
+    ],
+    "feasibility_evidence_spans": [
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs. Then apply this intervention: Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Third, we fix team size to benchmark fairly against baselines such as MetaGPT, leaving the question of how LATTE scales to...",
+    "baseline": "The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/emieczkowski/latte"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_4fd4df0254d66174",
+    "paper_id": "2605.00545",
+    "candidate_problem": "Intractability of the Branching Schrödinger Bridge (BSB) semi-coupling and RUOT relaxation",
+    "evidence_spans": [
+      "A limitation of USB is that the semi-coupling of BSB and its RUOT relaxation are intractable. Consequently, we use WFR for approximation. The underlying mathematics merits further investigation."
+    ],
+    "problem_evidence_spans": [
+      "A limitation of USB is that the semi-coupling of BSB and its RUOT relaxation are intractable."
+    ],
+    "feasibility_evidence_spans": [
+      "We validated the effectiveness and robustness of the method on both synthetic and real scRNA-seq datasets",
+      "Algorithm 2 USB training workflow"
+    ],
+    "auto_research_experiment": "Develop a neural approximation of the BSB semi-coupling using a variational objective that minimizes the KL divergence between the WFR-based path and the true branching process, then compare against the current USB approximation.",
+    "available_data_or_benchmark": "scRNA-seq datasets (e.g., Waddington-OT datasets or Schiebinger et al. 2019)",
+    "public_training_or_eval_data": "https://github.com/broadinstitute/wot",
+    "scientific_hypothesis": "A learned neural semi-coupling for BSB will yield more accurate discrete cell-count predictions than the WFR approximation in systems with high proliferation rates.",
+    "expected_metric": "Earth Mover's Distance (EMD) between predicted and ground-truth cell distributions at snapshot $t_k$.",
+    "success_threshold": "15% reduction in EMD compared to the WFR-based USB baseline.",
+    "failure_condition": "The neural semi-coupling fails to converge or produces higher EMD than the static WFR approximation.",
+    "first_24h_experiment": "Implement a 1D synthetic branching process (e.g., a bifurcating Gaussian) and compare the USB (WFR-based) marginals against the exact analytical BSB marginals.",
+    "specific_intervention": "Replace the RUOT/WFR static coupling in Algorithm 2, Step 3, with a learned variational coupling specific to the BSB problem.",
+    "baseline": "USB with WFR approximation (as described in the paper).",
+    "metric": "EMD (Earth Mover's Distance)",
+    "code_or_data_urls": [],
+    "story_angle": "Bridging the gap between continuous flow matching and discrete biological branching through exact mathematical couplings."
+  },
+  {
+    "candidate_id": "cand_ffbe3cbe178f24ec",
+    "paper_id": "2605.06320",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted ... addresses a stated future work in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "evidence_spans": [
+      "Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted quality control may be key to reliable LLM team performance at scale.",
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "problem_evidence_spans": [
+      "Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted quality control may be key to reliable LLM team performance at scale."
+    ],
+    "feasibility_evidence_spans": [
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs. Then apply this intervention: Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs: Understanding and strengthening these emergent verification mechanisms is a particularly promising direction, as targeted ...",
+    "baseline": "The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/emieczkowski/latte"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_26043ce417bb735e",
+    "paper_id": "2605.00545",
+    "candidate_problem": "Sensitivity of discrete birth-death simulations to the growth penalization parameter δ",
+    "evidence_spans": [
+      "We further carry out sensitivity analyses for the growth penalization δ ( C.3 )",
+      "this assumption overlooks a fundamental characteristic of cellular proliferation and apoptosis: cell numbers are discrete values that change through jumps."
+    ],
+    "problem_evidence_spans": [
+      "We further carry out sensitivity analyses for the growth penalization δ ( C.3 )"
+    ],
+    "feasibility_evidence_spans": [
+      "Algorithm 4 Branching inference workflow",
+      "explicitly permits discrete birth-death dynamic simulations"
+    ],
+    "auto_research_experiment": "Evaluate the variance of total cell count in long-range trajectories (multiple snapshots) across different $\\delta$ values to identify a 'phase transition' where population extinction or explosion occurs.",
+    "available_data_or_benchmark": "Synthetic 'Tree' or 'Bifurcation' datasets from the TorchCFM or WFR-FM repositories.",
+    "public_training_or_eval_data": "https://github.com/facebookresearch/flow-matching",
+    "scientific_hypothesis": "The optimal growth penalization $\\delta$ is inversely proportional to the snapshot sampling frequency, and a dynamic $\\delta$ schedule improves population stability.",
+    "expected_metric": "Population Size Variance (PSV) across 100 simulation runs.",
+    "success_threshold": "PSV reduction of 40% while maintaining EMD accuracy.",
+    "failure_condition": "Dynamic $\\delta$ leads to biased growth rates that fail to match the observed mass at snapshot $t_1$.",
+    "first_24h_experiment": "Run Algorithm 4 on a synthetic dataset with known growth rates and plot the final cell count distribution for $\\delta \\in [0.01, 1.0]$.",
+    "specific_intervention": "Implement an adaptive $\\delta$ scheduler that adjusts the penalty based on the mass mismatch between $t_k$ and $t_{k+1}$.",
+    "baseline": "USB with fixed $\\delta$ (as used in the paper's sensitivity analysis).",
+    "metric": "Population Size Error (Relative Error)",
+    "code_or_data_urls": [],
+    "story_angle": "Stabilizing the 'jump' dynamics: making discrete biological simulations robust to hyperparameter sensitivity."
+  },
+  {
+    "candidate_id": "cand_9f0c0e8825d3b5c7",
+    "paper_id": "2605.06320",
+    "candidate_problem": "Test whether Evaluate fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time in the Improving the Efficiency of Language Agent Teams with Adaptive Task G... addresses a stated future work in Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "evidence_spans": [
+      "Finally, future work should explore fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time.",
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "problem_evidence_spans": [
+      "Finally, future work should explore fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time."
+    ],
+    "feasibility_evidence_spans": [
+      "Recent work has shown that LLM teams can improve accuracy and problem-solving by distributing tasks, roles, and context across multiple agents [ 2 , 5 , 29 , 49 , 56 , 61 ] , demonstrating emergent coordination [ 38 ] .",
+      "Empirical validation: LATTE consistently reduces token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and total output all while achieving higher accuracy than alternatively-structured and widely-used LLM team implementations.",
+      "Griffiths 1 1 Princeton University 2 University of Cambridge 3 MIT 4 New York University Code: https://github.com/emieczkowski/latte Abstract Large language models (LLMs) are increasingly deployed in teams, yet existing coordination approaches often occupy two extremes.",
+      "In contrast, fully unstructured teams enable adaptability and exploration but suffer from inefficiencies such as error propagation, inter-agent conflicts, and wasted resources (measured in time, tokens, or file operations)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs. Then apply this intervention: Evaluate fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time in the Improving the Efficiency of Language Agent Teams with Adaptive Task G.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Evaluate fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time in the Improving the Efficiency of Language Agent Teams with Adaptive Task G... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Evaluate fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time in the Improving the Efficiency of Language Agent Teams with Adaptive Task G....",
+    "specific_intervention": "Evaluate fine-tuning or reinforcement learning on coordination outcomes, allowing teams to learn better graph constructions, task assignments, and communication protocols over time in the Improving the Efficiency of Language Agent Teams with Adaptive Task G...",
+    "baseline": "The reported baseline/protocol from Improving the Efficiency of Language Agent Teams with Adaptive Task Graphs.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/emieczkowski/latte"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_67151920862913d2",
+    "paper_id": "2605.02954",
+    "candidate_problem": "Lack of standardized benchmarking for exploratory genotype-phenotype prediction (GPP) frameworks across diverse species and trait types.",
+    "evidence_spans": [
+      "EFGPP: Exploratory framework for genotype-phenotype prediction"
+    ],
+    "problem_evidence_spans": [
+      "EFGPP: Exploratory framework for genotype-phenotype prediction"
+    ],
+    "feasibility_evidence_spans": [
+      "this https URL"
+    ],
+    "auto_research_experiment": "Evaluate the EFGPP framework against established GPP models (e.g., DeepGS, GBLUP) using the public Rice7K or Arabidopsis Thaliana datasets to establish a performance baseline.",
+    "available_data_or_benchmark": "Rice7K (genomic and phenotypic data for Oryza sativa)",
+    "public_training_or_eval_data": "https://github.com/ricardobio/Rice7K",
+    "scientific_hypothesis": "The EFGPP framework's exploratory feature selection improves prediction accuracy for polygenic traits compared to standard ridge regression (GBLUP) by identifying non-linear SNP interactions.",
+    "expected_metric": "Pearson Correlation Coefficient (PCC) between predicted and observed phenotypes.",
+    "success_threshold": "PCC > 0.65 on the Rice7K validation set, outperforming GBLUP by at least 5%.",
+    "failure_condition": "EFGPP fails to outperform simple linear models or shows high variance across different trait categories (e.g., yield vs. flowering time).",
+    "first_24h_experiment": "Clone the EFGPP repository, download the Rice7K dataset, and run the default training script on a single trait (e.g., grain length) to verify the pipeline execution.",
+    "specific_intervention": "Apply EFGPP's exploratory feature selection module to the Rice7K SNP matrix before training the prediction head.",
+    "baseline": "GBLUP (Genomic Best Linear Unbiased Prediction)",
+    "metric": "Mean Squared Error (MSE) and Pearson Correlation Coefficient (PCC)",
+    "code_or_data_urls": [
+      "https://github.com/ricardobio/EFGPP"
+    ],
+    "story_angle": "Bridging the gap between raw genomic data and phenotypic outcomes through a new exploratory framework."
+  },
+  {
+    "candidate_id": "cand_899d68ffa911fc45",
+    "paper_id": "2605.05703",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Characterizing this remains future work. addresses a stated future work in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "Characterizing this remains future work.",
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "problem_evidence_spans": [
+      "Characterizing this remains future work."
+    ],
+    "feasibility_evidence_spans": [
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems. Then apply this intervention: Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Characterizing this remains future work.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Characterizing this remains future work. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Characterizing this remains future work..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Characterizing this remains future work.",
+    "baseline": "The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_e670ee12b3c0fbfc",
+    "paper_id": "2605.01378",
+    "candidate_problem": "Implementation-level parsing failure for KEGG database phenotype-to-gene retrieval",
+    "evidence_spans": [
+      "KEGG and DisGeNET require cautious interpretation in the current benchmark. KEGG returned source-level records for some phenotypes, but these produced zero validated genes after the current parsing and symbol-validation step, indicating an implementation-level parsing limitation."
+    ],
+    "problem_evidence_spans": [
+      "indicating an implementation-level parsing limitation"
+    ],
+    "feasibility_evidence_spans": [
+      "The tool is intended as an upstream triage layer: it generates analysis-ready candidate gene sets and source-support summaries",
+      "this https URL"
+    ],
+    "auto_research_experiment": "Develop a robust regex or JSON parser specifically for KEGG's 'Disease' and 'Network' entry formats to extract hsa-prefixed gene identifiers and map them to NCBI symbols.",
+    "available_data_or_benchmark": "The 13-phenotype benchmark set described in the paper (including phenotypes where KEGG returned raw records).",
+    "public_training_or_eval_data": "KEGG REST API (public) and the PhenotypeToGeneDownloaderR R package source code.",
+    "scientific_hypothesis": "A specialized parsing module for KEGG's hierarchical data structure will increase the tool's total gene yield and phenotype coverage without decreasing the 87.6% symbol validation rate.",
+    "expected_metric": "KEGG Success Rate (%)",
+    "success_threshold": ">= 80%",
+    "failure_condition": "KEGG Success Rate remains below 40% or validation rate for KEGG-sourced genes drops below 50%.",
+    "first_24h_experiment": "Manually inspect the 'raw' records returned by the current KEGG module for one phenotype (e.g., Type 2 Diabetes) and write a prototype R function to extract gene symbols from the 'GENE' field.",
+    "specific_intervention": "Replace the current KEGG parsing logic in the R package with a structured field extractor for KEGG REST API responses.",
+    "baseline": "The current PhenotypeToGeneDownloaderR KEGG module (38.5% success rate, 0 validated genes).",
+    "metric": "Number of validated genes retrieved from KEGG across the 13 benchmark phenotypes.",
+    "code_or_data_urls": [
+      "https://github.com/MuhammadMuneeb007/PhenotypeToGeneDownloaderR"
+    ],
+    "story_angle": "Fixing the 'broken link' in a multi-source biological pipeline to unlock KEGG's pathway-rich gene associations."
+  },
+  {
+    "candidate_id": "cand_600a197297868400",
+    "paper_id": "2605.05703",
+    "candidate_problem": "Test whether Evaluate extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies in the Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems setup addresses a stated future work in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "Future work will also include extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies.",
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "problem_evidence_spans": [
+      "Future work will also include extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies."
+    ],
+    "feasibility_evidence_spans": [
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems. Then apply this intervention: Evaluate extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies in the Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Evaluate extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies in the Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Evaluate extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies in the Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems setup.",
+    "specific_intervention": "Evaluate extending the framework to unlabeled-task settings, studying vector-valued utility estimation, and developing more practical reuse strategies in the Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems setup",
+    "baseline": "The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_b20126c54834d271",
+    "paper_id": "2605.01378",
+    "candidate_problem": "Lack of DisGeNET integration due to missing API credential handling",
+    "evidence_spans": [
+      "DisGeNET returned no genes across the evaluated phenotypes because API access was required but was not available during these runs. These results are therefore reported as access or implementation limitations"
+    ],
+    "problem_evidence_spans": [
+      "DisGeNET returned no genes across the evaluated phenotypes because API access was required but was not available"
+    ],
+    "feasibility_evidence_spans": [
+      "DisGeNET Pinero2020",
+      "The tool is intended as an upstream triage layer"
+    ],
+    "auto_research_experiment": "Implement an API key management system within the R package to allow users to provide DisGeNET credentials, enabling the retrieval of curated disease-gene associations.",
+    "available_data_or_benchmark": "DisGeNET v7.0 public API and the paper's 13-phenotype gold standard.",
+    "public_training_or_eval_data": "DisGeNET (disgenet.org) and the PhenotypeToGeneDownloaderR codebase.",
+    "scientific_hypothesis": "Integrating DisGeNET via authenticated API will significantly improve the 'Precision@20' for phenotypes where GWAS evidence is sparse.",
+    "expected_metric": "DisGeNET Success Rate (%)",
+    "success_threshold": "100% (for phenotypes present in DisGeNET)",
+    "failure_condition": "API authentication fails to return valid JSON or the DisGeNET module still returns 0 genes after key integration.",
+    "first_24h_experiment": "Register for a DisGeNET API key and test a manual curl request for 'Asthma' to verify the data format against the package's expected input.",
+    "specific_intervention": "Add an 'api_key' parameter to the DisGeNET retrieval function and update the header construction to include the Bearer token.",
+    "baseline": "Current DisGeNET module (0% success rate, 0 genes).",
+    "metric": "Total unique genes retrieved from DisGeNET across the benchmark phenotypes.",
+    "code_or_data_urls": [
+      "https://github.com/MuhammadMuneeb007/PhenotypeToGeneDownloaderR"
+    ],
+    "story_angle": "Bridging the gap between open-source tools and restricted-access biological databases."
+  },
+  {
+    "candidate_id": "cand_a038778d4b3371ae",
+    "paper_id": "2605.05703",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative... addresses a stated failure mode in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative for updating communication structure, making optimization under limited training budgets often unstable and highly sensitive to the particular training set.",
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "problem_evidence_spans": [
+      "However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative for updating communication structure, making optimization under limited training budgets often unstable and highly sensitive to the particular training set."
+    ],
+    "feasibility_evidence_spans": [
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems. Then apply this intervention: Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: However, tasks may differ substantially in difficulty and domain, and thus they are not equally informative...",
+    "baseline": "The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_5f676714101c4583",
+    "paper_id": "2605.00930",
+    "candidate_problem": "High computational latency of MCMC-based steering for real-time in-silico drug screening in multi-omics foundation models.",
+    "evidence_spans": [
+      "Inference-Time MCMC Steering"
+    ],
+    "problem_evidence_spans": [
+      "Inference-Time MCMC Steering"
+    ],
+    "feasibility_evidence_spans": [
+      "Multi-Omics Single-Cell Foundation Model"
+    ],
+    "auto_research_experiment": "Implement a distilled student model that learns the MCMC-steered distribution to accelerate inference by 100x.",
+    "available_data_or_benchmark": "Perturb-seq datasets (e.g., Adamson et al., 2016) or the scPerturb database.",
+    "public_training_or_eval_data": "https://scperturb.org/",
+    "scientific_hypothesis": "A knowledge distillation approach can capture the posterior distribution of the MCMC steering process in a single forward pass without significant loss in perturbation accuracy.",
+    "expected_metric": "Inference time per cell state prediction.",
+    "success_threshold": "10x speedup with <5% increase in Mean Squared Error (MSE) compared to the MCMC baseline.",
+    "failure_condition": "The student model fails to capture the multimodal nature of cell state transitions, leading to collapsed or average-state predictions.",
+    "first_24h_experiment": "Profile the current MCMC steering latency on a subset of 1,000 genes and train a simple MLP regressor on the MCMC outputs to test initial distillation feasibility.",
+    "specific_intervention": "Distillation of the MCMC-steered foundation model into a feed-forward neural network.",
+    "baseline": "Standard MCMC steering as described in CellxPert.",
+    "metric": "Pearson correlation between predicted and ground-truth gene expression changes.",
+    "code_or_data_urls": [],
+    "story_angle": "Accelerating the discovery of synergistic drug combinations by making in-silico cell steering computationally cheap."
+  },
+  {
+    "candidate_id": "cand_c9af7b2f60eac41d",
+    "paper_id": "2605.05703",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Our method has several limitations. addresses a stated limitation in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "Our method has several limitations.",
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "problem_evidence_spans": [
+      "Our method has several limitations."
+    ],
+    "feasibility_evidence_spans": [
+      "Such empirical designs of communication structures have negative impacts on downstream performance of LLM-MAS, e.g., efficiency, accuracy, stability, and robustness.",
+      "Therefore, a small set of randomly selected training tasks may not well represent the overall task pool, potentially reducing the robustness of the learned structure and leading to unreliable downstream accuracy.",
+      "We validate our framework on multiple benchmarks under both benign and adversarial settings.",
+      "Experimental results show that, relative to random training, our method not only improves mean downstream accuracy (+1.45 on MMLU and +0.93 on GSM8K under agent attacks), but also substantially improves the stability and robustness of structure optimization (+1.30 and +0.71 points in worst-25% accuracy on MMLU and GSM8K in the benign setting)."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems. Then apply this intervention: Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Our method has several limitations.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Our method has several limitations. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Our method has several limitations..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems: Our method has several limitations.",
+    "baseline": "The reported baseline/protocol from Active Learning for Communication Structure Optimization in LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_13b6e0f1d2a3a595",
+    "paper_id": "2605.00930",
+    "candidate_problem": "Inaccuracy in cross-modality steering (e.g., using ATAC-seq signals to steer RNA-seq outputs) due to modality-specific noise in foundation models.",
+    "evidence_spans": [
+      "Multi-Omics Single-Cell Foundation Model"
+    ],
+    "problem_evidence_spans": [
+      "Multi-Omics"
+    ],
+    "feasibility_evidence_spans": [
+      "In-Silico Perturbation"
+    ],
+    "auto_research_experiment": "Evaluate steering accuracy when the target state is defined in a different modality than the primary input, using paired multi-omics data.",
+    "available_data_or_benchmark": "NeurIPS 2021 Multi-modal Single-Cell Data Integration benchmark.",
+    "public_training_or_eval_data": "https://www.kaggle.com/competitions/open-problems-multimodal/data",
+    "scientific_hypothesis": "Incorporating a cross-modality prior into the MCMC energy function improves the biological plausibility of steered multi-omics states.",
+    "expected_metric": "Cross-modality alignment score (FOSCTTM).",
+    "success_threshold": "20% improvement in predicting RNA expression from steered ATAC-seq profiles compared to unguided foundation model output.",
+    "failure_condition": "The MCMC process diverges due to conflicting gradients between the two modalities.",
+    "first_24h_experiment": "Run the CellxPert steering logic on the NeurIPS multi-modal dataset and measure the correlation between steered ATAC and observed RNA.",
+    "specific_intervention": "Adding a regulatory-network-based constraint to the MCMC acceptance criteria.",
+    "baseline": "Vanilla CellxPert MCMC steering.",
+    "metric": "Mean Squared Error (MSE) of predicted gene expression.",
+    "code_or_data_urls": [],
+    "story_angle": "Bridging the gap between DNA accessibility and gene expression to create more realistic 'digital twins' of cells."
+  },
+  {
+    "candidate_id": "cand_a0e31e299a00d11a",
+    "paper_id": "2605.06595",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Cross-Modal Navigation with Multi-Agent Reinforcement Learning: Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) . addresses a stated failure mode in Cross-Modal Navigation with Multi-Agent Reinforcement Learning.",
+    "evidence_spans": [
+      "Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) .",
+      "We construct a multi-modal collaborative navigation benchmark based on diverse Matterport3D scenes, as illustrated in Figure 1 .",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain when and why they emerge, respectively.",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain ...",
+      "The prompt templates used in our benchmark are listed below."
+    ],
+    "problem_evidence_spans": [
+      "Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) ."
+    ],
+    "feasibility_evidence_spans": [
+      "We construct a multi-modal collaborative navigation benchmark based on diverse Matterport3D scenes, as illustrated in Figure 1 .",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain when and why they emerge, respectively.",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain ...",
+      "The prompt templates used in our benchmark are listed below."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Cross-Modal Navigation with Multi-Agent Reinforcement Learning. Then apply this intervention: Design a paper-specific ablation around this stated gap in Cross-Modal Navigation with Multi-Agent Reinforcement Learning: Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) .. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Cross-Modal Navigation with Multi-Agent Reinforcement Learning: Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) . against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Cross-Modal Navigation with Multi-Agent Reinforcement Learning: Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) ..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Cross-Modal Navigation with Multi-Agent Reinforcement Learning: Low-quality and misaligned training signals can make policy learning unstable and ineffective Tsai et al. ( 2019 ); Jia et al. ( 2021 ) .",
+    "baseline": "The reported baseline/protocol from Cross-Modal Navigation with Multi-Agent Reinforcement Learning.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_70b341df01ce701c",
+    "paper_id": "2605.02248",
+    "candidate_problem": "Computational inefficiency in estimating high-dimensional multi-factor function statistics directly from sparse Fourier coefficients without full reconstruction.",
+    "evidence_spans": [
+      "Statistics of a multi-factor function from its Fourier transform"
+    ],
+    "problem_evidence_spans": [
+      "Statistics of a multi-factor function from its Fourier transform"
+    ],
+    "feasibility_evidence_spans": [
+      "42 pages, 6 figures"
+    ],
+    "auto_research_experiment": "Implement a Fourier-domain estimator for the variance and skewness of a multi-factor synthetic function and compare its convergence rate against Monte Carlo sampling in the spatial domain.",
+    "available_data_or_benchmark": "Synthetic multi-factor functions (e.g., Friedman functions or Sobol sequences) available via Scikit-Learn or standard global optimization benchmarks.",
+    "public_training_or_eval_data": "Scikit-learn 'make_friedman1' dataset generator.",
+    "scientific_hypothesis": "The moments of a multi-factor function can be estimated with lower variance from a subset of its largest Fourier coefficients than from an equivalent number of spatial samples.",
+    "expected_metric": "Mean Squared Error (MSE) of the estimated variance.",
+    "success_threshold": "Fourier-domain estimator achieves 20% lower MSE than spatial Monte Carlo for the same number of data points.",
+    "failure_condition": "Spectral leakage or high-frequency noise renders the Fourier-domain estimator biased beyond the spatial sampling error.",
+    "first_24h_experiment": "Generate a 10-factor synthetic function, compute its FFT, and compare the variance calculated from the top 5% of coefficients against a 1000-point spatial sample.",
+    "specific_intervention": "Apply the Fourier-based statistical estimation formula derived in the paper to sparse spectral data.",
+    "baseline": "Standard Monte Carlo integration in the spatial domain.",
+    "metric": "Relative Error in Variance Estimation",
+    "code_or_data_urls": [],
+    "story_angle": "Bridging the gap between signal processing and statistical learning by bypassing the need for full signal reconstruction."
+  },
+  {
+    "candidate_id": "cand_89d544bc3a98f8c5",
+    "paper_id": "2605.06595",
+    "candidate_problem": "Test whether Stress-test and mitigate future exploration in the Cross-Modal Navigation with Multi-Agent Reinforcement Learning setup addresses a stated limitation in Cross-Modal Navigation with Multi-Agent Reinforcement Learning.",
+    "evidence_spans": [
+      "Limitations This work has several limitations that suggest directions for future exploration.",
+      "We construct a multi-modal collaborative navigation benchmark based on diverse Matterport3D scenes, as illustrated in Figure 1 .",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain when and why they emerge, respectively.",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain ...",
+      "The prompt templates used in our benchmark are listed below."
+    ],
+    "problem_evidence_spans": [
+      "Limitations This work has several limitations that suggest directions for future exploration."
+    ],
+    "feasibility_evidence_spans": [
+      "We construct a multi-modal collaborative navigation benchmark based on diverse Matterport3D scenes, as illustrated in Figure 1 .",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain when and why they emerge, respectively.",
+      "Our core contributions are summarized as follows: (i) we construct a collaborative navigation benchmark where multi-modal agents collaborate to navigate; (ii) we propose CRONA, a MARL framework for cross-modal navigation; (iii) we identify five dominance patterns in our experiments and explain ...",
+      "The prompt templates used in our benchmark are listed below."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Cross-Modal Navigation with Multi-Agent Reinforcement Learning. Then apply this intervention: Stress-test and mitigate future exploration in the Cross-Modal Navigation with Multi-Agent Reinforcement Learning setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Stress-test and mitigate future exploration in the Cross-Modal Navigation with Multi-Agent Reinforcement Learning setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate future exploration in the Cross-Modal Navigation with Multi-Agent Reinforcement Learning setup.",
+    "specific_intervention": "Stress-test and mitigate future exploration in the Cross-Modal Navigation with Multi-Agent Reinforcement Learning setup",
+    "baseline": "The reported baseline/protocol from Cross-Modal Navigation with Multi-Agent Reinforcement Learning.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_644fa5089a6ec154",
+    "paper_id": "2605.06598",
+    "candidate_problem": "Inaccurate oscillation shape and disproportionate phase durations in Drosophila embryonic cell cycle models",
+    "evidence_spans": [
+      "Not so well represented was the shape of the oscillations. In particular, the M phases were much shorter than the S phases."
+    ],
+    "problem_evidence_spans": [
+      "Not so well represented was the shape of the oscillations. In particular, the M phases were much shorter than the S phases."
+    ],
+    "feasibility_evidence_spans": [
+      "One can hope that this could be changed by modifications of other model parameters.",
+      "The raw model consists of six ordinary differential equations depending on fifteen parameters and three Hill coefficients."
+    ],
+    "auto_research_experiment": "Perform a global sensitivity analysis on the 15-parameter ODE system to identify which parameters (e.g., Hill coefficients or phosphatase rates) control the M-phase duration relative to the S-phase, then use a multi-objective genetic algorithm to fit the model to the experimental waveform shapes from Deneke et al. (2016).",
+    "available_data_or_benchmark": "Experimental cell cycle timing data from Deneke et al. (2016) and Farrell & O’Farrell (2014).",
+    "public_training_or_eval_data": "https://doi.org/10.1016/j.devcel.2016.09.031",
+    "scientific_hypothesis": "The disproportionately short M-phase in current ODE models is caused by an overestimation of the APC activation rate or an underestimation of the positive feedback loop gain between CDK1 and CDC25.",
+    "expected_metric": "M-phase to S-phase ratio (M/S ratio)",
+    "success_threshold": "M/S ratio within 15% of the experimental values reported in Farrell & O’Farrell (2014) while maintaining the period lengthening effect.",
+    "failure_condition": "The model fails to maintain stable limit cycle oscillations or the period lengthening no longer follows the observed inverse power law.",
+    "first_24h_experiment": "Implement the 6-ODE system in Python (SciPy) and run a parameter sweep on the Hill coefficients (n) and the CDC25 activation constant (k) to observe changes in the oscillation duty cycle.",
+    "specific_intervention": "Adjust the Hill coefficients and the ratio of Wee1/CDC25 activity constants to extend the duration of high CDK1 activity.",
+    "baseline": "The original 3-ODE reduced model presented in the paper (Mebratie et al., 2026).",
+    "metric": "Root Mean Square Error (RMSE) between simulated CDK1 activity curves and experimental fluorescence intensity curves.",
+    "code_or_data_urls": [],
+    "story_angle": "Correcting the 'pulse' of life: refining the mathematical heartbeat of the fruit fly embryo."
+  },
+  {
+    "candidate_id": "cand_e8d53ba297ee1625",
+    "paper_id": "2605.04922",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation: Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-b... addresses a stated future work in Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation.",
+    "evidence_spans": [
+      "Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-backbone checks show the same ranking under DeepSeek-V3.2 and GPT-4.1-mini, a full scaling study across more backbones remains future work.",
+      "Recent methods can retrieve literature and draft novel proposals from benchmark-defined inputs [ 27 , 31 , 7 , 20 , 28 , 25 ] .",
+      "Benchmarks, such as AI Idea Bench 2025 and LiveIdeaBench, provide released evaluators for evaluating generated ideas [ 19 , 22 , 14 , 9 ] .",
+      "This matches the frozen-snapshot runtime seen at test time without using held-out benchmark annotations.",
+      "We study EIG in a benchmark-faithful setting in which the system must produce one structured proposal from benchmark-defined inputs without access to hidden target-paper fields or held-out annotations."
+    ],
+    "problem_evidence_spans": [
+      "Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-backbone checks show the same ranking under DeepSeek-V3.2 and GPT-4.1-mini, a full scaling study across more backbones remains future work."
+    ],
+    "feasibility_evidence_spans": [
+      "Recent methods can retrieve literature and draft novel proposals from benchmark-defined inputs [ 27 , 31 , 7 , 20 , 28 , 25 ] .",
+      "Benchmarks, such as AI Idea Bench 2025 and LiveIdeaBench, provide released evaluators for evaluating generated ideas [ 19 , 22 , 14 , 9 ] .",
+      "This matches the frozen-snapshot runtime seen at test time without using held-out benchmark annotations.",
+      "We study EIG in a benchmark-faithful setting in which the system must produce one structured proposal from benchmark-defined inputs without access to hidden target-paper fields or held-out annotations."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation. Then apply this intervention: Design a paper-specific ablation around this stated gap in Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation: Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-b.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation: Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-b... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation: Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-b....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation: Finally, the paper-reported runs use a single backbone model family (Qwen3-8B); while appendix-only cross-b...",
+    "baseline": "The reported baseline/protocol from Evolving Idea Graphs with Learnable Edits-and-Commits for Multi-Agent Scientific Ideation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Jiangwen-Dong/idea-graph",
+      "https://github.com/x66ccff/liveideabench",
+      "https://github.com/yansheng-qiu/AI_Idea_Bench_2025",
+      "https://huggingface.co/Qwen/Qwen3-8B",
+      "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_65da4edba4d23178",
+    "paper_id": "2605.05259",
+    "candidate_problem": "Docking failure of AlphaFold-predicted chain models into cryo-EM density maps",
+    "evidence_spans": [
+      "Future efforts will aim to refine this pipeline, particularly the docking step, where the chain models occasionally failed to dock correctly in the map."
+    ],
+    "problem_evidence_spans": [
+      "Future efforts will aim to refine this pipeline, particularly the docking step, where the chain models occasionally failed to dock correctly in the map."
+    ],
+    "feasibility_evidence_spans": [
+      "Specifically, we employ AlphaFold-predicted structures to segment certain map regions rich in interpretative and informational content",
+      "This structure is the phosphorylated, ATP-bound structure of zebrafish cystic fibrosis transmembrane conductance regulator, with an EMDB ID: 8782 and a PDB ID: 5W81."
+    ],
+    "auto_research_experiment": "Implement a flexible fitting or multi-state docking algorithm (e.g., using Rosetta or molecular dynamics flexible fitting) to replace the current docking step in PhenixCraft and evaluate on the 20-map test set.",
+    "available_data_or_benchmark": "The 20 EMDB/PDB pairs listed in Table S1 (e.g., EMDB 8782/PDB 5W81, EMDB 8194/PDB 5K12).",
+    "public_training_or_eval_data": "EMDataResource (EMDB) and Protein Data Bank (PDB).",
+    "scientific_hypothesis": "Replacing rigid docking with a gradient-based flexible fitting of AlphaFold models into the segmented density will reduce docking failures and increase the final TM-score.",
+    "expected_metric": "TM-score",
+    "success_threshold": "An average TM-score increase of >0.05 across the 20 test maps compared to the baseline PhenixCraft.",
+    "failure_condition": "The flexible fitting introduces distortions that lower the sequence match percentage or fail to converge within 2 hours per map.",
+    "first_24h_experiment": "Download EMDB 8782 and its corresponding AlphaFold model; attempt to dock using the existing Phenix 'fit_relative_to_ref' and compare to a flexible fitting tool like 'phenix.real_space_refine'.",
+    "specific_intervention": "Integration of a flexible fitting algorithm (e.g., Namdinator or Phenix real-space refinement) into the PhenixCraft docking module.",
+    "baseline": "The original PhenixCraft pipeline (AlphaFold-based segmentation + standard Phenix docking).",
+    "metric": "TM-score and Sequence Match %",
+    "code_or_data_urls": [],
+    "story_angle": "Fixing the 'last mile' of cryo-EM model building by making foundation model predictions flexible enough to fit real-world experimental noise."
+  },
+  {
+    "candidate_id": "cand_7b64e0313e7407ff",
+    "paper_id": "2605.04811",
+    "candidate_problem": "Test whether Stress-test and mitigate a simpler multi-agent memory system in the Tree-based Credit Assignment for Multi-Agent Memory System setup addresses a stated limitation in Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "evidence_spans": [
+      "The main limitation of TreeMem lies in its higher rollout cost compared with a simpler multi-agent memory system.",
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "problem_evidence_spans": [
+      "The main limitation of TreeMem lies in its higher rollout cost compared with a simpler multi-agent memory system."
+    ],
+    "feasibility_evidence_spans": [
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System. Then apply this intervention: Stress-test and mitigate a simpler multi-agent memory system in the Tree-based Credit Assignment for Multi-Agent Memory System setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Stress-test and mitigate a simpler multi-agent memory system in the Tree-based Credit Assignment for Multi-Agent Memory System setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate a simpler multi-agent memory system in the Tree-based Credit Assignment for Multi-Agent Memory System setup.",
+    "specific_intervention": "Stress-test and mitigate a simpler multi-agent memory system in the Tree-based Credit Assignment for Multi-Agent Memory System setup",
+    "baseline": "The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_f53c348759885fe5",
+    "paper_id": "2605.05259",
+    "candidate_problem": "Low sequence accuracy in low-resolution ( >4.0 Å) cryo-EM density maps",
+    "evidence_spans": [
+      "5XJY 6724 4.1 0.017 0.117 21.1 10.0",
+      "5WRG 6679 4.3 0.081 0.149 10.0 7.4"
+    ],
+    "problem_evidence_spans": [
+      "5XJY 6724 4.1 0.017 0.117 21.1 10.0",
+      "5WRG 6679 4.3 0.081 0.149 10.0 7.4"
+    ],
+    "feasibility_evidence_spans": [
+      "Table S1: A list of the TM-scores and sequence match percentages by PhenixCraft and phenix.map_to_model for 20 constructed atomic models"
+    ],
+    "auto_research_experiment": "Apply a sequence-aware threading algorithm (like RosettaES) specifically to the regions segmented by PhenixCraft to improve side-chain placement in low-resolution maps.",
+    "available_data_or_benchmark": "The low-resolution subset of Table S1 (EMDB 6724, 6679, 3240).",
+    "public_training_or_eval_data": "EMDB and PDB.",
+    "scientific_hypothesis": "Using AlphaFold's predicted side-chain orientations as a prior during the Phenix refinement stage will improve sequence match % in maps >4.0 Å.",
+    "expected_metric": "Sequence match %",
+    "success_threshold": "A 10% absolute increase in sequence match percentage for maps with resolution >4.0 Å.",
+    "failure_condition": "The AlphaFold side-chain priors bias the model toward the predicted structure rather than the experimental density, leading to lower R-factors.",
+    "first_24h_experiment": "Run the PhenixCraft pipeline on EMDB 6724 and manually inspect if the sequence mismatch occurs in the AlphaFold-segmented regions.",
+    "specific_intervention": "Side-chain rotamer optimization using AlphaFold-derived probability distributions during the Phenix refinement step.",
+    "baseline": "PhenixCraft (current version).",
+    "metric": "Sequence match %",
+    "code_or_data_urls": [],
+    "story_angle": "Overcoming the 'resolution barrier' in cryo-EM by using AI priors to place amino acids where the map is too blurry to see them."
+  },
+  {
+    "candidate_id": "cand_213f873981587a57",
+    "paper_id": "2605.04811",
+    "candidate_problem": "Test whether Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memory System setup addresses a stated limitation in Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "evidence_spans": [
+      "To address these limitations, we propose Tree-based Credit Assignment for Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations.",
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "problem_evidence_spans": [
+      "To address these limitations, we propose Tree-based Credit Assignment for Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations."
+    ],
+    "feasibility_evidence_spans": [
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System. Then apply this intervention: Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memory System setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memory System setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memory System setup.",
+    "specific_intervention": "Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), which derives agent-specific credit from the final reward without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memory System setup",
+    "baseline": "The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_e41d0e5fcf74ed83",
+    "paper_id": "2605.05213",
+    "candidate_problem": "High-dimensional sparsity and noise in EHR-based CRS prediction leads to overfitting and computational inefficiency when using raw OMOP event logs.",
+    "evidence_spans": [
+      "But coded clinical features are extremely high-dimensional, sparse, and dominated by weakly informative variables.",
+      "This setting is often ill-posed relative to sample size, introducing noise and computational burdens that degrade predictive performance and increase the risk of overfitting."
+    ],
+    "problem_evidence_spans": [
+      "This setting is often ill-posed relative to sample size, introducing noise and computational burdens that degrade predictive performance and increase the risk of overfitting."
+    ],
+    "feasibility_evidence_spans": [
+      "We utilized a nationwide longitudinal EHR dataset from the All of Us Research Program",
+      "We introduce a hybrid feature selection framework that compresses more than 110,000 clinical codes to 100 key features."
+    ],
+    "auto_research_experiment": "Compare the paper's hybrid feature selection (statistical prevalence + model-based importance) against a Deep Learning-based feature selection method (e.g., TabNet or LassoNet) on the All of Us dataset to see if automated selection can further reduce noise without losing predictive AUC.",
+    "available_data_or_benchmark": "All of Us Research Program (AoU) Researcher Workbench",
+    "public_training_or_eval_data": "https://www.researchallofus.org/data-tools/workbench/",
+    "scientific_hypothesis": "Automated deep feature selection using LassoNet will outperform hybrid statistical/XGBoost selection by capturing non-linear interactions between sparse clinical codes that are missed by prevalence-based screening.",
+    "expected_metric": "Area Under the Receiver Operating Characteristic Curve (AUC)",
+    "success_threshold": "AUC > 0.85 (improvement of >0.004 over the paper's 0.8461)",
+    "failure_condition": "Deep selection methods fail to converge or underperform due to the extreme sparsity of the 110,000+ initial features compared to the statistical screening.",
+    "first_24h_experiment": "Access the AoU Workbench, extract the cohort of CRS cases (ICD-10 J32) and controls, and run a baseline LassoNet on a 10% sample of the 110k features.",
+    "specific_intervention": "Replace the hybrid statistical/XGBoost feature selection pipeline with a LassoNet (end-to-end feature selection) architecture.",
+    "baseline": "The paper's hybrid selection + XGBoost pipeline (AUC 0.8461).",
+    "metric": "Weighted AUC across demographic strata",
+    "code_or_data_urls": [
+      "https://www.researchallofus.org/"
+    ],
+    "story_angle": "Moving from manual statistical screening to automated deep feature selection in high-dimensional clinical data."
+  },
+  {
+    "candidate_id": "cand_7036c6f76fbe2642",
+    "paper_id": "2605.04811",
+    "candidate_problem": "Test whether Stress-test and mitigate existing RL-based methods in multi-agent memory systems in the Tree-based Credit Assignment for Multi-Agent Memory System setup addresses a stated limitation in Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "evidence_spans": [
+      "1 Introduction Figure 1 : Demonstration and limitations of two training paradigms for existing RL-based methods in multi-agent memory systems.",
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "problem_evidence_spans": [
+      "1 Introduction Figure 1 : Demonstration and limitations of two training paradigms for existing RL-based methods in multi-agent memory systems."
+    ],
+    "feasibility_evidence_spans": [
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System. Then apply this intervention: Stress-test and mitigate existing RL-based methods in multi-agent memory systems in the Tree-based Credit Assignment for Multi-Agent Memory System setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Stress-test and mitigate existing RL-based methods in multi-agent memory systems in the Tree-based Credit Assignment for Multi-Agent Memory System setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate existing RL-based methods in multi-agent memory systems in the Tree-based Credit Assignment for Multi-Agent Memory System setup.",
+    "specific_intervention": "Stress-test and mitigate existing RL-based methods in multi-agent memory systems in the Tree-based Credit Assignment for Multi-Agent Memory System setup",
+    "baseline": "The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_850750346f49d91f",
+    "paper_id": "2605.05213",
+    "candidate_problem": "Demographic-specific models improve performance but may introduce 'fairness gaps' or disparate impact if certain subgroups (e.g., younger males) have significantly lower recall than others.",
+    "evidence_spans": [
+      "The grouped strategy improved weighted AUC by 0.0168 to 0.8461, with gains in every stratum.",
+      "where males showed an age-dependent shift toward predominantly structural and polypoid pathology, whereas females exhibited profiles enriched for mucosal inflammation"
+    ],
+    "problem_evidence_spans": [
+      "Our approach demonstrates improved discrimination both overall and across subgroups."
+    ],
+    "feasibility_evidence_spans": [
+      "Specifically, individuals were stratified into six subgroups defined by the intersection of sex and age-based adult life stages."
+    ],
+    "auto_research_experiment": "Evaluate the fairness of the stratified XGBoost models by calculating the Equality of Opportunity metric (FNR parity) across the six demographic subgroups.",
+    "available_data_or_benchmark": "All of Us Research Program (AoU) Researcher Workbench",
+    "public_training_or_eval_data": "https://www.researchallofus.org/data-tools/workbench/",
+    "scientific_hypothesis": "Stratified modeling reduces overall error but increases the disparity in False Negative Rates between sex-age groups compared to a single model with demographic fairness constraints.",
+    "expected_metric": "False Negative Rate (FNR) Disparity",
+    "success_threshold": "A reduction in FNR disparity by 20% while maintaining the paper's AUC.",
+    "failure_condition": "Fairness constraints significantly degrade the AUC below the 0.8293 baseline.",
+    "first_24h_experiment": "Calculate the FNR for each of the 6 subgroups using the paper's stratification logic on the AoU dataset.",
+    "specific_intervention": "Apply Fairlearn's Exponentiated Gradient reduction to the XGBoost training process to enforce FNR parity across the 6 strata.",
+    "baseline": "The paper's stratified XGBoost models without fairness constraints.",
+    "metric": "Equalized Odds / FNR Parity",
+    "code_or_data_urls": [
+      "https://www.researchallofus.org/"
+    ],
+    "story_angle": "Ensuring that AI-driven CRS diagnosis doesn't leave specific demographic groups behind."
+  },
+  {
+    "candidate_id": "cand_da8e4547336396ee",
+    "paper_id": "2605.04811",
+    "candidate_problem": "Test whether Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memor... addresses a stated limitation in Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "evidence_spans": [
+      "To address this limitation, we propose Tree-based Credit Assignment for Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations.",
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "problem_evidence_spans": [
+      "To address this limitation, we propose Tree-based Credit Assignment for Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations."
+    ],
+    "feasibility_evidence_spans": [
+      "The first applies the final downstream task rewards uniformly across all, such as final QA accuracy mem-r1 ; mem1 .",
+      "We evaluate TreeMem on long-horizon memory benchmarks and demonstrate that it consistently improves downstream task performance over strong baselines.",
+      "To empower this system, existing RL-based methods either apply final downstream task rewards ( e.g., QA accuracy) for all agents uniformly, which are coarse and ambiguous, or design task-specific rewards for agents on different subtasks, which require costly annotations ( e.g., key evidence) and are difficult to define reliably.",
+      "Experiments on long-horizon benchmarks show that TreeMem improves memory system performance over strong baselines, validating the effectiveness of tree-structured credit assignment for the multi-agent memory system."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System. Then apply this intervention: Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memor.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memor... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memor....",
+    "specific_intervention": "Stress-test and mitigate Multi-Agent Memory Systems (TreeMem), an RL training framework that derives agent-specific credit directly from the final downstream reward, without task-specific annotations in the Tree-based Credit Assignment for Multi-Agent Memor...",
+    "baseline": "The reported baseline/protocol from Tree-based Credit Assignment for Multi-Agent Memory System.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  }
+]

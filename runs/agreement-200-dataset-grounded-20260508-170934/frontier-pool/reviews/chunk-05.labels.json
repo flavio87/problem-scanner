@@ -1,0 +1,299 @@
+{
+  "reviewer": "chunk-05",
+  "labels": [
+    {
+      "candidate_id": "cand_383673d4fb42b480",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the explicit future-work span that fuller policy-gradient and on-policy evaluation remains important. The public asset is the coordination_aware_MARL repository plus referenced MARL benchmarks, and the intended endpoint is a benchmark delta against the reported protocol. The hypothesis is that adding the missing policy-gradient/on-policy comparisons will expose a measurable coordination mechanism, but the intervention and metric are still too generic for an immediate A.",
+      "repair_needed": "Specify the exact on-policy methods, benchmark tasks, coordination diagnostics, metric, and compute-bounded pilot to run from the public repository.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_3bd8409fb0fc809b",
+      "frontier_label": "C",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the paper gap about computational resources and hardness of social processes. The public asset is Seshat data, the endpoint is a derived circuit-depth or bits-per-time measure correlated with social-complexity scores, and the hypothesis maps hierarchy to deeper modular circuits. The measurement is highly construct-validity limited because administrative hierarchy is only loosely tied to computational power.",
+      "repair_needed": "Define and validate an operational circuit model against an accepted historical-complexity endpoint before treating this as a runnable frontier experiment.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_755c72c8d07d84ba",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the claim that coordination-aware diagnostics distinguish task performance from coordination processes under scale. The public asset is the coordination_aware_MARL repository plus standard cooperative-MARL benchmarks, with an endpoint of benchmark and process-diagnostic deltas against the reported protocol. The hypothesis is plausible, but the proposed stress-test is underspecified and the metric is only named generically.",
+      "repair_needed": "Pre-register the scale sweep, diagnostic definitions, baseline algorithms, and success metric before running.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_4846a8e0d6cd75fd",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the reported near-miss Wilcoxon p-values and stated limited power of 5-fold cross-validation. The public assets are TCGA-BRCA and METABRIC/cBioPortal data, the endpoint is Wilcoxon significance on macro-F1 paired scores, and the hypothesis is that repeated CV plus an independent cohort makes the LR-vs-RF performance gap statistically testable. The baseline and 24-72h pilot are clear.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_4ed086de1279dd29",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the AgenticPrecoding limitation about deployment mismatch and mathematical structure, but the candidate only says to design a paper-specific ablation. The public asset is unspecified beyond generic referenced benchmarks, the endpoint is a generic pre-registered delta, and the hypothesis is templated rather than mechanistic. No public code or concrete benchmark path is provided.",
+      "repair_needed": "Provide a public implementation or simulator, exact SNR/feasibility metric, and a specific ablation of AgenticPrecoding.",
+      "fatal_blocker": "Missing public artifact and specific executable intervention/metric."
+    },
+    {
+      "candidate_id": "cand_af1e0fa57ebdcb6d",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is that random forest underperformed on a class and errors are attributed to class imbalance plus biological overlap. The public asset is TCGA-BRCA through GDC, the endpoint is per-class F1/recall for BRCA_Normal and related subtypes, and the hypothesis is that SMOTE or cost-sensitive learning improves minority-class F1 without degrading overall accuracy. The baseline and first-day experiment are concrete.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_f5d034e578e11115",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is LATTE future work on extending the operator set for less structured task discovery and decomposition. The public asset is the LATTE repository, and the measurable endpoints can be accuracy, token use, wall-clock time, messages, file overwrites, and conflicts against reported baselines. The hypothesis is plausible, but the actual operator extension and primary endpoint are not specified.",
+      "repair_needed": "Define one new operator, one benchmark task family, and a primary efficiency/accuracy metric for a bounded pilot.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_d1098915eb2093e3",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the future-work span recommending pathway-based or supervised feature selection for interpretability. The public asset named is MSigDB hallmark gene sets, the endpoint is macro-F1 and stability/generalization versus variance selection, and the hypothesis is that pathway filtering generalizes better to METABRIC. The expression dataset and preprocessing path are not fully specified in the candidate asset field.",
+      "repair_needed": "Add explicit TCGA-BRCA and METABRIC expression data links/preprocessing and define the stability endpoint alongside macro-F1.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_f52793f5b503739a",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the explicit LATTE future-work statement that fixed team size leaves scaling open. The public asset is the LATTE code repository and its referenced benchmarks, and the measurable endpoints are accuracy plus token consumption, wall-clock time, inter-agent messages, file overwrites, consistency conflicts, and output volume. The hypothesis is that varying team size changes the accuracy-efficiency frontier relative to the fixed-size reported protocol, which is executable as a small benchmark sweep.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_4fd4df0254d66174",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the stated limitation that BSB semi-coupling and RUOT relaxation are intractable. The public asset named is WOT/scRNA-seq-related resources, the endpoint is EMD against exact or synthetic branching marginals, and the hypothesis is that a learned semi-coupling improves high-proliferation count predictions over WFR. The 24h path is only a synthetic proof sketch and lacks a concrete public USB implementation or exact reproducible protocol.",
+      "repair_needed": "Provide the USB implementation/protocol and narrow the pilot to a fully specified synthetic branching benchmark with exact marginals.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_ffbe3cbe178f24ec",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the future-work span about strengthening emergent verification mechanisms for reliable LLM teams. The public asset is the LATTE repository, and endpoints can be accuracy, conflicts, file overwrites, message counts, and wall-clock/token cost against reported baselines. The hypothesis is sensible, but the verification intervention is not concretely defined.",
+      "repair_needed": "Specify one targeted verification mechanism and a primary reliability metric before running the LATTE pilot.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_26043ce417bb735e",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the paper's sensitivity analysis for the growth penalization delta and the branching inference workflow. The intended public asset is a synthetic growth benchmark plus referenced flow-matching resources, the endpoint is relative population-size error, and the hypothesis is that delta should depend on sampling frequency. The candidate lacks an explicit public USB implementation and exact protocol, so it is not yet an A.",
+      "repair_needed": "Attach the runnable implementation or exact algorithm steps and define the synthetic growth-rate benchmark and delta schedule grid.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_9f0c0e8825d3b5c7",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is broad future work on fine-tuning or reinforcement learning for coordination outcomes. The public asset is the LATTE repository, and possible endpoints are coordination/accuracy/efficiency deltas, but the intervention is a broad training program rather than a bounded 24-72h experiment. The hypothesis and metric remain templated.",
+      "repair_needed": "Reduce this to a small offline or bandit-style coordination-policy update with a fixed benchmark and metric.",
+      "fatal_blocker": "No safe 24-72h executable path for the stated fine-tuning/RL program."
+    },
+    {
+      "candidate_id": "cand_67151920862913d2",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the EFGPP framework and linked public code/data. The public assets are the EFGPP repository and Rice7K dataset, the endpoints are MSE and Pearson correlation against GBLUP, and the hypothesis is that exploratory feature selection improves polygenic trait prediction by capturing nonlinear SNP interactions. The first-day run on one Rice7K trait is concrete.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_899d68ffa911fc45",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is only the vague span 'Characterizing this remains future work.' The public asset is generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. No public code URL or concrete phenomenon to characterize is specified.",
+      "repair_needed": "Identify what 'this' refers to, provide a public implementation, and define a concrete robustness or accuracy metric.",
+      "fatal_blocker": "Vacuous problem statement plus missing artifact and metric."
+    },
+    {
+      "candidate_id": "cand_e670ee12b3c0fbfc",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the explicit implementation-level KEGG parsing limitation. The public assets are the KEGG REST API and PhenotypeToGeneDownloaderR repository, the endpoint is the number of validated KEGG genes recovered across benchmark phenotypes while preserving validation rate, and the hypothesis is that a KEGG-specific hierarchical parser fixes the zero-gene failure. The 24h manual inspection and prototype parser are clear.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_600a197297868400",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a future-work sentence bundling unlabeled-task settings, vector-valued utility estimation, and reuse strategies. The public asset is only generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. The candidate combines multiple broad directions without a concrete public artifact or metric.",
+      "repair_needed": "Choose one subproblem and provide code, benchmark, baseline, and metric.",
+      "fatal_blocker": "Overbroad intervention with missing public artifact and executable protocol."
+    },
+    {
+      "candidate_id": "cand_b20126c54834d271",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that DisGeNET returned no genes because API access was required but unavailable. The public asset is the PhenotypeToGeneDownloaderR repository plus DisGeNET, the endpoints are retrieved validated genes and possibly Precision@20, and the hypothesis is that authenticated integration improves gene retrieval for sparse-GWAS phenotypes. It needs credentials and metric alignment before it can be run immediately.",
+      "repair_needed": "Obtain/confirm DisGeNET API access and choose either retrieval yield or Precision@20 as the primary metric.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_a038778d4b3371ae",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the failure mode that task difficulty and domain differences make limited-budget communication-structure optimization unstable. The public benchmarks appear to include MMLU/GSM8K, and endpoints could be mean and worst-quartile accuracy, but the candidate gives no public code URL and only a generic ablation. The scientific hypothesis is templated rather than a concrete selection strategy.",
+      "repair_needed": "Provide the implementation and specify the active-learning selection rule, benchmark split, and stability metric.",
+      "fatal_blocker": "Missing public artifact and specific intervention."
+    },
+    {
+      "candidate_id": "cand_5f676714101c4583",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is only the phrase 'Inference-Time MCMC Steering.' The public asset is scPerturb, the endpoint is Pearson correlation between predicted and observed perturbation effects, and the hypothesis is that distillation approximates MCMC steering in one pass. Without a public CellxPert implementation or precise steering outputs, the first 24h profiling/distillation path is not executable from the provided inputs.",
+      "repair_needed": "Supply a public CellxPert/MCMC steering implementation or saved steering traces and an exact scPerturb split.",
+      "fatal_blocker": "Missing runnable artifact for the baseline steering method."
+    },
+    {
+      "candidate_id": "cand_c9af7b2f60eac41d",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is only 'Our method has several limitations,' which does not identify a specific problem. The public asset is generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. This cannot be independently run or falsified.",
+      "repair_needed": "Replace the generic limitation with a named limitation, public code, baseline, and endpoint.",
+      "fatal_blocker": "No specific hypothesis or executable intervention."
+    },
+    {
+      "candidate_id": "cand_13b6e0f1d2a3a595",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is only generic multi-omics/in-silico perturbation language. The public asset is the Open Problems multimodal Kaggle data, the endpoint is RNA-expression MSE, and the hypothesis is that a cross-modality prior improves MCMC steering. The baseline CellxPert steering implementation is not provided, so the proposed run is not executable.",
+      "repair_needed": "Provide the CellxPert code or a reproducible baseline steering script and an exact train/eval split.",
+      "fatal_blocker": "Missing public artifact for the baseline method."
+    },
+    {
+      "candidate_id": "cand_a0e31e299a00d11a",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that low-quality and misaligned training signals can destabilize policy learning. The public asset is only generically described Matterport3D-based benchmark material, the endpoint is a generic benchmark delta, and the hypothesis is templated. No code URL, concrete ablation, or exact metric is supplied.",
+      "repair_needed": "Provide the benchmark artifact/code and define the misalignment stressor plus navigation metrics.",
+      "fatal_blocker": "Missing public artifact and concrete executable protocol."
+    },
+    {
+      "candidate_id": "cand_70b341df01ce701c",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the paper topic of estimating statistics of a multi-factor function from Fourier coefficients. The public asset is a scikit-learn synthetic generator, the endpoint is relative error in variance estimation versus Monte Carlo sampling, and the hypothesis is that selected Fourier coefficients give lower-variance moment estimates than equal-budget spatial samples. The FFT-based pilot is fully executable in 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_89d544bc3a98f8c5",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the generic limitations sentence about future exploration. The public asset is only generic Matterport3D-based benchmark material, the endpoint is a generic benchmark delta, and the hypothesis is templated. The phrase 'stress-test and mitigate future exploration' is not an executable intervention.",
+      "repair_needed": "Name a specific limitation, public artifact, stress test, and metric.",
+      "fatal_blocker": "No concrete problem or intervention."
+    },
+    {
+      "candidate_id": "cand_644fa5089a6ec154",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that oscillation shape is poorly represented, with M phases much shorter than S phases. The public asset is the cited Drosophila embryonic-cell-cycle data/paper, the endpoint is RMSE between simulated CDK1 activity and fluorescence curves or duty-cycle error, and the hypothesis is that APC activation or CDK1-CDC25 feedback parameters drive the phase-duration error. The missing piece is a machine-readable experimental curve and exact parameterization.",
+      "repair_needed": "Locate or extract the time-series data and parameter set, then define duty-cycle/RMSE as the primary endpoint.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_e8d53ba297ee1625",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the stated future work that full scaling across more backbones remains open after appendix-only checks. The public assets are the idea-graph repository, LiveIdeaBench/AI Idea Bench evaluators, Qwen3-8B, and MiniLM embeddings, and the endpoint is benchmark evaluator score/ranking stability across model backbones. The hypothesis is that EIG's ranking advantage is or is not robust to backbone scaling, and a small cross-backbone pilot is executable.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_65da4edba4d23178",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the future-effort statement that docking occasionally failed in the map. The public assets are EMDB 8782, PDB 5W81, and AlphaFold/Phenix-style fitting tools, the endpoints are TM-score and sequence match percentage, and the hypothesis is that flexible fitting reduces docking failures versus the original PhenixCraft docking. The baseline pipeline invocation or code is not specified enough for immediate A.",
+      "repair_needed": "Provide the exact PhenixCraft baseline commands or public pipeline code and the target AlphaFold model source.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_7b64e0313e7407ff",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that TreeMem has higher rollout cost than a simpler multi-agent memory system. The public asset is only generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. No code URL or concrete cost-reduction intervention is provided.",
+      "repair_needed": "Supply TreeMem code/data and specify the rollout-cost metric plus mitigation.",
+      "fatal_blocker": "Missing public artifact and specific intervention."
+    },
+    {
+      "candidate_id": "cand_f53c348759885fe5",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the table entries showing poor sequence-match percentages for low-resolution maps such as 5XJY and 5WRG. The public assets are EMDB/PDB structures, the endpoint is sequence match percentage versus PhenixCraft, and the hypothesis is that AlphaFold side-chain priors improve low-resolution sequence assignment. This is promising but needs the exact public pipeline or baseline commands.",
+      "repair_needed": "Provide the PhenixCraft implementation/commands and select one low-resolution EMDB/PDB case with expected outputs.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_213f873981587a57",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that TreeMem derives agent-specific credit from final reward without annotations, but the candidate frames this as a vague stress-test rather than a new experiment. The public asset is generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. No code URL or concrete intervention is available.",
+      "repair_needed": "Provide TreeMem code/benchmarks and a specific ablation of the credit-assignment mechanism.",
+      "fatal_blocker": "Missing public artifact and executable intervention."
+    },
+    {
+      "candidate_id": "cand_e41d0e5fcf74ed83",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that raw OMOP codes are high-dimensional, sparse, noisy, and overfitting-prone. The public or controlled-access asset is All of Us Workbench data, the endpoint is weighted AUC across demographic strata, and the hypothesis is that LassoNet captures nonlinear sparse-code interactions better than hybrid prevalence/XGBoost selection. The data-access and cohort-extraction dependency prevents an immediate public 24-72h A.",
+      "repair_needed": "Confirm All of Us access or substitute an openly downloadable OMOP/EHR benchmark with the same cohort definition and baseline.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_7036c6f76fbe2642",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the TreeMem figure caption about limitations of existing RL-based training paradigms. The public asset is only generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. The candidate lacks code, concrete metrics, and a defined stress-test of existing RL methods.",
+      "repair_needed": "Provide public TreeMem/baseline code and define the RL-method stress test and QA accuracy/cost endpoint.",
+      "fatal_blocker": "Missing public artifact and specific executable protocol."
+    },
+    {
+      "candidate_id": "cand_850750346f49d91f",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the stratified modeling result across six sex-age subgroups and the biological subgroup differences. The public or controlled-access asset is All of Us Workbench data, the endpoint is equalized odds/FNR parity while maintaining AUC, and the hypothesis is that stratified models may trade aggregate AUC for subgroup FNR disparity. It is strong but not immediately public-executable without data access or prediction artifacts.",
+      "repair_needed": "Confirm All of Us access or provide released subgroup predictions/cohort extracts and pre-register the FNR-parity threshold.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_da8e4547336396ee",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that TreeMem derives agent-specific credit from final downstream reward without task-specific annotations. The public asset is only generic referenced benchmarks, the endpoint is a generic benchmark delta, and the hypothesis is templated. The proposed stress-test is not a concrete intervention and no code URL is supplied.",
+      "repair_needed": "Provide TreeMem code/data and specify the reward-credit ablation and downstream QA metric.",
+      "fatal_blocker": "Missing public artifact and concrete intervention."
+    }
+  ],
+  "top_a_candidate_ids": [
+    "cand_e670ee12b3c0fbfc",
+    "cand_4846a8e0d6cd75fd",
+    "cand_af1e0fa57ebdcb6d",
+    "cand_f52793f5b503739a",
+    "cand_e8d53ba297ee1625",
+    "cand_67151920862913d2",
+    "cand_70b341df01ce701c"
+  ],
+  "notes": [
+    "Applied strict A criteria: a candidate needed a public data/artifact path, concrete metric, baseline, hypothesis, and bounded 24-72h execution path.",
+    "Many auto-generated candidates were rejected because they used generic phrases such as 'pre-registered benchmark delta' or 'public datasets referenced by the paper' without a concrete artifact or intervention.",
+    "Controlled-access All of Us candidates were kept at B because the scientific tests are clear but not reliably public-executable within 24-72h from the provided inputs."
+  ]
+}

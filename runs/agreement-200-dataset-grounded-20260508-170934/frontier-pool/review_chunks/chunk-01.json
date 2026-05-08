@@ -1,0 +1,1320 @@
+[
+  {
+    "candidate_id": "cand_c22009b9a057752f",
+    "paper_id": "2605.06557",
+    "candidate_problem": "Return-based evaluation conceals coordination failure modes in combinatorial MARL scaling",
+    "evidence_spans": [
+      "Two policies may obtain similar return while relying on different interaction patterns, and conversely, a change in return may conflate poor coordination, inefficient division of labor, under-utilization of agents, or domain-specific bottlenecks.",
+      "These metrics reveal coordination failure modes that return alone can conceal (Figure 1), highlighting that in addition to measuring the return, cooperative MARL benchmarks should also assess how well agents coordinate with each other."
+    ],
+    "problem_evidence_spans": [
+      "Most empirical evaluations of cooperative MARL rely primarily on outcome-level measures such as return, success rate, or completion time... These metrics are essential for measuring task performance, but they provide limited visibility into the coordination process"
+    ],
+    "feasibility_evidence_spans": [
+      "We release the STAT environment together with executable training and evaluation code for all methods considered in this paper... Code is available at https://github.com/mariacardei/coordination_aware_MARL ."
+    ],
+    "auto_research_experiment": "Train QMIX and IQL on the STAT '5A-100T-50x30' configuration. Measure the 'Conflict Rate' and 'Per-agent Assignment Diversity' alongside 'Episodic Return'. Compare if IQL achieves competitive return with significantly higher conflict rates than QMIX, indicating a coordination failure masked by the return metric.",
+    "available_data_or_benchmark": "STAT (Spatial Task Allocation Testbed)",
+    "public_training_or_eval_data": "https://github.com/mariacardei/coordination_aware_MARL",
+    "scientific_hypothesis": "In high-density task allocation (5A-100T), independent learning (IQL) will achieve returns within 5% of factorized methods (QMIX) but will exhibit a conflict rate at least 50% higher, demonstrating that return is an insufficient proxy for coordination efficiency.",
+    "expected_metric": "Conflict Rate",
+    "success_threshold": "Conflict rate for IQL > 1.5x QMIX while Return difference < 5%",
+    "failure_condition": "IQL return is significantly lower (>15%) than QMIX, or Conflict Rates are statistically indistinguishable (p > 0.05).",
+    "first_24h_experiment": "Clone the STAT repo, run the provided smoke-test configuration for IQL and QMIX on the 3A-6T-5x3 environment to verify that conflict rate metrics are correctly logged in the output CSVs.",
+    "specific_intervention": "Evaluate agents using process-level diagnostics (Conflict Rate, Assignment Diversity) in addition to Episodic Return across systematic agent/task scaling.",
+    "baseline": "Standard outcome-only evaluation (Episodic Return)",
+    "metric": "Conflict Rate (total redundant assignments divided by total assignments)",
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "story_angle": "As we scale multi-agent systems, simply looking at the 'score' (reward) hides dangerous inefficiencies in how agents actually work together."
+  },
+  {
+    "candidate_id": "cand_5628f7e52ed2cb18",
+    "paper_id": "2605.04118",
+    "candidate_problem": "Structure prediction verifiers (pLDDT, ipTM) exhibit distinct inductive biases and poor correlation with experimental outcomes across different design regimes.",
+    "evidence_spans": [
+      "Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood across targets and design regimes.",
+      "different folding models exhibit distinct inductive biases, leading to markedly different enrichment behavior even under identical filtering protocols."
+    ],
+    "problem_evidence_spans": [
+      "Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood across targets and design regimes."
+    ],
+    "feasibility_evidence_spans": [
+      "Firstly, we conduct large-scale retrospective analyses on a large-scale wet-lab annotated dataset, Cao dataset (Cao et al. , 2022 ) , to quantify the predictive power and complementarity of commonly used structure prediction–based verifiers."
+    ],
+    "auto_research_experiment": "Evaluate a multi-model ensemble verifier (AlphaFold3, Boltz-1, and ESMFold) against the Cao et al. (2022) wet-lab dataset to determine if consensus scoring reduces the false-positive rate compared to single-model ipTM filtering.",
+    "available_data_or_benchmark": "Cao dataset (Cao et al., 2022) wet-lab annotated protein binders.",
+    "public_training_or_eval_data": "https://github.com/RosettaCommons/protein_binder_design (Cao et al. data source)",
+    "scientific_hypothesis": "A consensus ranking from multiple independent structure prediction architectures (Diffusion-based vs. MSA-based) will have a higher Spearman correlation with experimental binding affinity than any single model's ipTM score.",
+    "expected_metric": "Spearman correlation coefficient between predicted scores and experimental Kd values.",
+    "success_threshold": "An ensemble Spearman correlation > 0.6, significantly outperforming the single-model baseline.",
+    "failure_condition": "Ensemble correlation is within 0.05 of the best single model (e.g., AlphaFold3 alone).",
+    "first_24h_experiment": "Download the Cao dataset and run inference using Boltz-1 and ESMFold on the sequences to extract pLDDT and ipTM scores, then calculate the correlation with the provided experimental labels.",
+    "specific_intervention": "Implement a weighted rank-aggregation of ipTM scores from three distinct folding architectures.",
+    "baseline": "Single-model filtering using AlphaFold2 ipTM > 0.7.",
+    "metric": "Precision-Recall AUC for experimental binder identification.",
+    "code_or_data_urls": [
+      "https://github.com/HannesStark/boltzgen",
+      "https://github.com/ProteinDesignLab/protpardelle",
+      "https://github.com/RosettaCommons/foundry",
+      "https://github.com/The-Institute-for-AI-Molecular-Design/ODesign",
+      "https://github.com/bytedance/PXDesign",
+      "https://github.com/martinpacesa/BindCraft",
+      "https://github.com/yehlincho/BoltzDesign1"
+    ],
+    "story_angle": "The 'blind spot' of protein design: why our best AI models disagree on what a good binder looks like."
+  },
+  {
+    "candidate_id": "cand_6632847c4bb7d4f6",
+    "paper_id": "2605.04118",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the... addresses a stated future work in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+    "evidence_spans": [
+      "This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the use of multi-verifier or verifier-aware evaluation strategies in future work.",
+      "ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "TITLE: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation ABSTRACT: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "However, this evaluation paradigm suffers from several limitations: • Reliability of structure-based filters Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood across targets and design regimes.",
+      "At the same time, ProtDBench standardizes benchmark targets, verifier configurations, and filtering protocols, allowing fair and reproducible comparison across generative methods."
+    ],
+    "problem_evidence_spans": [
+      "This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the use of multi-verifier or verifier-aware evaluation strategies in future work."
+    ],
+    "feasibility_evidence_spans": [
+      "ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "TITLE: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation ABSTRACT: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "However, this evaluation paradigm suffers from several limitations: • Reliability of structure-based filters Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood across targets and design regimes.",
+      "At the same time, ProtDBench standardizes benchmark targets, verifier configurations, and filtering protocols, allowing fair and reproducible comparison across generative methods."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation. Then apply this intervention: Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the...",
+    "baseline": "The reported baseline/protocol from ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/HannesStark/boltzgen",
+      "https://github.com/ProteinDesignLab/protpardelle",
+      "https://github.com/RosettaCommons/foundry",
+      "https://github.com/The-Institute-for-AI-Molecular-Design/ODesign",
+      "https://github.com/bytedance/PXDesign",
+      "https://github.com/martinpacesa/BindCraft",
+      "https://github.com/yehlincho/BoltzDesign1"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_8f5ea295fb30e3c4",
+    "paper_id": "2605.06562",
+    "candidate_problem": "Lack of statistical power in comparing model performance for high-dimensional genomic classification due to small cross-validation sample sizes.",
+    "evidence_spans": [
+      "pairwise Wilcoxon signed-rank tests did not reach statistical significance at the 0.05 threshold (LR vs RF: p = 0.0625, LR vs SVM: p = 0.0625)",
+      "This is attributable to the limited statistical power of 5-fold cross-validation, where the minimum achievable p-value is 0.0625 with five paired observations."
+    ],
+    "problem_evidence_spans": [
+      "The observed performance differences should be interpreted as practically meaningful trends rather than formally validated conclusions."
+    ],
+    "feasibility_evidence_spans": [
+      "Future work using repeated cross-validation or larger datasets may provide sufficient power for formal significance testing."
+    ],
+    "auto_research_experiment": "Perform a 10-fold repeated cross-validation (10 repeats) on the TCGA-BRCA dataset comparing Logistic Regression, SVM, and Random Forest across varying feature dimensions (100 to 2000 genes) to determine if the performance gap is statistically significant.",
+    "available_data_or_benchmark": "TCGA-BRCA RNA-seq data",
+    "public_training_or_eval_data": "https://portal.gdc.cancer.gov/projects/TCGA-BRCA",
+    "scientific_hypothesis": "Increasing the number of paired observations through repeated 10-fold cross-validation will demonstrate that Logistic Regression significantly outperforms Random Forest in Macro F1 score (p < 0.01) for high-dimensional gene expression data.",
+    "expected_metric": "p-value from Wilcoxon signed-rank test on Macro F1 scores",
+    "success_threshold": "p < 0.05 for the comparison between Logistic Regression and Random Forest.",
+    "failure_condition": "p >= 0.05 despite increased sample size, suggesting the models are functionally equivalent in this domain.",
+    "first_24h_experiment": "Download the TCGA-BRCA pre-processed gene expression matrix and run a 10x10 repeated cross-validation for Logistic Regression and Random Forest on the top 500 high-variance genes.",
+    "specific_intervention": "Implement repeated k-fold cross-validation (10x10) to increase the number of paired performance observations from 5 to 100.",
+    "baseline": "The paper's 5-fold cross-validation results (p = 0.0625).",
+    "metric": "Macro F1 Score",
+    "code_or_data_urls": [
+      "https://portal.gdc.cancer.gov/projects/TCGA-BRCA"
+    ],
+    "story_angle": "In the race for complex AI, we often ignore the statistical power required to prove they actually work better than simple regression."
+  },
+  {
+    "candidate_id": "cand_cd26b1bf63c773ac",
+    "paper_id": "2605.04118",
+    "candidate_problem": "Generative models like Protenix produce structurally implausible or disordered binders for challenging targets (e.g., TNF-alpha) when sequences contain excessive alanines.",
+    "evidence_spans": [
+      "for challenging targets such as TNF α , we found that Protenix occasionally produces binder structures that appear disordered or structurally implausible. This typically occurs when the input sequence—e.g., one generated by ProteinMPNN—contains excessive alanines"
+    ],
+    "problem_evidence_spans": [
+      "This typically occurs when the input sequence—e.g., one generated by ProteinMPNN—contains excessive alanines, leading the structure predictor to interpret the region as intrinsically disordered or low-confidence."
+    ],
+    "feasibility_evidence_spans": [
+      "Table 3: Overview of benchmark targets for protein binder design. Residue ranges and hotspot annotations are based on known structures... TNF α 1tnf"
+    ],
+    "auto_research_experiment": "Modify the ProteinMPNN amino acid bias (log-odds) to penalize Alanine over-representation and test if this restores structural order in Protenix/AlphaFold predictions for the TNF-alpha target.",
+    "available_data_or_benchmark": "ProtDBench target list (PDB ID: 1tnf for TNF-alpha).",
+    "public_training_or_eval_data": "https://www.rcsb.org/structure/1TNF",
+    "scientific_hypothesis": "Constraining the Alanine composition to <15% in ProteinMPNN-generated sequences for TNF-alpha will increase the mean pLDDT of the resulting Protenix structures by at least 20 points.",
+    "expected_metric": "Mean pLDDT of generated binder structures.",
+    "success_threshold": "Mean pLDDT > 70 for the TNF-alpha binder candidates.",
+    "failure_condition": "Mean pLDDT remains < 50 despite Alanine penalization.",
+    "first_24h_experiment": "Run ProteinMPNN on the 1tnf target with and without Alanine penalties and visualize the resulting structures in PyMOL.",
+    "specific_intervention": "Apply a negative bias to Alanine in the ProteinMPNN sampling temperature/log-probs.",
+    "baseline": "Default ProteinMPNN sequence generation for TNF-alpha.",
+    "metric": "pLDDT (Predicted Local Distance Difference Test)",
+    "code_or_data_urls": [
+      "https://github.com/HannesStark/boltzgen",
+      "https://github.com/ProteinDesignLab/protpardelle",
+      "https://github.com/RosettaCommons/foundry",
+      "https://github.com/The-Institute-for-AI-Molecular-Design/ODesign",
+      "https://github.com/bytedance/PXDesign",
+      "https://github.com/martinpacesa/BindCraft",
+      "https://github.com/yehlincho/BoltzDesign1"
+    ],
+    "story_angle": "Fixing the 'Alanine Trap' in AI-driven protein design for difficult drug targets."
+  },
+  {
+    "candidate_id": "cand_16ab56455d72fa57",
+    "paper_id": "2605.04118",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: We observed several tool-specific limitations that impact compatibility or performance in certain scenarios. addresses a stated limitation in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+    "evidence_spans": [
+      "We observed several tool-specific limitations that impact compatibility or performance in certain scenarios.",
+      "ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "TITLE: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation ABSTRACT: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "However, this evaluation paradigm suffers from several limitations: • Reliability of structure-based filters Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood across targets and design regimes.",
+      "At the same time, ProtDBench standardizes benchmark targets, verifier configurations, and filtering protocols, allowing fair and reproducible comparison across generative methods."
+    ],
+    "problem_evidence_spans": [
+      "We observed several tool-specific limitations that impact compatibility or performance in certain scenarios."
+    ],
+    "feasibility_evidence_spans": [
+      "ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "TITLE: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation ABSTRACT: ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+      "However, this evaluation paradigm suffers from several limitations: • Reliability of structure-based filters Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood across targets and design regimes.",
+      "At the same time, ProtDBench standardizes benchmark targets, verifier configurations, and filtering protocols, allowing fair and reproducible comparison across generative methods."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation. Then apply this intervention: Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: We observed several tool-specific limitations that impact compatibility or performance in certain scenarios.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: We observed several tool-specific limitations that impact compatibility or performance in certain scenarios. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: We observed several tool-specific limitations that impact compatibility or performance in certain scenarios..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation: We observed several tool-specific limitations that impact compatibility or performance in certain scenarios.",
+    "baseline": "The reported baseline/protocol from ProtDBench: A Unified Benchmark of Protein Binder Design and Evaluation.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/HannesStark/boltzgen",
+      "https://github.com/ProteinDesignLab/protpardelle",
+      "https://github.com/RosettaCommons/foundry",
+      "https://github.com/The-Institute-for-AI-Molecular-Design/ODesign",
+      "https://github.com/bytedance/PXDesign",
+      "https://github.com/martinpacesa/BindCraft",
+      "https://github.com/yehlincho/BoltzDesign1"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_dcb96e6d7bee0ae0",
+    "paper_id": "2605.04118",
+    "candidate_problem": "Structure prediction verifiers exhibit distinct inductive biases that lead to inconsistent enrichment of protein binders, making single-verifier evaluation unreliable.",
+    "evidence_spans": [
+      "different folding models exhibit distinct inductive biases, leading to markedly different enrichment behavior even under identical filtering protocols.",
+      "This observation cautions against over-interpreting absolute success rates reported under a single verifier and motivates the use of multi-verifier or verifier-aware evaluation strategies"
+    ],
+    "problem_evidence_spans": [
+      "Confidence metrics (e.g., pLDDT, ipTM, and ipAE) are widely used as proxies for binding success, yet their correlation with experimental outcomes has only been validated on limited datasets and remains poorly understood"
+    ],
+    "feasibility_evidence_spans": [
+      "Firstly, we conduct large-scale retrospective analyses on a large-scale wet-lab annotated dataset, Cao dataset (Cao et al. , 2022 ) , to quantify the predictive power and complementarity of commonly used structure prediction–based verifiers."
+    ],
+    "auto_research_experiment": "Evaluate a set of generated binders using a consensus-based ensemble of structure predictors (AlphaFold3, Boltz-1, and Protenix) against the Cao dataset. Compare the enrichment factor of the ensemble against individual models to determine if multi-verifier consensus reduces false positives.",
+    "available_data_or_benchmark": "Cao dataset (Cao et al., 2022) and ProtDBench targets (e.g., SC2RBD, PD-L1).",
+    "public_training_or_eval_data": "https://github.com/lpdi-epfl/protein-binder-design",
+    "scientific_hypothesis": "A multi-verifier consensus score (averaging ipTM across AlphaFold3, Boltz-1, and Protenix) will have a higher Spearman correlation with experimental binding affinity (Kd) than any single model's ipTM score.",
+    "expected_metric": "Spearman correlation coefficient (ρ)",
+    "success_threshold": "0.15 improvement in Spearman ρ compared to the best single-model baseline.",
+    "failure_condition": "The ensemble score performs worse or equal to the single best-performing model (likely AlphaFold3) on the Cao dataset.",
+    "first_24h_experiment": "Download the Cao dataset, run inference on 100 sequences using Boltz-1 and Protenix, and calculate the correlation between their ipTM scores and the provided experimental labels.",
+    "specific_intervention": "Implement a consensus filtering layer that requires a binder to pass a threshold (e.g., ipTM > 0.7) across three distinct structure prediction architectures.",
+    "baseline": "Single-model filtering using AlphaFold3 ipTM scores.",
+    "metric": "Enrichment Factor (EF) at top 1% and 5% of ranked candidates.",
+    "code_or_data_urls": [
+      "https://github.com/HannesStark/boltzgen",
+      "https://github.com/ProteinDesignLab/protpardelle",
+      "https://github.com/RosettaCommons/foundry",
+      "https://github.com/The-Institute-for-AI-Molecular-Design/ODesign",
+      "https://github.com/bytedance/PXDesign",
+      "https://github.com/martinpacesa/BindCraft",
+      "https://github.com/yehlincho/BoltzDesign1"
+    ],
+    "story_angle": "The 'blind spot' of protein design: Why trusting a single AI model to verify a binder leads to wet-lab failure, and how multi-model consensus can fix it."
+  },
+  {
+    "candidate_id": "cand_1d995ed506025b58",
+    "paper_id": "2605.04312",
+    "candidate_problem": "Same-provider preference and implicit bias in multi-agent voting",
+    "evidence_spans": [
+      "Models from a given provider are 8.3 p.p. more likely to support a same-provider player to win the game, as compared to models of other providers.",
+      "This preference is not uniform across providers: among separately estimated providers, the effect is strongest for OpenAI models and weakest for Anthropic models."
+    ],
+    "problem_evidence_spans": [
+      "Models from a given provider are 8.3 p.p. more likely to support a same-provider player to win the game"
+    ],
+    "feasibility_evidence_spans": [
+      "The game logs are published at gs://agent-island/logs/ for download and analysis; we describe the dataset and replication artifacts in Section 4."
+    ],
+    "auto_research_experiment": "Test if 'style-transferring' agent communications to mimic a different provider's typical output distribution reduces the same-provider voting bias in the Agent Island environment.",
+    "available_data_or_benchmark": "Agent Island game logs (gs://agent-island/logs/)",
+    "public_training_or_eval_data": "gs://agent-island/logs/",
+    "scientific_hypothesis": "The same-provider preference in multi-agent voting is primarily driven by linguistic stylistic alignment rather than explicit model-ID recognition.",
+    "expected_metric": "Same-provider preference coefficient (percentage points)",
+    "success_threshold": "Reduction of the same-provider bias from 8.3 p.p. to <2.0 p.p. through style-neutralization.",
+    "failure_condition": "Bias remains statistically significant (>5 p.p.) even after neutralizing stylistic markers.",
+    "first_24h_experiment": "Download logs, extract OpenAI vs Anthropic dialogue samples, and train a simple classifier to see if provider identity can be predicted from dialogue alone.",
+    "specific_intervention": "Apply a style-anonymization layer (paraphrasing) to all agent communications before they are seen by other voting agents.",
+    "baseline": "The original 8.3 p.p. bias reported in the Agent Island paper.",
+    "metric": "Percentage point (p.p.) increase in voting probability for same-provider finalists.",
+    "code_or_data_urls": [],
+    "story_angle": "As AI agents begin to govern each other, we've discovered they exhibit 'corporate tribalism'—favoring their own creators' models. Can we make them impartial?"
+  },
+  {
+    "candidate_id": "cand_8b9e29fe8867d7bf",
+    "paper_id": "2605.04312",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games: 2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contaminat... addresses a stated limitation in Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games.",
+    "evidence_spans": [
+      "2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contamination in benchmarks.",
+      "15 pages, 3 figures, 3 tables Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games.",
+      "15 pages, 3 figures, 3 tables TITLE: Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games ABSTRACT: Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games.",
+      "Further, static evaluation environments yield a number of difficulties for standard benchmark development.",
+      "Second, as a benchmark ages, the risk of evaluation tasks entering the training corpus increases, leading to contamination of the benchmark."
+    ],
+    "problem_evidence_spans": [
+      "2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contamination in benchmarks."
+    ],
+    "feasibility_evidence_spans": [
+      "15 pages, 3 figures, 3 tables Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games.",
+      "15 pages, 3 figures, 3 tables TITLE: Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games ABSTRACT: Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games.",
+      "Further, static evaluation environments yield a number of difficulties for standard benchmark development.",
+      "Second, as a benchmark ages, the risk of evaluation tasks entering the training corpus increases, leading to contamination of the benchmark."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games. Then apply this intervention: Design a paper-specific ablation around this stated gap in Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games: 2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contaminat.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated limitation reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games: 2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contaminat... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games: 2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contaminat....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games: 2 Related Work 2.1 Benchmark Limitations Many researchers have drawn attention to the challenge of contaminat...",
+    "baseline": "The reported baseline/protocol from Agent Island: A Saturation- and Contamination-Resistant Benchmark from Multiagent Games.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_d8c3636f8d63ae1f",
+    "paper_id": "2605.02972",
+    "candidate_problem": "Inability of standard monotone response functions (e.g., Hill functions) to parsimoniously model non-monotone biological dynamics like overshoot and adaptation.",
+    "evidence_spans": [
+      "The EML-generated module does not attempt to replace them when they work. Its purpose is to provide an alternative when the observed response is nonmonotone, adaptive, or shaped by competing positive and negative processes",
+      "The quantitative comparison in Sec. II.3 (AIC/BIC, Table S3) shows that the depth-1 EML gate G(R) beats the depth-1 Hill block H(R) by very large margins in all four panels"
+    ],
+    "problem_evidence_spans": [
+      "Standard saturating primitives, e.g. the Hill function, are monotone and require at least a difference of two such blocks to produce the same shape."
+    ],
+    "feasibility_evidence_spans": [
+      "First, we apply an EML-ODE grammar to the PKA regulatory-subunit relocalization data of LaCroix et al. [ 13 ]",
+      "Second, we apply the restricted grammar to Rho-GTPase perturbation data from Nanda et al. [ 14 ]"
+    ],
+    "auto_research_experiment": "Compare the EML-ODE grammar against a standard symbolic regression baseline (e.g., PySR) and a Hill-function-summation baseline on the Nanda et al. Rho-GTPase dataset. Evaluate if EML achieves lower BIC/AIC and better held-out wMSE at low model complexity (node count < 10).",
+    "available_data_or_benchmark": "Rho-GTPase recruitment data from Nanda et al. (2023) and PKA relocalization data from LaCroix et al. (2022).",
+    "public_training_or_eval_data": "https://doi.org/10.1016/j.bpj.2022.03.020",
+    "scientific_hypothesis": "A single EML-generated module (depth-1) can fit non-monotone biological time-series with significantly lower AIC/BIC than a single Hill function and comparable error to a sum of two Hill functions while using fewer parameters.",
+    "expected_metric": "weighted Mean Squared Error (wMSE) on held-out time points.",
+    "success_threshold": "EML depth-1 wMSE < 0.5 and BIC lower than Hill depth-1 across all four Nanda panels.",
+    "failure_condition": "EML requires depth > 2 to match the accuracy of a single Hill function on monotone segments, or fails to converge on noisy time-series.",
+    "first_24h_experiment": "Implement the EML operator eml(x,y) = exp(x) - ln(y) in a Python-based ODE solver (e.g., scipy.integrate.solve_ivp) and fit the parameters (a, b, c) to one trace of the Nanda et al. dataset using least squares.",
+    "specific_intervention": "Replace the standard Hill-type activation term in a first-order relaxation ODE with the EML-generated module M1(R) = R^a - bR.",
+    "baseline": "Hill-type ODE: dy/dt = (1/tau)*(-y + A*(R^h / (Kd^h + R^h))).",
+    "metric": "wMSE (weighted Mean Squared Error)",
+    "code_or_data_urls": [
+      "https://www.github.com/AmirErez/Manuscript_EML_biophysics"
+    ],
+    "story_angle": "The search for the 'atoms' of biological logic: how a single mathematical operator can replace complex mechanistic models for predicting cell signaling responses."
+  },
+  {
+    "candidate_id": "cand_3ba40637ec8ed7ad",
+    "paper_id": "2605.04312",
+    "candidate_problem": "Vulnerability of multi-agent persuasion to adversarial 'quasi-adversarial' strategies",
+    "evidence_spans": [
+      "The naturally quasi-adversarial nature of our game serves to generate new adversarial examples.",
+      "In Agent Island, agents compete against other adaptive agents, limiting the risk of contamination."
+    ],
+    "problem_evidence_spans": [
+      "The naturally quasi-adversarial nature of our game serves to generate new adversarial examples."
+    ],
+    "feasibility_evidence_spans": [
+      "We release the game logs as a dataset for analyses of model behavior.",
+      "In 999 games involving 49 unique models, openai/gpt-5.5 dominates its peers"
+    ],
+    "auto_research_experiment": "Perform an automated red-teaming of the persuasion logs to identify 'jailbreak-like' rhetorical patterns that correlate with high win rates in the Survivor-style game.",
+    "available_data_or_benchmark": "Agent Island game logs",
+    "public_training_or_eval_data": "gs://agent-island/logs/",
+    "scientific_hypothesis": "Top-tier models (GPT-5.5) utilize specific rhetorical 'dark patterns' (e.g., false urgency, gaslighting) that are more effective on smaller models than logical persuasion.",
+    "expected_metric": "Correlation coefficient between 'dark pattern' usage and win rate.",
+    "success_threshold": "Identification of at least 3 distinct rhetorical strategies that consistently predict victory across different model pairings.",
+    "failure_condition": "No linguistic patterns correlate significantly with win rate beyond simple 'logical consistency' scores.",
+    "first_24h_experiment": "Run a keyword and sentiment analysis on the GPT-5.5 winning logs vs. DeepSeek losing logs to find linguistic outliers.",
+    "specific_intervention": "Inject specific 'defense' prompts into lower-tier models to recognize and ignore identified dark patterns.",
+    "baseline": "Win rates of DeepSeek/Moonshot models against GPT-5.5 in the original logs.",
+    "metric": "Win rate against GPT-5.5.",
+    "code_or_data_urls": [],
+    "story_angle": "In the 'Survivor' for AI, the strongest models aren't just smarter—they might be better at manipulating their peers. We're decoding the 'dark arts' of AI persuasion."
+  },
+  {
+    "candidate_id": "cand_df9e8c5677243c86",
+    "paper_id": "2605.03310",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent mi... addresses a stated failure mode in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent misalignment, and task-verification gaps.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "problem_evidence_spans": [
+      "The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent misalignment, and task-verification gaps."
+    ],
+    "feasibility_evidence_spans": [
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems. Then apply this intervention: Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent mi.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent mi... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent mi....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: The MAST taxonomy of Cemri et al. ( 2025 ) identifies three top-level failure clusters: system-design issues, inter-agent mi...",
+    "baseline": "The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_8d847c37bbb0d4cf",
+    "paper_id": "2605.03578",
+    "candidate_problem": "Over-parameterization in Direct Coupling Analysis (DCA) models leads to restricted sequence space exploration and potential overfitting to noise in protein MSAs.",
+    "evidence_spans": [
+      "Standard DCA approaches typically infer fully connected interaction graphs (bmDCA), resulting in dense models where the number of parameters often exceeds the information content of the training set.",
+      "This over-parameterization raises critical questions regarding overfitting and the true topology of the inferred landscape.",
+      "Does the inclusion of all possible couplings capture essential biological constraints, or does it introduce noise that artificially constrains the model?"
+    ],
+    "problem_evidence_spans": [
+      "Standard DCA approaches typically infer fully connected interaction graphs (bmDCA), resulting in dense models where the number of parameters often exceeds the information content of the training set."
+    ],
+    "feasibility_evidence_spans": [
+      "We focus on the AroQ family of Chorismate Mutase (CM) enzymes [ 25 , 26 ] , a system previously established as a benchmark for evolution-based design [ 2 ] .",
+      "We validate these models experimentally using an in vivo complementation assay, testing their ability to generate functional enzymes across varying degrees of sequence divergence."
+    ],
+    "auto_research_experiment": "Train a bmDCA model on the Chorismate Mutase MSA. Implement an iterative pruning (edDCA) protocol. Calculate the Shannon entropy at each sparsity level. Identify the meDCA (maximum entropy) point. Sample 1000 sequences from both the fully connected bmDCA and the meDCA. Compare the sequence diversity (Hamming distance) and the log-likelihood scores on a held-out set of natural CM sequences.",
+    "available_data_or_benchmark": "AroQ family Chorismate Mutase (CM) Multiple Sequence Alignment (MSA).",
+    "public_training_or_eval_data": "The paper references the CM system from Russ et al. (2020) Science, which provides the MSA and the E. coli complementation assay protocol.",
+    "scientific_hypothesis": "Maximizing Shannon entropy during the sparsification of a Potts model for protein sequences identifies a regime that captures essential coevolutionary constraints while maximizing the volume of the functional sequence space compared to dense models.",
+    "expected_metric": "Sequence Space Volume (effective number of sequences) and Log-likelihood on unseen natural sequences.",
+    "success_threshold": "The meDCA model should assign higher log-likelihoods to unseen natural sequences and exhibit a sequence space volume at least 10 orders of magnitude larger than the fully connected bmDCA.",
+    "failure_condition": "The meDCA model shows lower or equal log-likelihood on unseen sequences compared to the dense bmDCA, or the sequence diversity of generated functional sequences does not significantly increase.",
+    "first_24h_experiment": "Download the CM MSA from public repositories. Train a standard bmDCA model using a package like ArDCA or PlmDCA. Implement a simple magnitude-based pruning of the J_ij coupling matrix and plot the Shannon entropy vs. sparsity curve.",
+    "specific_intervention": "Iterative edge decimation (pruning) of the DCA coupling parameters (J_ij) to find the maximum entropy point (meDCA).",
+    "baseline": "Fully connected Boltzmann Machine Direct Coupling Analysis (bmDCA).",
+    "metric": "Shannon Entropy (H) and Log-likelihood (LL) of unseen natural sequences.",
+    "code_or_data_urls": [
+      "https://github.com/robertonetti/entropy-sparse-DCA",
+      "https://github.com/robertonetti/highentropyDCA",
+      "https://github.com/spqb/adabmDCA"
+    ],
+    "story_angle": "By pruning the 'noise' out of protein models, we can discover billions of new functional protein sequences that nature hasn't explored yet."
+  },
+  {
+    "candidate_id": "cand_2b4dfba31a5d0294",
+    "paper_id": "2605.03310",
+    "candidate_problem": "Statistical under-powering in multi-agent coordination architecture comparisons",
+    "evidence_spans": [
+      "Statistical resolution of adjacent configuration pairs at Bonferroni-corrected significance is not yet achieved at n = 100",
+      "an observational power analysis identifies which contrasts a follow-up at n ≈ 500 would close out and which require substantially more data."
+    ],
+    "problem_evidence_spans": [
+      "pairwise tests do not survive Bonferroni correction at n = 100"
+    ],
+    "feasibility_evidence_spans": [
+      "Open trace dataset: https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100",
+      "Harness, configurations, analysis: https://github.com/ForesightFlow/coordination-experiment"
+    ],
+    "auto_research_experiment": "Scale the existing Polymarket evaluation harness to N=500 markets using the provided open-source harness and configurations to resolve the statistical ambiguity between the top-performing architectures.",
+    "available_data_or_benchmark": "Polymarket binary markets (post-cutoff) and the ForesightFlow coordination-experiment harness.",
+    "public_training_or_eval_data": "https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100",
+    "scientific_hypothesis": "Increasing the sample size to N=500 will demonstrate that the 'Consensus Alignment' architecture significantly outperforms 'Sequential Pipeline' architectures in Brier score after Bonferroni correction.",
+    "expected_metric": "Brier Score and p-values for pairwise architectural contrasts.",
+    "success_threshold": "p < 0.05 after Bonferroni correction for all 10 pairwise comparisons between the 5 configurations.",
+    "failure_condition": "P-values remain above 0.05 at N=500, suggesting architectural differences are negligible compared to base-model variance.",
+    "first_24h_experiment": "Clone the ForesightFlow harness, verify the N=100 results, and initiate a batch run for 50 additional Polymarket IDs to test throughput and cost.",
+    "specific_intervention": "Increase sample size from N=100 to N=500 markets.",
+    "baseline": "The N=100 results reported in the original paper (Table 2).",
+    "metric": "Brier Score (Murphy decomposition components).",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "While many claim multi-agent systems are better, we don't actually have the statistical power to prove it yet. This experiment scales the first principled coordination benchmark to finally separate signal from noise."
+  },
+  {
+    "candidate_id": "cand_8c6b701cf186d892",
+    "paper_id": "2605.03310",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s s... addresses a stated failure mode in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s specification alone —the goal articulated in Section 2.1 —appears feasible at the resolution of this experiment.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "problem_evidence_spans": [
+      "Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s specification alone —the goal articulated in Section 2.1 —appears feasible at the resolution of this experiment."
+    ],
+    "feasibility_evidence_spans": [
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems. Then apply this intervention: Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s s.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s s... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s s....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: Predicting which of these MAST failure modes a particular configuration is most likely to exhibit from the configuration’s s...",
+    "baseline": "The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_e552310ed9a0de66",
+    "paper_id": "2605.04637",
+    "candidate_problem": "Frontend-backend decoupling in AI-generated web applications",
+    "evidence_spans": [
+      "visual quality is a poor proxy for engineering quality, with polished UIs masking absent backend infrastructure",
+      "Background Job Scores ranging from 0% to 49%",
+      "FES shows weak correlation with backend metrics ( | τ | < 0.30 with FCS, CBS, CRR), confirming the frontend-backend decoupling finding"
+    ],
+    "problem_evidence_spans": [
+      "A pervasive frontend-backend decoupling , where visually polished UIs mask absent or broken backend infrastructure"
+    ],
+    "feasibility_evidence_spans": [
+      "We release SWE-WebDev Bench, including prompts, rubrics, and evaluation protocols, to enable independent replication and benchmarking ( https://github.com/snowmountainAi/webdevbench )",
+      "approximately 40% of the Engineering Score derives from Tier 0 fully automated metrics (Lighthouse, k6, npm audit)"
+    ],
+    "auto_research_experiment": "Evaluate the impact of 'Backend-First' prompting vs 'UI-First' prompting on the Backend Logic Score (BLS) and Core Integration Score (CIS) using the SWE-WebDevBench framework across three LLM-based coding agents.",
+    "available_data_or_benchmark": "SWE-WebDevBench",
+    "public_training_or_eval_data": "https://github.com/snowmountainAi/webdevbench",
+    "scientific_hypothesis": "Enforcing a schema-first architectural constraint in the agent's generation pipeline will significantly increase the Backend Logic Score (BLS) without degrading the Frontend Engineering Score (FES).",
+    "expected_metric": "Backend Logic Score (BLS)",
+    "success_threshold": "A 20% absolute increase in BLS compared to the baseline while maintaining FES within 5% of the baseline.",
+    "failure_condition": "If the schema-first constraint leads to a significant drop (>10%) in Frontend Engineering Score (FES) or no improvement in BLS.",
+    "first_24h_experiment": "Clone the SWE-WebDevBench repo, select one platform (e.g., Replit or v0), and run the 'ExamEdge Academy' prompt with an added instruction to generate the SQL schema and API routes before any UI code.",
+    "specific_intervention": "Inject a 'Schema-First' architectural prompt constraint that requires the agent to output a validated Prisma/SQL schema and API documentation before generating React/Frontend components.",
+    "baseline": "The standard 'vibe coding' approach (natural language only) as documented in the SWE-WebDevBench paper for the selected platforms.",
+    "metric": "Backend Logic Score (BLS) and Frontend Engineering Score (FES)",
+    "code_or_data_urls": [
+      "https://github.com/snowmountainAi/webdevbench"
+    ],
+    "story_angle": "The 'vibe coding' illusion: why your AI-generated app looks perfect but has no brain, and how to fix it with architectural constraints."
+  },
+  {
+    "candidate_id": "cand_48cb982d009e28ba",
+    "paper_id": "2605.03310",
+    "candidate_problem": "Minority view collapse in peer-critique multi-agent architectures",
+    "evidence_spans": [
+      "Market 66 (peer-critique minority-view collapse) is a clear instance of communication breakdown (FM-2.x in MAST), specifically the variant in which alignment pressure suppresses correct minority signals"
+    ],
+    "problem_evidence_spans": [
+      "debate dynamics that suppress dissent (Wynn et al., 2025)",
+      "A configuration with all-to-all peer communication and round-bounded termination (peer-critique debate, consensus alignment) is a plausible breeding ground for FM-2"
+    ],
+    "feasibility_evidence_spans": [
+      "Open trace dataset: https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100",
+      "Operational engine for production agents: https://github.com/ForesightFlow/foreflow-agents-engine"
+    ],
+    "auto_research_experiment": "Implement a 'Devil's Advocate' architectural layer that explicitly protects minority viewpoints in the 'Consensus Alignment' configuration and measure the change in the Murphy 'Resolution' component.",
+    "available_data_or_benchmark": "The MAST failure taxonomy and the coordination-traces-100 dataset.",
+    "public_training_or_eval_data": "https://github.com/ForesightFlow/datasets/tree/main/coordination-traces-100",
+    "scientific_hypothesis": "An architectural intervention that prevents agents from seeing the aggregate mean until after their individual critique will reduce FM-2.x failures and improve the 'Resolution' component of the Murphy decomposition.",
+    "expected_metric": "Murphy Decomposition: Resolution (higher is better) and Reliability (lower is better).",
+    "success_threshold": "A 15% increase in the Resolution component compared to the standard Consensus Alignment baseline.",
+    "failure_condition": "The intervention increases variance (Reliability error) without improving Resolution.",
+    "first_24h_experiment": "Modify the 'Consensus Alignment' YAML in the ForesightFlow harness to include an 'anonymous critique' phase and run on the 6 identified failure markets (e.g., Market 66).",
+    "specific_intervention": "Anonymized/Blind Peer Critique (agents cannot see other agents' identities or current group mean during the critique phase).",
+    "baseline": "The original 'Consensus Alignment' configuration from the paper.",
+    "metric": "Murphy Resolution Component.",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "Groupthink isn't just a human problem; it's an architectural flaw in AI. We're testing if 'blind' peer review can stop multi-agent systems from bullying the only agent who actually knows the right answer."
+  },
+  {
+    "candidate_id": "cand_4267832886b0537e",
+    "paper_id": "2605.03310",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separab... addresses a stated failure mode in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separable from agent logic and information access, and that this separation enables falsifiable predictions about failure-mode signatures rather than only engineering productivity.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "problem_evidence_spans": [
+      "We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separable from agent logic and information access, and that this separation enables falsifiable predictions about failure-mode signatures rather than only engineering productivity."
+    ],
+    "feasibility_evidence_spans": [
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems. Then apply this intervention: Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separab.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separab... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separab....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems: We argued that coordination in LLM-based multi-agent systems should be treated as a configurable architectural layer separab...",
+    "baseline": "The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_33e791047f0092c0",
+    "paper_id": "2605.01378",
+    "candidate_problem": "Implementation-level parsing failure for KEGG phenotype-to-gene records",
+    "evidence_spans": [
+      "KEGG returned source-level records for some phenotypes, but these produced zero validated genes after the current parsing and symbol-validation step, indicating an implementation-level parsing limitation."
+    ],
+    "problem_evidence_spans": [
+      "KEGG returned source-level records for some phenotypes, but these produced zero validated genes after the current parsing and symbol-validation step, indicating an implementation-level parsing limitation."
+    ],
+    "feasibility_evidence_spans": [
+      "The tool is intended as an upstream triage layer: it generates analysis-ready candidate gene sets and source-support summaries",
+      "Gene-symbol validation and harmonisation retained 100,175 of 114,345 combined input symbols across all 13 phenotypes, corresponding to an overall validation rate of 87.6%."
+    ],
+    "auto_research_experiment": "Develop a robust regex-based or JSON-path parser specifically for KEGG's REST API 'get' and 'link' responses within the PhenotypeToGeneDownloaderR framework. Test the new parser against the 5 phenotypes where KEGG previously returned records but zero genes.",
+    "available_data_or_benchmark": "KEGG REST API (human pathway/disease entries) and the 13 phenotypes defined in the paper's benchmark.",
+    "public_training_or_eval_data": "NCBI human gene reference (for symbol validation) and KEGG API.",
+    "scientific_hypothesis": "The zero-gene yield from KEGG is due to a specific mismatch between KEGG's record format and the package's parsing logic, rather than a lack of biological data.",
+    "expected_metric": "Validated Gene Yield from KEGG",
+    "success_threshold": "Retrieval of >0 validated gene symbols for the 5 phenotypes where KEGG previously failed (e.g., Type 2 Diabetes, Alzheimer's).",
+    "failure_condition": "KEGG still returns zero validated genes after parser modification, or the validation rate remains 0% due to non-standard symbol formats in KEGG.",
+    "first_24h_experiment": "Manually query the KEGG API for 'Type 2 Diabetes' (H00408) and 'Alzheimer disease' (H00056), inspect the raw text/JSON response, and identify the specific field containing gene symbols that the current R code is missing.",
+    "specific_intervention": "Rewrite the `parse_kegg_results` function in the PhenotypeToGeneDownloaderR package to handle multi-line gene fields and cross-reference with NCBI symbols.",
+    "baseline": "Original PhenotypeToGeneDownloaderR KEGG module (0 validated genes).",
+    "metric": "Number of validated gene symbols retrieved per phenotype from KEGG.",
+    "code_or_data_urls": [
+      "https://github.com/MuhammadMuneeb007/PhenotypeToGeneDownloaderR"
+    ],
+    "story_angle": "Fixing the 'silent' data loss in bioinformatics pipelines: how a parsing error masked valuable KEGG pathway data in phenotype-to-gene mapping."
+  },
+  {
+    "candidate_id": "cand_28200f3dbc9771de",
+    "paper_id": "2605.03281",
+    "candidate_problem": "Data leakage in scVI latent embedding evaluation for donor-level IBD classification",
+    "evidence_spans": [
+      "The scVI evaluation has a data-leakage caveat: the scVI encoder was trained on all 30 SCP259 donors simultaneously before cross-validation, meaning test-fold donors influenced the latent representations used for classification.",
+      "The correct procedure is to retrain the scVI encoder within each fold using only training-fold donors and then embed held-out test donors."
+    ],
+    "problem_evidence_spans": [
+      "The scVI evaluation has a data-leakage caveat: the scVI encoder was trained on all 30 SCP259 donors simultaneously before cross-validation"
+    ],
+    "feasibility_evidence_spans": [
+      "Code: this https URL",
+      "SCP259 UC cohort",
+      "Kong 2023 Crohn’s disease cohort"
+    ],
+    "auto_research_experiment": "Implement a nested cross-validation loop where scVI is retrained from scratch on only the training donors of each fold, then used to transform the held-out donor cells for classification.",
+    "available_data_or_benchmark": "SCP259 (Smillie et al. 2019) and Kong 2023 (GSE214694) datasets.",
+    "public_training_or_eval_data": "https://singlecell.broadinstitute.org/single_cell/study/SCP259",
+    "scientific_hypothesis": "The reported AUROC for scVI (0.931) is inflated by donor leakage; a strict donor-aware scVI training will show a performance drop but still outperform global (non-compartmentalized) models.",
+    "expected_metric": "AUROC",
+    "success_threshold": "Donor-aware scVI AUROC > 0.85 while maintaining a lower variance than the leaked version.",
+    "failure_condition": "Donor-aware scVI AUROC drops to chance (0.5) or fails to converge on small training folds (n=24).",
+    "first_24h_experiment": "Download SCP259 raw counts, split into 5 folds by donor ID, and run scVI training on Fold 1 training set only.",
+    "specific_intervention": "Retrain scVI encoder inside each cross-validation fold using only training-set donors.",
+    "baseline": "The leaked scVI AUROC (0.931) and the CLR-transformed linear SVM (0.956).",
+    "metric": "Donor-level AUROC",
+    "code_or_data_urls": [
+      "https://github.com/Jonathan-321/sfn-scrna-study",
+      "https://github.com/fanglioc/StructuralCFN-public"
+    ],
+    "story_angle": "Fixing the 'hidden' leakage in scRNA-seq patient classification benchmarks to see if deep generative models actually beat simple linear math."
+  },
+  {
+    "candidate_id": "cand_8feb8bda97bd7d28",
+    "paper_id": "2605.03310",
+    "candidate_problem": "Test whether Stress-test and mitigate the majority of these failures attributable to coordination defects rather than to base-model capability in the Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems setup addresses a stated failure mode in Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "evidence_spans": [
+      "maksym@devnull.ae Pavel Shuvalov Devnull FZCO Dubai, UAE Abstract Multi-agent LLM systems fail in production at rates between 41% and 87%, with the majority of these failures attributable to coordination defects rather than to base-model capability.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "problem_evidence_spans": [
+      "maksym@devnull.ae Pavel Shuvalov Devnull FZCO Dubai, UAE Abstract Multi-agent LLM systems fail in production at rates between 41% and 87%, with the majority of these failures attributable to coordination defects rather than to base-model capability."
+    ],
+    "feasibility_evidence_spans": [
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning TITLE: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems ABSTRACT: Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+      "Code, traces, and production agents publicly released; see Appendix B for repository pinning INTRODUCTION: Multi-agent LLM systems fail in production at rates between 41% and 87% (Cemri et al. , 2025 ) , with the majority of these failures attributable to coordination defects—specification ambiguity, inter-agent misalignment, and verification gaps—rather than to base-model capability (Cemri et al. , 2025 ; Acharya, 2026 ) .",
+      "We use the classical Murphy decomposition to separate calibration error from discriminative power, allowing distinct coordination configurations to leave distinguishable signatures even when their aggregate scores coincide."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems. Then apply this intervention: Stress-test and mitigate the majority of these failures attributable to coordination defects rather than to base-model capability in the Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "public_training_or_eval_data": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Stress-test and mitigate the majority of these failures attributable to coordination defects rather than to base-model capability in the Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Stress-test and mitigate the majority of these failures attributable to coordination defects rather than to base-model capability in the Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems setup.",
+    "specific_intervention": "Stress-test and mitigate the majority of these failures attributable to coordination defects rather than to base-model capability in the Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems setup",
+    "baseline": "The reported baseline/protocol from Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/ForesightFlow/coordination-experiment",
+      "https://github.com/ForesightFlow/datasets",
+      "https://github.com/ForesightFlow/foreflow-agents",
+      "https://github.com/ForesightFlow/foreflow-agents-engine",
+      "https://github.com/foresight-arena/contracts"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_93fea71e42023da2",
+    "paper_id": "2605.05706",
+    "candidate_problem": "Over-balancing in causal representation learning for continuous treatment variables",
+    "evidence_spans": [
+      "Second, the current sMMD framework is designed for binary treatment decisions. Extending GITO to continuous treatment variables, such as drug dosages or infusion rates, through kernel-based propensity matching would enable dosage optimization and graduated intervention strategies."
+    ],
+    "problem_evidence_spans": [
+      "Second, the current sMMD framework is designed for binary treatment decisions."
+    ],
+    "feasibility_evidence_spans": [
+      "Extending GITO to continuous treatment variables, such as drug dosages or infusion rates, through kernel-based propensity matching would enable dosage optimization"
+    ],
+    "auto_research_experiment": "Adapt the sMMD (sampling-based Maximum Mean Discrepancy) loss to a continuous setting using a kernel-based weighting scheme (e.g., RBF kernel on treatment dosage) to align representations across the dosage spectrum without collapsing dose-response sensitivity.",
+    "available_data_or_benchmark": "MIMIC-III and AmsterdamUMCdb",
+    "public_training_or_eval_data": "https://physionet.org/content/mimiciii/1.4/",
+    "scientific_hypothesis": "Kernel-weighted sMMD alignment will reduce confounding bias in continuous treatment effect estimation while maintaining higher individual-level precision (lower RMSE) compared to adversarial continuous deconfounding (e.g., SCIGAN).",
+    "expected_metric": "Root Mean Squared Error (RMSE) of counterfactual outcome prediction across dosage levels.",
+    "success_threshold": "A 10% reduction in RMSE compared to the continuous-treatment baseline (e.g., SCIGAN or standard Causal Transformer) on the MIMIC-III vasopressor dosage task.",
+    "failure_condition": "The model fails to maintain a monotonic dose-response curve or the RMSE exceeds the baseline due to 'over-smoothing' of the representation across dosages.",
+    "first_24h_experiment": "Extract vasopressor dosage (norepinephrine) and MAP (Mean Arterial Pressure) trajectories from MIMIC-III. Implement a basic kernel-weighted MMD loss where samples are weighted by their dosage similarity in the alignment step.",
+    "specific_intervention": "Replace binary sMMD with a kernel-weighted sMMD that aligns representations of patients with different dosages while preserving dosage-specific physiological signals.",
+    "baseline": "Causal Transformer (CT) with standard adversarial balancing adapted for continuous treatments.",
+    "metric": "RMSE",
+    "code_or_data_urls": [
+      "https://huggingface.co/spaces/peisongzhang/TreatmentOutcomePredictionSystem"
+    ],
+    "story_angle": "Moving beyond 'treat or don't treat' to 'how much'—solving the bias-precision paradox for precise drug titration in the ICU."
+  },
+  {
+    "candidate_id": "cand_ffe5eafc8ffeecde",
+    "paper_id": "2605.03281",
+    "candidate_problem": "Confounding of dimensionality and compartmentalization in scVI performance",
+    "evidence_spans": [
+      "A second scVI confound is that the compartment and global models differ in latent dimensionality: global scVI uses a 20-dim latent space, while compartment scVI produces a 60-dim feature vector (3 compartments × 20-dim).",
+      "A controlled comparison—global scVI at 60-dim vs. compartment scVI at 20-dim total (6–7 dim per compartment)—would be needed to isolate the compartmentalization effect"
+    ],
+    "problem_evidence_spans": [
+      "The performance gap (0.931 vs. 0.725) may therefore partly reflect the larger feature space available to the downstream classifier rather than biological information partitioning per se."
+    ],
+    "feasibility_evidence_spans": [
+      "global scVI uses a 20-dim latent space, while compartment scVI produces a 60-dim feature vector"
+    ],
+    "auto_research_experiment": "Run a grid search comparing Global-scVI (60-dim) vs. Compartment-scVI (20-dim total, 6-7 per compartment) to isolate the source of the 0.20 AUROC gap.",
+    "available_data_or_benchmark": "SCP259 UC cohort data.",
+    "public_training_or_eval_data": "https://singlecell.broadinstitute.org/single_cell/study/SCP259",
+    "scientific_hypothesis": "The performance advantage of compartmentalized scVI is primarily due to biological signal localization rather than increased feature dimensionality.",
+    "expected_metric": "AUROC",
+    "success_threshold": "Compartment-scVI (20-dim total) significantly outperforms Global-scVI (60-dim).",
+    "failure_condition": "Global-scVI (60-dim) matches or exceeds Compartment-scVI (20-dim total).",
+    "first_24h_experiment": "Train a 60-dimensional global scVI model on the SCP259 dataset and compare its donor-level classification AUROC to the 20-dimensional baseline.",
+    "specific_intervention": "Equalize the total number of latent dimensions between global and compartment-stratified models.",
+    "baseline": "Global scVI (20-dim) AUROC of 0.725.",
+    "metric": "AUROC",
+    "code_or_data_urls": [
+      "https://github.com/Jonathan-321/sfn-scrna-study",
+      "https://github.com/fanglioc/StructuralCFN-public"
+    ],
+    "story_angle": "Is bigger always better? Disentangling feature count from biological structure in single-cell disease models."
+  },
+  {
+    "candidate_id": "cand_3396f0c7422b267a",
+    "paper_id": "2605.04498",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: The mechanisms generating these bottlenecks have also been related to unstable equilibria in e... addresses a stated failure mode in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "evidence_spans": [
+      "The mechanisms generating these bottlenecks have also been related to unstable equilibria in evolutionary game-theoretic models, which reduce the probability of complex lifeforms and societies.",
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "problem_evidence_spans": [
+      "The mechanisms generating these bottlenecks have also been related to unstable equilibria in evolutionary game-theoretic models, which reduce the probability of complex lifeforms and societies."
+    ],
+    "feasibility_evidence_spans": [
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis. Then apply this intervention: Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: The mechanisms generating these bottlenecks have also been related to unstable equilibria in e.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: The mechanisms generating these bottlenecks have also been related to unstable equilibria in e... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: The mechanisms generating these bottlenecks have also been related to unstable equilibria in e....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: The mechanisms generating these bottlenecks have also been related to unstable equilibria in e...",
+    "baseline": "The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_091ef06485d2408f",
+    "paper_id": "2605.04265",
+    "candidate_problem": "Inaccurate viral protein-ligand binding affinity predictions due to un-split polyprotein sequences in training data",
+    "evidence_spans": [
+      "Importantly, we found that 31% of viral protein binding data in BindingDb required polyprotein sequences to be carefully split before the data were suitable for training or testing ML models.",
+      "Fine-tuning DrugFormDTA on our custom cleaned antiviral dataset boosted performance from r =0.5 to r =0.7."
+    ],
+    "problem_evidence_spans": [
+      "31% of viral protein binding data in BindingDb required polyprotein sequences to be carefully split before the data were suitable for training or testing ML models."
+    ],
+    "feasibility_evidence_spans": [
+      "We then presented our custom dataset of 43,005 viral protein-ligand binding measurements that we curated from BindingDb and other sources.",
+      "Fine-tuning DrugFormDTA on our custom cleaned antiviral dataset boosted performance from r =0.5 to r =0.7."
+    ],
+    "auto_research_experiment": "Train three state-of-the-art DTA models (e.g., Boltz-2, GNINA, and Interformer) on two versions of the BindingDb viral subset: one with raw polyprotein sequences and one with the paper's 43,005 split-sequence dataset. Compare the Pearson correlation (r) and RMSE across 16 specific viral protein targets.",
+    "available_data_or_benchmark": "The paper's custom dataset of 43,005 viral protein-ligand binding measurements and the test set of 853 antiviral compounds.",
+    "public_training_or_eval_data": "antivirals-database.radvac.org",
+    "scientific_hypothesis": "Explicitly splitting viral polyproteins into functional domains for DTA model training significantly reduces sequence-length-induced noise and improves the Pearson correlation of binding affinity predictions by at least 0.15 across diverse viral families.",
+    "expected_metric": "Pearson correlation coefficient (r)",
+    "success_threshold": "r > 0.65 for the split-sequence model vs r < 0.55 for the raw-sequence model",
+    "failure_condition": "The improvement in r is less than 0.05 or the model fails to generalize to the 16 protein targets in the test set.",
+    "first_24h_experiment": "Download the 43,005 curated measurements from the Radvac dashboard, extract the DrugFormDTA architecture, and run a 5-fold cross-validation comparing raw vs. split sequences on a single target (e.g., SARS-CoV-2 Mpro).",
+    "specific_intervention": "Fine-tune the DrugFormDTA model using the polyprotein-split sequence dataset vs. the original BindingDb unsplit sequences.",
+    "baseline": "DrugFormDTA trained on standard unsplit BindingDb viral data (r=0.50).",
+    "metric": "Pearson correlation (r)",
+    "code_or_data_urls": [
+      "https://github.com/bytedance/Protenix-Dock",
+      "https://github.com/plinder-org/plinder",
+      "https://zenodo.org/records/6378223"
+    ],
+    "story_angle": "The 'Polyprotein Trap': Why current AI drug discovery models are failing on viruses by ignoring how viral proteins actually mature."
+  },
+  {
+    "candidate_id": "cand_e179ec87dd0fd1f9",
+    "paper_id": "2605.03281",
+    "candidate_problem": "Instability and lack of reproducibility in CFN dependency matrices",
+    "evidence_spans": [
+      "The global CFN edge Jaccard of 0.026 indicates near-zero cross-fold reproducibility",
+      "the specific dependency structures responsible for the performance advantage cannot be identified from the current data.",
+      "The SCP259 cohort (n=30) is underpowered for stable CFN edge interpretation."
+    ],
+    "problem_evidence_spans": [
+      "CFN dependency structure is only reproducible across folds when composition is computed within compartments rather than globally"
+    ],
+    "feasibility_evidence_spans": [
+      "Incorporating additional UC donors from the Human Cell Atlas or SHARE-seq IBD cohorts would provide the sample size (n >= 100) needed"
+    ],
+    "auto_research_experiment": "Aggregate SCP259 with other public IBD datasets (e.g., HCA, SHARE-seq) to reach N>100 and re-evaluate the Jaccard stability of the CFN dependency matrix.",
+    "available_data_or_benchmark": "SCP259, Kong 2023, and HCA IBD datasets.",
+    "public_training_or_eval_data": "https://www.humancellatlas.org/ (IBD datasets)",
+    "scientific_hypothesis": "Increasing donor sample size to N > 100 will stabilize the CFN dependency matrix, yielding a cross-fold Jaccard index > 0.5 for top edges.",
+    "expected_metric": "Edge Jaccard Index",
+    "success_threshold": "Mean cross-fold Jaccard > 0.4 for top 20 edges.",
+    "failure_condition": "Jaccard remains < 0.1 despite increased sample size, suggesting CFN is inherently unstable for compositional data.",
+    "first_24h_experiment": "Harmonize cell type labels between SCP259 and a second public IBD dataset to create a larger donor pool.",
+    "specific_intervention": "Increase donor sample size and apply L1 regularization to the CFN dependency matrix.",
+    "baseline": "Global CFN Jaccard of 0.026.",
+    "metric": "Cross-fold Edge Jaccard",
+    "code_or_data_urls": [
+      "https://github.com/Jonathan-321/sfn-scrna-study",
+      "https://github.com/fanglioc/StructuralCFN-public"
+    ],
+    "story_angle": "When 'interpretable' models lie: fixing the instability of dependency networks in small-sample clinical genomics."
+  },
+  {
+    "candidate_id": "cand_a76b16aa694f4a3a",
+    "paper_id": "2605.04498",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Societies with advanced technologies may be rare because at least one code-invention is very h... addresses a stated failure mode in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "evidence_spans": [
+      "Societies with advanced technologies may be rare because at least one code-invention is very hard, path-dependent, or unstable.",
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "problem_evidence_spans": [
+      "Societies with advanced technologies may be rare because at least one code-invention is very hard, path-dependent, or unstable."
+    ],
+    "feasibility_evidence_spans": [
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis. Then apply this intervention: Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Societies with advanced technologies may be rare because at least one code-invention is very h.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Societies with advanced technologies may be rare because at least one code-invention is very h... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Societies with advanced technologies may be rare because at least one code-invention is very h....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Societies with advanced technologies may be rare because at least one code-invention is very h...",
+    "baseline": "The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_2a140b0fddde6ca7",
+    "paper_id": "2605.06407",
+    "candidate_problem": "High-dimensional redundancy in SSL speech features causes diffusion manifold drift and catastrophic failure in zero-shot TTS.",
+    "evidence_spans": [
+      "Directly feeding the 1024-dim WavLM-Large features into a diffusion transformer produces catastrophic failure—a 338M-parameter DiT trained under this setting yields an unreadable WER of 110% on zero-shot TTS",
+      "The massive redundancy of SSL feature spaces exacerbates manifold drift in diffusion models, yielding off-manifold latents that degrade decoding fidelity."
+    ],
+    "problem_evidence_spans": [
+      "Directly feeding the 1024-dim WavLM-Large features into a diffusion transformer produces catastrophic failure—a 338M-parameter DiT trained under this setting yields an unreadable WER of 110% on zero-shot TTS"
+    ],
+    "feasibility_evidence_spans": [
+      "Stage 1 utilizes a symmetric adapter-based auto-encoder to distill frozen WavLM-Large features into a 128-dim bottleneck",
+      "WavCube approaches SSL upperbound on SUPERB despite 8 × 8\\times dimensional compression"
+    ],
+    "auto_research_experiment": "Train a Diffusion Transformer (DiT) on the LibriSpeech dataset using three different latent representations: 1) Raw 1024-dim WavLM features, 2) 128-dim PCA-reduced WavLM features, and 3) 128-dim Auto-Encoder (AE) distilled features (WavCube Stage 1). Compare the Word Error Rate (WER) and Speaker Similarity (SIM-o) after 50k training steps.",
+    "available_data_or_benchmark": "LibriSpeech (for TTS training/eval), SUPERB (for understanding eval).",
+    "public_training_or_eval_data": "https://www.openslr.org/12",
+    "scientific_hypothesis": "A non-linear information bottleneck (Auto-Encoder) is superior to linear dimensionality reduction (PCA) or raw high-dimensional features for diffusion-based speech generation because it carves a compact, diffusion-friendly subspace while preserving semantic topology.",
+    "expected_metric": "Word Error Rate (WER)",
+    "success_threshold": "WER < 5.0% on LibriSpeech test-clean using the 128-dim AE latent.",
+    "failure_condition": "WER > 50% or SIM-o < 0.3, indicating the generator cannot recover intelligible speech from the compressed latent.",
+    "first_24h_experiment": "Extract 1024-dim WavLM-Large features for the LibriSpeech train-960 set and train a simple 3-layer MLP Auto-Encoder to compress them to 128-dim. Measure reconstruction loss (MSE) and visualize the latent space using t-SNE against ESC-50 classes.",
+    "specific_intervention": "Apply a symmetric adapter-based auto-encoder bottleneck to reduce WavLM-Large features from 1024 to 128 dimensions before feeding into a Diffusion Transformer.",
+    "baseline": "Raw 1024-dim WavLM-Large features fed directly into the same DiT architecture.",
+    "metric": "WER (%)",
+    "code_or_data_urls": [
+      "https://github.com/yanghaha0908/WavCube"
+    ],
+    "story_angle": "The 'curse of dimensionality' in speech foundation models: why more data in the latent space actually breaks generative AI, and how a simple bottleneck fixes it."
+  },
+  {
+    "candidate_id": "cand_be06d9dc0d5fed7c",
+    "paper_id": "2605.06353",
+    "candidate_problem": "Instruction-following accuracy in LLMs degrades significantly as conversations grow longer, even when constraints remain static.",
+    "evidence_spans": [
+      "Even when following a single constraint, accuracy drops by more than 11% between the first and last turns.",
+      "Across all regimes, constraint-following accuracy degrades as conversations become longer."
+    ],
+    "problem_evidence_spans": [
+      "Even when following a single constraint, accuracy drops by more than 11% between the first and last turns."
+    ],
+    "feasibility_evidence_spans": [
+      "Code and data are available at: https://github.com/BeatrizCanaverde/SEQUOR",
+      "Accompanying our benchmark, we will also release the curated pool of 1,446 realistic constraints."
+    ],
+    "auto_research_experiment": "Evaluate if periodic 'constraint reminders' (re-injecting the system prompt or constraint list into the context) can mitigate the 11% decay observed in the SEQUOR 'Single' regime.",
+    "available_data_or_benchmark": "SEQUOR benchmark (Single regime)",
+    "public_training_or_eval_data": "https://github.com/BeatrizCanaverde/SEQUOR",
+    "scientific_hypothesis": "Re-stating constraints in the local context window every 10 turns will reduce the accuracy drop between the first and last turns to less than 3%.",
+    "expected_metric": "Per-turn accuracy difference (Last turn vs First turn)",
+    "success_threshold": "< 3% degradation",
+    "failure_condition": "Degradation remains > 10% despite re-injection, suggesting the issue is model-internal attention decay rather than context displacement.",
+    "first_24h_experiment": "Run Llama-3.3-70B on the SEQUOR 'Single' regime with a modified prompt that appends the constraint to every 10th user turn and compare to the baseline 30% drop reported in Table 5.",
+    "specific_intervention": "Periodic constraint re-injection (every 10 turns).",
+    "baseline": "Llama-3.3-70B-Inst performance on SEQUOR Single regime (30.00% drop).",
+    "metric": "Accuracy difference (%)",
+    "code_or_data_urls": [
+      "https://github.com/BeatrizCanaverde/SEQUOR",
+      "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words",
+      "https://github.com/huggingface/datatrove"
+    ],
+    "story_angle": "LLMs have a 'memory leak' for instructions; we test if simple reminders can fix long-horizon drift."
+  },
+  {
+    "candidate_id": "cand_f62a2f7d9c45f8a5",
+    "paper_id": "2605.04498",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Overall, technological societies that fail to build resilient institutions or internalize all ... addresses a stated failure mode in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "evidence_spans": [
+      "Overall, technological societies that fail to build resilient institutions or internalize all key impacts of technological development, such as environmental or social costs, may decline or collapse before reaching interstellar/astroengineering capability.",
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "problem_evidence_spans": [
+      "Overall, technological societies that fail to build resilient institutions or internalize all key impacts of technological development, such as environmental or social costs, may decline or collapse before reaching interstellar/astroengineering capability."
+    ],
+    "feasibility_evidence_spans": [
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis. Then apply this intervention: Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Overall, technological societies that fail to build resilient institutions or internalize all .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Overall, technological societies that fail to build resilient institutions or internalize all ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Overall, technological societies that fail to build resilient institutions or internalize all ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: Overall, technological societies that fail to build resilient institutions or internalize all ...",
+    "baseline": "The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_47ae1e4a3b705ba5",
+    "paper_id": "2605.04118",
+    "candidate_problem": "Current binder design models fail to maintain structural plausibility on targets with high alanine content or specific symmetry, such as TNF-alpha, often producing disordered regions.",
+    "evidence_spans": [
+      "for challenging targets such as TNF α , we found that Protenix occasionally produces binder structures that appear disordered or structurally implausible.",
+      "This typically occurs when the input sequence—e.g., one generated by ProteinMPNN—contains excessive alanines"
+    ],
+    "problem_evidence_spans": [
+      "Protenix occasionally produces binder structures that appear disordered or structurally implausible. This typically occurs when the input sequence... contains excessive alanines"
+    ],
+    "feasibility_evidence_spans": [
+      "Table 3: Overview of benchmark targets for protein binder design... TNF α 1tnf A12–157, B12–157, C12–157"
+    ],
+    "auto_research_experiment": "Modify the ProteinMPNN scoring function to penalize alanine-rich sequences (compositional bias penalty) and evaluate the resulting binders on the TNF-alpha target using ProtDBench's structural consistency metrics.",
+    "available_data_or_benchmark": "ProtDBench TNF-alpha target (PDB: 1tnf).",
+    "public_training_or_eval_data": "https://www.rcsb.org/structure/1TNF",
+    "scientific_hypothesis": "Constraining the amino acid composition to match natural binder distributions (reducing alanine frequency) will significantly reduce the 'disordered' failure rate in Protenix-predicted structures for TNF-alpha binders.",
+    "expected_metric": "Percentage of 'plausible' structures (pLDDT > 70 and Radius of Gyration within 10% of natural binders).",
+    "success_threshold": "30% reduction in disordered structure predictions compared to standard ProteinMPNN outputs.",
+    "failure_condition": "The compositional constraint leads to sequences that are structurally plausible but have zero predicted binding affinity (ipTM < 0.2).",
+    "first_24h_experiment": "Generate 500 sequences for TNF-alpha using ProteinMPNN with and without alanine-capping, then run Protenix to compare the distribution of pLDDT scores.",
+    "specific_intervention": "Apply a logit bias in ProteinMPNN to limit Alanine (A) frequency to <15% in the generated binder sequence.",
+    "baseline": "Standard ProteinMPNN sequence generation for the TNF-alpha target.",
+    "metric": "Structural Plausibility Rate (fraction of designs with pLDDT > 70).",
+    "code_or_data_urls": [
+      "https://github.com/HannesStark/boltzgen",
+      "https://github.com/ProteinDesignLab/protpardelle",
+      "https://github.com/RosettaCommons/foundry",
+      "https://github.com/The-Institute-for-AI-Molecular-Design/ODesign",
+      "https://github.com/bytedance/PXDesign",
+      "https://github.com/martinpacesa/BindCraft",
+      "https://github.com/yehlincho/BoltzDesign1"
+    ],
+    "story_angle": "Fixing the 'Alanine Trap': Improving the structural integrity of AI-generated protein binders for difficult therapeutic targets."
+  },
+  {
+    "candidate_id": "cand_2f0360bec26f3fc3",
+    "paper_id": "2605.06353",
+    "candidate_problem": "LLMs fail catastrophically when constraints are introduced sequentially (added over time) compared to being provided all at once.",
+    "evidence_spans": [
+      "most pronounced, with losses above 40%, when constraints are introduced sequentially rather than all at once.",
+      "The decline is substantially larger... when multiple constraints need to be satisfied simultaneously"
+    ],
+    "problem_evidence_spans": [
+      "most pronounced, with losses above 40%, when constraints are introduced sequentially rather than all at once."
+    ],
+    "feasibility_evidence_spans": [
+      "We introduce Sequor... comprising 1,400 conversations of 50 turns each",
+      "It systematically varies how constraints are introduced... ranging from static initial constraints to incremental addition"
+    ],
+    "auto_research_experiment": "Test if 'Chain-of-Constraint' reasoning (forcing the model to list all active constraints before answering) improves performance in the SEQUOR 'Add 10' regime.",
+    "available_data_or_benchmark": "SEQUOR benchmark (Add 10 regime)",
+    "public_training_or_eval_data": "https://github.com/BeatrizCanaverde/SEQUOR",
+    "scientific_hypothesis": "Explicitly listing active constraints in a scratchpad/thinking block will reduce the 65.41% average degradation in the 'Add 10' regime by at least half.",
+    "expected_metric": "Average difference in per-turn accuracy (Best vs Worst turn)",
+    "success_threshold": "< 35% degradation",
+    "failure_condition": "The model fails to correctly list the accumulated constraints in the scratchpad, leading to no improvement in final answer adherence.",
+    "first_24h_experiment": "Implement a 'thinking' prompt for Qwen3-30B that requires it to summarize all current constraints before responding to a turn in the 'Add 10' test set.",
+    "specific_intervention": "Chain-of-Constraint (CoC) reasoning/scratchpad.",
+    "baseline": "Qwen3-30B-A3B-Inst performance on SEQUOR Add 10 (73.00% drop).",
+    "metric": "Accuracy difference (%)",
+    "code_or_data_urls": [
+      "https://github.com/BeatrizCanaverde/SEQUOR",
+      "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words",
+      "https://github.com/huggingface/datatrove"
+    ],
+    "story_angle": "Why do LLMs forget old rules when given new ones? We test if a 'mental checklist' prevents instruction override."
+  },
+  {
+    "candidate_id": "cand_08814bb6c234aab3",
+    "paper_id": "2605.04498",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently ... addresses a stated failure mode in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "evidence_spans": [
+      "We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently unstable in multichannel signaling–coordination games.",
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "problem_evidence_spans": [
+      "We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently unstable in multichannel signaling–coordination games."
+    ],
+    "feasibility_evidence_spans": [
+      "However, early conditions constrain future possibilities, and Great Filters may correspond to algorithmic bottlenecks, manifested in many ways, as limits in error correction, e.g., mutation rates [ 30 ] ; cognitive constraints, e.g., Dunbar’s number [ 27 , 49 ] ; social fragility, e.g., loss of knowledge in collapse [ 8 , 73 ] , and so on.",
+      "Genetic system Linguistic system Generic role DNA sequences Symbol strings (words, morphemes) Abstract, discrete information carriers Genes Words / lexical items Minimal functional units carrying meaning or instruction Codons Phonemes / graphemes Basic symbolic units combined to form higher-level structures Genetic code (codon → \\to amino acid mapping) Lexicon / semantic conventions (symbol → \\to meaning mapping) Arbitrary but shared mapping between symbols and meanings Tr...",
+      "For example, motor vehicle emissions is a negative externality, with the societal costs of air pollution — such as public health impacts and environmental degradation — are not fully borne by either the producers or consumers of motorized transport.",
+      "Public goods game is a classic game theory experiment modeling social dilemmas where individuals choose between contributing to a shared resource or free-riding for personal gain."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis. Then apply this intervention: Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently .... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "public_training_or_eval_data": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "scientific_hypothesis": "The stated failure mode reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently ... against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently ....",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis: We argue that such bottlenecks correspond to precarious game-theoretic equilibria, inherently ...",
+    "baseline": "The reported baseline/protocol from Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_e48e7249ff6360d7",
+    "paper_id": "2605.05284",
+    "candidate_problem": "Standard Adam optimizer's momentum term allows for deterministic movement in the absence of selection pressure, which is evolutionarily impossible and violates biological fidelity in digital evolution simulations.",
+    "evidence_spans": [
+      "A notable outlier, however, is the state-of-the-art Adam optimizer. In order to be brought into strict evolutionary compliance, Adam’s momentum term requires some minor but principled mathematical surgery.",
+      "A notable outlier is Adam, whose inertial momentum term permits deterministic movement in the absence of selection pressure — an evolutionary impossibility. The principled repair performed in Sec. 3.2 replaces its additive momentum with a rank-1 projection that amplifies selection pressure along historically successful directions."
+    ],
+    "problem_evidence_spans": [
+      "A notable outlier is Adam, whose inertial momentum term permits deterministic movement in the absence of selection pressure — an evolutionary impossibility."
+    ],
+    "feasibility_evidence_spans": [
+      "Code available at https://github.com/danielgrimmer/adam-dls",
+      "As the Rosenbrock benchmark (Fig. 5 ) confirms, this surgery preserves Adam’s capacity to navigate ill-conditioned landscapes."
+    ],
+    "auto_research_experiment": "Implement the 'mathematical surgery' on Adam (replacing additive momentum with the rank-1 projection described in Sec 3.2) and compare its performance and evolutionary fidelity against standard Adam and SGD on the Rosenbrock function and a Physics-Informed Neural Network (PINN) loss landscape.",
+    "available_data_or_benchmark": "Rosenbrock function; Physics-Informed Neural Networks (PINNs) loss landscapes.",
+    "public_training_or_eval_data": "https://github.com/danielgrimmer/adam-dls",
+    "scientific_hypothesis": "Replacing Adam's additive momentum with a rank-1 projection (DLS-Adam) maintains the optimization efficiency of Adam on ill-conditioned landscapes while ensuring that parameter updates are strictly driven by selection pressure (gradient-dependent), satisfying evolutionary first principles.",
+    "expected_metric": "Convergence speed and final loss value.",
+    "success_threshold": "DLS-Adam achieves a final loss within 5% of standard Adam on the Rosenbrock benchmark while maintaining zero update magnitude when the gradient is zero.",
+    "failure_condition": "DLS-Adam fails to converge on the Rosenbrock function or requires >2x the iterations of standard Adam to reach the same loss threshold.",
+    "first_24h_experiment": "Clone the provided repository, run the existing Rosenbrock benchmark (Fig 5) comparing SGD, Adam, and the modified DLS-Adam, and verify that DLS-Adam's update vector becomes null when the gradient is manually zeroed.",
+    "specific_intervention": "Replace the standard Adam momentum update (m_t = beta*m_{t-1} + (1-beta)*g_t) with the rank-1 projection 'surgery' described in Section 3.2 of the paper.",
+    "baseline": "Standard Adam optimizer (Kingma & Ba, 2014).",
+    "metric": "Log-scale loss over iterations.",
+    "code_or_data_urls": [
+      "https://github.com/danielgrimmer/adam-dls"
+    ],
+    "story_angle": "Bridging the gap between high-performance AI optimizers and biological reality by fixing the 'evolutionary impossibility' of Adam's momentum."
+  },
+  {
+    "candidate_id": "cand_08ea6fefba90f970",
+    "paper_id": "2605.03360",
+    "candidate_problem": "Performance gap between one-stage co-design and two-stage (ProteinMPNN-based) protein design models",
+    "evidence_spans": [
+      "Most crucially, although the performance gap between the two-stage (with ProteinMPNN) and one-stage co-design models has been shrunk with our new state-of-the-art results, it remains non-negligible."
+    ],
+    "problem_evidence_spans": [
+      "it remains non-negligible"
+    ],
+    "feasibility_evidence_spans": [
+      "A-CODE achieves strong empirical performance and provides a flexible, unified foundation",
+      "PXDesign [ 26 ] extends Protenix [ 10 ] , an open-source reimplementation of AF3"
+    ],
+    "auto_research_experiment": "Implement a hybrid training objective for A-CODE that incorporates a ProteinMPNN-style cross-entropy loss on the inferred residue types during the denoising steps to enforce stronger sequence-structure compatibility.",
+    "available_data_or_benchmark": "PDB (Protein Data Bank) and the unconditional protein generation benchmark used in the paper.",
+    "public_training_or_eval_data": "https://www.rcsb.org/",
+    "scientific_hypothesis": "Integrating an auxiliary inverse-folding loss during the joint diffusion process will bridge the designability gap between one-stage and two-stage models.",
+    "expected_metric": "scTM (self-consistency Template Modeling score) and scRMSD.",
+    "success_threshold": "A-CODE-hybrid achieves scTM > 0.5 on at least 80% of generated samples, matching or exceeding ProteinMPNN-based cascades.",
+    "failure_condition": "The auxiliary loss causes the diffusion process to diverge or results in lower structural diversity (mode collapse).",
+    "first_24h_experiment": "Fine-tune the pre-trained A-CODE model on a subset of PDB for 1000 steps with an added residue-level cross-entropy loss and evaluate scTM on 100 samples.",
+    "specific_intervention": "Add a residue-level cross-entropy loss term to the A-CODE training objective, calculated by mapping predicted atom types back to residue identities.",
+    "baseline": "Original A-CODE (one-stage) and PXDesign + ProteinMPNN (two-stage).",
+    "metric": "Designability (scTM)",
+    "code_or_data_urls": [],
+    "story_angle": "Closing the gap between end-to-end protein generation and modular cascades."
+  },
+  {
+    "candidate_id": "cand_cbd34be8d24dbca9",
+    "paper_id": "2605.03281",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: Several extensions would substantially strengthen this work toward a full publication. addresses a stated future work in Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+    "evidence_spans": [
+      "Several extensions would substantially strengthen this work toward a full publication.",
+      "Code: this https URL Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "Code: this https URL TITLE: Donor-Aware scRNA-seq Benchmarks for IBD Classification ABSTRACT: Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "We then benchmark, across two independent cohorts, five classifiers (logistic regression, linear SVM, ElasticNet, XGBoost, and CatBoost) on three feature representations: (1) CLR-transformed cell type composition; (2) GatedStructuralCFN embeddings; and (3) scVI latent embeddings.",
+      "We additionally evaluate cross-dataset transfer between the UC and CD cohorts using the four cell types present in both atlases, and assess the structural stability of the learned CFN dependency matrices across cross-validation folds."
+    ],
+    "problem_evidence_spans": [
+      "Several extensions would substantially strengthen this work toward a full publication."
+    ],
+    "feasibility_evidence_spans": [
+      "Code: this https URL Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "Code: this https URL TITLE: Donor-Aware scRNA-seq Benchmarks for IBD Classification ABSTRACT: Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "We then benchmark, across two independent cohorts, five classifiers (logistic regression, linear SVM, ElasticNet, XGBoost, and CatBoost) on three feature representations: (1) CLR-transformed cell type composition; (2) GatedStructuralCFN embeddings; and (3) scVI latent embeddings.",
+      "We additionally evaluate cross-dataset transfer between the UC and CD cohorts using the four cell types present in both atlases, and assess the structural stability of the learned CFN dependency matrices across cross-validation folds."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Donor-Aware scRNA-seq Benchmarks for IBD Classification. Then apply this intervention: Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: Several extensions would substantially strengthen this work toward a full publication.. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: Several extensions would substantially strengthen this work toward a full publication. against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: Several extensions would substantially strengthen this work toward a full publication..",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in Donor-Aware scRNA-seq Benchmarks for IBD Classification: Several extensions would substantially strengthen this work toward a full publication.",
+    "baseline": "The reported baseline/protocol from Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Jonathan-321/sfn-scrna-study",
+      "https://github.com/fanglioc/StructuralCFN-public"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  },
+  {
+    "candidate_id": "cand_f4e83aa89545be05",
+    "paper_id": "2605.04265",
+    "candidate_problem": "High variance and target-specific performance drops in ML-based binding affinity prediction for diverse viral species",
+    "evidence_spans": [
+      "We found that Boltz-2 and DrugFormDTA ranked highest overall among ML-based approaches, and GNINA did best among docking approaches, with notable variance across specific viral proteins."
+    ],
+    "problem_evidence_spans": [
+      "notable variance across specific viral proteins."
+    ],
+    "feasibility_evidence_spans": [
+      "We then benchmarked 15 open-source binding affinity prediction tools on a custom test set of 853 antiviral compounds spread across 16 different protein targets from 10 virus species."
+    ],
+    "auto_research_experiment": "Perform a systematic 'leave-one-virus-family-out' cross-validation using the 15 benchmarked tools. Identify which structural features of viral proteins (using the 16 targets) correlate with the highest prediction error in Boltz-2 and GNINA.",
+    "available_data_or_benchmark": "The Radvac test set of 853 compounds across 16 targets and 10 virus species.",
+    "public_training_or_eval_data": "antivirals-database.radvac.org",
+    "scientific_hypothesis": "ML-based DTA models (Boltz-2) outperform physics-based docking (GNINA) on viral proteases but underperform on viral polymerases due to the lack of diverse polymerase-ligand co-crystal structures in training sets.",
+    "expected_metric": "Mean Absolute Error (MAE) per protein class",
+    "success_threshold": "Identification of a specific protein class where MAE is >2x the global mean, followed by a 20% error reduction via targeted data augmentation.",
+    "failure_condition": "Variance is found to be random or purely driven by data quantity rather than protein structural class.",
+    "first_24h_experiment": "Categorize the 16 targets into functional classes (Protease, Polymerase, etc.) and calculate the per-class RMSE for the top 3 models (Boltz-2, DrugFormDTA, GNINA) using the paper's reported results.",
+    "specific_intervention": "Class-specific fine-tuning of DrugFormDTA using the 43,005 measurement dataset, stratified by viral protein function.",
+    "baseline": "Global DrugFormDTA performance (r=0.70).",
+    "metric": "RMSE per viral protein class",
+    "code_or_data_urls": [
+      "https://github.com/bytedance/Protenix-Dock",
+      "https://github.com/plinder-org/plinder",
+      "https://zenodo.org/records/6378223"
+    ],
+    "story_angle": "Mapping the 'Blind Spots' of AI in the viral protein landscape to ensure we don't miss the next broad-spectrum antiviral."
+  },
+  {
+    "candidate_id": "cand_62e44089b683f498",
+    "paper_id": "2605.03360",
+    "candidate_problem": "Lack of standardized benchmarks and datasets for non-canonical amino acid (ncAA) generation",
+    "evidence_spans": [
+      "Furthermore, our evaluations of the ncAA generations remain preliminary, as no widely acknowledged datasets or benchmarks have been established."
+    ],
+    "problem_evidence_spans": [
+      "no widely acknowledged datasets or benchmarks have been established"
+    ],
+    "feasibility_evidence_spans": [
+      "A-CODE demonstrates the ability to generate structurally plausible ncAA",
+      "our framework naturally extends to ncAA modeling, which existing models fail due to their hard-coded constraints"
+    ],
+    "auto_research_experiment": "Curate a dataset of ncAA-containing proteins from the PDB and develop a 'ncAA-Recovery' benchmark where the model must reconstruct ncAA identities and side-chain geometries from masked structures.",
+    "available_data_or_benchmark": "PDB (Protein Data Bank) filtered for non-standard residues (HETATM records).",
+    "public_training_or_eval_data": "https://www.rcsb.org/",
+    "scientific_hypothesis": "A-CODE's atom-centric diffusion can recover ncAA identities and conformations with higher accuracy than traditional residue-based models adapted for ncAAs.",
+    "expected_metric": "ncAA-RMSD and Type-Accuracy.",
+    "success_threshold": "Type-Accuracy > 70% for the top 50 most frequent ncAAs in PDB.",
+    "failure_condition": "The model consistently predicts standard amino acids (e.g., Serine) instead of chemically similar ncAAs.",
+    "first_24h_experiment": "Extract all instances of Selenocysteine and Phosphoserine from PDB, mask them, and run A-CODE inference to check recovery rate.",
+    "specific_intervention": "Create a standardized evaluation pipeline that calculates the RMSD of predicted ncAA atoms against ground truth PDB structures.",
+    "baseline": "A-CODE (zero-shot) vs. Rosetta-based ncAA placement.",
+    "metric": "ncAA-RMSD",
+    "code_or_data_urls": [],
+    "story_angle": "Establishing the first rigorous benchmark for the 'wild west' of non-canonical protein design."
+  },
+  {
+    "candidate_id": "cand_a4e6fd8726322198",
+    "paper_id": "2605.03281",
+    "candidate_problem": "Test whether Evaluate prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles in the Donor-Aware scRNA-seq Benchmarks for IBD Classification setup addresses a stated future work in Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+    "evidence_spans": [
+      "Future directions include prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles.",
+      "Code: this https URL Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "Code: this https URL TITLE: Donor-Aware scRNA-seq Benchmarks for IBD Classification ABSTRACT: Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "We then benchmark, across two independent cohorts, five classifiers (logistic regression, linear SVM, ElasticNet, XGBoost, and CatBoost) on three feature representations: (1) CLR-transformed cell type composition; (2) GatedStructuralCFN embeddings; and (3) scVI latent embeddings.",
+      "We additionally evaluate cross-dataset transfer between the UC and CD cohorts using the four cell types present in both atlases, and assess the structural stability of the learned CFN dependency matrices across cross-validation folds."
+    ],
+    "problem_evidence_spans": [
+      "Future directions include prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles."
+    ],
+    "feasibility_evidence_spans": [
+      "Code: this https URL Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "Code: this https URL TITLE: Donor-Aware scRNA-seq Benchmarks for IBD Classification ABSTRACT: Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+      "We then benchmark, across two independent cohorts, five classifiers (logistic regression, linear SVM, ElasticNet, XGBoost, and CatBoost) on three feature representations: (1) CLR-transformed cell type composition; (2) GatedStructuralCFN embeddings; and (3) scVI latent embeddings.",
+      "We additionally evaluate cross-dataset transfer between the UC and CD cohorts using the four cell types present in both atlases, and assess the structural stability of the learned CFN dependency matrices across cross-validation folds."
+    ],
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Donor-Aware scRNA-seq Benchmarks for IBD Classification. Then apply this intervention: Evaluate prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles in the Donor-Aware scRNA-seq Benchmarks for IBD Classification setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "public_training_or_eval_data": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "scientific_hypothesis": "The stated future work reflects a mechanism that should be measurable by comparing Evaluate prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles in the Donor-Aware scRNA-seq Benchmarks for IBD Classification setup against the reported baseline.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "success_threshold": "A clear positive result is an improvement over the reported baseline on pre-registered benchmark delta without increasing the stated compute budget.",
+    "failure_condition": "Reject the candidate if the intervention does not improve pre-registered benchmark delta or the paper's public data/artifact cannot be used in 24 hours.",
+    "first_24h_experiment": "Set up the public artifact or benchmark, reproduce the reported baseline, and run a small-split pilot of Evaluate prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles in the Donor-Aware scRNA-seq Benchmarks for IBD Classification setup.",
+    "specific_intervention": "Evaluate prospective validation on an independent cohort, full-gene scVI on unsubsampled cells, joint UC+CD classification, and CFN applied to pseudobulk expression profiles in the Donor-Aware scRNA-seq Benchmarks for IBD Classification setup",
+    "baseline": "The reported baseline/protocol from Donor-Aware scRNA-seq Benchmarks for IBD Classification.",
+    "metric": "pre-registered benchmark delta",
+    "code_or_data_urls": [
+      "https://github.com/Jonathan-321/sfn-scrna-study",
+      "https://github.com/fanglioc/StructuralCFN-public"
+    ],
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison."
+  }
+]

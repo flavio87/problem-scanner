@@ -1,0 +1,1530 @@
+[
+  {
+    "candidate_id": "cand_c22009b9a057752f",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_5628f7e52ed2cb18",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6632847c4bb7d4f6",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8f5ea295fb30e3c4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_cd26b1bf63c773ac",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_16ab56455d72fa57",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_dcb96e6d7bee0ae0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_1d995ed506025b58",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8b9e29fe8867d7bf",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_d8c3636f8d63ae1f",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3ba40637ec8ed7ad",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_df9e8c5677243c86",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8d847c37bbb0d4cf",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2b4dfba31a5d0294",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8c6b701cf186d892",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e552310ed9a0de66",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_48cb982d009e28ba",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4267832886b0537e",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_33e791047f0092c0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_28200f3dbc9771de",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8feb8bda97bd7d28",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_93fea71e42023da2",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ffe5eafc8ffeecde",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3396f0c7422b267a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_091ef06485d2408f",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e179ec87dd0fd1f9",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a76b16aa694f4a3a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2a140b0fddde6ca7",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_be06d9dc0d5fed7c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f62a2f7d9c45f8a5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_47ae1e4a3b705ba5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2f0360bec26f3fc3",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_08814bb6c234aab3",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e48e7249ff6360d7",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_08ea6fefba90f970",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_cbd34be8d24dbca9",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f4e83aa89545be05",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_62e44089b683f498",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a4e6fd8726322198",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_9c2cc719129915ee",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a1377ec16fb0803c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_58445a3166477a73",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a4ea3353bb5be89c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ba8c9384dbb58f3c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6a92a39295b5630e",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f2be7ddc4d8efd6e",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ac6100d6556eb9bd",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_df0447fbc9b610d4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6093a37f93231fce",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2d997a4c8696e022",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_1a76c1ca913cb8c6",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8096e045bc4b9ebd",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_b22321380abd6f8a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3ccc05297dfaafa6",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_41df9d0c380d0602",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_5d786dd0a725c63a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f33f505f08311f7a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_b6afc90200b7bb23",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_7688b88e342cb07b",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_789ae1fd321fbfbf",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3b9bff60df4d2be4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_c0548a37dc7e45da",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_677f70aeddfaa363",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ccfd43f1b3255750",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_03cb35d6176d32ea",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4fe94615be9f8394",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_16a2c07ece632733",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_45b2c350dd6374bb",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f8cb3bd455807a77",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f6f4647738d36aae",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8bdfda98e6ee5a29",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_d3ae4e0e9aa9e864",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_08d6b9c057b61cc3",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6f4abc67c772de1d",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_80d2f8115f6604d6",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_64eff7f97fb029fc",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_fedf342165c1138e",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_b1aea8a0f9f2ddc0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6919b0269eb6ad08",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_5ca80cbce73ed504",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_b2d694ab90e635b0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_16cc469b8a6570c4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ea937b797b0bafee",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_0b846684e9c69b4a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_347a8649d938c653",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_21768441dbd9c45c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_36a7fddb3ea7280d",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_28009fb736e167bf",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_fe83094cfaabefb9",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e3e12bebbfe9177c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e0ed24ccefcf777a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2ef0cac99caad459",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2351fa3bcee7d9f0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_164ed01a28162b02",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_20a7c852edf269c4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_98dfeeed90c58454",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_b9138ff1a8235be6",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_906047a31f6ecd69",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f062107cb6a81f83",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a9161a73b7be97c0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_7c0638334b3c86e3",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_5173370216bbbc92",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3a1caf2eed746a9c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_cb43a024ea147745",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_9d575007a967315d",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_802481dd8a41aed3",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8c96f1e30059ef20",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f4e4b5955b0cdbeb",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4a0c7b59fc8f7d48",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_0fffd9497b31dad9",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_903069ac8e6b1286",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8bb21c8aba7a3282",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2b6caa6b04a223db",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_d43dc23916a6dc55",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_fdf59ad369df8262",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_16db1b1c015a9d40",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_30aec923411c9348",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_834118b1b9562f7a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_500ce1cb65a72a21",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_275c5704ab1140c5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_0b180de4853570e2",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_76a253335add909e",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2081d2fa700bd306",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2d88ca0ffac18adf",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3140d4d491ebc990",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_0e172d1ee6d755a5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_7870f55c7b899b96",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_71a5a04d88a52f57",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_1f280a84f647efd4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6930e34e45deaf91",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_1fe2f35c4b6b2e53",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_8b2f3d050315d4aa",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_90de0579bcff33db",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_555bf214f62333fb",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_543a1245d5a8f629",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4fdcf56bd8766b50",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_9029f672fae000d5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2de1ded06c782415",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_cdb210dffaaf7ff0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ae33c438adbabfa9",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_d412e6d557d21ddc",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_733f5ea4b26bd85f",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_21a0f40f14e748ac",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3021f127d0651782",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e8bca283891f1cd2",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_fc5fc762cd79629f",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_2132a5845df35d80",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_805398fae0cf9936",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a9c455bb202fb702",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_814cf438c26ef9bc",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_5edc1f9bf472a005",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_6204c6eae5b4523d",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_70601bc8d4f761b4",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_05f3bc089856fc28",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_380356daa3902d17",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_23dd7358d0d5c6e0",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_383673d4fb42b480",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_3bd8409fb0fc809b",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_755c72c8d07d84ba",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4846a8e0d6cd75fd",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4ed086de1279dd29",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_af1e0fa57ebdcb6d",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f5d034e578e11115",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_d1098915eb2093e3",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f52793f5b503739a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_4fd4df0254d66174",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_ffbe3cbe178f24ec",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_26043ce417bb735e",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_9f0c0e8825d3b5c7",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_67151920862913d2",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_899d68ffa911fc45",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e670ee12b3c0fbfc",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_600a197297868400",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_b20126c54834d271",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a038778d4b3371ae",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_5f676714101c4583",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_c9af7b2f60eac41d",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_13b6e0f1d2a3a595",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_a0e31e299a00d11a",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_70b341df01ce701c",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_89d544bc3a98f8c5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_644fa5089a6ec154",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e8d53ba297ee1625",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_65da4edba4d23178",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_7b64e0313e7407ff",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_f53c348759885fe5",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_213f873981587a57",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_e41d0e5fcf74ed83",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_7036c6f76fbe2642",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_850750346f49d91f",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  },
+  {
+    "candidate_id": "cand_da8e4547336396ee",
+    "frontier_label": "Reject",
+    "would_run_24_72h": false,
+    "rationale": "",
+    "repair_needed": "",
+    "fatal_blocker": ""
+  }
+]

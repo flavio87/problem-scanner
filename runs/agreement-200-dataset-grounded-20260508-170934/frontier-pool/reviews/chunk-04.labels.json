@@ -1,0 +1,330 @@
+{
+  "reviewer": "chunk-04",
+  "labels": [
+    {
+      "candidate_id": "cand_834118b1b9562f7a",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence is only the title-like span 'Governed Collaborative Memory as Artificial Selection'; public asset is GAIA; endpoint is GAIA Level 1 success rate; hypothesis is that governed memory improves task success over unfiltered shared vector memory. The runnable shape is clear, but the problem grounding and task subset are too thin for A.",
+      "repair_needed": "Add a concrete failure-mode span and restrict the GAIA pilot to memory-dependent tasks with a fixed multi-agent protocol.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_500ce1cb65a72a21",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence identifies MANTRA trace-check granularity as useful for debugging failure modes; public assets include the MANTRA dataset and linked code; endpoint is a benchmark delta versus the reported protocol; hypothesis is that a granularity ablation reveals or improves agent debugging. It is public and grounded, but the actual ablation and metric are placeholders.",
+      "repair_needed": "Specify the ablation, such as per-constraint failure attribution accuracy versus an LLM-judge baseline, before running.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_275c5704ab1140c5",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence states that assign-then-route heuristics get trapped by decoupling allocation and routing; public artifact is RL4CO/CVRP-style tooling; endpoint is optimality gap or total path cost; hypothesis is that joint autoregressive decoding beats decoupled assignment-routing. The idea is measurable, but the baseline is inconsistent across K-means plus LKH, OR-Tools, and CPLEX, and the first pilot is synthetic rather than tied to a public split.",
+      "repair_needed": "Choose one public CVRP/MARL routing benchmark and one fixed baseline, then define the exact small-size pilot.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_0b180de4853570e2",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says MANTRA empirically shows trace-level check granularity can debug agent failures; public assets are the MANTRA dataset and linked code; endpoint is benchmark delta versus the reported protocol; hypothesis is that a granularity ablation measures the failure mechanism. The candidate is duplicative and still lacks a concrete intervention.",
+      "repair_needed": "Turn the debugging-granularity claim into a precise ablation with named trace-check levels and a diagnostic metric.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_76a253335add909e",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence states exact solvers can take hours or days and the proposed method claims large speedups; public artifact is tsplib-python plus implied RL4CO models; endpoint is time-to-solution with optimality gap; hypothesis is that neural inference crosses under one second while retaining solution quality. It needs a public solver/model setup because IBM CPLEX and pretrained AM artifacts are not pinned.",
+      "repair_needed": "Replace the licensed CPLEX baseline with a public OR-Tools or Concorde-style baseline and identify the exact pretrained neural solver artifact.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_2081d2fa700bd306",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence only says MANTRA has limitations and future research; public assets include MANTRA links; endpoint is a generic benchmark delta; hypothesis is the templated claim that 'future research' is measurable. This is not a defined scientific intervention.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing concrete limitation, intervention, and measurable hypothesis."
+    },
+    {
+      "candidate_id": "cand_2d88ca0ffac18adf",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence directly states sparse fixed graphs can hide non-edge diversity when agents form clusters; public artifact is the Graph-SND repository; endpoint is MAPE against full SND; hypothesis is that task-adaptive or cluster-aware edges reduce global SND estimation error at fixed edge budget. Baseline and 24-72h pilot are concrete.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_3140d4d491ebc990",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says MANTRA overcomes limitations by synthesizing compliance benchmarks; public assets are MANTRA links; endpoint is generic benchmark delta; hypothesis is a templated stress-test claim. The span is a solution claim, not a failure mode to test.",
+      "repair_needed": "",
+      "fatal_blocker": "No stated limitation or concrete mitigation target is identified."
+    },
+    {
+      "candidate_id": "cand_0e172d1ee6d755a5",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence says all RL runs use IPPO and centralized critics are future work; public artifact is the Graph-SND code; endpoint is throughput-adjusted reward and mean episode reward; hypothesis is that Graph-SND regularizes MAPPO without full all-pairs diversity cost. Baseline MAPPO with full SND and a small 10-agent pilot are executable.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_7870f55c7b899b96",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence names UniPrefill future work on decoding acceleration or training-time efficiency; public artifact is the UniPrefill repository; endpoint is currently just accuracy; hypothesis is a templated broader-inference ablation. The metric and intervention do not match the stated speedup direction.",
+      "repair_needed": "Pick one dimension, such as decoding acceleration, and register TTFT, tokens per second, and RULER accuracy as endpoints.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_71a5a04d88a52f57",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence says EPITIME future work includes heterogeneous populations; public artifacts are EPITIME and public mixing-matrix data; endpoint is final-size error plus positivity and conservation; hypothesis is that a multi-group NSFD renewal solver preserves structure better than Euler/trapezoid baselines. The two-group contact-matrix pilot is bounded and executable.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_1f280a84f647efd4",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence identifies sparse-attention acceleration as tightly coupled to full attention; public artifact is UniPrefill; endpoint is generic benchmark delta; hypothesis is that an ablation around this coupling changes performance versus the reported protocol. The mechanism is real, but the proposed ablation is not specified.",
+      "repair_needed": "Define a concrete coupling test, for example disabling block-wise sparsification at specific attention stages and measuring TTFT, memory, and RULER accuracy.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_6930e34e45deaf91",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence names vaccination dynamics coupled with information-dependent behavioral responses and memory effects; public assets are EPITIME and OWID COVID vaccination data; endpoint is MSE of vaccination rate over time; hypothesis is that a distributed-delay memory kernel explains uptake waves better than Markovian SIRV feedback. The first 24h solver change is concrete.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_1fe2f35c4b6b2e53",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says prefill methods are incompatible with continuous batching; public artifact is UniPrefill; endpoint is quality-cost frontier; hypothesis is that stress-testing continuous batching exposes a measurable mechanism. This is high-value, but 'stress-test and mitigate' is not yet a specific implementation or workload.",
+      "repair_needed": "Define a vLLM-style continuous-batching workload, concurrency levels, and metrics for TTFT, throughput, and RULER accuracy before running.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_8b2f3d050315d4aa",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence says HOIs can be reproduced by effective pairwise models and cannot generally be inferred from time series alone; public artifact is a GLV simulator; endpoint is post-perturbation MASE or identifiability score; hypothesis is that perturbation responses reveal HOI signatures absent from pairwise fits. The three-species simulation pilot is executable.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_90de0579bcff33db",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence only says Hygieia has limitations warranting discussion; public artifact is a Hygieia repository; endpoint is generic benchmark delta; hypothesis is a templated limitation claim. No actual limitation, ablation, or disease benchmark split is specified.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing concrete failure mode and endpoint despite a public code link."
+    },
+    {
+      "candidate_id": "cand_555bf214f62333fb",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence is only 'This article is currently under review' and a broad origin-of-life title; public artifact is Avida; endpoint is selection coefficient or relative fitness; hypothesis is an invented threshold for pre-biotic transitions. The proposal is not grounded in a stated paper gap.",
+      "repair_needed": "",
+      "fatal_blocker": "No usable problem evidence or paper-grounded hypothesis."
+    },
+    {
+      "candidate_id": "cand_543a1245d5a8f629",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence states protein methods fail to achieve function and foldability simultaneously; public data is only described generically and no code or dataset URL is provided; endpoint is generic benchmark delta; hypothesis is templated. A 24-72h path is not safe without public artifacts and a concrete ablation.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing public artifact URL and concrete intervention."
+    },
+    {
+      "candidate_id": "cand_4fdcf56bd8766b50",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence names counterexamples with non-orchard networks; public artifact is PhyloNetworks.jl; endpoint is isomorphism discrimination rate; hypothesis is that augmenting mu-representation with additional path counts distinguishes non-orchard networks. The baseline mu-distance and small counterexample pilot are clear.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_9029f672fae000d5",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence discusses alternative readings of an OLMo evaluation-context result; public data is only generic referenced benchmarks with no URL; endpoint is generic benchmark delta; hypothesis is templated. The ablation is unspecified and cannot be run safely from the provided assets.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing public protocol artifact and concrete ablation."
+    },
+    {
+      "candidate_id": "cand_2de1ded06c782415",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence states cut-edge-transfer distance is NP-hard while the new mu-representation has polynomial cost; public artifact is PhyloNetworks.jl; endpoint is wall-clock time for a distance matrix plus cluster silhouette; hypothesis is that mu-distance lowers posterior-analysis overhead without losing cluster resolution. Synthetic network generation and timing are executable in 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_cdb210dffaaf7ff0",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence names OLMo eval-cautious heterogeneity and judge dependence; public data is only generic referenced benchmarks; endpoint is generic benchmark delta; hypothesis is templated. No concrete judge, prompt set, model list, or artifact is pinned.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing public artifact and executable protocol."
+    },
+    {
+      "candidate_id": "cand_ae33c438adbabfa9",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence says Euclidean connectivity ignores functional barriers such as highways and rivers; public artifacts are PB-DOM plus comparable wolf occupancy code; endpoint is WAIC or out-of-sample colonization AUC; hypothesis is that resistance connectivity improves wolf range prediction over Euclidean distance. The least-cost-path pilot is concrete.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_d412e6d557d21ddc",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says LatentRAG future work could use reinforcement learning for exploration and exploitation; public assets include FlashRAG datasets, FAISS, and model links; endpoint is generic and partly mismatched safety success rate; hypothesis is templated. The RL objective and multi-hop QA metric are not concrete.",
+      "repair_needed": "Define the RL reward, dataset subset, and endpoints such as exact match, F1, retrieval count, and latency.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_733f5ea4b26bd85f",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence states environmental effects are estimated only in accessible sites and may extrapolate poorly; public assets are PB-DOM and GBIF otter data; endpoint is PMSE or occupancy probability in known unsuitable urban sinks; hypothesis is that a habitat-suitability prior prevents high urban occupancy artifacts. The MaxEnt-prior pilot is bounded.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_21a0f40f14e748ac",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence describes LatentRAG itself as the proposed solution to a limitation; public assets include several dependency and dataset links; endpoint is generic benchmark delta; hypothesis is templated. The candidate does not identify a new failure mode or ablation beyond restating the paper's method.",
+      "repair_needed": "",
+      "fatal_blocker": "No independent intervention or hypothesis."
+    },
+    {
+      "candidate_id": "cand_3021f127d0651782",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence is the title connecting IBD tracts and ROH for Ne inference; public asset is 1000 Genomes, with msprime implied for simulation; endpoint is relative error or MSE in Ne; hypothesis is that a joint IBD plus ROH coalescent likelihood reduces recent-generation variance. It is plausible, but the first pilot is synthetic and the estimator implementation is underspecified.",
+      "repair_needed": "Pin a public simulated benchmark protocol and specify the joint likelihood or estimator equations before running.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_e8bca283891f1cd2",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence states only 1-3 percent of token positions change and top-5 targeted corrections recover RL gains; public assets include ReasonMaxxer and related reasoning-RL repositories; endpoint is accuracy; hypothesis is a templated ablation around sparse policy selection. The intended intervention is close but still not specified as a reproducible protocol.",
+      "repair_needed": "Define the exact model, math benchmark, corrected-token selection rule, and random-control comparison.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_fc5fc762cd79629f",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says epistatic strength, modularity, and heterogeneity shape local optima; public artifact is NK-Landscapes; endpoint is number of local optima or distance to global optimum; hypothesis is that modularity hurts non-population search. The proposed 1000-bit local-optima enumeration is not a 24-72h executable path.",
+      "repair_needed": "Scale the pilot to exhaustive N up to about 24 or use a pre-registered sampling estimator for larger N.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_2132a5845df35d80",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence states oracle intervention with random controls shows specific token choices causally recover RL gains; public assets include ReasonMaxxer and related reasoning-RL repos; endpoint is quality-cost frontier; hypothesis is templated. The causal claim is good, but the ablation protocol and benchmark are not pinned.",
+      "repair_needed": "Register a small model, benchmark, token-intervention rule, and accuracy-cost endpoint before running.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_805398fae0cf9936",
+      "frontier_label": "C",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says heterogeneous fitness removes the pre-replicative equilibrium; public asset is only the paper's synthetic m-ary genealogy model with no code URL; endpoint is TV distance or log-ratio divergence; hypothesis is a critical replication intensity. It is scientifically plausible but weakly benchmarked and not tied to a public artifact.",
+      "repair_needed": "Add a public implementation or exact parameter file for the core ODE system and define a small reproducible benchmark.",
+      "fatal_blocker": "No concrete public artifact beyond a described synthetic model."
+    },
+    {
+      "candidate_id": "cand_a9c455bb202fb702",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says agent loops may fail to preserve unaffected work or artifact consistency; public asset is only a generic author-provided repository with no URL; endpoint is generic benchmark delta; hypothesis is templated. The ablation and artifact are both missing.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing public artifact URL and concrete benchmark protocol."
+    },
+    {
+      "candidate_id": "cand_814cf438c26ef9bc",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says future work should weaken dominance assumptions or use sharper spectral conditions; public artifact is the paper's ODE system; endpoint is spectral gap or convergence rate; hypothesis is that stability persists under negative spectral radius. The direction is concrete, but the parameter grid and falsification criterion are not pinned enough for A.",
+      "repair_needed": "Specify the truncated system size, parameter grid, and pass/fail stability criterion.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_5edc1f9bf472a005",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says incoherent state may affect future revisions; public asset is generic author-provided code with no URL; endpoint is generic benchmark delta; hypothesis is templated. The candidate lacks a public executable benchmark and a specific lineage intervention.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing public artifact and concrete intervention."
+    },
+    {
+      "candidate_id": "cand_6204c6eae5b4523d",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence says constructed networks may be structurally complex and future work should target level-1 or galled-tree classes; public asset is Open Tree of Life for taxa and constraint generation; endpoint is reticulation index; hypothesis is that level-1 realizability follows restricted graph conditions. The brute-force small-taxa pilot is executable.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_70601bc8d4f761b4",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Evidence names non-deterministic execution in agent loops; public asset is generic author-provided code with no URL; endpoint is generic benchmark delta; hypothesis is templated. Without an artifact or deterministic graph protocol, this cannot be independently run.",
+      "repair_needed": "",
+      "fatal_blocker": "Missing public artifact URL and concrete executable path."
+    },
+    {
+      "candidate_id": "cand_05f3bc089856fc28",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence only says interactive and embeddable phylogenetic tree visualization; public asset is Open Tree of Life; endpoint is rendering latency, FPS, and node-overlap ratio; hypothesis is that WebGL layout improves large-tree interaction over SVG. The benchmark is measurable, but the Heat-tree code artifact and exact test tree are not pinned.",
+      "repair_needed": "Add the Heat-tree repository or package version and a fixed 5000-node Newick benchmark file.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_380356daa3902d17",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Evidence says future work should extend the coordination-aware protocol to controlled variants while preserving diagnostics; public artifact is the coordination_aware_MARL repository; endpoint is generic benchmark delta; hypothesis is that controlled variants reveal coordination mechanisms. The factors and diagnostics are not specified.",
+      "repair_needed": "Name the controlled factors, such as agent count or action choices, and register return plus process-level coordination metrics.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_23dd7358d0d5c6e0",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Evidence calls for complexity characterizations of price discovery in distributed systems; public artifacts are the Trading Agent Competition repo and Mesa; endpoint is communication complexity and convergence time to epsilon-equilibrium; hypothesis is that limited network connectivity changes scaling versus a centralized Walrasian baseline. The graph-density pilot is directly executable.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    }
+  ],
+  "top_a_candidate_ids": [
+    "cand_2d88ca0ffac18adf",
+    "cand_8b2f3d050315d4aa",
+    "cand_ae33c438adbabfa9",
+    "cand_733f5ea4b26bd85f",
+    "cand_6930e34e45deaf91",
+    "cand_0e172d1ee6d755a5"
+  ],
+  "notes": [
+    "Applied A only when public artifact, metric, baseline, hypothesis, and a bounded 24-72h path were already concrete.",
+    "Templated candidates with generic 'pre-registered benchmark delta' and unspecified ablations were downgraded to B or Reject depending on whether one concrete repair would make them runnable.",
+    "Execution-lineage and several paper-ablation candidates lacked public artifact URLs and were rejected despite interesting evidence spans."
+  ]
+}

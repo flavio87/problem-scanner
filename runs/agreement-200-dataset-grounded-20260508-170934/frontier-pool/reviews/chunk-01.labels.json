@@ -1,0 +1,336 @@
+{
+  "reviewer": "chunk-01",
+  "labels": [
+    {
+      "candidate_id": "cand_c22009b9a057752f",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is that return can conflate poor coordination and the STAT authors release executable training/evaluation code. Public asset is the coordination_aware_MARL STAT repo; endpoint is conflict rate/assignment diversity versus episodic return; hypothesis is that IQL can match QMIX return while having much higher conflict rate. The smoke-test and scaled STAT configurations are executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_5628f7e52ed2cb18",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the claim that verifier confidence metrics are poorly validated and have distinct inductive biases. Public asset is claimed to be the Cao wet-lab binder dataset, with PR-AUC/Spearman as endpoints and a consensus-verifier hypothesis, but the candidate mixes AF3/Boltz/ESMFold availability and uses inconsistent endpoint wording.",
+      "repair_needed": "Pin the exact downloadable Cao dataset and restrict the first run to public executable verifiers with one pre-registered metric and baseline.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_6632847c4bb7d4f6",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a real ProtDBench caution about over-interpreting single-verifier success rates, but the asset is described only as generic author code/public benchmarks, the endpoint is 'pre-registered benchmark delta', and the hypothesis/intervention are templated rather than concrete. No safe 24-72h executable experiment is specified.",
+      "repair_needed": "Replace the template with a concrete multi-verifier protocol, exact public dataset, metric, and baseline.",
+      "fatal_blocker": "Vague generated intervention and generic data/metric make the candidate non-falsifiable as written."
+    },
+    {
+      "candidate_id": "cand_8f5ea295fb30e3c4",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the minimum Wilcoxon p-value of 0.0625 from only five CV folds. Public asset is TCGA-BRCA from GDC; endpoints are Macro F1 and paired Wilcoxon p-values; baseline is the paper's 5-fold CV; hypothesis is that repeated 10x10 CV will resolve the LR versus RF/SVM gap. A top-500-gene repeated-CV pilot is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_cd26b1bf63c773ac",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the TNF-alpha/alanine failure span for Protenix. Public asset is the 1TNF target and related binder-design repos; endpoint is mean pLDDT; baseline is default ProteinMPNN; hypothesis is that alanine capping improves pLDDT. The missing piece is an exact public ProteinMPNN-to-Protenix command path and bounded sample size.",
+      "repair_needed": "Pin the executable ProteinMPNN and Protenix/PXDesign artifacts and define a small public run script before treating this as runnable.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_16ab56455d72fa57",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the broad statement that tool-specific limitations affect compatibility/performance. Public asset, metric, baseline, and hypothesis are all generic template fields, and the intervention is literally 'design a paper-specific ablation'. This is not a falsifiable 24-72h experiment.",
+      "repair_needed": "Name the specific tool limitation, tool, dataset, metric, and intervention.",
+      "fatal_blocker": "No concrete intervention or measurable endpoint."
+    },
+    {
+      "candidate_id": "cand_dcb96e6d7bee0ae0",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that folding models show distinct verifier-induced enrichment behavior. Public asset is claimed as Cao/ProtDBench plus design repositories; endpoint is enrichment factor or Spearman; baseline is single-model AF3 ipTM; hypothesis is that multi-verifier consensus improves correlation/enrichment. It is close, but model availability and metric choice are inconsistent.",
+      "repair_needed": "Use one public dataset, one public verifier set, and one endpoint; avoid AF3 as the baseline unless the exact executable public artifact is available.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_1d995ed506025b58",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the reported 8.3 p.p. same-provider voting preference. Public asset is the Agent Island gs:// logs; endpoint is same-provider vote probability; baseline is the original 8.3 p.p. bias; hypothesis is that stylistic alignment drives the bias. The first 24h classifier is diagnostic and does not evaluate the paraphrasing intervention or voting endpoint.",
+      "repair_needed": "Define an offline counterfactual or public rerun harness that measures same-provider vote bias after style anonymization.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_8b9e29fe8867d7bf",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is generic related-work text about benchmark contamination. The public asset is unspecified, the metric is a generic benchmark delta, and the hypothesis/intervention are templated. There is no concrete baseline or executable 24-72h path.",
+      "repair_needed": "Specify a concrete contamination stress test on the released Agent Island logs or game harness.",
+      "fatal_blocker": "Template candidate with no concrete data, metric, or intervention."
+    },
+    {
+      "candidate_id": "cand_d8c3636f8d63ae1f",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is that a depth-1 EML gate beats a depth-1 Hill block by large AIC/BIC margins on non-monotone biological traces. Public assets are the LaCroix/Nanda data and Manuscript_EML_biophysics code; endpoints are wMSE and AIC/BIC; baseline is a Hill-type ODE; hypothesis is that an EML module fits non-monotone dynamics with fewer parameters. A one-trace scipy fit is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_3ba40637ec8ed7ad",
+      "frontier_label": "C",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that Agent Island's quasi-adversarial games can generate adversarial examples. Public asset is the gs:// log dataset; endpoint is win rate against GPT-5.5; baseline is existing lower-tier model win rates; hypothesis concerns rhetorical dark patterns. The proposed keyword/sentiment analysis is weakly tied to the endpoint and would not test the defense intervention.",
+      "repair_needed": "Add a validated persuasion taxonomy and a rerun or replay protocol that measures win-rate changes under defense prompts.",
+      "fatal_blocker": "Weak measurement-to-hypothesis link."
+    },
+    {
+      "candidate_id": "cand_df9e8c5677243c86",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a real MAST taxonomy span, and public ForesightFlow repos are listed, but the intervention, hypothesis, and endpoint remain templated as a generic paper-specific ablation and pre-registered delta. The candidate does not specify which failure mode is induced or measured.",
+      "repair_needed": "Choose one MAST failure mode, one architecture perturbation, and one Murphy/Brier endpoint.",
+      "fatal_blocker": "No concrete ablation or measurable failure-mode endpoint."
+    },
+    {
+      "candidate_id": "cand_8d847c37bbb0d4cf",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is that dense bmDCA can exceed MSA information content and over-constrain sequence space. Public assets are the entropy-sparse-DCA/highentropyDCA/adabmDCA repos and CM benchmark MSA; endpoints are Shannon entropy and held-out log-likelihood; baseline is fully connected bmDCA; hypothesis is that sparse maximum-entropy decimation preserves constraints while enlarging functional sequence space. A pruning curve pilot is executable in 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_2b4dfba31a5d0294",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that adjacent coordination configurations are under-powered at n=100. Public assets are coordination-traces-100 and the ForesightFlow harness; endpoint is Brier/Murphy components; baseline is n=100 Table 2; hypothesis is that n=500 resolves Consensus Alignment versus Sequential Pipeline. The full experiment may need substantial live LLM/API budget and a fixed public market list.",
+      "repair_needed": "Pre-register the n=500 market set, cost envelope, and a smaller confirmatory contrast that can complete within 72h.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_8c6b701cf186d892",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that predicting MAST failures from configuration appears feasible. Public ForesightFlow repos are listed, but the intervention is a generic generated ablation, the endpoint is only a pre-registered benchmark delta, and the hypothesis does not specify a failure classifier or target labels. Not executable as written.",
+      "repair_needed": "Define the labels, feature extraction, baseline classifier, and evaluation metric for failure-mode prediction.",
+      "fatal_blocker": "Templated non-specific experiment."
+    },
+    {
+      "candidate_id": "cand_e552310ed9a0de66",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the weak correlation between frontend score and backend metrics plus 0-49% background job scores. Public asset is SWE-WebDevBench; endpoints are Backend Logic Score and Frontend Engineering Score; baseline is the benchmark's standard natural-language generation; hypothesis is that schema-first prompting raises BLS without hurting FES. A single-prompt platform run is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_48cb982d009e28ba",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is Market 66 as a peer-critique minority-view collapse failure. Public assets are coordination-traces-100 and the ForesightFlow harness; endpoint is Murphy resolution or FM-2.x failure rate; baseline is original Consensus Alignment; hypothesis is that blind/anonymized critique reduces minority-suppression failures. A six-market config rerun is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_4267832886b0537e",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the paper's broad claim that coordination should be a configurable architectural layer. Public repos are listed, but the proposed intervention is a truncated generic ablation and the endpoint is an unspecified pre-registered delta. It does not identify a measurable failure signature.",
+      "repair_needed": "Specify a concrete coordination-layer perturbation and a Brier/Murphy/failure-mode endpoint.",
+      "fatal_blocker": "No concrete intervention or metric beyond a template."
+    },
+    {
+      "candidate_id": "cand_33e791047f0092c0",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is that KEGG source records produced zero validated genes after parsing, indicating an implementation bug. Public assets are KEGG REST, NCBI gene references, and PhenotypeToGeneDownloaderR; endpoint is validated gene count per phenotype; baseline is the current zero-gene KEGG module; hypothesis is a record-format parsing mismatch. Manual API inspection and parser patch are executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_28200f3dbc9771de",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the explicit caveat that scVI was trained on all donors before donor-level CV. Public assets are SCP259 and the scRNA benchmark code; endpoint is donor-level AUROC; baselines are leaked scVI AUROC 0.931 and CLR SVM 0.956; hypothesis is that strict fold-internal scVI training lowers but may not eliminate scVI's advantage. A Fold 1 retraining pilot is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_8feb8bda97bd7d28",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a broad production failure-rate claim for multi-agent systems. Public ForesightFlow repos are listed, but the intervention is 'stress-test and mitigate the majority' of failures, the endpoint is generic, and the hypothesis is not tied to a specific configuration or failure label. No bounded 24-72h run is defined.",
+      "repair_needed": "Pick a single failure class, architecture, mitigation, and measurable endpoint.",
+      "fatal_blocker": "Overbroad, non-specific intervention."
+    },
+    {
+      "candidate_id": "cand_93fea71e42023da2",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that the current sMMD framework is binary and future work proposes continuous dosages. Public asset is MIMIC-III/AmsterdamUMCdb, with RMSE as endpoint, Causal Transformer as baseline, and a kernel-weighted sMMD hypothesis. Clinical database credentialing, extraction, and baseline code are not sufficiently pinned for a safe immediate run.",
+      "repair_needed": "Provide an access-ready public cohort extraction script and a baseline implementation, or move the first test to an unrestricted synthetic continuous-treatment benchmark.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_ffe5eafc8ffeecde",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the confound that compartment scVI has 60 latent dimensions while global scVI has 20. Public assets are SCP259 and the scRNA benchmark code; endpoint is donor-level AUROC; baseline is global 20-dim scVI AUROC 0.725; hypothesis is that compartmentalization, not dimensionality, drives the gain. A 60-dim global scVI pilot is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_3396f0c7422b267a",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a speculative link between bottlenecks and unstable evolutionary game equilibria. The asset is only a generic public benchmark placeholder, the endpoint is a generic delta, and the hypothesis/intervention are templated. No falsifiable public 24-72h experiment is available.",
+      "repair_needed": "Define a specific public simulation or dataset, game model, intervention, and quantitative endpoint.",
+      "fatal_blocker": "No concrete data/artifact or executable experiment."
+    },
+    {
+      "candidate_id": "cand_091ef06485d2408f",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that 31% of viral BindingDB records required polyprotein splitting and cleaned fine-tuning improved DrugFormDTA from r=0.5 to r=0.7. Public asset is claimed as the Radvac antiviral database; endpoint is Pearson r; baseline is unsplit BindingDB-trained DrugFormDTA; hypothesis is that polyprotein splitting reduces sequence noise. Exact downloadable data, splits, and DrugFormDTA training artifact are not pinned.",
+      "repair_needed": "Pin the Radvac table download, raw-versus-split sequence mapping, and public DrugFormDTA training/evaluation script.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_e179ec87dd0fd1f9",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the near-zero global CFN edge Jaccard of 0.026. Public assets are the scRNA code plus SCP259/Kong/HCA datasets; endpoint is cross-fold edge Jaccard; baseline is Jaccard 0.026; hypothesis is that N>100 and L1 regularization stabilize edges. The first 24h step is data harmonization, not an endpoint-measuring run, and the external cohort is not exact.",
+      "repair_needed": "Name the exact accession/cohort and define a small harmonized pilot that computes edge Jaccard within 72h.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_a76b16aa694f4a3a",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a speculative claim that code-inventions can be hard, path-dependent, or unstable. The asset is a generic public benchmark placeholder, the endpoint is a generic delta, and the intervention is templated. It lacks a concrete public artifact, baseline, metric, and 24-72h path.",
+      "repair_needed": "Turn the idea into a specific simulation or empirical benchmark with a named public artifact and metric.",
+      "fatal_blocker": "Speculative non-executable framing."
+    },
+    {
+      "candidate_id": "cand_2a140b0fddde6ca7",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the 110% WER failure from raw 1024-dim WavLM-Large features and the manifold-drift claim. Public assets are LibriSpeech and the WavCube repo; endpoint is WER; baseline is raw WavLM features into DiT; hypothesis is that nonlinear bottlenecks beat raw/PCA features. The proposed first step trains only an autoencoder and does not reach the TTS WER endpoint; full DiT training may exceed 72h.",
+      "repair_needed": "Use released pretrained components or a small fixed TTS subset with raw/PCA/AE endpoints that can finish within 72h.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_be06d9dc0d5fed7c",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the more than 11% single-constraint accuracy drop over long conversations. Public asset is the SEQUOR code/data; endpoint is accuracy difference; baseline is Llama-3.3-70B Single-regime drop; hypothesis is that periodic constraint reinjection reduces the final-turn drop below 3%. A benchmark rerun with prompt modification is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_f62a2f7d9c45f8a5",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is a broad claim that societies may collapse without resilient institutions/internalized costs. The asset is a generic benchmark placeholder, endpoint is generic benchmark delta, and the intervention is templated. It is not a concrete arXiv candidate calibration experiment.",
+      "repair_needed": "Define a public simulation, baseline policy, intervention, and collapse metric.",
+      "fatal_blocker": "No public executable artifact or falsifiable measurement."
+    },
+    {
+      "candidate_id": "cand_47ae1e4a3b705ba5",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the repeated TNF-alpha span tying Protenix disorder to excessive alanines. Public asset is 1TNF plus related design repos; endpoint is structural plausibility rate/pLDDT>70; baseline is standard ProteinMPNN; hypothesis is that alanine logit caps reduce disorder. It remains missing a pinned public ProteinMPNN/Protenix execution path and a realistic 72h sample budget.",
+      "repair_needed": "Pin the exact open model artifacts and reduce the 500-design run to a bounded smoke test with commands.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_2f0360bec26f3fc3",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is the above-40% loss when constraints are introduced sequentially. Public asset is SEQUOR; endpoint is accuracy difference; baseline is Qwen3-30B Add 10 degradation; hypothesis is that an active-constraint scratchpad cuts degradation by at least half. A prompt-only benchmark rerun on Add 10 is executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_08814bb6c234aab3",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the claim that bottlenecks are precarious game-theoretic equilibria. The asset and endpoint are generic placeholders, while the intervention is a generated ablation fragment. It lacks a named public simulation, metric, baseline, and 24-72h executable path.",
+      "repair_needed": "Specify the signaling-coordination game, public implementation, baseline equilibrium, and instability metric.",
+      "fatal_blocker": "Speculative template with no runnable artifact."
+    },
+    {
+      "candidate_id": "cand_e48e7249ff6360d7",
+      "frontier_label": "A",
+      "would_run_24_72h": true,
+      "rationale": "Strongest evidence is that Adam's momentum can move without selection pressure and the paper provides a rank-1 projection repair. Public asset is the adam-dls repo; endpoint is log-scale loss plus zero-gradient update magnitude; baseline is standard Adam; hypothesis is that DLS-Adam preserves Rosenbrock performance while enforcing gradient-dependent updates. The repo benchmark and zero-gradient check are executable within 24-72h.",
+      "repair_needed": "",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_08ea6fefba90f970",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is the remaining performance gap between one-stage A-CODE and two-stage ProteinMPNN designs. Public asset is only PDB in the candidate, endpoint is scTM/designability, baseline is A-CODE versus PXDesign+ProteinMPNN, and hypothesis is auxiliary inverse-folding loss. The required A-CODE code/weights are not linked, so the 1000-step fine-tune is not safely executable.",
+      "repair_needed": "Provide the public A-CODE implementation/pretrained weights and a fixed small benchmark split.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_cbd34be8d24dbca9",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is only a broad statement that several extensions would strengthen the IBD benchmark. Public scRNA repos are listed, but the intervention is a template, the endpoint is generic, and the hypothesis does not choose a specific extension. It cannot be run or falsified as written.",
+      "repair_needed": "Choose one extension, such as pseudobulk CFN, and specify the exact dataset, baseline, and metric.",
+      "fatal_blocker": "Non-specific generated future-work candidate."
+    },
+    {
+      "candidate_id": "cand_f4e83aa89545be05",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is notable variance across viral proteins in a 15-tool antiviral benchmark. Public asset is claimed as the Radvac 853-compound test set, endpoint is class-specific RMSE, baseline is global DrugFormDTA r=0.70, and hypothesis is protease-versus-polymerase blind spots. The first 24h step relies on reported results rather than a pinned downloadable table and executable model evaluation.",
+      "repair_needed": "Pin the exact downloadable benchmark table, target class labels, and model result files or scripts for per-class RMSE.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_62e44089b683f498",
+      "frontier_label": "B",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence is that no accepted ncAA benchmark exists and A-CODE can model ncAAs. Public asset is PDB filtered for non-standard residues; endpoint is ncAA-RMSD/type accuracy; baseline is A-CODE zero-shot versus Rosetta placement; hypothesis is atom-centric recovery of ncAAs. The A-CODE executable artifact is not linked and the benchmark curation rules are not yet fixed.",
+      "repair_needed": "Provide a public A-CODE artifact and a pre-registered PDB filtering/masking protocol for an initial ncAA recovery benchmark.",
+      "fatal_blocker": ""
+    },
+    {
+      "candidate_id": "cand_a4e6fd8726322198",
+      "frontier_label": "Reject",
+      "would_run_24_72h": false,
+      "rationale": "Strongest evidence lists multiple future directions for the donor-aware IBD benchmark. Public scRNA repos are listed, but the intervention combines several distinct projects, the metric is generic, and the hypothesis is templated. It is not a single 24-72h executable experiment.",
+      "repair_needed": "Split into one concrete experiment, such as full-gene scVI on a named cohort with AUROC baseline.",
+      "fatal_blocker": "Multiple vague interventions bundled under a generic metric."
+    }
+  ],
+  "top_a_candidate_ids": [
+    "cand_c22009b9a057752f",
+    "cand_8f5ea295fb30e3c4",
+    "cand_d8c3636f8d63ae1f",
+    "cand_8d847c37bbb0d4cf",
+    "cand_e552310ed9a0de66",
+    "cand_48cb982d009e28ba",
+    "cand_33e791047f0092c0",
+    "cand_28200f3dbc9771de",
+    "cand_ffe5eafc8ffeecde",
+    "cand_be06d9dc0d5fed7c",
+    "cand_2f0360bec26f3fc3",
+    "cand_e48e7249ff6360d7"
+  ],
+  "notes": [
+    "A labels require a named public asset, concrete endpoint, baseline, falsifiable hypothesis, and an executable 24-72h path.",
+    "Templated candidates with 'Design a paper-specific ablation' or generic 'pre-registered benchmark delta' were rejected unless they contained a concrete runnable experiment.",
+    "B labels are mostly promising but need one repair: exact downloadable data, pinned public model artifacts, a single endpoint, or a bounded 72h run protocol."
+  ]
+}
