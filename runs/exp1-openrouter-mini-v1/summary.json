@@ -1,0 +1,66 @@
+{
+  "started_at": "2026-05-08T09:19:23.848Z",
+  "finished_at": "2026-05-08T09:19:36.659Z",
+  "config": {
+    "days": 3,
+    "categories": [
+      "cs.LG"
+    ],
+    "per_category_fetch": 3,
+    "target_min": 3,
+    "target_max": 3,
+    "abstract_top_k": 1,
+    "candidate_per_paper": 2,
+    "verifier_top_k": 1,
+    "max_evidence_spans": 4,
+    "max_candidates_output": 5,
+    "output_dir": "runs/exp1-openrouter-mini-v1",
+    "mode": "llm",
+    "llm_provider": "openrouter",
+    "broad_model": "google/gemini-3-flash-preview",
+    "verifier_model": "google/gemini-3-flash-preview",
+    "input_price_per_mtoken_usd": 0.5,
+    "output_price_per_mtoken_usd": 3,
+    "gemini_api_key_set": false,
+    "openrouter_api_key_set": true
+  },
+  "llm": {
+    "provider": "openrouter",
+    "mode": "llm",
+    "llm_invoked": true,
+    "broad_model": "google/gemini-3-flash-preview",
+    "verifier_model": "google/gemini-3-flash-preview",
+    "prompt_audit_path": "prompts.md"
+  },
+  "papers_fetched": 3,
+  "papers_in_window": 3,
+  "abstract_shortlist_size": 1,
+  "raw_candidates": 0,
+  "accepted_candidates": 0,
+  "rejected_candidates": 0,
+  "top_20_evidence_precision": 0,
+  "top_20_problem_evidence_precision": 0,
+  "grade_counts": {
+    "A": 0,
+    "B": 0,
+    "C": 0
+  },
+  "acceptance": {
+    "pass": false,
+    "checks": {
+      "at_least_3_a_grade": false,
+      "at_least_8_a_or_b_grade": false,
+      "top_20_evidence_precision_gt_80pct": false,
+      "top_20_problem_evidence_precision_gt_80pct": false,
+      "at_least_1_under_72h_public_benchmark": false,
+      "low_cost_per_paper": true
+    }
+  },
+  "usage": {
+    "prompt_tokens": 3618,
+    "completion_tokens": 1619,
+    "total_tokens": 5237
+  },
+  "estimated_cost_usd": 0.006666,
+  "estimated_cost_per_paper_usd": 0.002222
+}

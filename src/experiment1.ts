@@ -25,6 +25,7 @@ export const IMPACT_TYPES = [
 
 export type ImpactType = (typeof IMPACT_TYPES)[number];
 export type RunMode = "heuristic" | "llm";
+export type LlmProvider = "google-gemini" | "openrouter";
 export type EvidenceRole =
   | "limitation"
   | "future_work"
@@ -34,8 +35,9 @@ export type EvidenceRole =
   | "positive_result_only";
 export type PaperStatus = "active" | "withdrawn" | "unknown";
 export type CodeOrDataStatus = "found" | "claimed" | "not_found" | "unknown";
-export type PublicExperimentConfig = Omit<ExperimentConfig, "gemini_api_key"> & {
+export type PublicExperimentConfig = Omit<ExperimentConfig, "gemini_api_key" | "openrouter_api_key"> & {
   gemini_api_key_set: boolean;
+  openrouter_api_key_set: boolean;
 };
 
 export interface ScoreBreakdown {
@@ -162,9 +164,11 @@ export interface ExperimentConfig {
   max_candidates_output: number;
   output_dir: string;
   mode: RunMode;
+  llm_provider: LlmProvider;
   broad_model: string;
   verifier_model: string;
   gemini_api_key?: string;
+  openrouter_api_key?: string;
   input_price_per_mtoken_usd: number;
   output_price_per_mtoken_usd: number;
 }
@@ -178,6 +182,10 @@ interface TokenUsage {
 interface LlmJsonResult<T> {
   data: T;
   usage: TokenUsage;
+}
+
+interface JsonLlmClient {
+  generateJson<T>(prompt: string): Promise<LlmJsonResult<T>>;
 }
 
 interface V1CandidateEnvelope {
@@ -196,7 +204,7 @@ interface RunSummary {
   finished_at: string;
   config: PublicExperimentConfig;
   llm: {
-    provider: "google-gemini";
+    provider: LlmProvider;
     mode: RunMode;
     llm_invoked: boolean;
     broad_model: string;
@@ -1259,9 +1267,70 @@ class GeminiJsonClient {
   }
 }
 
+class OpenRouterJsonClient implements JsonLlmClient {
+  constructor(private readonly apiKey: string, private readonly model: string) {}
+
+  async generateJson<T>(prompt: string): Promise<LlmJsonResult<T>> {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      headers: {
+        "Authorization": `Bearer ${this.apiKey}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://github.com/flavio87/problem-scanner",
+        "X-Title": "problem-scanner",
+      },
+      body: JSON.stringify({
+        model: this.model,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.2,
+        response_format: { type: "json_object" },
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      const billingStatuses = new Set([402]);
+      const billingHint =
+        billingStatuses.has(response.status) ? " Check OpenRouter credits/billing before treating this as model failure." : "";
+      throw new Error(`OpenRouter request failed (${response.status}): ${safeSubstring(errorText, 400)}${billingHint}`);
+    }
+
+    const body = (await response.json()) as {
+      choices?: Array<{
+        message?: {
+          content?: string | Array<{ type?: string; text?: string }>;
+        };
+      }>;
+      usage?: {
+        prompt_tokens?: number;
+        completion_tokens?: number;
+        total_tokens?: number;
+      };
+    };
+
+    const content = body.choices?.[0]?.message?.content;
+    const responseText = Array.isArray(content)
+      ? content.map((part) => part.text ?? "").join("\n")
+      : content ?? "";
+
+    const parsed = parseJsonBlob(responseText) as T;
+
+    return {
+      data: parsed,
+      usage: {
+        prompt_tokens: body.usage?.prompt_tokens ?? 0,
+        completion_tokens: body.usage?.completion_tokens ?? 0,
+        total_tokens: body.usage?.total_tokens ?? 0,
+      },
+    };
+  }
+}
+
 function llmV1InstructionLines(config: ExperimentConfig): string[] {
   return [
     "You are extracting computationally testable latent research problems from a fresh arXiv paper.",
+    `Current date: ${new Date().toISOString().slice(0, 10)}.`,
     "Return strict JSON only with this schema:",
     `{"candidates":[${RAW_CANDIDATE_JSON_SCHEMA}]}`,
     `Return at most ${config.candidate_per_paper} candidates.`,
@@ -1270,6 +1339,7 @@ function llmV1InstructionLines(config: ExperimentConfig): string[] {
     "Each candidate must name a specific intervention, baseline, and metric. Generic plans like 'reproduce and add an ablation' are invalid.",
     "If you cite code/data availability, include concrete URLs in code_or_data_urls. If no concrete URL is visible, set code_or_data_status to claimed or unknown, not found.",
     "If venue metadata says withdrawn, set paper_status to withdrawn and include the status source/evidence.",
+    "Do not infer that a paper is synthetic, future-dated, withdrawn, or unavailable from its arXiv ID. Trust the provided metadata and leave paper_status_sources/paper_status_evidence empty unless an explicit status source is visible.",
     "Hard disqualify if wet-lab/private-data/unbounded compute is required.",
   ];
 }
@@ -1290,11 +1360,13 @@ function llmV1Prompt(paper: ArxivPaper, paperText: PaperText, config: Experiment
 function llmV2InstructionLines(): string[] {
   return [
     "You are a strict verifier for research-candidate quality.",
+    `Current date: ${new Date().toISOString().slice(0, 10)}.`,
     "Return strict JSON only with this schema:",
     `{"accepted":boolean,"rejection_reasons":string[],"score_breakdown":{"auto_research_feasibility":number,"falsifiable_evaluation":number,"problem_clarity":number,"novelty_or_neglectedness":number,"impact":number,"storyability":number,"total":number},"candidate_patch":${RAW_CANDIDATE_JSON_SCHEMA}}`,
     "Scoring rubric weights: feasibility 25, falsifiable 20, clarity 15, novelty 15, impact 15, storyability 10.",
     "Reject if: no source-backed problem evidence; evidence is positive-result-only; no feasibility evidence; no specific intervention/baseline/metric; no verified concrete public code/data/benchmark URL; wet-lab/private data/unavailable compute; pure survey path; unsandboxed legal/safety risk.",
     "Reject withdrawn papers. Do not promote code_or_data_status=found unless a concrete verified URL is present in code_or_data_urls.",
+    "Do not infer that a fresh arXiv ID is synthetic, future-dated, withdrawn, or unavailable. Do not add paper_status_sources or paper_status_evidence unless the candidate already has deterministic status evidence.",
   ];
 }
 
@@ -1965,8 +2037,8 @@ function enrichCandidateWithVerification(candidate: RawCandidate, verification: 
     ...candidate,
     paper_status: verification.paper_status,
     code_or_data_status: verification.code_or_data_status,
-    paper_status_sources: Array.from(new Set([...candidate.paper_status_sources, ...verification.paper_status_sources])),
-    paper_status_evidence: Array.from(new Set([...candidate.paper_status_evidence, ...verification.paper_status_evidence])),
+    paper_status_sources: verification.paper_status_sources,
+    paper_status_evidence: verification.paper_status_evidence,
     code_or_data_urls:
       verification.code_or_data_urls.length > 0
         ? verification.code_or_data_urls
@@ -2017,11 +2089,46 @@ function writeJson(path: string, value: unknown): void {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+function isOpenRouterProvider(provider: LlmProvider): boolean {
+  return provider.startsWith("openrouter");
+}
+
+function apiKeyForConfig(config: ExperimentConfig): string | undefined {
+  return isOpenRouterProvider(config.llm_provider) ? config.openrouter_api_key : config.gemini_api_key;
+}
+
+function apiKeyEnvName(provider: LlmProvider): string {
+  return isOpenRouterProvider(provider) ? "OPENROUTER_API_KEY" : "GEMINI_API_KEY";
+}
+
+function providerDisplayName(provider: LlmProvider): string {
+  return isOpenRouterProvider(provider) ? "OpenRouter" : "Google Gemini API";
+}
+
+function endpointPattern(provider: LlmProvider): string {
+  return isOpenRouterProvider(provider)
+    ? "https://openrouter.ai/api/v1/chat/completions"
+    : "https://generativelanguage.googleapis.com/v1beta/models/<model>:generateContent";
+}
+
+function generationConfigDescription(provider: LlmProvider): string {
+  return isOpenRouterProvider(provider)
+    ? "temperature=0.2, response_format={type:\"json_object\"}"
+    : "temperature=0.2, responseMimeType=application/json";
+}
+
+function createJsonClient(provider: LlmProvider, apiKey: string, model: string): JsonLlmClient {
+  return isOpenRouterProvider(provider)
+    ? new OpenRouterJsonClient(apiKey, model)
+    : new GeminiJsonClient(apiKey, model);
+}
+
 function publicConfig(config: ExperimentConfig): PublicExperimentConfig {
-  const { gemini_api_key: geminiApiKey, ...rest } = config;
+  const { gemini_api_key: geminiApiKey, openrouter_api_key: openrouterApiKey, ...rest } = config;
   return {
     ...rest,
     gemini_api_key_set: Boolean(geminiApiKey),
+    openrouter_api_key_set: Boolean(openrouterApiKey),
   };
 }
 
@@ -2056,13 +2163,13 @@ function promptAuditMarkdown(config: ExperimentConfig, llmInvoked: boolean): str
     "",
     `- Run mode: \`${config.mode}\``,
     `- LLM invoked: ${llmInvoked ? "yes" : "no"}`,
-    "- Provider: Google Gemini API",
+    `- Provider: ${providerDisplayName(config.llm_provider)}`,
     `- Broad scan model: \`${config.broad_model}\``,
     `- Verifier model: \`${config.verifier_model}\``,
-    "- Endpoint pattern: `https://generativelanguage.googleapis.com/v1beta/models/<model>:generateContent`",
-    "- Generation config: `temperature=0.2`, `responseMimeType=application/json`",
+    `- Endpoint pattern: \`${endpointPattern(config.llm_provider)}\``,
+    `- Generation config: \`${generationConfigDescription(config.llm_provider)}\``,
     "",
-    "If `LLM invoked` is `no`, these are the exact prompt templates the pipeline would use in LLM mode, but no prompt text was sent for this run.",
+    `If \`LLM invoked\` is \`no\`, these are the exact prompt templates the pipeline would use in LLM mode, but no prompt text was sent for this run. Selected key: \`${apiKeyEnvName(config.llm_provider)}\`.`,
     "",
     "## Broad Scan Prompt Template",
     "",
@@ -2122,7 +2229,7 @@ function markdownReport(
   lines.push(`- Verifier model: \`${summary.llm.verifier_model}\``);
   lines.push(`- Prompt audit file: \`${summary.llm.prompt_audit_path}\``);
   if (!summary.llm.llm_invoked) {
-    lines.push("- Note: no LLM prompts were sent in this run because mode was heuristic or no Gemini API key was configured.");
+    lines.push("- Note: no LLM prompts were sent in this run because mode was heuristic or the selected provider API key was not configured.");
   }
   lines.push("");
 
@@ -2309,15 +2416,29 @@ function printHelp(): void {
     "  --abstractTopK <n>             Abstract-pass shortlist size (default: 40)",
     "  --candidatePerPaper <n>        Max candidates per shortlisted paper (default: 2)",
     "  --verifierTopK <n>             LLM verifier budget over candidate pool (default: 30)",
-    "  --mode heuristic|llm           Force mode (default: llm if GEMINI_API_KEY present, else heuristic)",
-    "  --broadModel <name>            Broad extraction model (default: gemini-3-flash-preview)",
-    "  --verifierModel <name>         Verifier model (default: gemini-3-flash-preview)",
+    "  --mode heuristic|llm           Force mode (default: llm if selected provider key present, else heuristic)",
+    "  --provider google-gemini|openrouter",
+    "                                  LLM provider (default: openrouter if OPENROUTER_API_KEY is set, else google-gemini)",
+    "  --broadModel <name>            Broad extraction model (default depends on provider)",
+    "  --verifierModel <name>         Verifier model (default depends on provider)",
     "  --outputDir <path>             Output directory (default: runs/exp1-<timestamp>)",
     "  --inputPricePerMTokenUSD <n>   Input price for cost estimate",
     "  --outputPricePerMTokenUSD <n>  Output price for cost estimate",
     "  --help                         Show this help",
   ];
   console.log(lines.join("\n"));
+}
+
+function defaultModelForProvider(provider: LlmProvider): string {
+  return isOpenRouterProvider(provider) ? "google/gemini-3-flash-preview" : "gemini-3-flash-preview";
+}
+
+function defaultInputPricePerMTokenUSD(provider: LlmProvider): number {
+  return isOpenRouterProvider(provider) ? 0.5 : 0;
+}
+
+function defaultOutputPricePerMTokenUSD(provider: LlmProvider): number {
+  return isOpenRouterProvider(provider) ? 3 : 0;
 }
 
 export function parseCliArgs(argv: string[]): ExperimentConfig {
@@ -2338,6 +2459,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
       maxCandidatesOutput: { type: "string" },
       outputDir: { type: "string" },
       mode: { type: "string" },
+      provider: { type: "string" },
       broadModel: { type: "string" },
       verifierModel: { type: "string" },
       inputPricePerMTokenUSD: { type: "string" },
@@ -2352,7 +2474,17 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
   }
 
   const geminiApiKey = process.env.GEMINI_API_KEY;
-  const inferredMode: RunMode = geminiApiKey ? "llm" : "heuristic";
+  const openrouterApiKey = process.env.OPENROUTER_API_KEY;
+  const inferredProvider: LlmProvider = openrouterApiKey ? "openrouter" : "google-gemini";
+  const requestedProvider = parsed.values.provider ? String(parsed.values.provider) : inferredProvider;
+  const providerMap: Record<string, LlmProvider> = {
+    "google-gemini": "google-gemini",
+    gemini: "google-gemini",
+    openrouter: "openrouter",
+  };
+  const llmProvider = providerMap[requestedProvider.trim().toLowerCase()] ?? inferredProvider;
+  const selectedApiKey = isOpenRouterProvider(llmProvider) ? openrouterApiKey : geminiApiKey;
+  const inferredMode: RunMode = selectedApiKey ? "llm" : "heuristic";
   const requestedMode = parsed.values.mode ? String(parsed.values.mode) : inferredMode;
   const modeMap: Record<string, RunMode> = { llm: "llm", heuristic: "heuristic" };
   const mode = modeMap[requestedMode.trim().toLowerCase()] ?? "heuristic";
@@ -2377,23 +2509,25 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
     max_candidates_output: toPositiveInt(parsed.values.maxCandidatesOutput as string | undefined, 20, "maxCandidatesOutput"),
     output_dir: outputDir,
     mode,
-    broad_model: String(parsed.values.broadModel ?? "gemini-3-flash-preview"),
-    verifier_model: String(parsed.values.verifierModel ?? "gemini-3-flash-preview"),
+    llm_provider: llmProvider,
+    broad_model: String(parsed.values.broadModel ?? defaultModelForProvider(llmProvider)),
+    verifier_model: String(parsed.values.verifierModel ?? defaultModelForProvider(llmProvider)),
     gemini_api_key: geminiApiKey,
+    openrouter_api_key: openrouterApiKey,
     input_price_per_mtoken_usd: toNonNegativeFloat(
       parsed.values.inputPricePerMTokenUSD as string | undefined,
-      0,
+      defaultInputPricePerMTokenUSD(llmProvider),
       "inputPricePerMTokenUSD",
     ),
     output_price_per_mtoken_usd: toNonNegativeFloat(
       parsed.values.outputPricePerMTokenUSD as string | undefined,
-      0,
+      defaultOutputPricePerMTokenUSD(llmProvider),
       "outputPricePerMTokenUSD",
     ),
   };
 
-  if (isLlmMode(config) && !config.gemini_api_key) {
-    throw new Error("--mode llm requested but GEMINI_API_KEY is not set.");
+  if (isLlmMode(config) && !apiKeyForConfig(config)) {
+    throw new Error(`--mode llm requested but ${apiKeyEnvName(config.llm_provider)} is not set.`);
   }
 
   if (config.target_min > config.target_max) {
@@ -2428,7 +2562,8 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   const startedAt = new Date().toISOString();
   mkdirSync(config.output_dir, { recursive: true });
   const publicRunConfig = publicConfig(config);
-  const llmInvoked = isLlmMode(config) && Boolean(config.gemini_api_key);
+  const selectedApiKey = apiKeyForConfig(config);
+  const llmInvoked = isLlmMode(config) && Boolean(selectedApiKey);
   const promptAuditPath = join(config.output_dir, "prompts.md");
 
   writeJson(join(config.output_dir, "config.json"), publicRunConfig);
@@ -2491,12 +2626,12 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   const usage = initUsage();
   const rawCandidates: RawCandidate[] = [];
 
-  let extractor: GeminiJsonClient | null = null;
-  let verifier: GeminiJsonClient | null = null;
+  let extractor: JsonLlmClient | null = null;
+  let verifier: JsonLlmClient | null = null;
 
-  if (isLlmMode(config) && config.gemini_api_key) {
-    extractor = new GeminiJsonClient(config.gemini_api_key, config.broad_model);
-    verifier = new GeminiJsonClient(config.gemini_api_key, config.verifier_model);
+  if (isLlmMode(config) && selectedApiKey) {
+    extractor = createJsonClient(config.llm_provider, selectedApiKey, config.broad_model);
+    verifier = createJsonClient(config.llm_provider, selectedApiKey, config.verifier_model);
   }
 
   for (const shortlistEntry of shortlist) {
@@ -2672,7 +2807,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
     finished_at: new Date().toISOString(),
     config: publicRunConfig,
     llm: {
-      provider: "google-gemini",
+      provider: config.llm_provider,
       mode: config.mode,
       llm_invoked: llmInvoked,
       broad_model: config.broad_model,

@@ -1,0 +1,131 @@
+[
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Interaction between online discrepancy learning and restart mechanisms leading to false restarts or missed detections.",
+    "reasons": [
+      "Problem evidence span does not state a problem role.",
+      "No verified concrete public code, data, or benchmark URL found.",
+      "No verified concrete public code, data, or benchmark URL provided in the candidate or paper text (code_or_data_status is 'claimed' but 'code_or_data_urls' is empty).",
+      "The candidate relies on a 'plant-simulation digital-twin benchmark' described in an appendix, which is not a verified public benchmark URL."
+    ]
+  },
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Sensitivity of BRPC to poorly specified transition noise and particle degeneracy in the projected parameter update.",
+    "reasons": [
+      "Problem evidence span does not state a problem role.",
+      "No verified concrete public code, data, or benchmark URL found.",
+      "No verified concrete public code/data/benchmark URL provided in the candidate or paper text.",
+      "The candidate's code_or_data_status is 'claimed' but the code_or_data_urls list is empty, which violates the strict requirement for a concrete verified URL."
+    ]
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "The 'auditor' capability in benchmarkless safety scoring creates a trade-off where high-strength auditors collapse comparative deltas between safe models.",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "Benchmarkless safety scoring instruments lack explicit mitigations for 'eval-awareness' where models may behave differently when they detect they are being audited.",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Neural GED estimators fail to handle edge labels due to baseline architectural inconsistencies",
+    "reasons": [
+      "Problem evidence span does not state a problem role.",
+      "No verified concrete public code, data, or benchmark URL found.",
+      "No verified concrete public code/data/benchmark URL provided in the candidate or paper text (code_or_data_status is 'claimed' but 'code_or_data_urls' is empty).",
+      "The evidence role is 'limitation' and the problem evidence spans indicate a deliberate exclusion of features (edge labels) to maintain baseline comparability, which is a standard experimental control rather than a fundamental failure mode of the proposed bi-Lipschitz theory."
+    ]
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Bi-Lipschitz guarantees for neural GED are restricted to the 1-WL expressive regime",
+    "reasons": [
+      "Problem evidence span does not state a problem role.",
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Evidence spans do not match source text.",
+      "No verified concrete public code/data/benchmark URL provided in the candidate metadata or paper text.",
+      "The candidate relies on 'claimed' code status without a specific repository link to verify the implementation of FSW-GNN or the experimental pipeline."
+    ]
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "candidate_problem": "Discrete Hard-Token Reversal of SFT-Induced Behaviors",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "candidate_problem": "Cross-Model Consistency of Sparse Carrier Causal Necessity",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Deadpan note segments in score-performance alignments due to linear interpolation",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Source-domain bias in large-scale MIDI pre-training",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "MARL coordination failure under sparse commitment decisions and high assignment pressure",
+    "reasons": [
+      "Problem evidence span does not state a problem role."
+    ]
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "candidate_problem": "Inference speed of Flow Matching kernels in multi-step autoregressive particle simulations",
+    "reasons": [
+      "Problem evidence span does not state a problem role.",
+      "The provided code URL (https://github.com/lucidrains/x-transformers) is a general-purpose library and not the specific implementation of the BRICKS model or the CaloBricks dataset mentioned in the paper.",
+      "The candidate fails to provide a verified concrete public code/data/benchmark URL for the specific research artifact (BRICKS/CaloBricks) as required by the strict verification criteria."
+    ]
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "candidate_problem": "Generalization of Neural Markov Kernels to complex 3D geometries and diverse particle species",
+    "reasons": [
+      "Problem evidence span does not state a problem role.",
+      "The provided code URL (https://github.com/lucidrains/x-transformers) is a general-purpose library and does not contain the specific BRICKS model implementation, the CaloBricks dataset, or the experimental scripts required to reproduce the paper's results.",
+      "The candidate fails to provide a verified concrete public code/data/benchmark URL specific to the research (the CaloBricks dataset mentioned in the text is not linked via a verified URL)."
+    ]
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "candidate_problem": "Standard Federated Learning implementations underperform in heterogeneous IoT environments because a single global model cannot represent diverse device behaviors, leading to model divergence and poor anomaly detection.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "No verified concrete public code/data/benchmark URL provided in the candidate or paper text.",
+      "The candidate's specific intervention is a verbatim repetition of a problem statement rather than a concrete technical modification.",
+      "The evidence role is incorrectly identified as 'negative_result' when the cited spans actually describe the motivation for the proposed work (limitation of prior art) rather than a failure of the proposed CLAD framework itself."
+    ]
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "candidate_problem": "Standard Federated Learning (FL) for IoT Intrusion Detection fails to generalize across heterogeneous device behaviors and cannot utilize unlabeled data from edge devices.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "The candidate fails to provide a verified concrete public code, data, or benchmark URL as required by the strict verifier instructions.",
+      "The candidate's 'specific_intervention' and 'candidate_problem' are recursive and poorly defined, essentially asking to 'design an ablation' rather than proposing a specific, falsifiable research hypothesis or technical change.",
+      "The evidence provided for feasibility is based on the paper's own positive results ('Our approach outperforms state-of-the-art baselines'), which violates the 'no positive-result-only' evidence rule for candidates.",
+      "The candidate lacks a specific, verifiable baseline and metric beyond 'reported baseline' and 'pre-registered benchmark delta'."
+    ]
+  }
+]

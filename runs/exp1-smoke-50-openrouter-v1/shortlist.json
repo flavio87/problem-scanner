@@ -1,0 +1,782 @@
+[
+  {
+    "paper": {
+      "id": "2605.06628v1",
+      "canonical_id": "2605.06628",
+      "title": "LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation",
+      "abstract": "Modern sensors generate rich, high-fidelity data, yet applications operating on wearable or remote sensing devices remain constrained by bandwidth and power budgets. Standardized codecs such as JPEG and MPEG achieve efficient trade-offs between bitrate and perceptual quality but are designed for human perception, limiting their applicability to machine-perception tasks and non-traditional modalities such as spatial audio arrays, hyperspectral images, and 3D medical images. General-purpose compression schemes based on scalar quantization or resolution reduction are broadly applicable but fail to exploit inherent signal redundancies, resulting in suboptimal rate-distortion performance. Recent generative neural codecs, or tokenizers, model complex signal dependencies but are often over-parameterized, data-hungry, and modality-specific, making them impractical for resource-constrained environments. We introduce a Lightweight, Versatile, and Asymmetric neural codec architecture (LiVeAction), that addresses these limitations through two key ideas. (1) To reduce the complexity of the encoder to meet the resource constraints of the execution environments, we impose an FFT-like structure and reduce the overall size and depth of the neural-network-based analysis transform. (2) To allow arbitrary signal modalities and simplify training, we replace adversarial and perceptual losses with a variance-based rate penalty. Our design produces codecs that deliver superior rate-distortion performance compared to state-of-the-art generative tokenizers, while remaining practical for deployment on low-power sensors. We release our code, experiments, and python library at https://github.com/UT-SysML/liveaction .",
+      "comments": "DCC 2026",
+      "subjects": [
+        "eess.IV",
+        "cs.LG",
+        "cs.MM",
+        "eess.AS",
+        "eess.SP"
+      ],
+      "primary_subject": "eess.IV",
+      "authors": [
+        "Dan Jacobellis",
+        "Neeraja J. Yadwadkar"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06628v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06628v1",
+      "published_at": "2026-05-07T17:42:38.000Z",
+      "updated_at": "2026-05-07T17:42:38.000Z"
+    },
+    "abstract_score": 10
+  },
+  {
+    "paper": {
+      "id": "2605.06612v1",
+      "canonical_id": "2605.06612",
+      "title": "Online Bayesian Calibration under Gradual and Abrupt System Changes",
+      "abstract": "Bayesian model calibration is central to digital twins and computer experiments, as it aligns model outputs with field observations by estimating calibration parameters and correcting systematic model bias. Classical Bayesian calibration introduces latent parameters and a discrepancy function to model bias, but suffers from parameter--discrepancy confounding and is typically formulated as an offline procedure under a stationary data-generating assumption. These limitations are restrictive in modern digital twin applications, where systems evolve over time and may exhibit gradual drift and abrupt regime shifts. While data assimilation methods enable sequential updates, they generally do not explicitly model systematic bias and are less effective under abrupt changes. We propose Bayesian Recursive Projected Calibration (BRPC), an online Bayesian calibration framework for streaming data under simulator mismatch and nonstationarity. BRPC extends projected calibration to the online setting by separating a discrepancy-free particle update for calibration parameters from a conditional Gaussian process update for discrepancy, preserving identifiability while enabling bias-aware adaptation under gradual system evolution. To handle abrupt changes, BRPC is integrated with restart mechanisms that detect regime shifts and reset the calibration process. We establish theoretical guarantees for both components, including tracking performance under gradual evolution and false-alarm and detection behavior for restart mechanisms. Empirical studies on synthetic and plant-simulation benchmarks show that BRPC improves calibration accuracy under gradual changes, while restart-augmented BRPC further improves robustness and predictive performance under abrupt regime shifts compared to sliding-window Bayesian calibration and data assimilation baselines.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.ET",
+        "stat.ML"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Yang Xu",
+        "Chiwoo Park"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06612v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06612v1",
+      "published_at": "2026-05-07T17:29:18.000Z",
+      "updated_at": "2026-05-07T17:29:18.000Z"
+    },
+    "abstract_score": 8
+  },
+  {
+    "paper": {
+      "id": "2605.06644v1",
+      "canonical_id": "2605.06644",
+      "title": "Edge-specific signal propagation on mature chromophore-region 3D mechanism graphs for fluorescent protein quantum-yield prediction",
+      "abstract": "Fluorescent protein quantum yield (QY) is governed by the mature chromophore and its three-dimensional microenvironment rather than sequence identity alone. Protein language models and emission-band averages capture global trends, but do not model how local physical signals act on specific chromophore regions. We present a chromophore-centred mechanism graph algorithm for QY prediction. Each PDB structure is converted into a typed 3D residue graph, registered to a mature-CRO state, partitioned into phenolate, bridge and imidazolinone regions, and transformed by channel-signal-region propagation. The representation contains 121 enrichment features; after removing identity shortcuts, 52 non-identity features are used for band-specific ExtraTrees regression. Because each feature encodes a contact channel, seed signal and target CRO region, interpretation is intrinsic rather than post hoc. On a 531-protein benchmark, the method achieved the best random-CV performance among model-based baselines (R = 0.772 +/- 0.008, MAE = 0.131 +/- 0.002), exceeding Band mean (R = 0.632), ESM-C (R = 0.734) and SaProt (R = 0.731), and ranked first in bright screening (Bright P@5 = 0.704). Under homology control, the advantage was clearest in the remote bucket (<50% similarity; R = 0.697 versus 0.633, 0.575 and 0.408), with the strongest overall bright/dark Top-K screening. Stable selected features recovered band-specific mechanisms: aromatic packing and clamp asymmetry in GFP-like proteins, charge/clamp balance in Red proteins, and flexibility-risk/bulky-contact features in Far-red proteins. Source code, feature tables and evaluation scripts are available from the first author upon request. Contact: yuchenak05@gmail.com",
+      "comments": "Includes appendix; source code, processed feature tables and evaluation scripts are available from the first author upon reasonable request",
+      "subjects": [
+        "cs.LG"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Yuchen Xiong",
+        "Swee Keong Yeap",
+        "Steven Aw Yoong Kit"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06644v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06644v1",
+      "published_at": "2026-05-07T17:51:41.000Z",
+      "updated_at": "2026-05-07T17:51:41.000Z"
+    },
+    "abstract_score": 7
+  },
+  {
+    "paper": {
+      "id": "2605.06592v1",
+      "canonical_id": "2605.06592",
+      "title": "DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Language Pretraining with High-Order Ranking Consistency",
+      "abstract": "Contrastive language-image pretraining (CLIP) suffers from two structural weaknesses: the symmetric InfoNCE loss discards the relative ordering among unmatched in-batch pairs, and global pooling collapses the visual representation into a semantic bottleneck that is poorly sensitive to fine-grained local structure. RANKCLIP partially addresses the first issue with a list-wise Plackett-Luce ranking-consistency loss, but its model is strictly first-order and inherits the second weakness untouched. We propose DINORANKCLIP, a pretraining framework that addresses both jointly. Our principal contribution is injecting a frozen DINOv3 teacher into the contrastive trunk through a dual-branch lightweight student and a multi-scale fusion module with channel-spatial attention, a self-attention refiner, and a conflict-aware gate that preserves the cross-modal alignment up to first order. Complementarily, we introduce a high-order Plackett-Luce ranking model in which the per-position utility is augmented with attention-parameterised pairwise and tuple-wise transition terms; the family contains CLIP and RANKCLIP as nested zero-order and first-order special cases, and the optimal order on every benchmark is $R^*=3$. The full empirical study -- order sweep, Fine-grained Probe on five datasets, four-node Modality-Gap analysis, six-variant Fusion ablation -- fits in 72 hours on a single eight-GPU H100 node and trains entirely on Conceptual Captions 3M. DINORANKCLIP consistently outperforms CLIP, CyCLIP, ALIP, and RANKCLIP under matched compute, with the largest relative gains on the fine-grained and out-of-distribution evaluations that most directly stress local structural reasoning.",
+      "comments": "18 pages, 7 figures, 9 tables. Code will be made publicly available upon acceptance",
+      "subjects": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.CV",
+      "authors": [
+        "Shuyang Jiang",
+        "Nan Yu",
+        "Yiming Zhang",
+        "Zenghui Ding",
+        "Zhenyu Wu"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06592v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06592v1",
+      "published_at": "2026-05-07T17:19:52.000Z",
+      "updated_at": "2026-05-07T17:19:52.000Z"
+    },
+    "abstract_score": 7
+  },
+  {
+    "paper": {
+      "id": "2605.06652v1",
+      "canonical_id": "2605.06652",
+      "title": "When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Ground-Truth Labels",
+      "abstract": "Many deployments must compare candidate language models for safety before a labeled benchmark exists for the relevant language, sector, or regulatory regime. We formalize this setting as benchmarkless comparative safety scoring and specify the contract under which a scenario-based audit can be interpreted as deployment evidence. Scores are valid only under a fixed scenario pack, rubric, auditor, judge, sampling configuration, and rerun budget. Because no labels are available, we replace ground-truth agreement with an instrumental-validity chain: responsiveness to a controlled safe-versus-abliterated contrast, dominance of target-driven variance over auditor and judge artifacts, and stability across reruns. We instantiate the chain in SimpleAudit, a local-first scoring instrument, and validate it on a Norwegian safety pack. Safe and abliterated targets separate with AUROC values between 0.89 and 1.00, target identity is the dominant variance component ($η^2 \\approx 0.52$), and severity profiles stabilize by ten reruns. Applying the same chain to Petri shows that it admits both tools. The substantial differences arise upstream of the chain, in claim-contract enforcement and deployment fit. A Norwegian public-sector procurement case comparing Borealis and Gemma 3 demonstrates the resulting evidence in practice: the safer model depends on scenario category and risk measure. Consequently, scores, matched deltas, critical rates, uncertainty, and the auditor and judge used must be reported together rather than collapsed into a single ranking.",
+      "comments": "SimpleAudit Repository: https://github.com/kelkalot/simpleaudit",
+      "subjects": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Sushant Gautam",
+        "Finn Schwall",
+        "Annika Willoch Olstad",
+        "Fernando Vallecillos Ruiz",
+        "Birk Torpmann-Hagen",
+        "Sunniva Maria Stordal Bjørklund",
+        "Leon Moonen",
+        "Klas Pettersen",
+        "Michael A. Riegler"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06652v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06652v1",
+      "published_at": "2026-05-07T17:56:41.000Z",
+      "updated_at": "2026-05-07T17:56:41.000Z"
+    },
+    "abstract_score": 5
+  },
+  {
+    "paper": {
+      "id": "2605.06588v1",
+      "canonical_id": "2605.06588",
+      "title": "Towards Metric-Faithful Neural Graph Matching",
+      "abstract": "Graph Edit Distance (GED) is a fundamental, albeit NP-hard, metric for structural graph similarity. Recent neural graph matching architectures approximate GED by first encoding graphs with a Graph Neural Network (GNN) and then applying either a graph-level regression head or a matching-based alignment module. Despite substantial architectural progress, the role of encoder geometry in neural GED estimation remains poorly understood. In this paper, we develop a theoretical framework that connects encoder geometry to GED estimation quality for two broad classes of neural GED estimators: graph similarity predictors and alignment-based methods. On fixed graph collections, where the doubly-stochastic metric $d_{\\mathrm{DS}}$ is comparable to GED, we show that graph-level bi-Lipschitz encoders yield controlled GED surrogates and improved ranking stability; for matching-based estimators, node-level bi-Lipschitz geometry propagates to encoder-induced alignment costs and the resulting optimized alignment objective. We instantiate this perspective using FSW-GNN, a bi-Lipschitz WL-equivalent encoder, as a drop-in replacement in representative neural GED architectures. Across representative baselines and benchmark datasets, the resulting geometry-aware variants significantly improve GED prediction and ranking metrics. A faithfulness case study of untrained encoders, together with ablations and transfer experiments, supports the view that these gains arise from improved representation geometry, positioning encoder geometry as a useful design principle for neural graph matching.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Jyotirmaya Shivottam",
+        "Subhankar Mishra"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06588v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06588v1",
+      "published_at": "2026-05-07T17:16:54.000Z",
+      "updated_at": "2026-05-07T17:16:54.000Z"
+    },
+    "abstract_score": 5
+  },
+  {
+    "paper": {
+      "id": "2605.06576v1",
+      "canonical_id": "2605.06576",
+      "title": "On the Safety of Graph Representation Learning",
+      "abstract": "Graph representation learning (GRL) has evolved from topology-only graph embeddings to task-specific supervised GNNs, and more recently to reusable representations and graph foundation models (GFMs). However, existing evaluations mainly measure clean transfer, adaptation, and task coverage. It remains unclear whether GRL methods stay reliable when deployment stresses affect graph signals, graph contexts, label support, structural groups, or predictive evidence. We introduce GRL-Safety, a multi-axis safety evaluation benchmark for GRL. GRL-Safety evaluates twelve representative methods, spanning topology-only embedding methods, supervised GNNs, self-supervised graph models, and GFMs, on twenty-five graph datasets under standardized evaluation conditions while preserving method-native adaptation. The evaluation covers five safety axes: corruption robustness, OOD generalization, class imbalance, fairness, and interpretation, with per-axis and sub-condition reporting rather than a single aggregate score. Our analysis yields three cross-axis insights that can inspire future research. First, safety behavior is shaped by the interaction between representation design and the stressed graph factor, rather than by method family alone. Second, foundation-era methods show axis-specific strengths rather than broad safety dominance. Third, several deployment regimes remain difficult even for the best evaluated method, revealing capability gaps that require new robustness, adaptation, or training objectives beyond model selection. The benchmark, evaluation protocols, and code are available at: https://github.com/GXG-CS/GRL-Safety.",
+      "comments": "Preprint. 10 pages main text, appendices included",
+      "subjects": [
+        "cs.LG"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Xiaoguang Guo",
+        "Zehong Wang",
+        "Ziming Li",
+        "Shawn Spitzel",
+        "Soonwoo Kwon",
+        "Tianyi Ma",
+        "Yanfang Ye",
+        "Chuxu Zhang"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06576v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06576v1",
+      "published_at": "2026-05-07T17:06:19.000Z",
+      "updated_at": "2026-05-07T17:06:19.000Z"
+    },
+    "abstract_score": 5
+  },
+  {
+    "paper": {
+      "id": "2605.06575v1",
+      "canonical_id": "2605.06575",
+      "title": "Directional Consistency as a Complementary Optimization Signal: The GONO Framework",
+      "abstract": "We identify and formalize an underexplored phenomenon in deep learning optimization: directional alignment and loss convergence can be decoupled. An optimizer can exhibit near-perfect directional consistency (cc_t -> 1, measured via consecutive gradient cosine similarity) while the loss remains high or decreases slowly. This observation reveals that existing optimizers such as Adam, SGD, and RMSprop lack explicit mechanisms to exploit temporal consistency in gradient directions, relying instead on magnitude-based signals that fail to distinguish plateaus, saddle points, and genuine convergence. Motivated by this, we introduce GONO (Gradient-Oriented Norm-Adaptive Optimizer), which adapts Adam's momentum coefficient beta_1 based on cc_t: amplifying momentum under directional consistency and suppressing it during oscillation. We prove GONO matches Adam's O(1/sqrt(T)) convergence rate and reduces exactly to Adam when the signal is uninformative. Empirically, cc_t achieves oscillation detection with F1=1.00 (vs. 0.45 for gradient norm), and GONO remains competitive with AdamW on MNIST (98.15%), CIFAR-10 (43.14%), and ResNet-18 (75.44%), establishing directional alignment as a theoretically grounded, practically actionable optimization signal. Code: https://github.com/victordaniel/gono-optimizer",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Victor Daniel Gera"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06575v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06575v1",
+      "published_at": "2026-05-07T17:05:05.000Z",
+      "updated_at": "2026-05-07T17:05:05.000Z"
+    },
+    "abstract_score": 5
+  },
+  {
+    "paper": {
+      "id": "2605.06667v1",
+      "canonical_id": "2605.06667",
+      "title": "ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation",
+      "abstract": "For artistic applications, video generation requires fine-grained control over both performance and cinematography, i.e., the actor's motion and the camera trajectory. We present ActCam, a zero-shot method for video generation that jointly transfers character motion from a driving video into a new scene and enables per-frame control of intrinsic and extrinsic camera parameters. ActCam builds on any pretrained image-to-video diffusion model that accepts conditioning in terms of scene depth and character pose. Given a source video with a moving character and a target camera motion, ActCam generates pose and depth conditions that remain geometrically consistent across frames. We then run a single sampling process with a two-phase conditioning schedule: early denoising steps condition on both pose and sparse depth to enforce scene structure, after which depth is dropped and pose-only guidance refines high-frequency details without over-constraining the generation. We evaluate ActCam on multiple benchmarks spanning diverse character motions and challenging viewpoint changes. We find that, compared to pose-only control and other pose and camera methods, ActCam improves camera adherence and motion fidelity, and is preferred in human evaluations, especially under large viewpoint changes. Our results highlight that careful camera-consistent conditioning and staged guidance can enable strong joint camera and motion control without training. Project page: https://elkhomar.github.io/actcam/.",
+      "comments": "SIGGRAPH 2026",
+      "subjects": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.CV",
+      "authors": [
+        "Omar El Khalifi",
+        "Thomas Rossi",
+        "Oscar Fossey",
+        "Thibault Fouque",
+        "Ulysse Mizrahi",
+        "Philip Torr",
+        "Ivan Laptev",
+        "Fabio Pizzati",
+        "Baptiste Bellot-Gurlet"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06667v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06667v1",
+      "published_at": "2026-05-07T17:59:58.000Z",
+      "updated_at": "2026-05-07T17:59:58.000Z"
+    },
+    "abstract_score": 4
+  },
+  {
+    "paper": {
+      "id": "2605.06646v1",
+      "canonical_id": "2605.06646",
+      "title": "Inductive Venn-Abers and related regressors",
+      "abstract": "Venn-Abers predictors are probabilistic predictors that enjoy appealing properties of validity, but their major limitation is that they are applicable only to the case of binary classification, with a recent extension to bounded regression. We generalize them to the case of unbounded regression, which requires adding an element of conformal prediction. In our simulation and empirical studies we investigate the predictive efficiency of point regressors derived from Venn-Abers regressors and argue that they somewhat improve the predictive efficiency of standard regressors for larger training sets.",
+      "comments": "33 pages",
+      "subjects": [
+        "cs.LG"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Ivan Petej",
+        "Vladimir Vovk"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06646v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06646v1",
+      "published_at": "2026-05-07T17:52:08.000Z",
+      "updated_at": "2026-05-07T17:52:08.000Z"
+    },
+    "abstract_score": 4
+  },
+  {
+    "paper": {
+      "id": "2605.06643v1",
+      "canonical_id": "2605.06643",
+      "title": "Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benchmark Study",
+      "abstract": "Despite the growing popularity of Multimodal Domain Generalization (MMDG) for enhancing model robustness, it remains unclear whether reported performance gains reflect genuine algorithmic progress or are artifacts of inconsistent evaluation protocols. Current research is fragmented, with studies varying significantly across datasets, modality configurations, and experimental settings. Furthermore, existing benchmarks focus predominantly on action recognition, often neglecting critical real-world challenges such as input corruptions, missing modalities, and model trustworthiness. This lack of standardization obscures a reliable assessment of the field's advancement. To address this issue, we introduce MMDG-Bench, the first unified and comprehensive benchmark for MMDG, which standardizes evaluation across six datasets spanning three diverse tasks: action recognition, mechanical fault diagnosis, and sentiment analysis. MMDG-Bench encompasses six modality combinations, nine representative methods, and multiple evaluation settings. Beyond standard accuracy, it systematically assesses corruption robustness, missing-modality generalization, misclassification detection, and out-of-distribution detection. With 7, 402 neural networks trained in total across 95 unique cross-domain tasks, MMDG-Bench yields five key findings: (1) under fair comparisons, recent specialized MMDG methods offer only marginal improvements over ERM baseline; (2) no single method consistently outperforms others across datasets or modality combinations; (3) a substantial gap to upper-bound performance persists, indicating that MMDG remains far from solved; (4) trimodal fusion does not consistently outperform the strongest bimodal configurations; and (5) all evaluated methods exhibit significant degradation under corruption and missing-modality scenarios, with some methods further compromising model trustworthiness.",
+      "comments": "Code: https://github.com/lihongzhao99/MMDG_Benchmark",
+      "subjects": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG",
+        "cs.MM"
+      ],
+      "primary_subject": "cs.CV",
+      "authors": [
+        "Hao Dong",
+        "Hongzhao Li",
+        "Shupan Li",
+        "Muhammad Haris Khan",
+        "Eleni Chatzi",
+        "Olga Fink"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06643v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06643v1",
+      "published_at": "2026-05-07T17:51:16.000Z",
+      "updated_at": "2026-05-07T17:51:16.000Z"
+    },
+    "abstract_score": 4
+  },
+  {
+    "paper": {
+      "id": "2605.06596v1",
+      "canonical_id": "2605.06596",
+      "title": "FedAttr: Towards Privacy-preserving Client-Level Attribution in Federated LLM Fine-tuning",
+      "abstract": "Watermark radioactivity testing type of methods can detect whether a model was trained on watermarked documents, and have become key tools for protecting data ownership in the fine-tuning of large language models (LLMs). Existing works have proved their effectiveness in centralized LLM fine-tuning. However, this type of method faces several challenges and remains underexplored in federated learning (FL), a widely-applied paradigm for fine-tuning LLMs collaboratively on private data across different users. FL mainly ensures privacy through secure aggregation (SA), which allows the server to aggregate updates while keeping clients' updates private. This mechanism preserves privacy but makes it difficult to identify which client trained on watermarked documents. In this work, we propose FedAttr, a new client-level attribution protocol for FL. FedAttr identifies which clients trained on watermarked data via a paired-subset-difference mechanism, while preserving the privacy guarantees of SA and FL performance. FedAttr proceeds in three steps: (i) estimate each client's update by differencing two SA queries, (ii) score the estimate with the watermark detector via differential scoring, and (iii) combine scores across rounds via Stouffer method. We theoretically show that FedAttr produces an unbiased estimator of each client's update with bounded mutual information leakage (i.e., $O(d^*/N)$ per-round update). Moreover, FedAttr empirically achieves 100% TPR and 0% FPR, outperforming all baselines by at least 44.4% in TPR or 19.1% in FPR, with only 6.3% overhead relative to FL training time. Ablation studies confirm that FedAttr is robust to protocol parameters and configurations.",
+      "comments": "39 pages, 4 figures, 21 tables (including appendix)",
+      "subjects": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.CR",
+      "authors": [
+        "Su Zhang",
+        "Junfeng Guo",
+        "Heng Huang"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06596v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06596v1",
+      "published_at": "2026-05-07T17:21:02.000Z",
+      "updated_at": "2026-05-07T17:21:02.000Z"
+    },
+    "abstract_score": 4
+  },
+  {
+    "paper": {
+      "id": "2605.06585v1",
+      "canonical_id": "2605.06585",
+      "title": "Distributionally-Robust Learning to Optimize",
+      "abstract": "We propose a distributionally robust approach to learning hyperparameters for first-order methods in convex optimization. Given a dataset of problem instances, we minimize a Wasserstein distributionally robust version of the performance estimation problem (PEP) over algorithm parameters such as step sizes. Our framework unifies two extremes: as the robustness radius vanishes, we recover classical learning to optimize (L2O); as it grows, we recover worst-case optimal algorithm design via PEP. We solve the resulting problem with stochastic gradient descent, differentiating through the solution of an inner semidefinite program at each step. We prove high-probability bounds showing that the true risk of the learned algorithm is at most the in-sample L2O optimum plus a slack that shrinks with the sample size, and is no worse than the worst-case PEP bound. On unconstrained quadratic minimization, LASSO, and linear programming benchmarks, our learned algorithms achieve strong out-of-sample performance with certifiable robustness, outperforming both worst-case optimal and vanilla L2O baselines.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "math.OC"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Vinit Ranjan",
+        "Jisun Park",
+        "Bartolomeo Stellato"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06585v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06585v1",
+      "published_at": "2026-05-07T17:14:15.000Z",
+      "updated_at": "2026-05-07T17:14:15.000Z"
+    },
+    "abstract_score": 4
+  },
+  {
+    "paper": {
+      "id": "2605.06570v1",
+      "canonical_id": "2605.06570",
+      "title": "SNAPO: Smooth Neural Adjoint Policy Optimization for Optimal Control via Differentiable Simulation",
+      "abstract": "Many real-world problems require sequential decisions under uncertainty: when to inject or withdraw gas from storage, how to rebalance a pension portfolio each month, what temperature profile to run through a pharmaceutical reactor chain. Dynamic programming solves small instances exactly but scales exponentially in state dimensions. Black-box reinforcement learning handles high-dimensional states but trains slowly and produces no sensitivities. We introduce SNAPO (Smooth Neural Adjoint Policy Optimization), a framework that embeds a neural policy inside a known, differentiable simulator, replaces hard constraints with smooth approximations, and computes exact gradients of the objective with respect to all policy parameters and all inputs in a single adjoint pass. We demonstrate SNAPO on three domains: natural gas storage (training in under a minute, 365 forward curve sensitivities at no additional cost per sensitivity), pension fund asset-liability management (6.5x-200x sensitivity speedup over bump-and-revalue, scaling with the number of risk factors), and pharmaceutical manufacturing (cross-unit sensitivities through a 4-unit process chain, with 20 ICH Q8 regulatory sensitivities from 5 adjoint passes in 74.5 milliseconds). All sensitivities are produced by the same backward pass that trains the policy, at a cost proportional to one reverse pass regardless of how many sensitivities are computed.",
+      "comments": "27 pages, 8 tables. Three domains: natural gas storage, pension fund ALM, pharmaceutical manufacturing. Benchmark code and trained policies available on request",
+      "subjects": [
+        "cs.LG",
+        "math.OC",
+        "q-fin.CP",
+        "q-fin.MF",
+        "q-fin.RM"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Dmitri Goloubentsev",
+        "Natalija Karpichina"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06570v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06570v1",
+      "published_at": "2026-05-07T17:01:13.000Z",
+      "updated_at": "2026-05-07T17:01:13.000Z"
+    },
+    "abstract_score": 4
+  },
+  {
+    "paper": {
+      "id": "2605.06647v1",
+      "canonical_id": "2605.06647",
+      "title": "Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval",
+      "abstract": "Retrieval-augmented agents are increasingly the interface to large organizational knowledge bases, yet most still treat retrieval as a black box: they issue exploratory queries, inspect returned snippets, and iteratively reformulate until useful evidence emerges. This approach resembles how a newcomer searches an unfamiliar database rather than how an expert navigates it with strong priors about terminology and likely evidence, and results in unnecessary retrieval rounds, increased latency, and poor recall. We introduce \\textit{SuperIntelligent Retrieval Agent} (SIRA), which defines \\emph{superintelligence} in retrieval as the ability to compress multi-round exploratory search into a single corpus-discriminative retrieval action. SIRA does not merely ask what terms are relevant to the query; it asks which terms are likely to separate the desired evidence from corpus-level confusers. On the corpus side, an LLM enriches each document offline with missing search vocabulary; on the query side, it predicts evidence vocabulary omitted by the query; and document-frequency statistics as a tool call to filter proposed terms that are absent, overly common, or unlikely to create retrieval margin. The final retrieval step is a single weighted BM25 call combining the original query with the validated expansion. Across ten BEIR benchmarks and downstream question-answering tasks, SIRA achieves the significantly superior performance outperforming dense retrievers and state-of-the-art multi-round agentic baselines, demonstrating that one well-formed lexical query, guided by LLM cognition and lightweight corpus statistics, can exceed substantially more expensive multi-round search while remaining interpretable, training-free, and efficient.",
+      "comments": "",
+      "subjects": [
+        "cs.IR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.IR",
+      "authors": [
+        "Zeyu Yang",
+        "Qi Ma",
+        "Jason Chen",
+        "Anshumali Shrivastava"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06647v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06647v1",
+      "published_at": "2026-05-07T17:54:29.000Z",
+      "updated_at": "2026-05-07T17:54:29.000Z"
+    },
+    "abstract_score": 3
+  },
+  {
+    "paper": {
+      "id": "2605.06632v1",
+      "canonical_id": "2605.06632",
+      "title": "Crafting Reversible SFT Behaviors in Large Language Models",
+      "abstract": "Supervised fine-tuning (SFT) induces new behaviors in large language models, yet imposes no structural constraint on how these behaviors are distributed within the model. Existing behavior interpretation methods, such as circuit attribution approaches, identify sparse subnetworks correlated with SFT-induced behaviors post-hoc. However, such correlations do not imply *causal necessity*, limiting the ability to selectively control SFT-induced behaviors at inference time. We pursue an alternative by asking: can an SFT-induced behavior be deliberately compressed into a sparse, mechanistically necessary subnetwork, termed a *carrier*, while remaining controllable at inference time without weight modification? We propose (a) **Loss-Constrained Dual Descent (LCDD)**, which constructs such carriers by jointly optimizing routing masks and model weights under an explicit utility budget, and (b) **SFT-Eraser**, a soft prompt optimized via activation matching on extracted carrier channels, to reverse the SFT-induced behavior. Across safety, fixed-response, and style behaviors on multiple model families, LCDD yields sparse carriers that preserve target behaviors while enabling strong reversion when triggered by SFT-Eraser. Ablations further establish that the sparse structure is the key precondition for reversal: the same trigger optimization fails on standard SFT models, confirming that structure rather than trigger design is the operative factor. These results provide direct evidence that the learned carriers are causally necessary for the behaviors, pointing to a new direction for systematically localizing and selectively suppressing SFT-induced behaviors in deployed models.",
+      "comments": "",
+      "subjects": [
+        "cs.LG"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Yuping Lin",
+        "Pengfei He",
+        "Yue Xing",
+        "Yingqian Cui",
+        "Jiayuan Ding",
+        "Subhabrata Mukherjee",
+        "Hui Liu",
+        "Zhen Xiang"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06632v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06632v1",
+      "published_at": "2026-05-07T17:44:07.000Z",
+      "updated_at": "2026-05-07T17:44:07.000Z"
+    },
+    "abstract_score": 3
+  },
+  {
+    "paper": {
+      "id": "2605.06627v1",
+      "canonical_id": "2605.06627",
+      "title": "PianoCoRe: Combined and Refined Piano MIDI Dataset",
+      "abstract": "Symbolic music datasets with matched scores and performances are essential for many music information retrieval (MIR) tasks. Yet, existing resources often cover a narrow range of composers, lack performance variety, omit note-level alignments, or use inconsistent naming formats. This work presents PianoCoRe, a large-scale piano MIDI dataset that unifies and refines major open-source piano corpora. The dataset contains 250,046 performances of 5,625 pieces written by 483 composers, totaling 21,763 h of performed music. PianoCoRe is released in tiered subsets to support different applications: from large-scale analysis and pre-training (PianoCoRe-C and deduplicated PianoCoRe-B) to expressive performance modeling with note-level score alignment (PianoCoRe-A/A*). The note-aligned subset, PianoCoRe-A, provides the largest open-source collection of 157,207 performances aligned to 1,591 scores to date. In addition to the dataset, the contributions are: (1) a MIDI quality classifier for detecting corrupted and score-like transcriptions and (2) RAScoP, an alignment refinement pipeline that cleans temporal alignment errors and interpolates missing notes. The analysis shows that the refinement reduces temporal noise and eliminates tempo outliers. Moreover, an expressive performance rendering model trained on PianoCoRe demonstrates improved robustness to unseen pieces compared to models trained on raw or smaller datasets. PianoCoRe provides a ready-to-use foundation for the next generation of expressive piano performance research.",
+      "comments": "Published in TISMIR. Project repository: https://github.com/ilya16/PianoCoRe",
+      "subjects": [
+        "cs.SD",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.SD",
+      "authors": [
+        "Ilya Borovik"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06627v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06627v1",
+      "published_at": "2026-05-07T17:41:07.000Z",
+      "updated_at": "2026-05-07T17:41:07.000Z"
+    },
+    "abstract_score": 3
+  },
+  {
+    "paper": {
+      "id": "2605.06597v1",
+      "canonical_id": "2605.06597",
+      "title": "UniSD: Towards a Unified Self-Distillation Framework for Large Language Models",
+      "abstract": "Self-distillation (SD) offers a promising path for adapting large language models (LLMs) without relying on stronger external teachers. However, SD in autoregressive LLMs remains challenging because self-generated trajectories are free-form, correctness is task-dependent, and plausible rationales can still provide unstable or unreliable supervision. Existing methods mainly examine isolated design choices, leaving their effectiveness, roles, and interactions unclear. In this paper, we propose UniSD, a unified framework to systematically study self-distillation. UniSD integrates complementary mechanisms that address supervision reliability, representation alignment, and training stability, including multi-teacher agreement, EMA teacher stabilization, token-level contrastive learning, feature matching, and divergence clipping. Across six benchmarks and six models from three model families, UniSD reveals when self-distillation improves over static imitation, which components drive the gains, and how these components interact across tasks. Guided by these insights, we construct UniSDfull, an integrated pipeline that combines complementary components and achieves the strongest overall performance, improving over the base model by +5.4 points and the strongest baseline by +2.8 points. Extensive evaluation highlights self-distillation as a practical and steerable approach for efficient LLM adaptation without stronger external teachers.",
+      "comments": "22 pages, 12 figures",
+      "subjects": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.CL",
+      "authors": [
+        "Yiqiao Jin",
+        "Yiyang Wang",
+        "Lucheng Fu",
+        "Yijia Xiao",
+        "Yinyi Luo",
+        "Haoxin Liu",
+        "B. Aditya Prakash",
+        "Josiah Hester",
+        "Jindong Wang",
+        "Srijan Kumar"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06597v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06597v1",
+      "published_at": "2026-05-07T17:22:11.000Z",
+      "updated_at": "2026-05-07T17:22:11.000Z"
+    },
+    "abstract_score": 3
+  },
+  {
+    "paper": {
+      "id": "2605.06557v1",
+      "canonical_id": "2605.06557",
+      "title": "Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning",
+      "abstract": "Cooperative multi-agent reinforcement learning (MARL) benchmarks commonly emphasize aggregate outcomes such as return, success rate, or completion time. While essential, these metrics often fail to reveal how agents coordinate, particularly in settings where agents, tasks, and joint assignment choices scale combinatorially. We propose a coordination-aware evaluation perspective that supplements return with process-level diagnostics. We instantiate this perspective using STAT, a controlled commitment-constrained spatial task-allocation testbed that systematically varies agents, tasks, and environment size while holding observation access and task rules fixed. We evaluate six representative value-based MARL methods across varying levels of centralization. Our results show that similar return trends can reflect distinct coordination mechanisms, including differences in redundant assignment, assignment diversity, and task-completion efficiency. We find that in commitment-constrained task allocation, performance under scale is shaped not only by nominal action-space size, but also by assignment pressure, sparse decision opportunities, and redundant choices among interdependent agents. Our findings motivate coordination-aware evaluation as a necessary complement to return-based benchmarking for cooperative MARL.",
+      "comments": "27 pages. Submitted and under review",
+      "subjects": [
+        "cs.MA",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "primary_subject": "cs.MA",
+      "authors": [
+        "Maria Ana Cardei",
+        "Matthew Landers",
+        "Afsaneh Doryab"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06557v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06557v1",
+      "published_at": "2026-05-07T16:50:53.000Z",
+      "updated_at": "2026-05-07T16:50:53.000Z"
+    },
+    "abstract_score": 3
+  },
+  {
+    "paper": {
+      "id": "2605.06523v1",
+      "canonical_id": "2605.06523",
+      "title": "On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR",
+      "abstract": "Recent extensive research has demonstrated that the enhanced reasoning capabilities acquired by models through Reinforcement Learning with Verifiable Rewards (RLVR) are primarily concentrated within the rank-1 components. Predicated on this observation, we employed Periodic Rank-1 Substitution and identified a counterintuitive phenomenon: RLVR may exhibit implicit reward overfitting to the training dataset. Specifically, the model can achieve satisfactory performance on the test set even when its rewards remain relatively low during the training process. Furthermore, we characterize three distinct properties of RL training: (1) The effective rank-1 component in RLVR don't maintain other model knowledge except mathematical reasoning capability. (2) RLVR fundamentally functions by optimizing a specific singular spectrum. The distribution of singular values of almost all linear layers in RLVR-trained model behaves like heavy-tailed distribution. (3) the left singular vectors associated with rank-1 components demonstrate a stronger alignment tendency during training, which echoes the discovery that RLVR is optimizing sampling efficiency in essence. Taken together, our findings and analysis further reveal how RLVR shapes model parameters and offer potential insights for improving existing RL paradigms or other training paradigms to implement continual learning.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Hao Ye",
+        "Jisheng Dang",
+        "Junfeng Fang",
+        "Bimei Wang",
+        "Yizhou Zhang",
+        "Ning Lv",
+        "Wencan Zhang",
+        "Hong Peng",
+        "Bin Hu",
+        "Tat-Seng Chua"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06523v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06523v1",
+      "published_at": "2026-05-07T16:30:28.000Z",
+      "updated_at": "2026-05-07T16:30:28.000Z"
+    },
+    "abstract_score": 3
+  },
+  {
+    "paper": {
+      "id": "2605.06615v1",
+      "canonical_id": "2605.06615",
+      "title": "When and Why SignSGD Outperforms SGD: A Theoretical Study Based on $\\ell_1$-norm Lower Bounds",
+      "abstract": "Sign-based optimization algorithms, such as SignSGD and Muon, have garnered significant attention for their remarkable performance in training large foundation models. Despite this empirical success, we still lack a theoretical understanding of when and why these sign-based methods outperform vanilla SGD. The core obstacle is that under standard smoothness and finite variance conditions, SGD is known to be minimax optimal for finding stationary points measured by $\\ell_2$-norms, thereby fundamentally precluding any complexity gains for sign-based methods in standard settings. To overcome this barrier, we analyze sign-based optimizers leveraging $\\ell_1$-norm stationarity, $\\ell_\\infty$-smoothness, and a separable noise model, which can better capture the coordinate-wise nature of signed updates. Under this distinct problem geometry, we derive matched upper and lower bounds for SignSGD and explicitly characterize the problem class in which SignSGD provably dominates SGD. Specifically, we compare the \\emph{upper bound of SignSGD} with the \\emph{lower bound of SGD}, illustrating that SignSGD effectively reduces the complexity by a factor of $d$ under \\emph{sparse noise}, where $d$ is the problem dimension. Furthermore, we elevate this framework to the matrix domain, providing an equivalent optimal lower bound for the Muon optimizer, proving that extending the sign operator to matrices preserves this optimal scaling with dimensionality. Finally, we bridge our theoretical bounds to practice, demonstrating that the theoretical superiority of SignSGD accurately predicts its faster convergence during the pretraining of a 124M parameter GPT-2 model.",
+      "comments": "Code is available at https://github.com/Dingzhen230/SignSGD_Outperforms_SGD",
+      "subjects": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL",
+        "math.OC"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Hongyi Tao",
+        "Dingzhi Yu",
+        "Lijun Zhang"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06615v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06615v1",
+      "published_at": "2026-05-07T17:32:09.000Z",
+      "updated_at": "2026-05-07T17:32:09.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06610v1",
+      "canonical_id": "2605.06610",
+      "title": "SoftSAE: Dynamic Top-K Selection for Adaptive Sparse Autoencoders",
+      "abstract": "Sparse Autoencoders (SAEs) have become an important tool in mechanistic interpretability, helping to analyze internal representations in both Large Language Models (LLMs) and Vision Transformers (ViTs). By decomposing polysemantic activations into sparse sets of monosemantic features, SAEs aim to translate neural network computations into human-understandable concepts. However, common architectures such as TopK SAEs rely on a fixed sparsity level. They enforce the same number of active features (K) across all inputs, ignoring the varying complexity of real-world data. Natural data often lies on manifolds with varying local intrinsic dimensionality, meaning the number of relevant factors can change significantly across samples. This suggests that a fixed sparsity level is not optimal. Simple inputs may require only a few features, while more complex ones need more expressive representations. Using a constant K can therefore introduce noise in simple cases or miss important structure in more complex ones. To address this issue, we propose SoftSAE, a sparse autoencoder with a Dynamic Top-K selection mechanism. Our method uses a differentiable Soft Top-K operator to learn an input-dependent sparsity level k. This allows the model to adjust the number of active features based on the complexity of each input. As a result, the representation better matches the structure of the data, and the explanation length reflects the amount of information in the input. Experimental results confirm that SoftSAE not only finds meaningful features, but also selects the right number of features for each concept. The source code is available at: https://anonymous.4open.science/r/SoftSAE-8F71/.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Jakub Stępień",
+        "Marcin Mazur",
+        "Jacek Tabor",
+        "Przemysław Spurek"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06610v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06610v1",
+      "published_at": "2026-05-07T17:28:40.000Z",
+      "updated_at": "2026-05-07T17:28:40.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06608v1",
+      "canonical_id": "2605.06608",
+      "title": "DARTS: Targeting Prognostic Covariates in Budget-Constrained Sequential Experiments",
+      "abstract": "Randomized controlled trials typically assume that prognostic covariates are known and available at no cost. In practice, obtaining high-dimensional pretreatment data is costly, forcing a trade-off between covariate-adaptive precision and a measurement budget. We introduce Dynamic Adaptive Rerandomization via Thompson Sampling (DARTS), which treats covariate acquisition as a sequential optimization problem embedded within a design-based causal inference task. A budgeted combinatorial Thompson sampler learns which covariates are most prognostic across successive batches; selected covariates then drive rerandomization and regression adjustment to reduce batch-level average treatment effect variance. Our primary theoretical contribution is a decoupling result: adaptive covariate selection based on past batches preserves batch-level randomization validity, and the cumulative inverse-variance weighted estimator achieves at least nominal asymptotic coverage. We further derive a Bayes risk bound for the acquisition layer that matches the minimax lower bound up to logarithmic factors. Empirically, DARTS systematically concentrates the budget on informative features, significantly closing the efficiency gap to oracle designs while maintaining strict inferential validity.",
+      "comments": "",
+      "subjects": [
+        "stat.ML",
+        "cs.LG",
+        "stat.ME"
+      ],
+      "primary_subject": "stat.ML",
+      "authors": [
+        "Kateryna Husar",
+        "Alexander Volfovsky"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06608v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06608v1",
+      "published_at": "2026-05-07T17:27:51.000Z",
+      "updated_at": "2026-05-07T17:27:51.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06599v1",
+      "canonical_id": "2605.06599",
+      "title": "Weight-Decay Turns Transformer Loss Landscapes Villani: Functional-Analytic Foundations for Optimization and Generalization",
+      "abstract": "Weight decay is widely used as a regularizer in large language models, yet its precise role in shaping Transformer loss landscapes remains theoretically underexplored. This paper provides the first rigorous functional-analytic characterization of the standard Transformer objective--cross-entropy loss with $L^2$ regularization--by proving it satisfies Villani's criteria for coercive energy functions. Specifically, we show that the regularized loss $\\mathcal{F}$ is infinitely differentiable, grows at least quadratically, has Gaussian-integrable tails, and satisfies the differential growth condition $-Δ\\mathcal{F} + \\tfrac{1}{s}\\|\\nabla\\mathcal{F}\\|^{2} \\to \\infty$ as $\\|θ\\| \\to \\infty$ for all $s>0$. From this structure, we derive explicit log-Sobolev and Poincaré constants $C_{\\mathrm{LS}} \\leq λ^{-1} + d/λ^{2}$, linking the regularization strength $λ$ and model dimension $d$ to finite-time convergence guarantees for noisy stochastic gradient descent and PAC-Bayesian generalization bounds that tighten with increasing $λ$. To validate our theory, we introduce a scalable Villani diagnostic $Ψ_s(θ) = -Δ\\mathcal{F} + s^{-1}\\|\\nabla \\mathcal{F}\\|^2$ and estimate it efficiently using Hutchinson trace probes in models with over 100M parameters. Experiments on GPT-Neo-125M across Penn Treebank and WikiText-103 confirm the predicted quadratic growth of $Ψ_s$, spectral inflation of the Hessian, and exponential convergence behavior consistent with our log-Sobolev analysis. These results demonstrate that weight decay not only improves generalization empirically but also establishes the mathematical conditions required for fast Langevin mixing and theoretically grounded curvature-aware optimization in deep learning.",
+      "comments": "17 pages, 10 figures",
+      "subjects": [
+        "cs.LG",
+        "eess.AS"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Abhijit Das",
+        "Sayantan Dutta"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06599v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06599v1",
+      "published_at": "2026-05-07T17:22:19.000Z",
+      "updated_at": "2026-05-07T17:22:19.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06591v1",
+      "canonical_id": "2605.06591",
+      "title": "BRICKS: Compositional Neural Markov Kernels for Zero-Shot Radiation-Matter Simulation",
+      "abstract": "We introduce a new strategy for compositional neural surrogates for radiation-matter interactions, a key task spanning domains from particle physics through nuclear and space engineering to medical physics. Exploiting the locality and the Markov nature of particle interactions, we create a \\emph{next-particle prediction} kernel using hybrid discrete-continuous transformer models based on Riemannian Flow Matching on product manifolds. The model generates variable-sized typed sets of particles and radiation side effects that are the result of the interaction of an incident particle with a material volume. The resulting kernel can be composed to simulate unseen large-scale material distributions in a zero-shot manner. Unlike mechanistic simulators, our model is designed to be differentiable, provides tractable likelihoods for future downstream applications. A significant computational speed-up on GPU compared to CPU-bound mechanistic simulation is observed for single-kernel execution. We evaluate the model at the kernel level and demonstrate predictive stability over multi-round autoregressive rollouts. We additionally release a novel 20M-event radiation-matter interaction dataset for further research.",
+      "comments": "10 pages, 5 figures",
+      "subjects": [
+        "cs.LG",
+        "hep-ph"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Richard Hildebrandt",
+        "Evangelos Kourlitis",
+        "Baran Hashemi",
+        "Manuel Bünstorf",
+        "Thierry Meyer",
+        "Nikola Boskov",
+        "Michael Kagan",
+        "Dan Rosenbaum",
+        "Sanmay Ganguly",
+        "Lukas Heinrich"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06591v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06591v1",
+      "published_at": "2026-05-07T17:19:31.000Z",
+      "updated_at": "2026-05-07T17:19:31.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06571v1",
+      "canonical_id": "2605.06571",
+      "title": "CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification",
+      "abstract": "The rapid expansion of the Internet of Things (IoT) and Industrial IoT (IIoT) has created a massive, heterogeneous attack surface that challenges traditional network security mechanisms. While Federated Learning (FL) offers a privacy-preserving alternative to centralized Intrusion Detection Systems (IDS), standard approaches struggle to generalize across diverse device behaviors and typically fail to utilize the vast amounts of unlabeled data present in realistic edge environments. To bridge these gaps, we propose CLAD, a holistic framework that seamlessly incorporates Clustered Federated Learning (CFL) with a novel Dual-Mode Micro-Architecture ($\\text{DM}^2\\text{A}$). This unified approach simultaneously tackles the two primary bottlenecks of IoT security: device heterogeneity and label scarcity. The $\\text{DM}^2\\text{A}$ component features a shared encoder followed by two branches, enabling joint unsupervised anomaly detection and supervised attack classification; this allows the framework to harvest intelligence from both labeled and unlabeled clients. Concurrently, the clustering component dynamically groups devices with congruent traffic patterns, preventing global model divergence. By carefully combining these elements, CLAD ensures that no data is discarded and distinct operational patterns are preserved. Extensive evaluations demonstrate that this integrated approach significantly outperforms state-of-the-art baselines, achieving a 30% relative improvement in detection performance in scenarios with 80% unlabeled clients, with only half the communication cost.",
+      "comments": "12 pages, 7 figures, 5 tables",
+      "subjects": [
+        "cs.LG",
+        "cs.CR",
+        "cs.DC",
+        "cs.NI"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Iason Ofeidis",
+        "Nikos Papadis",
+        "Randeep Bhatia",
+        "Leandros Tassiulas",
+        "TV Lakshman"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06571v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06571v1",
+      "published_at": "2026-05-07T17:01:19.000Z",
+      "updated_at": "2026-05-07T17:01:19.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06564v1",
+      "canonical_id": "2605.06564",
+      "title": "Dynamic Treatment on Networks",
+      "abstract": "In networks, effective dynamic treatment allocation requires deciding both whom to treat and also when, so as to amplify policy impact through spillovers. An early intervention at a well-connected node can trigger cascades that change which nodes are worth targeting in the next period. Existing treatment strategies under network interference are largely static while dynamic treatment frameworks typically ignore network structure altogether. We integrate these perspectives and propose Q-Ising, a three-stage pipeline that (i) estimates network adoption dynamics via a Bayesian dynamic Ising model from a single observed panel, (ii) augments treatment adoption histories with continuous posterior latent states, and (iii) learns a dynamic policy via offline reinforcement learning. The Bayesian mechanism enables uncertainty quantification over dynamic decisions, yielding posterior ensemble policies with interpretable spillover estimates. We provide a finite-sample regret upper bound that decomposes into standard offline-RL uncertainty, network abstraction error, and first stage error in Ising state estimation. We apply our method to data from Indian village microfinance networks and synthetic stochastic block models under simulated heterogeneous susceptible-infected-susceptible (SIS) dynamics and demonstrate that adaptive targeting outperforms static centrality benchmarks.",
+      "comments": "",
+      "subjects": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "primary_subject": "stat.ML",
+      "authors": [
+        "Bengusu Nar",
+        "Jiguang Li",
+        "Veronika Ročková",
+        "Panos Toulis"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06564v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06564v1",
+      "published_at": "2026-05-07T16:58:38.000Z",
+      "updated_at": "2026-05-07T16:58:38.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06552v1",
+      "canonical_id": "2605.06552",
+      "title": "Sequential Design of Genetic Circuits Under Uncertainty With Reinforcement Learning",
+      "abstract": "The design of biological systems is hindered by uncertainty arising from both intrinsic stochasticity of biomolecular reactions and variability across laboratory or experimental conditions. In this work, we present a sequential framework to optimize genetic circuits under both forms of uncertainty. By employing simulator models based on differential equations or Markov jump processes alongside a reinforcement learning (RL) policy-based approach, our method suggests experiments that adapt to unknown laboratory conditions while accounting for inherent stochasticity. While previous Bayesian methods address uncertainty through iterative experiment-inference-optimization cycles, they typically require computationally expensive inference and optimization steps after each experimental round, leading to delays. To overcome this bottleneck, we propose an amortized approach trained up-front across a distribution of possible uncertain parameters. This strategy sidesteps the need for explicit parameter inference during the design cycle, enabling immediate, observation-based adaptation. We demonstrate our framework on models for heterologous gene expression and a repressilator circuit, showing that it efficiently handles both molecular noise and cross-laboratory variability.",
+      "comments": "",
+      "subjects": [
+        "cs.LG"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Michal Kobiela",
+        "Diego A. Oyarzún",
+        "Michael U. Gutmann"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06552v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06552v1",
+      "published_at": "2026-05-07T16:49:07.000Z",
+      "updated_at": "2026-05-07T16:49:07.000Z"
+    },
+    "abstract_score": 2
+  },
+  {
+    "paper": {
+      "id": "2605.06660v1",
+      "canonical_id": "2605.06660",
+      "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+      "abstract": "Large Language Models (LLMs) demonstrate strong capabilities for solving scientific and mathematical problems, yet they struggle to produce valid, challenging, and novel problems - an essential component for advancing LLM training and enabling autonomous scientific research. Existing problem generation approaches either depend on expensive human expert involvement or adopt naive self-play paradigms, which frequently yield invalid problems due to reward hacking. This work introduces VHG, a verifier-enhanced hard problem generation framework built upon three-party self-play. By integrating an independent verifier into the conventional setter-solver duality, our design constrains the setter's reward to be jointly determined by problem validity (evaluated by the verifier) and difficulty (assessed by the solver). We instantiate two verifier variants: a Hard symbolic verifier and a Soft LLM-based verifier, with evaluations conducted on indefinite integral tasks and general mathematical reasoning tasks. Experimental results show that VHG substantially outperforms all baseline methods by a clear margin.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Yuhang Lai",
+        "Jiazhan Feng",
+        "Yee Whye Teh",
+        "Ning Miao"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06660v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06660v1",
+      "published_at": "2026-05-07T17:58:32.000Z",
+      "updated_at": "2026-05-07T17:58:32.000Z"
+    },
+    "abstract_score": 1
+  },
+  {
+    "paper": {
+      "id": "2605.06654v1",
+      "canonical_id": "2605.06654",
+      "title": "Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less",
+      "abstract": "Optimizers play an important role in both pretraining and finetuning stages when training large language models (LLMs). In this paper, we present an observation that full finetuning with the same optimizer as in pretraining achieves a better learning-forgetting tradeoff, i.e., forgetting less while achieving the same or better performance on the new task, than other optimizers and, possibly surprisingly, LoRA, during the supervised finetuning (SFT) stage. We term this phenomenon optimizer-model consistency. To better understand it, through controlled experiments and theoretical analysis, we show that: 1) optimizers can shape the models by having regularization effects on the activations, leading to different landscapes around the pretrained checkpoints; 2) in response to this regularization effect, the weight update in SFT should follow some specific structures to lower forgetting of the knowledge learned in pretraining, which can be obtained by using the same optimizer. Moreover, we specifically compare Muon and AdamW when they are employed throughout the pretraining and SFT stages and find that Muon performs worse when finetuned for reasoning tasks. With a synthetic language modeling experiment, we demonstrate that this can come from Muon's strong tendency towards rote memorization, which may hurt pattern acquisition with a small amount of data, as for SFT.",
+      "comments": "",
+      "subjects": [
+        "cs.LG",
+        "cs.AI",
+        "math.OC"
+      ],
+      "primary_subject": "cs.LG",
+      "authors": [
+        "Yuxing Liu",
+        "Jianyu Wang",
+        "Tong Zhang"
+      ],
+      "abs_url": "https://arxiv.org/abs/2605.06654v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.06654v1",
+      "published_at": "2026-05-07T17:57:02.000Z",
+      "updated_at": "2026-05-07T17:57:02.000Z"
+    },
+    "abstract_score": 1
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "paper_id": "2605.06585v1",
+    "candidate_problem": "Scalability of DR-L2O to high iteration counts due to large inner conic programs",
+    "evidence_spans": [
+      "A major limitation is scalability: unrolling algorithms for more iterations requires solving a much larger conic program at each gradient step."
+    ],
+    "problem_evidence_spans": [
+      "A major limitation is scalability: unrolling algorithms for more iterations requires solving a much larger conic program at each gradient step."
+    ],
+    "feasibility_evidence_spans": [
+      "A natural remedy is to use GPU-accelerated first-order solvers [ 52 , 46 , 51 , 16 , 17 ] .",
+      "Furthermore, in all SGD iteration timing tables, our code with JAX uses just-in-time (JIT) techniques for computational efficiency"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper focuses on the theoretical framework and small-scale benchmarks (Quadratic, LASSO, LP) using CPU-based solvers (Clarabel). The authors explicitly identify the transition to GPU-accelerated first-order solvers as the next step for scaling the number of unrolled iterations.",
+    "auto_research_experiment": "Replace the Clarabel/diffcp CPU-based SDP solver with a GPU-accelerated first-order solver (e.g., SCS or a custom JAX-based ADMM solver) to solve the inner DR-PEP problem. Compare the wall-clock time and maximum feasible unrolling depth (K) against the current CPU baseline while maintaining the same out-of-sample risk bounds.",
+    "available_data_or_benchmark": "Unconstrained quadratic minimization, LASSO, and linear programming benchmarks provided in the paper's repository.",
+    "expected_metric": "Maximum unrolling depth (K) achievable within a fixed 1-hour training budget.",
+    "specific_intervention": "Integrate a GPU-accelerated first-order conic solver (e.g., SCS with JAX/CUDA) into the DR-L2O training loop to replace the interior-point solver Clarabel.",
+    "baseline": "The current DR-L2O implementation using Clarabel and diffcp on CPU.",
+    "metric": "Seconds per SGD iteration",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2605.06585v1"
+    ],
+    "paper_status_evidence": [
+      "Distributionally-Robust Learning to Optimize, v1 submitted May 2026 (simulated date based on ID)."
+    ],
+    "code_or_data_urls": [
+      "https://github.com/stellatogrp/dro_pep"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/stellatogrp/dro_pep"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/stellatogrp/dro_pep"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "developer productivity",
+    "story_angle": "While DR-L2O provides the first robust bridge between data-driven and worst-case optimization, its reliance on heavy interior-point solvers makes it too slow for deep unrolling. By moving the inner SDP to the GPU, we can unlock the performance of deep learned optimizers with the safety of PEP bounds.",
+    "disqualifiers": [],
+    "confidence": 0.95,
+    "score_breakdown": {
+      "auto_research_feasibility": 22,
+      "falsifiable_evaluation": 18,
+      "problem_clarity": 14,
+      "novelty_or_neglectedness": 13,
+      "impact": 12,
+      "storyability": 9,
+      "total": 88
+    },
+    "grade": "A",
+    "rank": 1,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  }
+]

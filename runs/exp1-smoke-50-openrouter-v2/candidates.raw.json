@@ -1,0 +1,715 @@
+[
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Interaction between online discrepancy learning and restart mechanisms leading to false restarts or missed detections.",
+    "evidence_spans": [
+      "A highly concentrated discrepancy posterior may cause routine within-regime variation to appear anomalous, while an overly adaptive discrepancy model may absorb emerging regime mismatches before the detector can identify a clear change."
+    ],
+    "problem_evidence_spans": [
+      "In practical streams, covariate shift, finite-batch variability, and non-Gaussian simulator errors may produce score fluctuations that resemble abrupt regime changes, leading to false restarts."
+    ],
+    "feasibility_evidence_spans": [
+      "We establish theoretical guarantees for both components, including tracking performance under gradual evolution and false-alarm and detection behavior for restart mechanisms."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Most calibration methods are offline or assume stationarity; the coupling between the speed of a discrepancy learner and the sensitivity of a change-point detector is a newly identified trade-off in online Bayesian calibration.",
+    "auto_research_experiment": "Evaluate BRPC across a grid of discrepancy learning rates (GP lengthscales/noise priors) and restart thresholds (h_C) on a stream with controlled covariate shift to map the Pareto frontier of false-alarm rate vs. detection delay.",
+    "available_data_or_benchmark": "Plant-simulation digital-twin benchmark (described in Appendix E.2).",
+    "expected_metric": "A decrease in the False Restart Rate (FRR) while maintaining or reducing the Mean Time to Detection (MTD) of abrupt shifts.",
+    "specific_intervention": "Implement an adaptive restart threshold that scales with the current posterior variance of the discrepancy term to account for transient uncertainty.",
+    "baseline": "Fixed-threshold wCUSUM-style restart (C-BRPC) as defined in Algorithm 3.",
+    "metric": "False Restart Rate (FRR)",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "The hidden tension between learning a model's bias and detecting a system's collapse.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Sensitivity of BRPC to poorly specified transition noise and particle degeneracy in the projected parameter update.",
+    "evidence_spans": [
+      "First, the tracking guarantee for the discrepancy update is conditional on the residual sequence supplied by the projected parameter update, and therefore depends on sufficient particle coverage and an appropriate evolution prior for the calibration parameter."
+    ],
+    "problem_evidence_spans": [
+      "Poorly specified transition noise or severe particle degeneracy may lead to biased residuals and slower discrepancy adaptation."
+    ],
+    "feasibility_evidence_spans": [
+      "Appendix F reports additional diagnostics, ablations, sensitivity analyses, and scalability results."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper focuses on the success of the two-stage update but notes that the second stage (discrepancy) is entirely dependent on the quality of the first stage (parameter particles), creating a single point of failure.",
+    "auto_research_experiment": "Stress-test BRPC by varying the Effective Sample Size (ESS) threshold and the transition kernel variance p(theta_t | theta_{t-1}) to identify the breakdown point where discrepancy tracking fails.",
+    "available_data_or_benchmark": "Synthetic nonstationary trajectories (drifting and sudden-jump) defined in Appendix E.1.",
+    "expected_metric": "Reduction in the Mean Squared Error (MSE) of the discrepancy estimate under high-noise transition priors.",
+    "specific_intervention": "Integrate an adaptive particle resampling strategy (e.g., tempered transitions) to maintain particle diversity during rapid parameter drift.",
+    "baseline": "Standard BRPC with fixed transition noise and basic SIR resampling (Algorithm 1).",
+    "metric": "Discrepancy Estimation MSE",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 30,
+    "impact_type": "developer productivity",
+    "story_angle": "Ensuring digital twins don't 'drift' into delusion when their underlying parameters shift too fast.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "The 'auditor' capability in benchmarkless safety scoring creates a trade-off where high-strength auditors collapse comparative deltas between safe models.",
+    "evidence_spans": [
+      "An auditor that is too weak under-probes, while an auditor that is too strong compresses safe-target scores and erases the comparative deltas the instrument is built to report (§ 5).",
+      "Increasing auditor capability beyond L collapses inter-target differences among safe models: with A = XL A=XL, safe-target scores compress into a narrow band, eliminating the deltas the instrument is designed to report."
+    ],
+    "problem_evidence_spans": [
+      "An auditor that is too weak under-probes, while an auditor that is too strong compresses safe-target scores and erases the comparative deltas the instrument is built to report (§ 5)."
+    ],
+    "feasibility_evidence_spans": [
+      "SimpleAudit also includes pre-built judge configurations that instantiate common evaluation styles",
+      "The local-first release (Appendix P) lets an independent reviewer rerun the same pack under a stronger auditor and publish a counter-result."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Standard red-teaming paradigms prioritize the strongest possible auditor to find failures, whereas comparative scoring requires an auditor matched to the target capability to maintain discriminative signal.",
+    "auto_research_experiment": "Using the SimpleAudit library, evaluate a set of mid-tier models (e.g., 7B-13B parameters) using a range of auditor strengths (from 1B to 70B+). Measure the variance in safety scores between targets at each auditor level to identify the 'critical compression point' where inter-model deltas become statistically insignificant.",
+    "available_data_or_benchmark": "SimpleAudit library (GitHub/PyPI) and the Norwegian safety pack (JSONL).",
+    "expected_metric": "Inter-target score variance (standard deviation of scores across different models at a fixed auditor strength).",
+    "specific_intervention": "Systematically vary the auditor model size (XS, S, M, L, XL) while holding the target models and judge constant.",
+    "baseline": "The paper's recommendation of capability-matching (Auditor size ≈ Target size).",
+    "metric": "Delta-compression ratio (the ratio of inter-model score variance under a strong auditor vs. a matched auditor).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_sources": [
+      "claimed",
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ggml-org/llama.cpp",
+      "Verified reachable public code/data/benchmark URL: https://github.com/kelkalot/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/meridianlabs-ai/inspect_petri",
+      "Verified reachable public code/data/benchmark URL: https://github.com/mozilla-ai/any-llm",
+      "Verified reachable public code/data/benchmark URL: https://github.com/safety-research/petri",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/HauhauCS",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/unsloth"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "In the race to build the strongest AI red-teamers, we may be accidentally blinding our ability to distinguish which models are actually safer for deployment.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "Benchmarkless safety scoring instruments lack explicit mitigations for 'eval-awareness' where models may behave differently when they detect they are being audited.",
+    "evidence_spans": [
+      "SimpleAudit also does not currently implement explicit eval-awareness mitigations (Needham et al. , 2025 ; Nguyen et al. , 2025 ; Souly et al. , 2026 ) ; whether this matters at our deployment scales is an open empirical question we do not address here."
+    ],
+    "problem_evidence_spans": [
+      "SimpleAudit also does not currently implement explicit eval-awareness mitigations... whether this matters at our deployment scales is an open empirical question we do not address here."
+    ],
+    "feasibility_evidence_spans": [
+      "SimpleAudit’s open-source release and verified Digital Public Good status are governance properties of the instrument",
+      "The local-first release (Appendix P) lets an independent reviewer rerun the same pack"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper focuses on instrumental validity (noise vs. signal) rather than adversarial target behavior (gaming the evaluation).",
+    "auto_research_experiment": "Implement 'stealth' auditing by wrapping SimpleAudit scenarios in benign-looking system prompts or distractors. Compare the safety scores of models under standard SimpleAudit vs. stealth SimpleAudit to measure the 'eval-awareness gap'.",
+    "available_data_or_benchmark": "SimpleAudit library and the Norwegian safety pack.",
+    "expected_metric": "Score shift (the difference in safety scores between standard and stealth auditing modes).",
+    "specific_intervention": "Introduction of a 'stealth' wrapper that modifies the auditor's persona to appear as a standard user rather than a safety auditor.",
+    "baseline": "Standard SimpleAudit execution (unmitigated eval-awareness).",
+    "metric": "Eval-awareness sensitivity (percentage change in safety score when audit context is masked).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_sources": [
+      "claimed",
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ggml-org/llama.cpp",
+      "Verified reachable public code/data/benchmark URL: https://github.com/kelkalot/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/meridianlabs-ai/inspect_petri",
+      "Verified reachable public code/data/benchmark URL: https://github.com/mozilla-ai/any-llm",
+      "Verified reachable public code/data/benchmark URL: https://github.com/safety-research/petri",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/HauhauCS",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/unsloth"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "safety",
+    "story_angle": "If a model knows it's being audited, it might 'act' safe. We need to test if benchmarkless scoring is vulnerable to LLM stage-fright.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Neural GED estimators fail to handle edge labels due to baseline architectural inconsistencies",
+    "evidence_spans": [
+      "To maintain comparability across a broad baseline suite, we use node attributes when available but do not use edge labels, since several compared baselines do not support them consistently."
+    ],
+    "problem_evidence_spans": [
+      "To maintain comparability across a broad baseline suite, we use node attributes when available but do not use edge labels, since several compared baselines do not support them consistently."
+    ],
+    "feasibility_evidence_spans": [
+      "Extending the framework to variable edit-cost settings appears plausible in principle, but requires a more careful comparison between the target edit geometry and the surrogate quantities used by the downstream estimator."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The field has prioritized architectural comparability over feature completeness, leading to a gap where state-of-the-art bi-Lipschitz encoders are not evaluated on edge-attributed graphs which are common in real-world chemical and program analysis datasets.",
+    "auto_research_experiment": "Extend the FSW-GNN encoder to support edge features by incorporating edge-to-node message passing (e.g., using the EGNN or GINE framework) while maintaining bi-Lipschitz constraints. Evaluate this on the full AIDS and molhiv datasets including edge labels.",
+    "available_data_or_benchmark": "AIDS, molhiv, and ZINC-16 (all contain edge labels/bond types).",
+    "expected_metric": "Mean Absolute Error (MAE) and Spearman’s ρ.",
+    "specific_intervention": "Integrate edge-label-aware message passing into the FSW-GNN (bi-Lipschitz) encoder and retrain the EGSC-BL and GraSP-BL architectures.",
+    "baseline": "The node-attribute-only FSW-GNN variants (EGSC-BL and GraSP-BL) reported in the paper.",
+    "metric": "MAE",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [
+      "FSW-GNN [ 25 ] provides an explicit and analyzable realization of the bi-Lipschitz perspective"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "While neural graph matching has become more geometrically rigorous, it still ignores the 'edges' of the problem—literally. By bringing edge labels into bi-Lipschitz frameworks, we can finally match complex molecules with the precision they require.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Bi-Lipschitz guarantees for neural GED are restricted to the 1-WL expressive regime",
+    "evidence_spans": [
+      "Finally, the current theory remains tied to the 1-WL expressive regime... Extending the analysis to higher-WL or otherwise more expressive graph representation regimes is an important open direction"
+    ],
+    "problem_evidence_spans": [
+      "Finally, the current theory remains tied to the 1-WL expressive regime. This already covers many of the benchmarks and encoder families used in contemporary neural GED work, but it is not the end of the story."
+    ],
+    "feasibility_evidence_spans": [
+      "Extending the analysis to higher-WL or otherwise more expressive graph representation regimes is an important open direction for understanding when stronger geometric guarantees can continue to improve neural graph matching beyond the current setting [ 16 ] ."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "Most neural GED research focuses on standard MPNNs which are limited by 1-WL. The interaction between higher-order expressive power (e.g., k-WL) and metric-faithful geometry is theoretically nascent but computationally testable.",
+    "auto_research_experiment": "Implement a 2-WL or 3-WL GNN encoder (e.g., PPGN or k-GNN) and apply spectral normalization or bi-Lipschitz constraints to its layers. Compare its GED estimation performance against the 1-WL FSW-GNN on datasets with high structural symmetry (like IMDB-16).",
+    "available_data_or_benchmark": "IMDB-16, AIDS, and synthetic strongly regular graph pairs.",
+    "expected_metric": "Spearman’s ρ and P@10.",
+    "specific_intervention": "Replace the 1-WL FSW-GNN encoder with a k-WL (k>1) encoder modified with bi-Lipschitz constraints (e.g., via Lipschitz-constrained MLP blocks in the k-WL architecture).",
+    "baseline": "FSW-GNN-BL (the 1-WL bi-Lipschitz baseline from the paper).",
+    "metric": "Spearman’s ρ",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "Can we go beyond the 1-WL limit in graph matching without losing metric fidelity? This experiment tests if higher-order structural awareness combined with geometric stability can solve the hardest graph similarity tasks.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "candidate_problem": "Discrete Hard-Token Reversal of SFT-Induced Behaviors",
+    "evidence_spans": [
+      "The most immediate open problem is extending reversal to discrete input tokens rather than continuous soft prompts, which would make the behavioral interface genuinely deployable",
+      "SFT-Eraser optimizes in continuous embedding space. The trigger is a soft prompt realized as a learned token-embedding sequence rather than a discrete hard-token string."
+    ],
+    "problem_evidence_spans": [
+      "The reversal evidence is valid as a mechanistic diagnostic under controlled conditions, but extending this to discrete hard-token triggers requires further investigation."
+    ],
+    "feasibility_evidence_spans": [
+      "We demonstrate that LCDD and SFT-Eraser enable inference-time reversibility across three behavior types and four model families.",
+      "Ablations further establish that the sparse structure is the key precondition for reversal: the same trigger optimization fails on standard SFT models"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Current mechanistic interpretability methods focus on post-hoc discovery or continuous soft-prompt interventions. The transition from continuous activation matching to discrete token optimization (hard-token triggers) is often avoided due to the non-differentiable nature of discrete tokens, yet it is required for real-world deployment of 'reversible' models.",
+    "auto_research_experiment": "1. Take a model with an LCDD-crafted sparse carrier (e.g., Llama-2-7b with safety SFT). 2. Replace the continuous SFT-Eraser soft prompt with a discrete token sequence optimization using GCG (Greedy Coordinate Gradient) or AutoPrompt. 3. The objective function remains activation matching on the carrier channels as defined in the paper. 4. Compare the behavioral suppression (KL divergence to base model) of the best found discrete trigger against the original soft prompt.",
+    "available_data_or_benchmark": "Alpaca (instruction following), AdvBench (safety), and the LCDD algorithm provided in the paper's Appendix.",
+    "expected_metric": "Reversal Success Rate (RSR) using discrete tokens vs. continuous tokens.",
+    "specific_intervention": "Apply Greedy Coordinate Gradient (GCG) to find a 10-token discrete string that minimizes the activation matching loss between the SFT-model+trigger and the base-model activations within the LCDD-identified carrier channels.",
+    "baseline": "Continuous SFT-Eraser (soft prompt) as described in the paper.",
+    "metric": "KL Divergence between the triggered SFT model and the base model's output distribution.",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/tatsu-lab/stanford_alpaca",
+      "https://github.com/yuplin2333/sft-reverse",
+      "https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/tatsu-lab/stanford_alpaca",
+      "https://github.com/yuplin2333/sft-reverse",
+      "https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/tatsu-lab/stanford_alpaca",
+      "Verified reachable public code/data/benchmark URL: https://github.com/yuplin2333/sft-reverse",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "safety",
+    "story_angle": "While the paper proves we can 'hide' behaviors in sparse circuits, those circuits are currently only unlockable with 'magic' continuous vectors. To make this a real safety feature for deployed LLMs, we need to find the specific words that act as the 'off-switch' for specific fine-tuned behaviors.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "candidate_problem": "Cross-Model Consistency of Sparse Carrier Causal Necessity",
+    "evidence_spans": [
+      "Second, the structural necessity ablation is conducted on a single model and task combination. Whether the same causal relationship holds consistently across all model families and behavior types remains to be verified more systematically."
+    ],
+    "problem_evidence_spans": [
+      "Whether the same causal relationship holds consistently across all model families and behavior types remains to be verified more systematically."
+    ],
+    "feasibility_evidence_spans": [
+      "We demonstrate that LCDD and SFT-Eraser enable inference-time reversibility across three behavior types and four model families."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The authors performed the primary proof-of-concept across models, but the critical 'necessity ablation' (proving the bottleneck is the only way the behavior works) was only validated on one specific configuration, leaving a gap in the claim of universal mechanistic necessity.",
+    "auto_research_experiment": "Perform the 'Structural Necessity Ablation' (Section 5/Appendix) across a diverse matrix: Models (Mistral-7B, Llama-3-8B, Qwen-7B) x Tasks (Safety, Python Coding, Creative Writing). For each, compare the SFT-Eraser performance on an LCDD-trained model vs. a standard SFT model with the same weight delta magnitude.",
+    "available_data_or_benchmark": "Llama-3, Mistral-7B, and the LCDD pseudocode (Algorithm 1) provided in the paper.",
+    "expected_metric": "Reversal Delta (Difference in KL divergence reduction between LCDD models and standard SFT models).",
+    "specific_intervention": "Execute the LCDD training (Algorithm 1) on Llama-3-8B and Mistral-7B, then attempt to optimize an SFT-Eraser trigger for both the LCDD version and a standard SFT baseline to see if the 'bottleneck' effect is a universal property of the architecture.",
+    "baseline": "Standard SFT (non-sparse) models of the same architecture.",
+    "metric": "Behavioral Reversion Score (the ratio of task loss increase when the trigger is present).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/tatsu-lab/stanford_alpaca",
+      "https://github.com/yuplin2333/sft-reverse",
+      "https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/tatsu-lab/stanford_alpaca",
+      "https://github.com/yuplin2333/sft-reverse",
+      "https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/tatsu-lab/stanford_alpaca",
+      "Verified reachable public code/data/benchmark URL: https://github.com/yuplin2333/sft-reverse",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "Is the ability to 'bottle up' a behavior into a tiny subnetwork a fluke of certain architectures, or a fundamental law of how LLMs learn? By testing the causal necessity across the latest model families, we can determine if 'Sparse Behavioral Carriers' are a reliable new primitive for AI control.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Deadpan note segments in score-performance alignments due to linear interpolation",
+    "evidence_spans": [
+      "During note interpolation, RAScoP may introduce deadpan performance note segments that must be addressed by downstream applications.",
+      "A better solution would be to predict missing notes and pedals using a trained model."
+    ],
+    "problem_evidence_spans": [
+      "During note interpolation, RAScoP may introduce deadpan performance note segments that must be addressed by downstream applications."
+    ],
+    "feasibility_evidence_spans": [
+      "RAScoP (Refined Alignment for Scores and Performances), a note alignment refinement pipeline that cleans timing outliers, interpolates missing notes, and synchronizes performances with scores."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Current alignment pipelines like RAScoP use simple heuristics or linear interpolation for missing notes to maintain synchronization, which creates 'deadpan' (inexpressive) artifacts that degrade the quality of expressive performance models.",
+    "auto_research_experiment": "Replace the linear interpolation module in the RAScoP pipeline with a generative transformer-based infilling model trained on the high-fidelity PianoCoRe-A* subset to predict expressive timing and velocity for missing notes.",
+    "available_data_or_benchmark": "PianoCoRe-A/A* (https://huggingface.co/datasets/SyMuPe/PianoCoRe)",
+    "expected_metric": "A significant reduction in the Mean Absolute Error (MAE) of note velocities and onset timings compared to the ground truth in a held-out 'masked' test set.",
+    "specific_intervention": "Implement a generative infilling model (e.g., a BERT-style MIDI transformer) to replace the current linear interpolation of missing notes in the RAScoP pipeline.",
+    "baseline": "The original RAScoP pipeline using linear interpolation for missing notes.",
+    "metric": "Velocity/Timing Mean Absolute Error (MAE)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/CPJKU/asap-dataset",
+      "Verified reachable public code/data/benchmark URL: https://github.com/bytedance/GiantMIDI-Piano",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/SyMuPe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/tangjjbetsy/ATEPP",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "While PianoCoRe provides the largest aligned MIDI dataset, its alignment tool leaves 'robotic' gaps. By replacing simple interpolation with generative modeling, we can create truly seamless expressive training data.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Source-domain bias in large-scale MIDI pre-training",
+    "evidence_spans": [
+      "Since performances from Aria-MIDI dominate PianoCoRe, a more balanced sampling of performances per source might provide a better generalization to all source data domains.",
+      "The dataset distribution remains skewed toward Western classical repertoire and popular composers, reflecting the biases of the underlying open-source corpora."
+    ],
+    "problem_evidence_spans": [
+      "Since performances from Aria-MIDI dominate PianoCoRe, a more balanced sampling of performances per source might provide a better generalization to all source data domains."
+    ],
+    "feasibility_evidence_spans": [
+      "PianoCoRe-B: a deduplicated and quality-assessed subset for large-scale pre-training",
+      "The dataset contains 250,046 performances of 5,625 pieces written by 483 composers"
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "Most symbolic music models maximize data volume (e.g., using the full PianoCoRe-B) without accounting for the fact that the majority of the data comes from a single source (Aria-MIDI), which may lead to overfitting on specific transcription artifacts.",
+    "auto_research_experiment": "Train two identical MIDI-BERT models: one on the full PianoCoRe-B and one on a source-balanced subset. Evaluate both on a zero-shot performance classification task across diverse, non-Aria sources.",
+    "available_data_or_benchmark": "PianoCoRe-B (https://huggingface.co/datasets/SyMuPe/PianoCoRe)",
+    "expected_metric": "Improved F1-score on minority source datasets (e.g., ASAP or Maestro) when using the balanced sampling strategy.",
+    "specific_intervention": "Implement a stratified sampling strategy during training that balances the representation of the 10+ source corpora within PianoCoRe.",
+    "baseline": "Standard random sampling from the full PianoCoRe-B dataset.",
+    "metric": "Zero-shot Cross-Domain F1-Score",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/CPJKU/asap-dataset",
+      "Verified reachable public code/data/benchmark URL: https://github.com/bytedance/GiantMIDI-Piano",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/SyMuPe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/tangjjbetsy/ATEPP",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "Bigger isn't always better in music AI. We investigate if the massive Aria-MIDI dominance in new datasets actually hurts model generalization to high-fidelity acoustic recordings.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "MARL coordination failure under sparse commitment decisions and high assignment pressure",
+    "evidence_spans": [
+      "performance under scale is shaped not only by nominal action-space size, but also by assignment pressure, sparse decision opportunities, and redundant choices among interdependent agents.",
+      "Another direction is to relax STAT’s action-masking and finite-state commitment structure, allowing agents to learn when to replan, abandon commitments, or recover from inefficient choices."
+    ],
+    "problem_evidence_spans": [
+      "STAT intentionally holds observation access and task rules fixed, abstracts away low-level collision avoidance and path planning, and isolates assignment coordination as the primary coordination bottleneck. These choices make process-level failures directly measurable, but they also limit the scope of the conclusions."
+    ],
+    "feasibility_evidence_spans": [
+      "We release the STAT environment together with executable training and evaluation code for all methods considered in this paper. The release includes DQN and FDQN training/evaluation scripts, PyMARL integration for IQL, VDN, QMIX, QTRAN, and COMA",
+      "STAT provides a controlled setting in which task rules and observation access remain fixed while coordination pressure changes with scale."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "Standard MARL benchmarks focus on aggregate return, which masks the specific coordination failures (redundancy vs. throughput) that occur when agents are forced to commit to long-term tasks in combinatorial spaces.",
+    "auto_research_experiment": "Modify the STAT environment to allow 'commitment revocation' (replanning) with a penalty. Evaluate if CTDE methods like QMIX can learn to recover from redundant assignments compared to the baseline fixed-commitment STAT, using 'conflict rate' and 'task throughput' as primary diagnostics.",
+    "available_data_or_benchmark": "STAT (Spatial Task Allocation Testbed)",
+    "expected_metric": "Reduction in conflict rate and increase in task throughput compared to fixed-commitment baselines.",
+    "specific_intervention": "Implement a 'replan' action in STAT that allows agents to break a current task commitment at a fixed temporal/reward cost.",
+    "baseline": "QMIX and VDN on the original fixed-commitment STAT environment.",
+    "metric": "Conflict rate (total redundant assignments / total assignments)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "Beyond simple rewards: how do agents actually decide to divide labor when they can't change their minds?",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "Generalization of process-level coordination diagnostics to non-spatial MARL domains",
+    "evidence_spans": [
+      "applying the same process-level evaluation lens to other cooperative MARL benchmarks would help determine which coordination diagnostics generalize across domains and which are specific to commitment-constrained spatial task allocation."
+    ],
+    "problem_evidence_spans": [
+      "These metrics reveal coordination failure modes that return alone can conceal (Figure 1), highlighting that in addition to measuring the return, cooperative MARL benchmarks should also assess how well agents coordinate with each other."
+    ],
+    "feasibility_evidence_spans": [
+      "Existing cooperative MARL benchmarks have driven substantial progress by standardizing algorithm evaluation, including StarCraft micromanagement Samvelyan et al. ( 2019 ) , particle-world coordination tasks Lowe et al. ( 2017 ) , level-based foraging Christianos et al. ( 2020 ) , and Overcooked-style collaboration Carroll et al. ( 2019 ) ."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "Most benchmarks like SMAC or Overcooked report only win rates or returns, ignoring the 'redundancy' or 'diversity' metrics proposed in this paper which could explain why certain algorithms fail to scale.",
+    "auto_research_experiment": "Integrate STAT's 'conflict rate' and 'assignment diversity' metrics into the Level-Based Foraging (LBF) benchmark. Compare IQL and QMIX to see if QMIX's performance advantage in LBF is due to lower redundant foraging attempts or higher agent specialization.",
+    "available_data_or_benchmark": "Level-Based Foraging (LBF) and STAT diagnostic framework",
+    "expected_metric": "Correlation coefficient between 'conflict rate' and 'return' across different agent scales in LBF.",
+    "specific_intervention": "Instrument the Level-Based Foraging environment to log 'redundant attempts' (multiple agents attempting to pick the same food item simultaneously) as a proxy for STAT's conflict rate.",
+    "baseline": "Standard return-based evaluation of QMIX on Level-Based Foraging.",
+    "metric": "Conflict rate (redundant foraging attempts per episode)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "developer productivity",
+    "story_angle": "Standard MARL metrics are lying to us; it's time to look under the hood of agent coordination in classic benchmarks.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "candidate_problem": "Inference speed of Flow Matching kernels in multi-step autoregressive particle simulations",
+    "evidence_spans": [
+      "The observed out-of-the-box acceleration of a single kernel invocation compared to an equivalent mechanistic simulation is encouraging considering the choice of flow-matching as an architecture, which, while precise, is not optimized for inference speed.",
+      "It must be noted that given the relative cost of hardware, further inference-time optimizations at the kernel-level and an eventual outer-loop autoregressive framework will be required in order to realize these gains in production settings."
+    ],
+    "problem_evidence_spans": [
+      "the choice of flow-matching as an architecture, which, while precise, is not optimized for inference speed."
+    ],
+    "feasibility_evidence_spans": [
+      "strategies analogous to language models, such as KV caching [ 34 ] should be explored."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "While the paper demonstrates single-kernel speedup, the cumulative latency of multi-step autoregressive rollouts using Flow Matching (which requires multiple ODE integration steps) may negate gains when compared to optimized mechanistic simulators unless specific inference optimizations are applied.",
+    "auto_research_experiment": "Implement KV caching and consistency distillation for the BRICKS Flow Matching kernel to reduce the number of function evaluations (NFE) during autoregressive rollouts. Compare the wall-clock time and physics accuracy against the original BRICKS implementation and the Geant4 mechanistic baseline.",
+    "available_data_or_benchmark": "CaloBricks dataset (20M-event radiation-matter interaction dataset released with the paper).",
+    "expected_metric": "Significant reduction in wall-clock time per full rollout (e.g., 5-10x) with <1% degradation in particle energy distribution accuracy (Wasserstein distance).",
+    "specific_intervention": "Apply Consistency Models or Consistency Distillation to the Riemannian Flow Matching kernel to achieve single-step generation.",
+    "baseline": "Original BRICKS Flow Matching kernel with standard ODE solvers (e.g., Euler or RK4).",
+    "metric": "Inference Latency (ms/event) vs. Physics Accuracy (Wasserstein distance on secondary particle spectra)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_sources": [
+      "The paper text states: 'We additionally release a novel 20M-event radiation-matter interaction dataset for further research.'",
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/lucidrains/x-transformers"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "Accelerating the next generation of differentiable physics simulators by bringing LLM-style inference optimizations to particle physics.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "candidate_problem": "Generalization of Neural Markov Kernels to complex 3D geometries and diverse particle species",
+    "evidence_spans": [
+      "The present work showcases that the overall simulation model is sound but does not yet constitute a full production-grade drop-in replacement for mechanistic simulators.",
+      "For this a full 3D autoregressive iteration must be developed and the kernel must be extended to cover more complex per-building block environments λ and a broader set of incoming and outgoing particles."
+    ],
+    "problem_evidence_spans": [
+      "does not yet constitute a full production-grade drop-in replacement for mechanistic simulators. For this a full 3D autoregressive iteration must be developed"
+    ],
+    "feasibility_evidence_spans": [
+      "We evaluate the model at the kernel level and demonstrate predictive stability over multi-round autoregressive rollouts."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The current BRICKS model is a proof-of-concept focused on specific material blocks; it lacks the 3D spatial awareness and particle-type coverage (e.g., neutrons, muons) required for real-world detector simulation like those at the LHC.",
+    "auto_research_experiment": "Extend the BRICKS transformer architecture to include 3D spatial coordinates in the product manifold and train on a multi-particle dataset including hadronic interactions. Test zero-shot generalization on a 'sandwich' calorimeter geometry not seen during training.",
+    "available_data_or_benchmark": "CaloBricks dataset and Geant4 toolkit for generating ground-truth 3D validation data.",
+    "expected_metric": "Zero-shot accuracy on unseen 3D geometries matching mechanistic simulation within 2 sigma of statistical uncertainty.",
+    "specific_intervention": "Incorporate 3D geometric priors into the Riemannian Flow Matching manifold and expand the discrete particle-type embedding space.",
+    "baseline": "Standard BRICKS model (limited to current particle types/geometries) and Geant4 (mechanistic).",
+    "metric": "Energy deposition profile accuracy in 3D (Voxel-wise MSE)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/lucidrains/x-transformers"
+    ],
+    "time_budget_hours": 200,
+    "impact_type": "science",
+    "story_angle": "Moving from 1D/2D toy physics surrogates to full-scale 3D zero-shot neural simulators for high-energy physics.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While FL addresses the privacy and bandwidth issues, standard implementations und... addresses a stated negative result in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification.",
+    "evidence_spans": [
+      "While FL addresses the privacy and bandwidth issues, standard implementations underperform in IoT environments because they force a single global model to represent a highly heterogeneous population of devices [ 37 , 17 ] .",
+      "CFL segments the network, dynamically grouping devices with similar behaviors to train specialized, high-accuracy models [ 30 , 12 , 10 ] .",
+      "• Robustness and Efficiency : Our approach outperforms state-of-the-art baselines, while exhibiting high accuracy and low communication and computational overhead and maintaining high performance even with small local datasets and varying network scales."
+    ],
+    "problem_evidence_spans": [
+      "While FL addresses the privacy and bandwidth issues, standard implementations underperform in IoT environments because they force a single global model to represent a highly heterogeneous population of devices [ 37 , 17 ] ."
+    ],
+    "feasibility_evidence_spans": [
+      "CFL segments the network, dynamically grouping devices with similar behaviors to train specialized, high-accuracy models [ 30 , 12 , 10 ] .",
+      "• Robustness and Efficiency : Our approach outperforms state-of-the-art baselines, while exhibiting high accuracy and low communication and computational overhead and maintaining high performance even with small local datasets and varying network scales."
+    ],
+    "evidence_role": "negative_result",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit negative result span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification. Then apply this intervention: Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While FL addresses the privacy and bandwidth issues, standard implementations und.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "expected_metric": "Safety benchmark success/failure rate and false-positive/false-negative trade-offs.",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While FL addresses the privacy and bandwidth issues, standard implementations und...",
+    "baseline": "The reported baseline/protocol from CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While Federated Learning (FL) offers a privacy-preserving alternative to centrali... addresses a stated failure mode in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification.",
+    "evidence_spans": [
+      "While Federated Learning (FL) offers a privacy-preserving alternative to centralized Intrusion Detection Systems (IDS), standard approaches struggle to generalize across diverse device behaviors and typically fail to utilize the vast amounts of unlabeled data present in realistic edge environments.",
+      "CFL segments the network, dynamically grouping devices with similar behaviors to train specialized, high-accuracy models [ 30 , 12 , 10 ] .",
+      "• Robustness and Efficiency : Our approach outperforms state-of-the-art baselines, while exhibiting high accuracy and low communication and computational overhead and maintaining high performance even with small local datasets and varying network scales."
+    ],
+    "problem_evidence_spans": [
+      "While Federated Learning (FL) offers a privacy-preserving alternative to centralized Intrusion Detection Systems (IDS), standard approaches struggle to generalize across diverse device behaviors and typically fail to utilize the vast amounts of unlabeled data present in realistic edge environments."
+    ],
+    "feasibility_evidence_spans": [
+      "CFL segments the network, dynamically grouping devices with similar behaviors to train specialized, high-accuracy models [ 30 , 12 , 10 ] .",
+      "• Robustness and Efficiency : Our approach outperforms state-of-the-art baselines, while exhibiting high accuracy and low communication and computational overhead and maintaining high performance even with small local datasets and varying network scales."
+    ],
+    "evidence_role": "failure_mode",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit failure mode span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification. Then apply this intervention: Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While Federated Learning (FL) offers a privacy-preserving alternative to centrali.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "expected_metric": "Safety benchmark success/failure rate and false-positive/false-negative trade-offs.",
+    "specific_intervention": "Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While Federated Learning (FL) offers a privacy-preserving alternative to centrali...",
+    "baseline": "The reported baseline/protocol from CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58
+  }
+]

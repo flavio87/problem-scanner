@@ -1,0 +1,79 @@
+[
+  {
+    "id": "2605.06667v1",
+    "canonical_id": "2605.06667",
+    "title": "ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation",
+    "abstract": "For artistic applications, video generation requires fine-grained control over both performance and cinematography, i.e., the actor's motion and the camera trajectory. We present ActCam, a zero-shot method for video generation that jointly transfers character motion from a driving video into a new scene and enables per-frame control of intrinsic and extrinsic camera parameters. ActCam builds on any pretrained image-to-video diffusion model that accepts conditioning in terms of scene depth and character pose. Given a source video with a moving character and a target camera motion, ActCam generates pose and depth conditions that remain geometrically consistent across frames. We then run a single sampling process with a two-phase conditioning schedule: early denoising steps condition on both pose and sparse depth to enforce scene structure, after which depth is dropped and pose-only guidance refines high-frequency details without over-constraining the generation. We evaluate ActCam on multiple benchmarks spanning diverse character motions and challenging viewpoint changes. We find that, compared to pose-only control and other pose and camera methods, ActCam improves camera adherence and motion fidelity, and is preferred in human evaluations, especially under large viewpoint changes. Our results highlight that careful camera-consistent conditioning and staged guidance can enable strong joint camera and motion control without training. Project page: https://elkhomar.github.io/actcam/.",
+    "comments": "SIGGRAPH 2026",
+    "subjects": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "primary_subject": "cs.CV",
+    "authors": [
+      "Omar El Khalifi",
+      "Thomas Rossi",
+      "Oscar Fossey",
+      "Thibault Fouque",
+      "Ulysse Mizrahi",
+      "Philip Torr",
+      "Ivan Laptev",
+      "Fabio Pizzati",
+      "Baptiste Bellot-Gurlet"
+    ],
+    "abs_url": "https://arxiv.org/abs/2605.06667v1",
+    "pdf_url": "https://arxiv.org/pdf/2605.06667v1",
+    "published_at": "2026-05-07T17:59:58.000Z",
+    "updated_at": "2026-05-07T17:59:58.000Z"
+  },
+  {
+    "id": "2605.06665v1",
+    "canonical_id": "2605.06665",
+    "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
+    "abstract": "Modern Mixture-of-Experts (MoE) architectures allocate expert capacity through a rigid per-layer rule: each transformer layer owns a separate expert set. This convention couples depth scaling with linear expert-parameter growth and assumes that every layer needs isolated expert capacity. However, recent analyses and our routing probe challenge this allocation rule: replacing a deeper layer's learned top-k router with uniform random routing drops downstream accuracy by only 1.0-1.6 points across multiple production MoE models. Motivated by this redundancy, we propose UniPool, an MoE architecture that treats expert capacity as a global architectural budget by replacing per-layer expert ownership with a single shared pool accessed by independent per-layer routers. To enable stable and balanced training under sharing, we introduce a pool-level auxiliary loss that balances expert utilization across the entire pool, and adopt NormRouter to provide sparse and scale-stable routing into the shared expert pool. Across five LLaMA-architecture model scales (182M, 469M, 650M, 830M, and 978M parameters) trained on 30B tokens from the Pile, UniPool consistently improves validation loss and perplexity over the matched vanilla MoE baselines. Across these scales, UniPool reduces validation loss by up to 0.0386 relative to vanilla MoE. Beyond raw loss improvement, our results identify pool size as an explicit depth-scaling hyperparameter: reduced-pool UniPool variants using only 41.6%-66.7% of the vanilla expert-parameter budget match or outperform layer-wise MoE at the tested scales. This shows that, under a shared-pool design, expert parameters need not grow linearly with depth; they can grow sublinearly while remaining more efficient and effective than vanilla MoE. Further analysis shows that UniPool's benefits compose with finer-grained expert decomposition.",
+    "comments": "",
+    "subjects": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "primary_subject": "cs.LG",
+    "authors": [
+      "Minbin Huang",
+      "Han Shi",
+      "Chuanyang Zheng",
+      "Yimeng Wu",
+      "Guoxuan Chen",
+      "Xintong Yu",
+      "Yichun Yin",
+      "Hong Cheng"
+    ],
+    "abs_url": "https://arxiv.org/abs/2605.06665v1",
+    "pdf_url": "https://arxiv.org/pdf/2605.06665v1",
+    "published_at": "2026-05-07T17:59:44.000Z",
+    "updated_at": "2026-05-07T17:59:44.000Z"
+  },
+  {
+    "id": "2605.06660v1",
+    "canonical_id": "2605.06660",
+    "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+    "abstract": "Large Language Models (LLMs) demonstrate strong capabilities for solving scientific and mathematical problems, yet they struggle to produce valid, challenging, and novel problems - an essential component for advancing LLM training and enabling autonomous scientific research. Existing problem generation approaches either depend on expensive human expert involvement or adopt naive self-play paradigms, which frequently yield invalid problems due to reward hacking. This work introduces VHG, a verifier-enhanced hard problem generation framework built upon three-party self-play. By integrating an independent verifier into the conventional setter-solver duality, our design constrains the setter's reward to be jointly determined by problem validity (evaluated by the verifier) and difficulty (assessed by the solver). We instantiate two verifier variants: a Hard symbolic verifier and a Soft LLM-based verifier, with evaluations conducted on indefinite integral tasks and general mathematical reasoning tasks. Experimental results show that VHG substantially outperforms all baseline methods by a clear margin.",
+    "comments": "",
+    "subjects": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "primary_subject": "cs.LG",
+    "authors": [
+      "Yuhang Lai",
+      "Jiazhan Feng",
+      "Yee Whye Teh",
+      "Ning Miao"
+    ],
+    "abs_url": "https://arxiv.org/abs/2605.06660v1",
+    "pdf_url": "https://arxiv.org/pdf/2605.06660v1",
+    "published_at": "2026-05-07T17:58:32.000Z",
+    "updated_at": "2026-05-07T17:58:32.000Z"
+  }
+]

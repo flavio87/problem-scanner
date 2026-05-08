@@ -1,0 +1,23 @@
+{
+  "days": 3,
+  "categories": [
+    "cs.LG"
+  ],
+  "per_category_fetch": 50,
+  "target_min": 50,
+  "target_max": 50,
+  "abstract_top_k": 30,
+  "candidate_per_paper": 2,
+  "verifier_top_k": 30,
+  "max_evidence_spans": 4,
+  "max_candidates_output": 50,
+  "output_dir": "runs/exp1-smoke-50-openrouter-v2",
+  "mode": "llm",
+  "llm_provider": "openrouter",
+  "broad_model": "google/gemini-3-flash-preview",
+  "verifier_model": "google/gemini-3-flash-preview",
+  "input_price_per_mtoken_usd": 0.5,
+  "output_price_per_mtoken_usd": 3,
+  "gemini_api_key_set": false,
+  "openrouter_api_key_set": true
+}

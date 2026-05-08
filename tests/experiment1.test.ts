@@ -4,6 +4,7 @@ import {
   extractConcreteResourceUrls,
   extractEvidenceSentences,
   extractSectionsFromHtml,
+  parseCliArgs,
   parseArxivFeed,
   type PaperText,
   type RawCandidate,
@@ -332,5 +333,63 @@ describe("extractConcreteResourceUrls", () => {
     );
     expect(urls).toContain("https://github.com/example/repo");
     expect(urls).toContain("https://huggingface.co/datasets/org/data");
+  });
+});
+
+describe("parseCliArgs", () => {
+  it("uses OpenRouter defaults when OPENROUTER_API_KEY is set", () => {
+    const previousOpenRouterKey = process.env.OPENROUTER_API_KEY;
+    const previousGeminiKey = process.env.GEMINI_API_KEY;
+
+    try {
+      process.env.OPENROUTER_API_KEY = "test-openrouter-key";
+      delete process.env.GEMINI_API_KEY;
+
+      const config = parseCliArgs(["--targetMin", "1", "--targetMax", "1"]);
+
+      expect(config.mode).toBe("llm");
+      expect(config.llm_provider).toBe("openrouter");
+      expect(config.broad_model).toBe("google/gemini-3-flash-preview");
+      expect(config.verifier_model).toBe("google/gemini-3-flash-preview");
+      expect(config.openrouter_api_key).toBe("test-openrouter-key");
+      expect(config.input_price_per_mtoken_usd).toBe(0.5);
+      expect(config.output_price_per_mtoken_usd).toBe(3);
+    } finally {
+      if (previousOpenRouterKey === undefined) {
+        delete process.env.OPENROUTER_API_KEY;
+      } else {
+        process.env.OPENROUTER_API_KEY = previousOpenRouterKey;
+      }
+
+      if (previousGeminiKey === undefined) {
+        delete process.env.GEMINI_API_KEY;
+      } else {
+        process.env.GEMINI_API_KEY = previousGeminiKey;
+      }
+    }
+  });
+
+  it("requires the selected provider key in LLM mode", () => {
+    const previousOpenRouterKey = process.env.OPENROUTER_API_KEY;
+    const previousGeminiKey = process.env.GEMINI_API_KEY;
+
+    try {
+      delete process.env.OPENROUTER_API_KEY;
+      delete process.env.GEMINI_API_KEY;
+
+      expect(() => parseCliArgs(["--mode", "llm", "--provider", "openrouter"])).toThrow("OPENROUTER_API_KEY");
+    } finally {
+      if (previousOpenRouterKey === undefined) {
+        delete process.env.OPENROUTER_API_KEY;
+      } else {
+        process.env.OPENROUTER_API_KEY = previousOpenRouterKey;
+      }
+
+      if (previousGeminiKey === undefined) {
+        delete process.env.GEMINI_API_KEY;
+      } else {
+        process.env.GEMINI_API_KEY = previousGeminiKey;
+      }
+    }
   });
 });

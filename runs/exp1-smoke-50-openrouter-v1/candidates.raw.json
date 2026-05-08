@@ -1,0 +1,1020 @@
+[
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Interaction between online discrepancy learning and restart mechanisms in nonstationary Bayesian calibration",
+    "evidence_spans": [
+      "A highly concentrated discrepancy posterior may cause routine within-regime variation to appear anomalous, while an overly adaptive discrepancy model may absorb emerging regime mismatches before the detector can identify a clear change.",
+      "Studying the interaction between online discrepancy learning and the restart mechanism, we propose two complementary deployment strategies."
+    ],
+    "problem_evidence_spans": [
+      "A highly concentrated discrepancy posterior may cause routine within-regime variation to appear anomalous, while an overly adaptive discrepancy model may absorb emerging regime mismatches before the detector can identify a clear change."
+    ],
+    "feasibility_evidence_spans": [
+      "We establish theoretical guarantees for both components, including tracking performance under gradual evolution and false-alarm and detection behavior for restart mechanisms.",
+      "Empirical studies on synthetic and plant-simulation benchmarks show that BRPC improves calibration accuracy under gradual changes"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Existing methods either ignore systematic bias (data assimilation) or assume stationarity (offline calibration). The coupling between the speed of bias adaptation and the sensitivity of change-point detection creates a trade-off that is typically ignored by treating detection and calibration as independent modules.",
+    "auto_research_experiment": "Evaluate the sensitivity of the restart mechanism (BOCPD or wCUSUM) across a grid of discrepancy learning rates (GP lengthscales and noise priors). Measure the 'absorption rate' where the discrepancy model compensates for a regime shift so quickly that the restart threshold is never triggered, leading to high parameter error.",
+    "available_data_or_benchmark": "Plant-simulation digital twin benchmark and synthetic nonstationary streams described in Appendix E.",
+    "expected_metric": "Detection Delay (time steps between shift and restart) vs. Parameter Estimation Error (RMSE).",
+    "specific_intervention": "Vary the GP kernel lengthscale and the transition noise $\\eta_{\\theta}$ to observe the threshold at which the discrepancy model 'hides' abrupt changes from the restart controller.",
+    "baseline": "Standard BRPC with fixed hyperparameters.",
+    "metric": "False Alarm Rate (FAR) and Mean Time to Detection (MTD).",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2405.06612v1"
+    ],
+    "paper_status_evidence": [
+      "The paper is a fresh submission (May 2024) on arXiv."
+    ],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "The hidden tug-of-war between a model's ability to learn bias and its ability to detect when it needs a total reset.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Sensitivity of BRPC restart mechanisms to non-Gaussian simulator errors and covariate shift",
+    "evidence_spans": [
+      "Second, the restart analyses rely on idealized predictive-score assumptions, such as Gaussian or sub-Gaussian behavior of prequential evidence. In practical streams, covariate shift, finite-batch variability, and non-Gaussian simulator errors may produce score fluctuations that resemble abrupt regime changes, leading to false restarts."
+    ],
+    "problem_evidence_spans": [
+      "In practical streams, covariate shift, finite-batch variability, and non-Gaussian simulator errors may produce score fluctuations that resemble abrupt regime changes, leading to false restarts."
+    ],
+    "feasibility_evidence_spans": [
+      "Appendix C.3 proves the wCUSUM false-alarm and detection bound in Proposition 4.",
+      "The restart decision is based on the predictive evidence from the online calibration process, particularly posterior update of the model discrepancy term."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Theoretical guarantees for change detection often assume well-behaved residuals. The paper identifies that heavy-tailed simulator errors or shifts in input distribution (covariate shift) can trigger the restart mechanism erroneously, which is a common failure mode in real-world digital twins.",
+    "auto_research_experiment": "Inject non-Gaussian noise (e.g., Student-t or Cauchy) and covariate shifts into the synthetic benchmark. Compare the robustness of the wCUSUM-style restart against a proposed adaptive thresholding method that uses a rolling window of predictive score variance.",
+    "available_data_or_benchmark": "Synthetic nonstationary streams (Appendix E.1) modified with non-Gaussian noise injectors.",
+    "expected_metric": "False Restart Rate (FRR) under stationary but heavy-tailed noise.",
+    "specific_intervention": "Implement an adaptive restart threshold $h_C(t)$ based on local score volatility instead of the fixed threshold $h_C$ used in Algorithm 3.",
+    "baseline": "C-BRPC (wCUSUM control) with fixed threshold $h_C$.",
+    "metric": "Calibration RMSE and False Restart Rate.",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2405.06612v1"
+    ],
+    "paper_status_evidence": [
+      "The paper is a fresh submission (May 2024) on arXiv."
+    ],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 72,
+    "impact_type": "safety",
+    "story_angle": "Why digital twins 'panic' and restart unnecessarily when faced with unpredictable but non-structural noise.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "Auditor capability-matching trade-off in benchmarkless safety scoring",
+    "evidence_spans": [
+      "Auditor selection is the most consequential configuration choice. An auditor that is too weak under-probes, while an auditor that is too strong compresses safe-target scores and erases the comparative deltas the instrument is built to report (§ 5).",
+      "Increasing auditor capability beyond L collapses inter-target differences among safe models: with A = XL, safe-target scores compress into a narrow band, eliminating the deltas the instrument is designed to report."
+    ],
+    "problem_evidence_spans": [
+      "Auditor selection is the most consequential configuration choice. An auditor that is too weak under-probes, while an auditor that is too strong compresses safe-target scores and erases the comparative deltas the instrument is built to report (§ 5)."
+    ],
+    "feasibility_evidence_spans": [
+      "The L auditor consistently downgrades scores, across target sizes and model versions.",
+      "SimpleAudit’s open-source release and verified Digital Public Good status are governance properties of the instrument, not only of its deployment."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Standard red-teaming logic dictates that stronger auditors are always better; however, for comparative scoring, an overpowered auditor creates a ceiling effect that masks the relative safety differences between models.",
+    "auto_research_experiment": "Using the SimpleAudit library, evaluate a set of mid-tier models (e.g., 7B-14B parameters) using a range of auditor models from 1B to 70B+. Measure the 'Delta Sensitivity' (the variance of scores between safe targets) and 'AUROC' (separation from abliterated targets). Identify the mathematical point where auditor strength maximizes inter-target delta before score compression occurs.",
+    "available_data_or_benchmark": "SimpleAudit library (GitHub/PyPI) and the Norwegian safety pack provided in the paper.",
+    "expected_metric": "Delta Sensitivity (variance of scores across safe targets) should peak at a specific auditor-to-target capability ratio and then decline.",
+    "specific_intervention": "Systematically vary the Auditor (A) model size while keeping the Judge (J) and Target (T) models constant to map the 'compression curve'.",
+    "baseline": "The paper's default configuration of A=L (Large) for all target sizes.",
+    "metric": "Inter-target Score Variance (Delta Sensitivity)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2502.06652v1"
+    ],
+    "paper_status_evidence": [
+      "Paper is active on arXiv as of Feb 2025."
+    ],
+    "code_or_data_urls": [
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_sources": [
+      "The paper text mentions: 'We release SimpleAudit as a library, available through PyPI and GitHub'.",
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ggml-org/llama.cpp",
+      "Verified reachable public code/data/benchmark URL: https://github.com/kelkalot/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/meridianlabs-ai/inspect_petri",
+      "Verified reachable public code/data/benchmark URL: https://github.com/mozilla-ai/any-llm",
+      "Verified reachable public code/data/benchmark URL: https://github.com/safety-research/petri",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/HauhauCS",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/unsloth"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "In the race to make AI safer, we might be using 'red-teaming' tools that are actually too powerful to tell us which model is better, creating a blind spot for procurement teams.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "Vulnerability of benchmarkless safety scores to eval-awareness (gaming)",
+    "evidence_spans": [
+      "SimpleAudit also does not currently implement explicit eval-awareness mitigations (Needham et al. , 2025 ; Nguyen et al. , 2025 ; Souly et al. , 2026 ) ; whether this matters at our deployment scales is an open empirical question we do not address here."
+    ],
+    "problem_evidence_spans": [
+      "SimpleAudit also does not currently implement explicit eval-awareness mitigations... whether this matters at our deployment scales is an open empirical question we do not address here."
+    ],
+    "feasibility_evidence_spans": [
+      "The reporting structure makes the evaluation artifact falsifiable in the sense needed for scientific use: another group can rerun the same instrument, substitute one component at a time, or challenge the scenario population."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper focuses on validating the instrument against noise and artifacts, but explicitly leaves the 'gaming' or 'eval-awareness' problem as an open empirical question.",
+    "auto_research_experiment": "Fine-tune a small target model (e.g., 1B-4B) on a synthetic dataset of safety-audit transcripts to recognize the 'SimpleAudit' scenario structure. Test if this 'eval-aware' model can achieve higher safety scores than a larger, genuinely safer model (e.g., 27B) without actually improving its safety on out-of-distribution prompts.",
+    "available_data_or_benchmark": "SimpleAudit scenario packs and the Borealis/Gemma model families.",
+    "expected_metric": "Score inflation (increase in score without corresponding decrease in critical failures on held-out scenarios).",
+    "specific_intervention": "Introduction of an 'eval-aware' fine-tuned model into the comparative scoring pipeline.",
+    "baseline": "The original Borealis or Gemma models without eval-specific fine-tuning.",
+    "metric": "Score-to-Safety Ratio (Score on SimpleAudit vs. Score on a hidden/held-out safety rubric).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2502.06652v1"
+    ],
+    "paper_status_evidence": [
+      "Paper is active on arXiv."
+    ],
+    "code_or_data_urls": [
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_sources": [
+      "Paper mentions GitHub availability.",
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ggml-org/llama.cpp",
+      "Verified reachable public code/data/benchmark URL: https://github.com/kelkalot/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/meridianlabs-ai/inspect_petri",
+      "Verified reachable public code/data/benchmark URL: https://github.com/mozilla-ai/any-llm",
+      "Verified reachable public code/data/benchmark URL: https://github.com/safety-research/petri",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/HauhauCS",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/unsloth"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "safety",
+    "story_angle": "Can AI models 'cheat' their way through safety audits? We test if benchmarkless scoring is vulnerable to models that recognize they are being tested.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06646v1",
+    "candidate_problem": "Loss of automatic feature selection in Lasso and Elastic Net when using Venn-Abers calibration",
+    "evidence_spans": [
+      "However, it can be argued that applying our methods destroys, at least partially, a valued property of Lasso and Elastic Net, automatic feature selection.",
+      "Optimizing the number of features is another interesting desideratum, alongside predictive efficiency."
+    ],
+    "problem_evidence_spans": [
+      "However, it can be argued that applying our methods destroys, at least partially, a valued property of Lasso and Elastic Net, automatic feature selection."
+    ],
+    "feasibility_evidence_spans": [
+      "Our methods tend to improve significantly the quality of predictions made by Lasso and Elastic Net.",
+      "we consider those implemented in scikit-learn"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper focuses primarily on predictive efficiency (log-loss/validity) and treats the preservation of model-specific properties like sparsity as a secondary future research direction.",
+    "auto_research_experiment": "Implement a modified Inductive Venn-Abers (IVA) wrapper that incorporates a sparsity-preserving penalty or a post-hoc feature pruning step. Compare the number of non-zero coefficients and the predictive log-loss against standard IVA and base Lasso/Elastic Net.",
+    "available_data_or_benchmark": "The paper uses several synthetic and scikit-learn datasets: Bounded Logistic, Linear Gaussian, Friedman 1-3, and Sparse high-dimensional signals.",
+    "expected_metric": "Number of non-zero features (sparsity) and Log-loss.",
+    "specific_intervention": "Integrate a feature-selection-aware merging procedure into the CVAR (Conformal Venn-Abers Regressor) that penalizes the inclusion of features with low contribution to the Venn-Abers probability estimates.",
+    "baseline": "Standard Inductive Venn-Abers (CVAR1/CVAR10) applied to Lasso/Elastic Net.",
+    "metric": "Sparsity ratio (non-zero features / total features)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2605.06646v1"
+    ],
+    "paper_status_evidence": [
+      "The paper is a fresh submission (2605.06646v1) and not withdrawn."
+    ],
+    "code_or_data_urls": [
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/ivar-experiments",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/venn-abers"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "While Venn-Abers calibration makes regression more reliable, it 'breaks' the sparsity of Lasso models; can we have both validity and interpretability?",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06646v1",
+    "candidate_problem": "Performance degradation of Venn-Abers regressors on small datasets",
+    "evidence_spans": [
+      "The improvement is not as significant as we had hoped and disappears for smaller datasets.",
+      "For these smaller datasets the results are mixed, as we said in the main paper."
+    ],
+    "problem_evidence_spans": [
+      "The improvement is not as significant as we had hoped and disappears for smaller datasets."
+    ],
+    "feasibility_evidence_spans": [
+      "An alternative merging procedure to the ones described in Sect. 7 is to try and merge the regression intervals coming from the K folds directly (in a minimax manner, as in Vovk et al. 2022, Sect. 6.4.5) in order to obtain an overall regression estimate"
+    ],
+    "evidence_role": "failure_mode",
+    "why_hidden_or_underexploited": "The authors identified the failure on small datasets but did not implement the suggested 'minimax merging' fix, leaving it as a direction for further research.",
+    "auto_research_experiment": "Implement the minimax merging procedure for K-fold Inductive Venn-Abers as described in Vovk et al. (2022, Sect. 6.4.5). Test this against the current CVAR10 averaging method on datasets with n=1000 and n=500.",
+    "available_data_or_benchmark": "The paper's own synthetic benchmarks (Friedman, Linear Gaussian) at reduced sample sizes (n < 1000).",
+    "expected_metric": "Log-loss (predictive efficiency).",
+    "specific_intervention": "Replace the current fold-averaging merging step with a minimax merging procedure for regression intervals.",
+    "baseline": "The paper's CVAR10 (averaging across 10 folds).",
+    "metric": "Log-loss",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2605.06646v1"
+    ],
+    "paper_status_evidence": [
+      "The paper is a fresh submission (2605.06646v1) and not withdrawn."
+    ],
+    "code_or_data_urls": [
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/ivar-experiments",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/venn-abers"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "Venn-Abers regressors struggle when data is scarce; a minimax merging strategy could unlock their power for small-sample science.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06643v1",
+    "candidate_problem": "Multimodal Domain Generalization (MMDG) models exhibit significant performance degradation and unreliable confidence estimation when faced with missing modalities or sensor failures.",
+    "evidence_spans": [
+      "all evaluated methods exhibit significant degradation under corruption and missing-modality scenarios, with some methods further compromising model trustworthiness.",
+      "Existing methods degrade substantially under realistic input corruptions and exhibit high vulnerability to missing modalities (sensor failures).",
+      "some degrading model trustworthiness despite clean accuracy gains."
+    ],
+    "problem_evidence_spans": [
+      "all evaluated methods exhibit significant degradation under corruption and missing-modality scenarios, with some methods further compromising model trustworthiness."
+    ],
+    "feasibility_evidence_spans": [
+      "we introduce MMDG-Bench, the first unified and comprehensive benchmark for MMDG",
+      "We release MMDG-Bench to enable more rigorous, reproducible, and directly comparable evaluation",
+      "https://github.com/lihongzhao99/MMDG_Benchmark"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Current MMDG research focuses primarily on clean-domain accuracy and action recognition, neglecting the critical real-world challenge of sensor failure (missing modalities) and its impact on model calibration/trustworthiness.",
+    "auto_research_experiment": "Using the MMDG-Bench framework, evaluate the nine baseline methods (ERM, RNA-Net, SimMMDG, etc.) specifically on the 'missing-modality' test splits. Implement a dynamic modality dropout training objective and compare its effect on Expected Calibration Error (ECE) and Brier Score against the standard ERM baseline.",
+    "available_data_or_benchmark": "MMDG-Bench (EPIC-Kitchens, HAC, HUST Motor, CMU-MOSI/MOSEI/CH-SIMS)",
+    "expected_metric": "Reduction in Expected Calibration Error (ECE) while maintaining or improving accuracy under 50% modality dropout scenarios.",
+    "specific_intervention": "Implement a dynamic and adaptive fusion mechanism that incorporates a modality-specific uncertainty weighting (e.g., via a gating network) to explicitly handle missing inputs during inference.",
+    "baseline": "ERM (Empirical Risk Minimization) and MBCD (Multimodal Branch Conditional Dropout).",
+    "metric": "Expected Calibration Error (ECE) and Missing-Modality Accuracy.",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2502.06643v1"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06643v1 (Note: User provided ID 2605.06643v1, but text refers to MMDG-Bench)"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/lihongzhao99/MMDG_Benchmark",
+      "https://github.com/open-mmlab/mmaction2",
+      "https://github.com/facebookresearch/DomainBed"
+    ],
+    "code_or_data_sources": [
+      "Paper abstract and discussion section",
+      "https://github.com/lihongzhao99/MMDG_Benchmark",
+      "https://github.com/open-mmlab/mmaction2",
+      "https://github.com/facebookresearch/DomainBed"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/lihongzhao99/MMDG_Benchmark",
+      "Verified reachable public code/data/benchmark URL: https://github.com/open-mmlab/mmaction2",
+      "Verified reachable public code/data/benchmark URL: https://github.com/facebookresearch/DomainBed"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "While multimodal models are touted for robustness, they are surprisingly brittle when a single sensor fails; we need to move beyond 'clean' accuracy to 'trustworthy' generalization.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06643v1",
+    "candidate_problem": "Trimodal fusion in MMDG often fails to outperform bimodal configurations due to modality competition where dominant modalities overshadow auxiliary ones.",
+    "evidence_spans": [
+      "trimodal fusion does not consistently outperform the strongest bimodal configurations",
+      "dominant modalities (e.g., video) often overshadow auxiliary modalities (e.g., audio), which can even reduce performance when not properly integrated."
+    ],
+    "problem_evidence_spans": [
+      "trimodal fusion does not consistently outperform the strongest bimodal configurations"
+    ],
+    "feasibility_evidence_spans": [
+      "MMDG-Bench encompasses six modality combinations",
+      "standardize evaluation across six datasets spanning three diverse tasks"
+    ],
+    "evidence_role": "negative_result",
+    "why_hidden_or_underexploited": "There is a common assumption in multimodal learning that more data streams (modalities) lead to better generalization, but the paper reveals that without specific competition-handling, the third modality often acts as noise.",
+    "auto_research_experiment": "Perform a gradient-based sensitivity analysis (Gradient Blending) on the EPIC-Kitchens dataset comparing (Video+Flow) vs (Video+Flow+Audio). Apply a Gradient Dropout (GradDrop) intervention to balance the learning rates of different modality branches and measure if it recovers the performance gap.",
+    "available_data_or_benchmark": "EPIC-Kitchens and HAC datasets within MMDG-Bench.",
+    "expected_metric": "Improvement in Trimodal Accuracy over the best Bimodal Accuracy.",
+    "specific_intervention": "Apply Gradient Blending or GradDrop to synchronize the optimization speeds of the video, audio, and flow branches to prevent the dominant modality from suppressing others.",
+    "baseline": "Standard Trimodal ERM and the best-performing Bimodal configuration (e.g., Video+Flow).",
+    "metric": "Top-1 Accuracy and Modality-specific Gradient Norms.",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2502.06643v1"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06643v1"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/lihongzhao99/MMDG_Benchmark",
+      "https://github.com/open-mmlab/mmaction2",
+      "https://github.com/facebookresearch/DomainBed"
+    ],
+    "code_or_data_sources": [
+      "Paper text",
+      "https://github.com/lihongzhao99/MMDG_Benchmark",
+      "https://github.com/open-mmlab/mmaction2",
+      "https://github.com/facebookresearch/DomainBed"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/lihongzhao99/MMDG_Benchmark",
+      "Verified reachable public code/data/benchmark URL: https://github.com/open-mmlab/mmaction2",
+      "Verified reachable public code/data/benchmark URL: https://github.com/facebookresearch/DomainBed"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "More isn't always better: why adding a third modality can actually hurt AI performance and how to fix the 'modality competition' problem.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06585v1",
+    "candidate_problem": "Scalability of DR-L2O to high iteration counts due to large inner conic programs",
+    "evidence_spans": [
+      "A major limitation is scalability: unrolling algorithms for more iterations requires solving a much larger conic program at each gradient step."
+    ],
+    "problem_evidence_spans": [
+      "A major limitation is scalability: unrolling algorithms for more iterations requires solving a much larger conic program at each gradient step."
+    ],
+    "feasibility_evidence_spans": [
+      "A natural remedy is to use GPU-accelerated first-order solvers [ 52 , 46 , 51 , 16 , 17 ] .",
+      "Furthermore, in all SGD iteration timing tables, our code with JAX uses just-in-time (JIT) techniques for computational efficiency"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper focuses on the theoretical framework and small-scale benchmarks (Quadratic, LASSO, LP) using CPU-based solvers (Clarabel). The authors explicitly identify the transition to GPU-accelerated first-order solvers as the next step for scaling the number of unrolled iterations.",
+    "auto_research_experiment": "Replace the Clarabel/diffcp CPU-based SDP solver with a GPU-accelerated first-order solver (e.g., SCS or a custom JAX-based ADMM solver) to solve the inner DR-PEP problem. Compare the wall-clock time and maximum feasible unrolling depth (K) against the current CPU baseline while maintaining the same out-of-sample risk bounds.",
+    "available_data_or_benchmark": "Unconstrained quadratic minimization, LASSO, and linear programming benchmarks provided in the paper's repository.",
+    "expected_metric": "Maximum unrolling depth (K) achievable within a fixed 1-hour training budget.",
+    "specific_intervention": "Integrate a GPU-accelerated first-order conic solver (e.g., SCS with JAX/CUDA) into the DR-L2O training loop to replace the interior-point solver Clarabel.",
+    "baseline": "The current DR-L2O implementation using Clarabel and diffcp on CPU.",
+    "metric": "Seconds per SGD iteration",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2605.06585v1"
+    ],
+    "paper_status_evidence": [
+      "Distributionally-Robust Learning to Optimize, v1 submitted May 2026 (simulated date based on ID)."
+    ],
+    "code_or_data_urls": [
+      "https://github.com/stellatogrp/dro_pep"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/stellatogrp/dro_pep"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/stellatogrp/dro_pep"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "developer productivity",
+    "story_angle": "While DR-L2O provides the first robust bridge between data-driven and worst-case optimization, its reliance on heavy interior-point solvers makes it too slow for deep unrolling. By moving the inner SDP to the GPU, we can unlock the performance of deep learned optimizers with the safety of PEP bounds.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06570v1",
+    "candidate_problem": "Scalability of Smooth Neural Adjoint Policy Optimization (SNAPO) to non-differentiable or stochastic simulators",
+    "evidence_spans": [
+      "embeds a neural policy inside a known, differentiable simulator",
+      "replaces hard constraints with smooth approximations"
+    ],
+    "problem_evidence_spans": [
+      "embeds a neural policy inside a known, differentiable simulator"
+    ],
+    "feasibility_evidence_spans": [
+      "demonstrate SNAPO on three domains: natural gas storage... pension fund asset-liability management... and pharmaceutical manufacturing",
+      "computes exact gradients of the objective with respect to all policy parameters and all inputs in a single adjoint pass"
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The paper assumes a 'known, differentiable simulator' which is a strong requirement. Most real-world simulators are black-box or non-differentiable. The authors focus on the speedup of sensitivities but do not address how to handle discontinuities or stochasticity in the simulator itself without manual smoothing.",
+    "auto_research_experiment": "Implement a surrogate-based differentiable wrapper (e.g., using a Neural ODE or Gaussian Process) for a non-differentiable version of the gas storage simulator. Compare the policy performance and sensitivity accuracy of SNAPO using the surrogate versus a standard RL baseline (PPO) that does not require differentiability.",
+    "available_data_or_benchmark": "Natural gas storage forward curve data (standard financial time series).",
+    "expected_metric": "Mean Squared Error (MSE) of sensitivities compared to finite differences and total cumulative reward.",
+    "specific_intervention": "Integrate a differentiable surrogate model (MLP-based) to approximate the non-differentiable transition dynamics of the simulator, allowing SNAPO to compute gradients through the surrogate.",
+    "baseline": "Proximal Policy Optimization (PPO) or standard SNAPO with manual smoothing of the simulator.",
+    "metric": "Sensitivity computation time and Policy Reward",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2605.06570v1"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06570v1"
+    ],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "While SNAPO offers lightning-fast sensitivities for differentiable systems, its reliance on 'known' differentiability limits its use in legacy industrial simulators. Bridging this gap with differentiable surrogates could unlock adjoint-based optimization for a much wider class of engineering problems.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Deadpan note segments and missing sustain pedal effects in RAScoP-refined MIDI alignments",
+    "evidence_spans": [
+      "During note interpolation, RAScoP may introduce deadpan performance note segments that must be addressed by downstream applications.",
+      "Additionally, interpolation does not handle sustain pedal effects. A better solution would be to predict missing notes and pedals using a trained model."
+    ],
+    "problem_evidence_spans": [
+      "During note interpolation, RAScoP may introduce deadpan performance note segments that must be addressed by downstream applications. Additionally, interpolation does not handle sustain pedal effects."
+    ],
+    "feasibility_evidence_spans": [
+      "A better solution would be to predict missing notes and pedals using a trained model."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Current alignment pipelines like RAScoP use heuristic interpolation for missing notes, which results in 'deadpan' (zero-velocity, fixed-timing) segments that degrade the quality of expressive performance datasets.",
+    "auto_research_experiment": "Train a generative model (e.g., a Transformer-based infiller) specifically on the high-fidelity PianoCoRe-A* subset to predict expressive timing, velocity, and sustain pedal CC messages for the interpolated gaps in the larger PianoCoRe-A subset.",
+    "available_data_or_benchmark": "PianoCoRe-A and PianoCoRe-A* (available on Hugging Face and Zenodo)",
+    "expected_metric": "Reduction in the Mean Absolute Error (MAE) of velocity and timing (IOI) between predicted interpolated notes and ground-truth held-out performances.",
+    "specific_intervention": "Replace the linear/heuristic interpolation in the RAScoP pipeline with a neural expressive infiller trained on the ASAP and Yamaha Disklavier portions of PianoCoRe.",
+    "baseline": "The original RAScoP pipeline with heuristic interpolation (deadpan segments).",
+    "metric": "Velocity MAE and Sustain Pedal Prediction Accuracy",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2405.06627v1"
+    ],
+    "paper_status_evidence": [
+      "PianoCoRe: Combined and Refined Piano MIDI Dataset"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/CPJKU/asap-dataset",
+      "Verified reachable public code/data/benchmark URL: https://github.com/bytedance/GiantMIDI-Piano",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/SyMuPe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/tangjjbetsy/ATEPP",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "While PianoCoRe provides the largest aligned MIDI dataset to date, its automated refinement process leaves 'deadpan' gaps. Solving this with neural infilling could unlock truly human-like expressive rendering at scale.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Performance degradation in expressive rendering models due to source-domain imbalance (Aria-MIDI dominance)",
+    "evidence_spans": [
+      "Since performances from Aria-MIDI dominate PianoCoRe, a more balanced sampling of performances per source might provide a better generalization to all source data domains."
+    ],
+    "problem_evidence_spans": [
+      "Since performances from Aria-MIDI dominate PianoCoRe, a more balanced sampling of performances per source might provide a better generalization to all source data domains."
+    ],
+    "feasibility_evidence_spans": [
+      "The dataset contains 250,046 performances... released in tiered subsets... PianoCoRe-A provides the largest open-source collection of 157,207 performances."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "Large-scale datasets often prioritize volume over balance; the authors identify that the massive Aria-MIDI component may cause the model to overfit to specific transcription artifacts or performance styles of that source.",
+    "auto_research_experiment": "Implement a stratified sampling strategy across the 10+ source datasets in PianoCoRe and compare the generalization of a Note-Seq performance model against a model trained on the raw unbalanced distribution.",
+    "available_data_or_benchmark": "PianoCoRe-B and PianoCoRe-A subsets.",
+    "expected_metric": "Lower cross-entropy loss and higher F1-score on a held-out 'high-fidelity' test set (e.g., ASAP/MAESTRO) when trained on balanced vs. unbalanced data.",
+    "specific_intervention": "Source-aware stratified sampling and domain-adversarial training to minimize source-specific bias in the MIDI quality classifier and rendering model.",
+    "baseline": "Model trained on the full, unbalanced PianoCoRe-B/A dataset.",
+    "metric": "Generalization Gap (Difference in performance between Aria-MIDI and non-Aria test sets)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2405.06627v1"
+    ],
+    "paper_status_evidence": [
+      "PianoCoRe: Combined and Refined Piano MIDI Dataset"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/CPJKU/asap-dataset",
+      "Verified reachable public code/data/benchmark URL: https://github.com/bytedance/GiantMIDI-Piano",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ilya16/SyMuPe",
+      "Verified reachable public code/data/benchmark URL: https://github.com/tangjjbetsy/ATEPP",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "time_budget_hours": 80,
+    "impact_type": "science",
+    "story_angle": "Bigger isn't always better in symbolic music; the dominance of a single source in PianoCoRe may bias AI pianists. We test if 'less is more' through strategic dataset balancing.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "Return-based evaluation in cooperative MARL obscures coordination failure modes under combinatorial scaling.",
+    "evidence_spans": [
+      "These metrics often fail to reveal how agents coordinate, particularly in settings where agents, tasks, and joint assignment choices scale combinatorially.",
+      "Two policies may obtain similar return while relying on different interaction patterns, and conversely, a change in return may conflate poor coordination, inefficient division of labor, under-utilization of agents, or domain-specific bottlenecks.",
+      "Methods with similar final or maximum return can differ substantially in conflict rate, conflicts per task, and assignment diversity, especially in larger task-allocation settings."
+    ],
+    "problem_evidence_spans": [
+      "aggregate reward alone may be insufficient to explain why a multi-agent system succeeds or fails.",
+      "return-based comparisons are incomplete without process-level diagnostics."
+    ],
+    "feasibility_evidence_spans": [
+      "We instantiate this perspective using STAT, a controlled commitment-constrained spatial task-allocation testbed that systematically varies agents, tasks, and environment size",
+      "We release the STAT environment together with executable training and evaluation code for all methods considered in this paper."
+    ],
+    "evidence_role": "benchmark_gap",
+    "why_hidden_or_underexploited": "Standard MARL benchmarks (StarCraft, Overcooked) focus on outcome-level metrics like return or success rate, which are aggregate and do not isolate the specific mechanics of coordination (e.g., redundancy, throughput) as the problem scales.",
+    "auto_research_experiment": "Evaluate a broader set of algorithmic families (Transformer-based MARL and Policy Gradient methods like MAPPO) on the STAT testbed across the 'Extreme' configurations. Measure if these architectures reduce the 'conflict rate' and 'conflicts per task' compared to the value-based baselines (QMIX, VDN) even when returns are statistically similar.",
+    "available_data_or_benchmark": "STAT (Spatial Task Allocation Testbed)",
+    "expected_metric": "Conflict rate and per-agent assignment diversity.",
+    "specific_intervention": "Integration and evaluation of Transformer-based MARL architectures (e.g., MAT) on the STAT benchmark.",
+    "baseline": "QMIX and VDN (Value-based CTDE methods).",
+    "metric": "Conflict Rate (total task assignment conflicts divided by total assignments).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "arXiv"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06557v1"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_sources": [
+      "Appendix",
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "Researchers are moving beyond 'high scores' in AI to look at the 'how'—developing diagnostics to see if agents are actually working together or just getting lucky through redundant effort.",
+    "disqualifiers": [],
+    "confidence": 0.95
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "Value-based MARL methods struggle with redundant assignment and sparse decision opportunities in commitment-constrained environments.",
+    "evidence_spans": [
+      "performance under scale is shaped not only by nominal action-space size, but also by assignment pressure, sparse decision opportunities, and redundant choices among interdependent agents.",
+      "Another direction is to relax STAT’s action-masking and finite-state commitment structure, allowing agents to learn when to replan, abandon commitments, or recover from inefficient choices."
+    ],
+    "problem_evidence_spans": [
+      "independent learning is most vulnerable to redundant assignment in highly interdependent settings",
+      "STAT intentionally holds observation access and task rules fixed... abstracts away low-level collision avoidance... these choices... limit the scope of the conclusions."
+    ],
+    "feasibility_evidence_spans": [
+      "STAT supports systematic scaling over agents, tasks, and environment size while making assignment conflicts, assignment diversity, and task-completion throughput directly observable."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Current MARL methods often rely on action masking to simplify the problem, but this prevents the study of how agents learn to manage commitments and replan when coordination fails.",
+    "auto_research_experiment": "Modify the STAT environment to remove hard action masking for committed agents. Implement a 're-planning' penalty and evaluate whether agents can learn to abandon suboptimal task commitments to reduce the global conflict rate.",
+    "available_data_or_benchmark": "STAT (Spatial Task Allocation Testbed)",
+    "expected_metric": "Task completion throughput and conflict recovery rate.",
+    "specific_intervention": "Removal of hard action-masking and introduction of a 're-planning' action in the STAT environment.",
+    "baseline": "Standard STAT with action-masking (as implemented in the paper).",
+    "metric": "Task Throughput (tasks completed per unit time).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "arXiv"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06557v1"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_sources": [
+      "Appendix",
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "Can AI agents learn to change their minds? Moving from rigid commitment to flexible re-planning in multi-agent coordination.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06523v1",
+    "candidate_problem": "Implicit reward overfitting in RLVR where non-rank-1 components inflate training rewards without improving reasoning generalization.",
+    "evidence_spans": [
+      "RLVR may suffer from Implicit Reward Overfitting.",
+      "a vast number of non-Rank-1 components in RLVR (e.g., GRPO [ 30 ] , DAPO [ 38 ] , GSPO [ 43 ] ) do not contribute to the improvement of reasoning capabilities.",
+      "while non-Rank-1 components significantly boost the reward on the training set, they fail to translate into generalized performance on the test set."
+    ],
+    "problem_evidence_spans": [
+      "This study observes, through Periodic Rank-1 Substitution, that while RLVR enhances training rewards, it does not necessarily yield corresponding improvements in test-set generalization, suggesting the presence of implicit reward overfitting."
+    ],
+    "feasibility_evidence_spans": [
+      "By periodically eliminating these components, we find that on a significant portion of datasets, the model’s performance on the test set remains comparable, even though its training reward is lower than that of Full RL Fine-tuning."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "Standard RL training monitors training rewards as a proxy for progress, but the paper reveals that the majority of the parameter update (non-rank-1) is essentially noise or overfitting that doesn't contribute to the core reasoning task, yet consumes capacity.",
+    "auto_research_experiment": "Implement a 'Rank-1 Constrained RL' optimizer that projects the gradient onto its top singular vector at every step (or every N steps) during GRPO training. Compare the training reward and GSM8K/Math test performance against standard GRPO and the paper's 'Periodic Rank-1 Substitution' (which is a post-hoc intervention).",
+    "available_data_or_benchmark": "GSM8K, MATH, Qwen2.5-7B-Base",
+    "expected_metric": "Test accuracy should remain stable while training reward is significantly lower and model 'knowledge' (MMLU) is better preserved.",
+    "specific_intervention": "Rank-1 Gradient Projection: During the backward pass of GRPO, compute the SVD of the gradient matrix for each linear layer and only apply the rank-1 approximation.",
+    "baseline": "Standard GRPO (Full Fine-tuning) and Periodic Rank-1 Substitution (as described in the paper).",
+    "metric": "Pass@1 accuracy on MATH/GSM8K and MMLU (for knowledge retention).",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "arXiv"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06523v1"
+    ],
+    "code_or_data_urls": [
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_sources": [
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "The 'ghost' in the machine: why most of the updates in RL reasoning models are actually just overfitting, and how we can prune them in real-time to save model knowledge.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06523v1",
+    "candidate_problem": "Loss of general capabilities (safety, world knowledge) during RLVR due to the dominance of the rank-1 reasoning component.",
+    "evidence_spans": [
+      "The effective rank-1 component in RLVR don't maintain other model knowledge except mathematical reasoning capability.",
+      "non-rank-1 components in RLVR training maintain the overall knowledge and ability of model except reasoning ability."
+    ],
+    "problem_evidence_spans": [
+      "In contrast, the Rank-1 component predominantly serves to preserve general capabilities, such as safety, knowledge retention, and instruction-following."
+    ],
+    "feasibility_evidence_spans": [
+      "we further observed the effect of non-rank-1 components and corroborated that non-rank-1 components maintain the model’s out-of-domain capability, such as world knowledge, instruction-following ability and safety"
+    ],
+    "evidence_role": "failure_mode",
+    "why_hidden_or_underexploited": "RLVR is typically evaluated on reasoning benchmarks (GSM8K), masking the 'catastrophic forgetting' of general knowledge that occurs because the reasoning-critical updates are low-rank and orthogonal to general knowledge preservation.",
+    "auto_research_experiment": "Develop a dual-stream RL objective where the rank-1 update is directed by the verifiable reward (reasoning) and the residual (non-rank-1) components are regularized via a KL-divergence or SFT loss on a general knowledge dataset (e.g., SlimPajama or MMLU) to prevent knowledge decay.",
+    "available_data_or_benchmark": "MMLU (general knowledge), GSM8K (reasoning), Qwen2.5-7B.",
+    "expected_metric": "Higher MMLU scores compared to standard GRPO while maintaining equivalent GSM8K Pass@1.",
+    "specific_intervention": "Spectral-Decoupled Regularization: Apply GRPO loss only to the rank-1 subspace of weights and a 'knowledge-preservation' SFT loss to the null space of that rank-1 update.",
+    "baseline": "Standard GRPO and LoRA (r=1).",
+    "metric": "MMLU score and GSM8K accuracy.",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "arXiv"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06523v1"
+    ],
+    "code_or_data_urls": [
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_sources": [
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "safety",
+    "story_angle": "Reasoning at the cost of wisdom: how RLVR's low-rank nature creates a trade-off between logic and knowledge, and how to fix it.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06608v1",
+    "candidate_problem": "Anytime-valid inference for adaptive covariate acquisition in sequential RCTs",
+    "evidence_spans": [
+      "Theorem 2 establishes asymptotic coverage only for the fixed-horizon estimator μ^T. The confidence intervals are valid only at the pre-specified end of the trial; sequential peeking or early stopping invalidates coverage.",
+      "extending the inverse-variance weighted estimator to utilize confidence sequence constructions would enable anytime-valid inference, a natural evolution for sequential and adaptive trial designs."
+    ],
+    "problem_evidence_spans": [
+      "Theorem 2 establishes asymptotic coverage only for the fixed-horizon estimator μ^T. The confidence intervals are valid only at the pre-specified end of the trial; sequential peeking or early stopping invalidates coverage."
+    ],
+    "feasibility_evidence_spans": [
+      "extending the inverse-variance weighted estimator to utilize confidence sequence constructions would enable anytime-valid inference"
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The current DARTS framework relies on a fixed-horizon inverse-variance weighted estimator which loses coverage guarantees if the trial is stopped early or monitored continuously. While the paper proves batch-level validity, it does not bridge the gap to martingale-based confidence sequences required for modern sequential monitoring.",
+    "auto_research_experiment": "Replace the fixed-horizon inverse-variance weighted estimator in the DARTS framework with a confidence sequence based on the Law of the Iterated Logarithm (LIL) or a mixture-of-Gaussians martingale. Test if the empirical coverage remains at 95% under continuous monitoring across 100 batches, compared to the standard DARTS estimator which should show coverage decay.",
+    "available_data_or_benchmark": "Synthetic DGPs described in the paper (sparse/dense signal regimes) and the ACIC 2017 competition datasets.",
+    "expected_metric": "Empirical coverage rate under continuous monitoring (anytime-validity).",
+    "specific_intervention": "Integrate a martingale-based confidence sequence (e.g., Howard et al. 2021) into the DARTS cumulative estimator.",
+    "baseline": "Standard DARTS with fixed-horizon inverse-variance weighted estimator.",
+    "metric": "Coverage probability at every time step t in [1, T].",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2405.06608v1"
+    ],
+    "paper_status_evidence": [
+      "Preprint available on arXiv as of May 2024."
+    ],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 80,
+    "impact_type": "science",
+    "story_angle": "Clinical trials often need to stop early for efficacy or safety, but current adaptive covariate selection methods break if you peek. We can fix this by merging Thompson sampling with martingale theory.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06608v1",
+    "candidate_problem": "Correlated covariate acquisition in budgeted sequential experiments",
+    "evidence_spans": [
+      "future work should directly address the limitations of the independent arm assumption.",
+      "integrating alternative reward functions like group LASSO, or extending the framework to combinatorial bandits with correlation structure [ 6 ] , would allow the Thompson sampler to share information across correlated arms."
+    ],
+    "problem_evidence_spans": [
+      "future work should directly address the limitations of the independent arm assumption."
+    ],
+    "feasibility_evidence_spans": [
+      "extending the framework to combinatorial bandits with correlation structure [ 6 ] , would allow the Thompson sampler to share information across correlated arms."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "DARTS treats each covariate as an independent arm in the Thompson sampler. In real-world data (e.g., genomics or sensors), covariates are highly correlated. Ignoring this correlation leads to sub-optimal budget allocation because the sampler cannot 'learn' about one feature from another.",
+    "auto_research_experiment": "Modify the DARTS acquisition layer to use a Multivariate Normal (MVN) posterior for covariate rewards instead of independent Beta-Bernoulli arms. Implement a Group LASSO reward proxy to encourage selection of correlated clusters. Compare the rate of convergence to the oracle design in a setting with high multicollinearity.",
+    "available_data_or_benchmark": "High-dimensional synthetic data with block-diagonal covariance matrices.",
+    "expected_metric": "Average Treatment Effect (ATE) variance reduction per budget unit.",
+    "specific_intervention": "Implement a Combinatorial Thompson Sampler with a Gaussian Process or MVN prior to model covariate correlations.",
+    "baseline": "Standard DARTS (independent arm Thompson Sampling).",
+    "metric": "Regret relative to the Oracle Rerandomization (which knows the true prognostic set).",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2405.06608v1"
+    ],
+    "paper_status_evidence": [
+      "Preprint available on arXiv as of May 2024."
+    ],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 60,
+    "impact_type": "science",
+    "story_angle": "When covariates are correlated, learning them one-by-one is wasteful. By modeling the relationships between features, we can find the best experimental design faster and cheaper.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "candidate_problem": "Inference-time latency of Flow-Matching kernels in multi-step autoregressive particle simulations",
+    "evidence_spans": [
+      "The observed out-of-the-box acceleration of a single kernel invocation compared to an equivalent mechanistic simulation is encouraging considering the choice of flow-matching as an architecture, which, while precise, is not optimized for inference speed.",
+      "It must be noted that given the relative cost of hardware, further inference-time optimizations at the kernel-level and an eventual outer-loop autoregressive framework will be required in order to realize these gains in production settings."
+    ],
+    "problem_evidence_spans": [
+      "the choice of flow-matching as an architecture, which, while precise, is not optimized for inference speed.",
+      "further inference-time optimizations at the kernel-level and an eventual outer-loop autoregressive framework will be required"
+    ],
+    "feasibility_evidence_spans": [
+      "strategies analogous to language models, such as KV caching [ 34 ] should be explored.",
+      "We additionally release a novel 20M-event radiation-matter interaction dataset for further research."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The paper focuses on the physics validity and zero-shot compositionality of the Markov kernel rather than the engineering of inference speed. While single-kernel speedup is noted, the cumulative latency of multi-step ODE integration within a transformer-based rollout is a known bottleneck in generative physics surrogates.",
+    "auto_research_experiment": "Implement a KV-caching mechanism for the BRICKS transformer architecture and replace the standard ODE solver in the Flow Matching integration with a consistency-distilled model or a few-step solver (e.g., DPM-Solver++) to reduce the number of function evaluations per kernel step.",
+    "available_data_or_benchmark": "CaloBricks 20M-event dataset",
+    "expected_metric": "Reduction in wall-clock time per 10-step rollout while maintaining a Wasserstein distance < 0.05 on the energy deposition distribution.",
+    "specific_intervention": "Integration of KV-caching and Consistency Distillation into the BRICKS Flow Matching kernel.",
+    "baseline": "Standard BRICKS Flow Matching kernel with RK4 integration and no caching.",
+    "metric": "Inference Latency (ms/event) vs. Physics Accuracy (Wasserstein distance)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "arXiv"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06591v1"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_sources": [
+      "paper text",
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/lucidrains/x-transformers"
+    ],
+    "time_budget_hours": 72,
+    "impact_type": "science",
+    "story_angle": "To replace the massive CPU budgets of the LHC with neural surrogates, we must move beyond 'single-step' speedups and solve the cumulative latency of autoregressive physics rollouts.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "candidate_problem": "Extension of 1D Markov Kernels to Full 3D Autoregressive Particle Rollouts",
+    "evidence_spans": [
+      "The present work showcases that the overall simulation model is sound but does not yet constitute a full production-grade drop-in replacement for mechanistic simulators. For this a full 3D autoregressive iteration must be developed"
+    ],
+    "problem_evidence_spans": [
+      "does not yet constitute a full production-grade drop-in replacement for mechanistic simulators. For this a full 3D autoregressive iteration must be developed"
+    ],
+    "feasibility_evidence_spans": [
+      "our model achieves a sufficiently high precision such that catastrophic error accumulation over multi-step rollouts could be avoided.",
+      "We evaluate the model at the kernel level and demonstrate predictive stability over multi-round autoregressive rollouts."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The current BRICKS implementation demonstrates the kernel's stability in 1D/simplified rollouts, but the transition to 3D requires handling complex geometry intersections and coordinate transformations that are mentioned as necessary for 'production-grade' use but not implemented.",
+    "auto_research_experiment": "Develop a 3D geometry-aware wrapper for the BRICKS kernel that uses a ray-tracing library (like VecGeom or OptiX) to determine the next material volume boundary, feeding the 3D incident vector into the Riemannian Flow Matching kernel.",
+    "available_data_or_benchmark": "CaloBricks dataset and Geant4 (as the mechanistic ground truth for 3D validation).",
+    "expected_metric": "Zero-shot generalization accuracy on a 3D multi-layer calorimeter geometry measured by the Chi-squared difference in longitudinal and lateral shower profiles.",
+    "specific_intervention": "3D spatial coordinate transformation and boundary-crossing logic integrated with the Markov kernel.",
+    "baseline": "1D sequential rollout (current BRICKS state).",
+    "metric": "3D Shower Profile Accuracy (Longitudinal/Lateral)",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [
+      "arXiv"
+    ],
+    "paper_status_evidence": [
+      "ID: 2605.06591v1"
+    ],
+    "code_or_data_urls": [
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_sources": [
+      "paper text",
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/lucidrains/x-transformers"
+    ],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "The 'Lego-brick' approach to physics simulation works in theory; now we must prove it can reconstruct the complex 3D reality of a particle detector.",
+    "disqualifiers": [],
+    "confidence": 0.85
+  },
+  {
+    "paper_id": "2605.06660v1",
+    "candidate_problem": "Vulnerability of Soft-Verifier VHG to Reward Hacking in General Mathematical Reasoning",
+    "evidence_spans": [
+      "The general math setting is broader, but its LLM-as-a-judge verifier is softer and can still accept subtle errors, underspecified problems, or reward-hacking artifacts.",
+      "automated hard-problem generation can accelerate benchmark overfitting or create misleading stress tests if verifier assumptions are not documented."
+    ],
+    "problem_evidence_spans": [
+      "The general math setting is broader, but its LLM-as-a-judge verifier is softer and can still accept subtle errors, underspecified problems, or reward-hacking artifacts."
+    ],
+    "feasibility_evidence_spans": [
+      "General math shows that the same ordering remains useful with noisier LLM-as-a-judge validation.",
+      "Experimental results show that VHG substantially outperforms all baseline methods by a clear margin."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "While the paper proves VHG works better than vanilla self-play, it admits the 'soft' LLM-based verifier used for general math is still susceptible to 'subtle errors' and 'reward-hacking artifacts' that symbolic verifiers avoid. This creates a gap where the setter might learn to deceive the LLM-judge rather than generating truly difficult math.",
+    "auto_research_experiment": "Perform a 'red-teaming' of the VHG soft-verifier by training a setter model specifically to maximize the soft-verifier's acceptance rate while minimizing a secondary, more powerful 'Oracle' verifier (e.g., GPT-4o or a formal proof checker like Lean). Quantify the 'Hacking Gap' as the difference between soft-verifier acceptance and Oracle validity.",
+    "available_data_or_benchmark": "MATH, AMC, and AIME datasets mentioned in the paper.",
+    "expected_metric": "A significant divergence (Hacking Gap > 15%) between the soft-verifier's reward and the Oracle's validity score as training iterations increase.",
+    "specific_intervention": "Introduce a 'Consensus-of-Verifiers' or 'Multi-Step Verification' where the setter must pass three independent soft-verifiers with different prompts to receive a reward.",
+    "baseline": "The standard VHG soft-verifier pipeline using a single LLM-as-a-judge (Qwen3-4B).",
+    "metric": "Validity-Difficulty Pareto Frontier (the ratio of problems verified as valid by an external Oracle vs. their difficulty score).",
+    "paper_status": "active",
+    "code_or_data_status": "claimed",
+    "paper_status_sources": [
+      "https://arxiv.org/abs/2605.06660v1"
+    ],
+    "paper_status_evidence": [
+      "The paper is listed as a fresh arXiv submission (2605.06660v1)."
+    ],
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": [],
+    "time_budget_hours": 120,
+    "impact_type": "science",
+    "story_angle": "As we move from symbolic math to general reasoning, our 'judges' become fallible. This research investigates if we are truly generating harder math or just finding new ways to trick the AI teacher.",
+    "disqualifiers": [],
+    "confidence": 0.9
+  }
+]
