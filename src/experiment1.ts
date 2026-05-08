@@ -34,6 +34,9 @@ export type EvidenceRole =
   | "positive_result_only";
 export type PaperStatus = "active" | "withdrawn" | "unknown";
 export type CodeOrDataStatus = "found" | "claimed" | "not_found" | "unknown";
+export type PublicExperimentConfig = Omit<ExperimentConfig, "gemini_api_key"> & {
+  gemini_api_key_set: boolean;
+};
 
 export interface ScoreBreakdown {
   auto_research_feasibility: number;
@@ -61,6 +64,11 @@ export interface CandidateProblem {
   metric: string;
   paper_status: PaperStatus;
   code_or_data_status: CodeOrDataStatus;
+  paper_status_sources: string[];
+  paper_status_evidence: string[];
+  code_or_data_urls: string[];
+  code_or_data_sources: string[];
+  code_or_data_evidence: string[];
   time_budget_hours: number;
   impact_type: ImpactType;
   story_angle: string;
@@ -90,6 +98,11 @@ export interface RawCandidate {
   metric: string;
   paper_status: PaperStatus;
   code_or_data_status: CodeOrDataStatus;
+  paper_status_sources: string[];
+  paper_status_evidence: string[];
+  code_or_data_urls: string[];
+  code_or_data_sources: string[];
+  code_or_data_evidence: string[];
   time_budget_hours: number;
   impact_type: ImpactType;
   story_angle: string;
@@ -133,6 +146,7 @@ export interface PaperText {
   source: "html" | "abstract";
   sections: PaperSections;
   full_text: string;
+  external_urls?: string[];
 }
 
 export interface ExperimentConfig {
@@ -180,7 +194,15 @@ interface V2Verification {
 interface RunSummary {
   started_at: string;
   finished_at: string;
-  config: ExperimentConfig;
+  config: PublicExperimentConfig;
+  llm: {
+    provider: "google-gemini";
+    mode: RunMode;
+    llm_invoked: boolean;
+    broad_model: string;
+    verifier_model: string;
+    prompt_audit_path: string;
+  };
   papers_fetched: number;
   papers_in_window: number;
   abstract_shortlist_size: number;
@@ -208,6 +230,17 @@ interface RunSummary {
   usage: TokenUsage;
   estimated_cost_usd: number;
   estimated_cost_per_paper_usd: number;
+}
+
+interface PaperVerification {
+  paper_id: string;
+  paper_status: PaperStatus;
+  paper_status_sources: string[];
+  paper_status_evidence: string[];
+  code_or_data_status: CodeOrDataStatus;
+  code_or_data_urls: string[];
+  code_or_data_sources: string[];
+  code_or_data_evidence: string[];
 }
 
 const POSITIVE_SIGNAL_TERMS = [
@@ -290,6 +323,34 @@ const UNSANDBOXED_RISK_PATTERNS = [
 ];
 
 const REQUEST_TIMEOUT_MS = 45_000;
+const RESOURCE_VERIFY_TIMEOUT_MS = 12_000;
+
+const RESOURCE_HOST_PATTERNS = [
+  /(^|\.)github\.com$/i,
+  /(^|\.)gitlab\.com$/i,
+  /(^|\.)bitbucket\.org$/i,
+  /(^|\.)huggingface\.co$/i,
+  /(^|\.)paperswithcode\.com$/i,
+  /(^|\.)zenodo\.org$/i,
+  /(^|\.)figshare\.com$/i,
+  /(^|\.)kaggle\.com$/i,
+  /(^|\.)osf\.io$/i,
+  /(^|\.)dataverse\.harvard\.edu$/i,
+  /(^|\.)openml\.org$/i,
+  /(^|\.)archive\.ics\.uci\.edu$/i,
+  /(^|\.)cs\.toronto\.edu$/i,
+  /(^|\.)image-net\.org$/i,
+];
+
+const IGNORED_RESOURCE_URL_PATTERNS = [
+  /github\.com\/arxiv\/html_feedback/i,
+  /github\.com\/brucemiller\/latexml/i,
+  /github\.com\/dginev\/latexml/i,
+  /github\.com\/arxiv-vanity/i,
+];
+
+const RAW_CANDIDATE_JSON_SCHEMA =
+  "{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"paper_status_sources\":string[],\"paper_status_evidence\":string[],\"code_or_data_urls\":string[],\"code_or_data_sources\":string[],\"code_or_data_evidence\":string[],\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}";
 
 function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
@@ -348,39 +409,52 @@ function toNonNegativeFloat(input: string | undefined, fallback: number, name: s
 
 function parseImpactType(input: string): ImpactType {
   const normalized = normalizeWhitespace(input.toLowerCase());
-  const match = IMPACT_TYPES.find((impact) => impact === normalized);
-  return match ?? "science";
+  if ((IMPACT_TYPES as readonly string[]).includes(normalized)) {
+    return normalized as ImpactType;
+  }
+  return "science";
 }
 
 function parseEvidenceRole(input: string): EvidenceRole {
   const normalized = normalizeWhitespace(input.toLowerCase()).replace(/[\s-]+/g, "_");
-  if (
-    normalized === "limitation" ||
-    normalized === "future_work" ||
-    normalized === "failure_mode" ||
-    normalized === "negative_result" ||
-    normalized === "benchmark_gap" ||
-    normalized === "positive_result_only"
-  ) {
-    return normalized;
+  const roles = new Set<string>([
+    "limitation",
+    "future_work",
+    "failure_mode",
+    "negative_result",
+    "benchmark_gap",
+    "positive_result_only",
+  ]);
+  if (roles.has(normalized)) {
+    return normalized as EvidenceRole;
   }
   return "positive_result_only";
 }
 
 function parsePaperStatus(input: string): PaperStatus {
   const normalized = normalizeWhitespace(input.toLowerCase());
-  if (normalized === "active" || normalized === "withdrawn" || normalized === "unknown") {
-    return normalized;
+  if (new Set<string>(["active", "withdrawn", "unknown"]).has(normalized)) {
+    return normalized as PaperStatus;
   }
   return "unknown";
 }
 
 function parseCodeOrDataStatus(input: string): CodeOrDataStatus {
   const normalized = normalizeWhitespace(input.toLowerCase()).replace(/[\s-]+/g, "_");
-  if (normalized === "found" || normalized === "claimed" || normalized === "not_found" || normalized === "unknown") {
-    return normalized;
+  if (new Set<string>(["found", "claimed", "not_found", "unknown"]).has(normalized)) {
+    return normalized as CodeOrDataStatus;
   }
   return "unknown";
+}
+
+function parseStringArray(input: unknown, max: number): string[] {
+  if (!Array.isArray(input)) {
+    return [];
+  }
+  return input
+    .map((item) => normalizeWhitespace(String(item)))
+    .filter(Boolean)
+    .slice(0, max);
 }
 
 function safeSubstring(input: string, maxLength: number): string {
@@ -409,6 +483,96 @@ function splitSentences(text: string): string[] {
     .split(/(?<=[.!?])\s+/)
     .map((sentence) => sentence.replaceAll("<DOT>", ".").trim())
     .filter((sentence) => sentence.length > 30);
+}
+
+function normalizeUrl(rawUrl: string): string | null {
+  const trimmed = rawUrl
+    .trim()
+    .replace(/[),.;:\]]+$/g, "")
+    .replace(/^["'(<[]+/, "");
+
+  try {
+    const url = new URL(trimmed);
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return null;
+    }
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
+function resourceHostAllowed(url: string): boolean {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase();
+    return (
+      RESOURCE_HOST_PATTERNS.some((pattern) => pattern.test(hostname)) &&
+      !IGNORED_RESOURCE_URL_PATTERNS.some((pattern) => pattern.test(url))
+    );
+  } catch {
+    return false;
+  }
+}
+
+function canonicalResourceUrl(url: string): string {
+  const parsed = new URL(url);
+  if (parsed.hostname.toLowerCase() === "github.com") {
+    const segments = parsed.pathname.split("/").filter(Boolean);
+    if (segments.length >= 2) {
+      parsed.pathname = `/${segments[0]}/${segments[1]}`;
+      parsed.search = "";
+    }
+  }
+  return parsed.toString();
+}
+
+export function extractConcreteResourceUrls(text: string): string[] {
+  const urls = new Set<string>();
+  for (const match of text.matchAll(/https?:\/\/[^\s<>"'`]+/g)) {
+    const normalized = normalizeUrl(match[0]);
+    if (normalized && resourceHostAllowed(normalized)) {
+      urls.add(canonicalResourceUrl(normalized));
+    }
+  }
+  return Array.from(urls).sort();
+}
+
+function knownBenchmarkResourceUrls(text: string): string[] {
+  const lower = text.toLowerCase();
+  const urls = new Set<string>();
+
+  if (/\bdomainbed\b/.test(lower)) {
+    urls.add("https://github.com/facebookresearch/DomainBed");
+  }
+  if (/\bimagenet\b|\bimage net\b/.test(lower)) {
+    urls.add("https://www.image-net.org/");
+  }
+  if (/\bcifar(?:-?10|-?100)?\b/.test(lower)) {
+    urls.add("https://www.cs.toronto.edu/~kriz/cifar.html");
+  }
+  if (/\bmnist\b/.test(lower)) {
+    urls.add("https://yann.lecun.com/exdb/mnist/");
+  }
+  if (/\bopenml\b/.test(lower)) {
+    urls.add("https://www.openml.org/");
+  }
+  if (/\buci\b|\buci machine learning repository\b/.test(lower)) {
+    urls.add("https://archive.ics.uci.edu/");
+  }
+
+  return Array.from(urls).sort();
+}
+
+function extractLinksFromHtml(html: string): string[] {
+  const urls = new Set<string>();
+  for (const match of html.matchAll(/\bhref=["']([^"']+)["']/gi)) {
+    const normalized = normalizeUrl(match[1]);
+    if (normalized) {
+      urls.add(normalized);
+    }
+  }
+  return Array.from(urls).sort();
 }
 
 function extractTagContent(block: string, tag: string): string {
@@ -554,7 +718,7 @@ function classifyHeading(heading: string): keyof Omit<PaperSections, "raw_text">
   if (!normalized) {
     return null;
   }
-  if (normalized.includes("introduction") || normalized === "background") {
+  if (normalized.includes("introduction") || normalized.startsWith("background")) {
     return "introduction";
   }
   if (
@@ -814,6 +978,9 @@ function inferBenchmarkHint(paper: ArxivPaper, text: string): string {
 
 function inferCodeOrDataStatus(text: string): CodeOrDataStatus {
   const lower = text.toLowerCase();
+  if (extractConcreteResourceUrls(text).length > 0 || knownBenchmarkResourceUrls(text).length > 0) {
+    return "found";
+  }
   if (/https?:\/\/(www\.)?github\.com|github\.com|code is available|source code (?:is )?available|repository at/.test(lower)) {
     return "found";
   }
@@ -916,6 +1083,10 @@ function heuristicCandidatesFromPaper(
     `${paper.comments} ${paper.abstract} ${paperText.full_text}`,
     config.max_evidence_spans,
   );
+  const sourceText = `${paper.comments} ${paper.abstract} ${paperText.full_text} ${(paperText.external_urls ?? []).join(" ")}`;
+  const concreteResourceUrls = Array.from(
+    new Set([...extractConcreteResourceUrls(sourceText), ...knownBenchmarkResourceUrls(sourceText)]),
+  );
 
   if (problemEvidence.length === 0) {
     return [];
@@ -945,7 +1116,12 @@ function heuristicCandidatesFromPaper(
       baseline: inferBaseline(paper),
       metric: inferMetricName(metric),
       paper_status: inferPaperStatus(paper, paperText),
-      code_or_data_status: inferCodeOrDataStatus(`${paper.comments} ${paper.abstract} ${paperText.full_text}`),
+      code_or_data_status: inferCodeOrDataStatus(sourceText),
+      paper_status_sources: [],
+      paper_status_evidence: [],
+      code_or_data_urls: concreteResourceUrls,
+      code_or_data_sources: concreteResourceUrls,
+      code_or_data_evidence: concreteResourceUrls.map((url) => `Concrete public resource URL found in source text: ${url}`),
       time_budget_hours: 48,
       impact_type: impactType,
       story_angle:
@@ -989,6 +1165,13 @@ function normalizeRawCandidate(candidate: Partial<RawCandidate>, paperId: string
     metric: normalizeWhitespace(candidate.metric ?? ""),
     paper_status: parsePaperStatus(String(candidate.paper_status ?? "unknown")),
     code_or_data_status: parseCodeOrDataStatus(String(candidate.code_or_data_status ?? "unknown")),
+    paper_status_sources: parseStringArray(candidate.paper_status_sources, 12),
+    paper_status_evidence: parseStringArray(candidate.paper_status_evidence, 12),
+    code_or_data_urls: parseStringArray(candidate.code_or_data_urls, 20)
+      .map((url) => normalizeUrl(url))
+      .filter((url): url is string => Boolean(url)),
+    code_or_data_sources: parseStringArray(candidate.code_or_data_sources, 20),
+    code_or_data_evidence: parseStringArray(candidate.code_or_data_evidence, 20),
     time_budget_hours: clamp(Math.round(Number(candidate.time_budget_hours ?? 72)), 1, 240),
     impact_type: parseImpactType(String(candidate.impact_type ?? "science")),
     story_angle: normalizeWhitespace(candidate.story_angle ?? ""),
@@ -1076,17 +1259,25 @@ class GeminiJsonClient {
   }
 }
 
-function llmV1Prompt(paper: ArxivPaper, paperText: PaperText, config: ExperimentConfig): string {
-  const context = safeSubstring(paperText.full_text, 24_000);
+function llmV1InstructionLines(config: ExperimentConfig): string[] {
   return [
     "You are extracting computationally testable latent research problems from a fresh arXiv paper.",
     "Return strict JSON only with this schema:",
-    "{\"candidates\":[{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}]}",
+    `{"candidates":[${RAW_CANDIDATE_JSON_SCHEMA}]}`,
     `Return at most ${config.candidate_per_paper} candidates.`,
     "Reject vague ideas. Each candidate must include author-supported problem evidence and separate feasibility evidence.",
     "Problem evidence must come from limitations, future work, error analysis, failure modes, benchmark gaps, or negative results. Do not use a positive result as problem evidence.",
     "Each candidate must name a specific intervention, baseline, and metric. Generic plans like 'reproduce and add an ablation' are invalid.",
+    "If you cite code/data availability, include concrete URLs in code_or_data_urls. If no concrete URL is visible, set code_or_data_status to claimed or unknown, not found.",
+    "If venue metadata says withdrawn, set paper_status to withdrawn and include the status source/evidence.",
     "Hard disqualify if wet-lab/private-data/unbounded compute is required.",
+  ];
+}
+
+function llmV1Prompt(paper: ArxivPaper, paperText: PaperText, config: ExperimentConfig): string {
+  const context = safeSubstring(paperText.full_text, 24_000);
+  return [
+    ...llmV1InstructionLines(config),
     "Paper metadata:",
     `ID: ${paper.id}`,
     `Title: ${paper.title}`,
@@ -1096,15 +1287,21 @@ function llmV1Prompt(paper: ArxivPaper, paperText: PaperText, config: Experiment
   ].join("\n\n");
 }
 
-function llmV2Prompt(candidate: RawCandidate, paper: ArxivPaper, paperText: PaperText): string {
-  const context = safeSubstring(paperText.full_text, 18_000);
+function llmV2InstructionLines(): string[] {
   return [
     "You are a strict verifier for research-candidate quality.",
     "Return strict JSON only with this schema:",
-    "{\"accepted\":boolean,\"rejection_reasons\":string[],\"score_breakdown\":{\"auto_research_feasibility\":number,\"falsifiable_evaluation\":number,\"problem_clarity\":number,\"novelty_or_neglectedness\":number,\"impact\":number,\"storyability\":number,\"total\":number},\"candidate_patch\":{\"candidate_problem\":string,\"evidence_spans\":string[],\"problem_evidence_spans\":string[],\"feasibility_evidence_spans\":string[],\"evidence_role\":\"limitation\"|\"future_work\"|\"failure_mode\"|\"negative_result\"|\"benchmark_gap\"|\"positive_result_only\",\"why_hidden_or_underexploited\":string,\"auto_research_experiment\":string,\"available_data_or_benchmark\":string,\"expected_metric\":string,\"specific_intervention\":string,\"baseline\":string,\"metric\":string,\"paper_status\":\"active\"|\"withdrawn\"|\"unknown\",\"code_or_data_status\":\"found\"|\"claimed\"|\"not_found\"|\"unknown\",\"time_budget_hours\":number,\"impact_type\":\"economic\"|\"climate/environment\"|\"health\"|\"safety\"|\"science\"|\"developer productivity\",\"story_angle\":string,\"disqualifiers\":string[],\"confidence\":number}}",
+    `{"accepted":boolean,"rejection_reasons":string[],"score_breakdown":{"auto_research_feasibility":number,"falsifiable_evaluation":number,"problem_clarity":number,"novelty_or_neglectedness":number,"impact":number,"storyability":number,"total":number},"candidate_patch":${RAW_CANDIDATE_JSON_SCHEMA}}`,
     "Scoring rubric weights: feasibility 25, falsifiable 20, clarity 15, novelty 15, impact 15, storyability 10.",
-    "Reject if: no source-backed problem evidence; evidence is positive-result-only; no feasibility evidence; no specific intervention/baseline/metric; wet-lab/private data/unavailable compute; pure survey path; unsandboxed legal/safety risk.",
-    "Downgrade withdrawn papers and candidates with only unknown code/data status.",
+    "Reject if: no source-backed problem evidence; evidence is positive-result-only; no feasibility evidence; no specific intervention/baseline/metric; no verified concrete public code/data/benchmark URL; wet-lab/private data/unavailable compute; pure survey path; unsandboxed legal/safety risk.",
+    "Reject withdrawn papers. Do not promote code_or_data_status=found unless a concrete verified URL is present in code_or_data_urls.",
+  ];
+}
+
+function llmV2Prompt(candidate: RawCandidate, paper: ArxivPaper, paperText: PaperText): string {
+  const context = safeSubstring(paperText.full_text, 18_000);
+  return [
+    ...llmV2InstructionLines(),
     "Paper metadata:",
     `ID: ${paper.id}`,
     `Title: ${paper.title}`,
@@ -1124,6 +1321,8 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
     candidate.baseline,
     candidate.metric,
     candidate.feasibility_evidence_spans.join(" "),
+    candidate.code_or_data_urls.join(" "),
+    candidate.code_or_data_evidence.join(" "),
   ]
     .join(" ")
     .toLowerCase();
@@ -1136,10 +1335,10 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   } else {
     feasibility += 1;
   }
-  if (candidate.code_or_data_status === "found") {
+  if (candidate.code_or_data_status === "found" && candidate.code_or_data_urls.length > 0) {
     feasibility += 10;
   } else if (candidate.code_or_data_status === "claimed") {
-    feasibility += 8;
+    feasibility += 4;
   } else if (candidate.code_or_data_status === "unknown") {
     feasibility += 2;
   }
@@ -1218,8 +1417,14 @@ function scoreCandidate(candidate: RawCandidate): ScoreBreakdown {
   if (candidate.code_or_data_status === "unknown") {
     total = Math.min(total, 72);
   }
+  if (candidate.code_or_data_status === "claimed") {
+    total = Math.min(total, 74);
+  }
   if (candidate.code_or_data_status === "not_found") {
     total = Math.min(total, 62);
+  }
+  if (candidate.code_or_data_status === "found" && candidate.code_or_data_urls.length === 0) {
+    total = Math.min(total, 70);
   }
   if (candidate.paper_status === "withdrawn") {
     total = Math.min(total, 74);
@@ -1301,6 +1506,8 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
     candidate.auto_research_experiment,
     candidate.available_data_or_benchmark,
     candidate.expected_metric,
+    candidate.code_or_data_evidence.join(" "),
+    candidate.paper_status_evidence.join(" "),
     candidate.disqualifiers.join(" "),
   ]
     .join(" ")
@@ -1334,8 +1541,16 @@ export function applyHardRejectionGates(candidate: RawCandidate, paperText: Pape
     reasons.push("No separate feasibility evidence span for public data, code, benchmark, or metric.");
   }
 
+  if (candidate.paper_status === "withdrawn") {
+    reasons.push("Paper is withdrawn according to arXiv or external venue metadata.");
+  }
+
   if (candidate.code_or_data_status === "not_found" || candidate.code_or_data_status === "unknown") {
     reasons.push("No public code, data, benchmark, or metric evidence found.");
+  }
+
+  if (candidate.code_or_data_status !== "found" || candidate.code_or_data_urls.length === 0) {
+    reasons.push("No verified concrete public code, data, or benchmark URL found.");
   }
 
   if (evidencePrecisionForCandidate(candidate, paperText) === 0) {
@@ -1513,6 +1728,7 @@ async function fetchPaperText(paper: ArxivPaper): Promise<PaperText> {
           source: "html",
           sections,
           full_text: fullText,
+          external_urls: extractLinksFromHtml(html),
         };
       }
     } catch {
@@ -1528,6 +1744,238 @@ async function fetchPaperText(paper: ArxivPaper): Promise<PaperText> {
     source: "abstract",
     sections: fallbackSections,
     full_text: buildFullText(paper, fallbackSections),
+    external_urls: [],
+  };
+}
+
+function titleTerms(title: string): Set<string> {
+  return new Set(
+    title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .split(" ")
+      .filter((term) => term.length >= 3 && !["the", "and", "for", "with", "from"].includes(term)),
+  );
+}
+
+function titleSimilarity(a: string, b: string): number {
+  const left = titleTerms(a);
+  const right = titleTerms(b);
+  if (left.size === 0 || right.size === 0) {
+    return 0;
+  }
+  let intersection = 0;
+  for (const term of left) {
+    if (right.has(term)) {
+      intersection += 1;
+    }
+  }
+  return intersection / Math.max(left.size, right.size);
+}
+
+function contentValue(content: unknown, key: string): string {
+  if (!content || typeof content !== "object") {
+    return "";
+  }
+  const value = (content as Record<string, unknown>)[key];
+  if (typeof value === "string") {
+    return value;
+  }
+  if (value && typeof value === "object" && "value" in value) {
+    return normalizeWhitespace(String((value as { value: unknown }).value ?? ""));
+  }
+  return "";
+}
+
+async function resolveOpenReviewStatus(paper: ArxivPaper): Promise<Pick<PaperVerification, "paper_status" | "paper_status_sources" | "paper_status_evidence">> {
+  const searchUrl = `https://api2.openreview.net/notes/search?term=${encodeURIComponent(paper.title)}&limit=5`;
+  try {
+    const response = await fetch(searchUrl, {
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      headers: { "User-Agent": "problem-scanner/0.1 (+https://openreview.net)" },
+    });
+    if (!response.ok) {
+      return { paper_status: "unknown", paper_status_sources: [], paper_status_evidence: [] };
+    }
+
+    const body = (await response.json()) as { notes?: unknown[] };
+    let best:
+      | {
+          status: PaperStatus;
+          source: string;
+          evidence: string;
+          score: number;
+        }
+      | null = null;
+
+    for (const note of body.notes ?? []) {
+      if (!note || typeof note !== "object") {
+        continue;
+      }
+      const record = note as Record<string, unknown>;
+      const content = record.content;
+      const noteTitle = contentValue(content, "title");
+      const score = titleSimilarity(paper.title, noteTitle);
+      if (score < 0.82) {
+        continue;
+      }
+
+      const venue = contentValue(content, "venue");
+      const venueId = contentValue(content, "venueid");
+      const evidence = normalizeWhitespace([noteTitle, venue, venueId].filter(Boolean).join(" | "));
+      const status: PaperStatus = /\bwithdrawn\b/i.test(evidence) ? "withdrawn" : "active";
+      const forum = String(record.forum ?? record.id ?? "");
+      const source = forum ? `https://openreview.net/forum?id=${forum}` : searchUrl;
+
+      if (!best || score > best.score || status === "withdrawn") {
+        best = { status, source, evidence, score };
+      }
+    }
+
+    if (!best) {
+      return { paper_status: "unknown", paper_status_sources: [], paper_status_evidence: [] };
+    }
+
+    return {
+      paper_status: best.status,
+      paper_status_sources: [best.source],
+      paper_status_evidence: [best.evidence],
+    };
+  } catch {
+    return { paper_status: "unknown", paper_status_sources: [], paper_status_evidence: [] };
+  }
+}
+
+async function verifyResourceUrl(url: string): Promise<boolean> {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname.toLowerCase() === "github.com") {
+      const segments = parsed.pathname.split("/").filter(Boolean);
+      if (segments.length >= 2) {
+        const apiUrl = `https://api.github.com/repos/${segments[0]}/${segments[1]}`;
+        const response = await fetch(apiUrl, {
+          signal: AbortSignal.timeout(RESOURCE_VERIFY_TIMEOUT_MS),
+          headers: {
+            "User-Agent": "problem-scanner/0.1",
+            Accept: "application/vnd.github+json",
+          },
+        });
+        if (response.ok) {
+          return true;
+        }
+      }
+    }
+
+    const response = await fetch(url, {
+      method: "HEAD",
+      signal: AbortSignal.timeout(RESOURCE_VERIFY_TIMEOUT_MS),
+      headers: { "User-Agent": "problem-scanner/0.1" },
+    });
+    if (response.ok || response.status === 405) {
+      return true;
+    }
+
+    const getResponse = await fetch(url, {
+      method: "GET",
+      signal: AbortSignal.timeout(RESOURCE_VERIFY_TIMEOUT_MS),
+      headers: {
+        "User-Agent": "problem-scanner/0.1",
+        Range: "bytes=0-1024",
+      },
+    });
+    return getResponse.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function verifyPaperResources(paper: ArxivPaper, paperText: PaperText): Promise<Pick<PaperVerification, "code_or_data_status" | "code_or_data_urls" | "code_or_data_sources" | "code_or_data_evidence">> {
+  const sourceText = [
+    paper.comments,
+    paper.abstract,
+    paperText.full_text,
+    ...(paperText.external_urls ?? []),
+  ].join(" ");
+
+  const candidateUrls = Array.from(
+    new Set([...extractConcreteResourceUrls(sourceText), ...knownBenchmarkResourceUrls(sourceText)]),
+  ).slice(0, 12);
+
+  const verifiedUrls: string[] = [];
+  for (const url of candidateUrls) {
+    if (await verifyResourceUrl(url)) {
+      verifiedUrls.push(url);
+    }
+  }
+
+  if (verifiedUrls.length > 0) {
+    return {
+      code_or_data_status: "found",
+      code_or_data_urls: verifiedUrls,
+      code_or_data_sources: verifiedUrls,
+      code_or_data_evidence: verifiedUrls.map((url) => `Verified reachable public code/data/benchmark URL: ${url}`),
+    };
+  }
+
+  const inferred = inferCodeOrDataStatus(sourceText);
+  return {
+    code_or_data_status: inferred === "found" ? "claimed" : inferred,
+    code_or_data_urls: candidateUrls,
+    code_or_data_sources: candidateUrls,
+    code_or_data_evidence:
+      candidateUrls.length > 0
+        ? candidateUrls.map((url) => `Concrete URL found but not verified reachable during smoke run: ${url}`)
+        : [],
+  };
+}
+
+async function verifyPaper(paper: ArxivPaper, paperText: PaperText): Promise<PaperVerification> {
+  const localStatus = inferPaperStatus(paper, paperText);
+  const openReviewStatus = await resolveOpenReviewStatus(paper);
+  const resources = await verifyPaperResources(paper, paperText);
+
+  const paperStatus: PaperStatus =
+    localStatus === "withdrawn" || openReviewStatus.paper_status === "withdrawn"
+      ? "withdrawn"
+      : openReviewStatus.paper_status === "active"
+        ? "active"
+        : localStatus;
+
+  const localStatusEvidence =
+    localStatus === "withdrawn" ? ["arXiv text or metadata contains a withdrawal notice."] : [];
+
+  return {
+    paper_id: paper.id,
+    paper_status: paperStatus,
+    paper_status_sources: [
+      ...(localStatusEvidence.length > 0 ? [paper.abs_url] : []),
+      ...openReviewStatus.paper_status_sources,
+    ],
+    paper_status_evidence: [...localStatusEvidence, ...openReviewStatus.paper_status_evidence],
+    ...resources,
+  };
+}
+
+function enrichCandidateWithVerification(candidate: RawCandidate, verification: PaperVerification | undefined): RawCandidate {
+  if (!verification) {
+    return candidate;
+  }
+
+  return {
+    ...candidate,
+    paper_status: verification.paper_status,
+    code_or_data_status: verification.code_or_data_status,
+    paper_status_sources: Array.from(new Set([...candidate.paper_status_sources, ...verification.paper_status_sources])),
+    paper_status_evidence: Array.from(new Set([...candidate.paper_status_evidence, ...verification.paper_status_evidence])),
+    code_or_data_urls:
+      verification.code_or_data_urls.length > 0
+        ? verification.code_or_data_urls
+        : Array.from(new Set([...candidate.code_or_data_urls, ...verification.code_or_data_urls])),
+    code_or_data_sources: Array.from(new Set([...candidate.code_or_data_sources, ...verification.code_or_data_sources])),
+    code_or_data_evidence:
+      verification.code_or_data_evidence.length > 0
+        ? verification.code_or_data_evidence
+        : Array.from(new Set([...candidate.code_or_data_evidence, ...verification.code_or_data_evidence])),
   };
 }
 
@@ -1569,6 +2017,68 @@ function writeJson(path: string, value: unknown): void {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+function publicConfig(config: ExperimentConfig): PublicExperimentConfig {
+  const { gemini_api_key: geminiApiKey, ...rest } = config;
+  return {
+    ...rest,
+    gemini_api_key_set: Boolean(geminiApiKey),
+  };
+}
+
+function promptAuditMarkdown(config: ExperimentConfig, llmInvoked: boolean): string {
+  const v1Template = [
+    ...llmV1InstructionLines(config),
+    "Paper metadata:",
+    "ID: <paper.id>",
+    "Title: <paper.title>",
+    "Subjects: <paper.subjects>",
+    "Paper text:",
+    "<paperText.full_text truncated to 24000 characters>",
+  ].join("\n\n");
+
+  const v2Template = [
+    ...llmV2InstructionLines(),
+    "Paper metadata:",
+    "ID: <paper.id>",
+    "Title: <paper.title>",
+    "Candidate:",
+    "<candidate JSON after deterministic verification enrichment>",
+    "Paper text:",
+    "<paperText.full_text truncated to 18000 characters>",
+  ].join("\n\n");
+
+  return [
+    "# Prompt And Model Audit",
+    "",
+    `Generated: ${new Date().toISOString()}`,
+    "",
+    "## Model Configuration",
+    "",
+    `- Run mode: \`${config.mode}\``,
+    `- LLM invoked: ${llmInvoked ? "yes" : "no"}`,
+    "- Provider: Google Gemini API",
+    `- Broad scan model: \`${config.broad_model}\``,
+    `- Verifier model: \`${config.verifier_model}\``,
+    "- Endpoint pattern: `https://generativelanguage.googleapis.com/v1beta/models/<model>:generateContent`",
+    "- Generation config: `temperature=0.2`, `responseMimeType=application/json`",
+    "",
+    "If `LLM invoked` is `no`, these are the exact prompt templates the pipeline would use in LLM mode, but no prompt text was sent for this run.",
+    "",
+    "## Broad Scan Prompt Template",
+    "",
+    "```text",
+    v1Template,
+    "```",
+    "",
+    "## Verifier Prompt Template",
+    "",
+    "```text",
+    v2Template,
+    "```",
+    "",
+  ].join("\n");
+}
+
 function markdownList(items: string[]): string[] {
   if (items.length === 0) {
     return ["- None."];
@@ -1601,6 +2111,19 @@ function markdownReport(
   lines.push(`- Top-20 problem-evidence precision: ${Math.round(summary.top_20_problem_evidence_precision * 100)}%`);
   lines.push(`- Estimated cost: $${summary.estimated_cost_usd}`);
   lines.push(`- Estimated cost per scanned paper: $${summary.estimated_cost_per_paper_usd}`);
+  lines.push("");
+
+  lines.push("## LLM And Prompt Audit");
+  lines.push("");
+  lines.push(`- Run mode: \`${summary.llm.mode}\``);
+  lines.push(`- LLM invoked: ${summary.llm.llm_invoked ? "yes" : "no"}`);
+  lines.push(`- Provider: ${summary.llm.provider}`);
+  lines.push(`- Broad scan model: \`${summary.llm.broad_model}\``);
+  lines.push(`- Verifier model: \`${summary.llm.verifier_model}\``);
+  lines.push(`- Prompt audit file: \`${summary.llm.prompt_audit_path}\``);
+  if (!summary.llm.llm_invoked) {
+    lines.push("- Note: no LLM prompts were sent in this run because mode was heuristic or no Gemini API key was configured.");
+  }
   lines.push("");
 
   lines.push("## Acceptance Checks");
@@ -1649,6 +2172,7 @@ function markdownReport(
       lines.push(`Evidence role: ${candidate.evidence_role}`);
       lines.push(`Paper status: ${candidate.paper_status}`);
       lines.push(`Code/data status: ${candidate.code_or_data_status}`);
+      lines.push(`Verified code/data URLs: ${candidate.code_or_data_urls.length}`);
       lines.push("");
       lines.push("Candidate problem:");
       lines.push("");
@@ -1661,6 +2185,22 @@ function markdownReport(
       lines.push("Feasibility evidence spans:");
       lines.push("");
       lines.push(...markdownList(candidate.feasibility_evidence_spans));
+      lines.push("");
+      lines.push("Paper status evidence:");
+      lines.push("");
+      lines.push(...markdownList(candidate.paper_status_evidence));
+      lines.push("");
+      lines.push("Paper status sources:");
+      lines.push("");
+      lines.push(...markdownList(candidate.paper_status_sources));
+      lines.push("");
+      lines.push("Verified code/data URLs:");
+      lines.push("");
+      lines.push(...markdownList(candidate.code_or_data_urls));
+      lines.push("");
+      lines.push("Code/data verification evidence:");
+      lines.push("");
+      lines.push(...markdownList(candidate.code_or_data_evidence));
       lines.push("");
       lines.push("Why hidden or underexploited:");
       lines.push("");
@@ -1852,7 +2392,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
     ),
   };
 
-  if (config.mode === "llm" && !config.gemini_api_key) {
+  if (isLlmMode(config) && !config.gemini_api_key) {
     throw new Error("--mode llm requested but GEMINI_API_KEY is not set.");
   }
 
@@ -1880,12 +2420,20 @@ function estimateCost(usage: TokenUsage, config: ExperimentConfig): { total: num
   };
 }
 
+function isLlmMode(config: ExperimentConfig): boolean {
+  return config.mode.startsWith("llm");
+}
+
 export async function runExperiment(config: ExperimentConfig): Promise<RunSummary> {
   const startedAt = new Date().toISOString();
   mkdirSync(config.output_dir, { recursive: true });
+  const publicRunConfig = publicConfig(config);
+  const llmInvoked = isLlmMode(config) && Boolean(config.gemini_api_key);
+  const promptAuditPath = join(config.output_dir, "prompts.md");
 
-  writeJson(join(config.output_dir, "config.json"), config);
+  writeJson(join(config.output_dir, "config.json"), publicRunConfig);
   writeJson(join(config.output_dir, "reproducibility.json"), runMetadata());
+  writeFileSync(promptAuditPath, promptAuditMarkdown(config, llmInvoked), "utf8");
 
   console.log(JSON.stringify({ stage: "fetch", categories: config.categories, days: config.days }));
   const fetched = await fetchRecentPapers(config);
@@ -1917,6 +2465,28 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
 
   const paperById = new Map(shortlist.map((entry) => [entry.paper.id, entry.paper]));
   const textByPaperId = new Map(paperTexts.map((text) => [text.paper_id, text]));
+  const paperVerifications = await mapWithConcurrency(
+    shortlist,
+    4,
+    async ({ paper }) => {
+      const paperText = textByPaperId.get(paper.id);
+      if (!paperText) {
+        return {
+          paper_id: paper.id,
+          paper_status: "unknown",
+          paper_status_sources: [],
+          paper_status_evidence: [],
+          code_or_data_status: "unknown",
+          code_or_data_urls: [],
+          code_or_data_sources: [],
+          code_or_data_evidence: [],
+        } satisfies PaperVerification;
+      }
+      return await verifyPaper(paper, paperText);
+    },
+  );
+  writeJson(join(config.output_dir, "paper_verification.json"), paperVerifications);
+  const verificationByPaperId = new Map(paperVerifications.map((verification) => [verification.paper_id, verification]));
 
   const usage = initUsage();
   const rawCandidates: RawCandidate[] = [];
@@ -1924,7 +2494,7 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   let extractor: GeminiJsonClient | null = null;
   let verifier: GeminiJsonClient | null = null;
 
-  if (config.mode === "llm" && config.gemini_api_key) {
+  if (isLlmMode(config) && config.gemini_api_key) {
     extractor = new GeminiJsonClient(config.gemini_api_key, config.broad_model);
     verifier = new GeminiJsonClient(config.gemini_api_key, config.verifier_model);
   }
@@ -1943,7 +2513,8 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
 
         const candidates = Array.isArray(result.data.candidates) ? result.data.candidates : [];
         for (const candidate of candidates) {
-          rawCandidates.push(normalizeRawCandidate(candidate, paper.id));
+          const normalized = normalizeRawCandidate(candidate, paper.id);
+          rawCandidates.push(enrichCandidateWithVerification(normalized, verificationByPaperId.get(paper.id)));
         }
       } catch (error) {
         console.warn(
@@ -1953,10 +2524,18 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
             error: error instanceof Error ? error.message : String(error),
           }),
         );
-        rawCandidates.push(...heuristicCandidatesFromPaper(paper, paperText, config));
+        rawCandidates.push(
+          ...heuristicCandidatesFromPaper(paper, paperText, config).map((candidate) =>
+            enrichCandidateWithVerification(candidate, verificationByPaperId.get(paper.id)),
+          ),
+        );
       }
     } else {
-      rawCandidates.push(...heuristicCandidatesFromPaper(paper, paperText, config));
+      rawCandidates.push(
+        ...heuristicCandidatesFromPaper(paper, paperText, config).map((candidate) =>
+          enrichCandidateWithVerification(candidate, verificationByPaperId.get(paper.id)),
+        ),
+      );
     }
   }
 
@@ -1996,7 +2575,10 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
       try {
         const result = await verifier.generateJson<V2Verification>(llmV2Prompt(working, paper, paperText));
         addUsage(usage, result.usage);
-        working = candidateWithPatch(working, result.data.candidate_patch);
+        working = enrichCandidateWithVerification(
+          candidateWithPatch(working, result.data.candidate_patch),
+          verificationByPaperId.get(working.paper_id),
+        );
         const mergedScore = mergeScoreBreakdown(result.data.score_breakdown, scoreCandidate(working));
         score = mergedScore;
         if (!result.data.accepted) {
@@ -2066,7 +2648,8 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   const hasFastPublicCandidate = trimmedAccepted.some(
     (candidate) =>
       candidate.time_budget_hours <= 72 &&
-      (candidate.code_or_data_status === "found" || candidate.code_or_data_status === "claimed") &&
+      candidate.code_or_data_status === "found" &&
+      candidate.code_or_data_urls.length > 0 &&
       candidate.feasibility_evidence_spans.length > 0,
   );
 
@@ -2087,7 +2670,15 @@ export async function runExperiment(config: ExperimentConfig): Promise<RunSummar
   const summary: RunSummary = {
     started_at: startedAt,
     finished_at: new Date().toISOString(),
-    config,
+    config: publicRunConfig,
+    llm: {
+      provider: "google-gemini",
+      mode: config.mode,
+      llm_invoked: llmInvoked,
+      broad_model: config.broad_model,
+      verifier_model: config.verifier_model,
+      prompt_audit_path: "prompts.md",
+    },
     papers_fetched: fetched.allFetched,
     papers_in_window: fetched.filtered.length,
     abstract_shortlist_size: shortlist.length,

@@ -1,0 +1,738 @@
+[
+  {
+    "paper_id": "2605.06576v1",
+    "candidate_problem": "Test whether Evaluate methods that explicitly optimize for the expected deployment stressor, such as missing links, temporal drift, rare classes, or structurally disadvantaged nodes in the On the Safety of Graph Representation Learning setup addresses a stated future work in On the Safety of Graph Representation Learning.",
+    "evidence_spans": [
+      "A next step is to develop methods that explicitly optimize for the expected deployment stressor, such as missing links, temporal drift, rare classes, or structurally disadvantaged nodes.",
+      "We introduce GRL-Safety, a multi-axis safety evaluation benchmark for GRL.",
+      "GRL-Safety evaluates twelve representative methods, spanning topology-only embedding methods, supervised GNNs, self-supervised graph models, and GFMs, on twenty-five graph datasets under standardized evaluation conditions while preserving method-native adaptation.",
+      "The benchmark, evaluation protocols, and code are available at: https://github.com/GXG-CS/GRL-Safety.",
+      "GRL and GFM benchmarks have made substantial progress in measuring clean-setting performance, transfer, adaptation, and task coverage across datasets, tasks, and domains [ 20 , 61 , 6 , 64 ] ."
+    ],
+    "problem_evidence_spans": [
+      "A next step is to develop methods that explicitly optimize for the expected deployment stressor, such as missing links, temporal drift, rare classes, or structurally disadvantaged nodes."
+    ],
+    "feasibility_evidence_spans": [
+      "We introduce GRL-Safety, a multi-axis safety evaluation benchmark for GRL.",
+      "GRL-Safety evaluates twelve representative methods, spanning topology-only embedding methods, supervised GNNs, self-supervised graph models, and GFMs, on twenty-five graph datasets under standardized evaluation conditions while preserving method-native adaptation.",
+      "The benchmark, evaluation protocols, and code are available at: https://github.com/GXG-CS/GRL-Safety.",
+      "GRL and GFM benchmarks have made substantial progress in measuring clean-setting performance, transfer, adaptation, and task coverage across datasets, tasks, and domains [ 20 , 61 , 6 , 64 ] ."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from On the Safety of Graph Representation Learning. Then apply this intervention: Evaluate methods that explicitly optimize for the expected deployment stressor, such as missing links, temporal drift, rare classes, or structurally disadvantaged nodes in the On the Safety of Graph Representation Learning setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Safety benchmark success/failure rate and false-positive/false-negative trade-offs.",
+    "specific_intervention": "Evaluate methods that explicitly optimize for the expected deployment stressor, such as missing links, temporal drift, rare classes, or structurally disadvantaged nodes in the On the Safety of Graph Representation Learning setup",
+    "baseline": "The reported baseline/protocol from On the Safety of Graph Representation Learning.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/GXG-CS/GRL-Safety",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/GXG-CS/GRL-Safety",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/GXG-CS/GRL-Safety",
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/GXG-CS/GRL-Safety",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 16,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 90
+    },
+    "grade": "A",
+    "rank": 1,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06576v1",
+    "candidate_problem": "Test whether Stress-test and mitigate the interaction between the stressed graph factor and the underlying representation design in the On the Safety of Graph Representation Learning setup addresses a stated failure mode in On the Safety of Graph Representation Learning.",
+    "evidence_spans": [
+      "Across corruption, OOD generalization, and fairness, method rankings and failure modes change with the interaction between the stressed graph factor and the underlying representation design.",
+      "We introduce GRL-Safety, a multi-axis safety evaluation benchmark for GRL.",
+      "GRL-Safety evaluates twelve representative methods, spanning topology-only embedding methods, supervised GNNs, self-supervised graph models, and GFMs, on twenty-five graph datasets under standardized evaluation conditions while preserving method-native adaptation.",
+      "The benchmark, evaluation protocols, and code are available at: https://github.com/GXG-CS/GRL-Safety.",
+      "GRL and GFM benchmarks have made substantial progress in measuring clean-setting performance, transfer, adaptation, and task coverage across datasets, tasks, and domains [ 20 , 61 , 6 , 64 ] ."
+    ],
+    "problem_evidence_spans": [
+      "Across corruption, OOD generalization, and fairness, method rankings and failure modes change with the interaction between the stressed graph factor and the underlying representation design."
+    ],
+    "feasibility_evidence_spans": [
+      "We introduce GRL-Safety, a multi-axis safety evaluation benchmark for GRL.",
+      "GRL-Safety evaluates twelve representative methods, spanning topology-only embedding methods, supervised GNNs, self-supervised graph models, and GFMs, on twenty-five graph datasets under standardized evaluation conditions while preserving method-native adaptation.",
+      "The benchmark, evaluation protocols, and code are available at: https://github.com/GXG-CS/GRL-Safety.",
+      "GRL and GFM benchmarks have made substantial progress in measuring clean-setting performance, transfer, adaptation, and task coverage across datasets, tasks, and domains [ 20 , 61 , 6 , 64 ] ."
+    ],
+    "evidence_role": "failure_mode",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit failure mode span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from On the Safety of Graph Representation Learning. Then apply this intervention: Stress-test and mitigate the interaction between the stressed graph factor and the underlying representation design in the On the Safety of Graph Representation Learning setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Safety benchmark success/failure rate and false-positive/false-negative trade-offs.",
+    "specific_intervention": "Stress-test and mitigate the interaction between the stressed graph factor and the underlying representation design in the On the Safety of Graph Representation Learning setup",
+    "baseline": "The reported baseline/protocol from On the Safety of Graph Representation Learning.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/GXG-CS/GRL-Safety",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/GXG-CS/GRL-Safety",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/GXG-CS/GRL-Safety",
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/GXG-CS/GRL-Safety",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 16,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 90
+    },
+    "grade": "A",
+    "rank": 2,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06628v1",
+    "candidate_problem": "Test whether Evaluate variable-rate training and joint optimization with downstream ML tasks to better align compression with inference accuracy in the LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation setup addresses a stated future work in LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation.",
+    "evidence_spans": [
+      "Future work will explore variable-rate training and joint optimization with downstream ML tasks to better align compression with inference accuracy.",
+      "We release our code, experiments, and python library at https://github.com/UT-SysML/liveaction .",
+      "Figure 1: Rate-distortion-complexity trade-off for RGB images measured on the kodak dataset.",
+      "In contrast, LiVeAction shows that a simple mean-squared-error (MSE) based rate–distortion objective suffices across modalities, eliminating the need for perceptual losses.",
+      "Figure 4 shows downstream machine-perception quality for RGB images via ImageNet classification accuracy on decoded outputs."
+    ],
+    "problem_evidence_spans": [
+      "Future work will explore variable-rate training and joint optimization with downstream ML tasks to better align compression with inference accuracy."
+    ],
+    "feasibility_evidence_spans": [
+      "We release our code, experiments, and python library at https://github.com/UT-SysML/liveaction .",
+      "Figure 1: Rate-distortion-complexity trade-off for RGB images measured on the kodak dataset.",
+      "In contrast, LiVeAction shows that a simple mean-squared-error (MSE) based rate–distortion objective suffices across modalities, eliminating the need for perceptual losses.",
+      "Figure 4 shows downstream machine-perception quality for RGB images via ImageNet classification accuracy on decoded outputs."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation. Then apply this intervention: Evaluate variable-rate training and joint optimization with downstream ML tasks to better align compression with inference accuracy in the LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Primary benchmark accuracy/error improvement against baseline.",
+    "specific_intervention": "Evaluate variable-rate training and joint optimization with downstream ML tasks to better align compression with inference accuracy in the LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation setup",
+    "baseline": "The reported baseline/protocol from LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Real-time Operation.",
+    "metric": "accuracy",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/UT-SysML/liveaction",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/UT-SysML/liveaction",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/UT-SysML/liveaction",
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "Concrete public resource URL found in source text: https://www.image-net.org/",
+      "Verified reachable public code/data/benchmark URL: https://github.com/UT-SysML/liveaction",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "Verified reachable public code/data/benchmark URL: https://www.image-net.org/"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "developer productivity",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 20,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 15,
+      "impact": 8,
+      "storyability": 7,
+      "total": 86
+    },
+    "grade": "A",
+    "rank": 3,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06523v1",
+    "candidate_problem": "Test whether Stress-test and mitigate the test set in the On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR setup addresses a stated failure mode in On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR.",
+    "evidence_spans": [
+      "This indicates that while non-Rank-1 components significantly boost the reward on the training set, they fail to translate into generalized performance on the test set.",
+      "Predicated on this observation, we employed Periodic Rank-1 Substitution and identified a counterintuitive phenomenon: RLVR may exhibit implicit reward overfitting to the training dataset.",
+      "By periodically eliminating these components, we find that on a significant portion of datasets, the model’s performance on the test set remains comparable, even though its training reward is lower than that of Full RL Fine-tuning."
+    ],
+    "problem_evidence_spans": [
+      "This indicates that while non-Rank-1 components significantly boost the reward on the training set, they fail to translate into generalized performance on the test set."
+    ],
+    "feasibility_evidence_spans": [
+      "Predicated on this observation, we employed Periodic Rank-1 Substitution and identified a counterintuitive phenomenon: RLVR may exhibit implicit reward overfitting to the training dataset.",
+      "By periodically eliminating these components, we find that on a significant portion of datasets, the model’s performance on the test set remains comparable, even though its training reward is lower than that of Full RL Fine-tuning."
+    ],
+    "evidence_role": "failure_mode",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit failure mode span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR. Then apply this intervention: Stress-test and mitigate the test set in the On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate the test set in the On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR setup",
+    "baseline": "The reported baseline/protocol from On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 86
+    },
+    "grade": "A",
+    "rank": 4,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06523v1",
+    "candidate_problem": "Test whether Stress-test and mitigate more parameters in the On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR setup addresses a stated limitation in On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR.",
+    "evidence_spans": [
+      "The limitations of our work are: due to limited computing resources, we have no opportunity to observe the behavior of models with more parameters.",
+      "Predicated on this observation, we employed Periodic Rank-1 Substitution and identified a counterintuitive phenomenon: RLVR may exhibit implicit reward overfitting to the training dataset.",
+      "By periodically eliminating these components, we find that on a significant portion of datasets, the model’s performance on the test set remains comparable, even though its training reward is lower than that of Full RL Fine-tuning."
+    ],
+    "problem_evidence_spans": [
+      "The limitations of our work are: due to limited computing resources, we have no opportunity to observe the behavior of models with more parameters."
+    ],
+    "feasibility_evidence_spans": [
+      "Predicated on this observation, we employed Periodic Rank-1 Substitution and identified a counterintuitive phenomenon: RLVR may exhibit implicit reward overfitting to the training dataset.",
+      "By periodically eliminating these components, we find that on a significant portion of datasets, the model’s performance on the test set remains comparable, even though its training reward is lower than that of Full RL Fine-tuning."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit limitation span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR. Then apply this intervention: Stress-test and mitigate more parameters in the On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate more parameters in the On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR setup",
+    "baseline": "The reported baseline/protocol from On the Implicit Reward Overfitting and the Low-rank Dynamics in RLVR.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 86
+    },
+    "grade": "A",
+    "rank": 5,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Test whether Evaluate extending the methodology to multi-instrument repertoires, developing more robust quality assessment models and incorporating more granular score and performance annotations in the PianoCoRe: Combined and Refined Piano MIDI Dataset setup addresses a stated future work in PianoCoRe: Combined and Refined Piano MIDI Dataset.",
+    "evidence_spans": [
+      "Future directions include extending the methodology to multi-instrument repertoires, developing more robust quality assessment models and incorporating more granular score and performance annotations.",
+      "Project repository: https://github.com/ilya16/PianoCoRe Symbolic music datasets with matched scores and performances are essential for many music information retrieval (MIR) tasks.",
+      "This work presents PianoCoRe, a large-scale piano MIDI dataset that unifies and refines major open-source piano corpora.",
+      "The dataset contains 250,046 performances of 5,625 pieces written by 483 composers, totaling 21,763 h of performed music.",
+      "In addition to the dataset, the contributions are: (1) a MIDI quality classifier for detecting corrupted and score-like transcriptions and (2) RAScoP, an alignment refinement pipeline that cleans temporal alignment errors and interpolates missing notes."
+    ],
+    "problem_evidence_spans": [
+      "Future directions include extending the methodology to multi-instrument repertoires, developing more robust quality assessment models and incorporating more granular score and performance annotations."
+    ],
+    "feasibility_evidence_spans": [
+      "Project repository: https://github.com/ilya16/PianoCoRe Symbolic music datasets with matched scores and performances are essential for many music information retrieval (MIR) tasks.",
+      "This work presents PianoCoRe, a large-scale piano MIDI dataset that unifies and refines major open-source piano corpora.",
+      "The dataset contains 250,046 performances of 5,625 pieces written by 483 composers, totaling 21,763 h of performed music.",
+      "In addition to the dataset, the contributions are: (1) a MIDI quality classifier for detecting corrupted and score-like transcriptions and (2) RAScoP, an alignment refinement pipeline that cleans temporal alignment errors and interpolates missing notes."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from PianoCoRe: Combined and Refined Piano MIDI Dataset. Then apply this intervention: Evaluate extending the methodology to multi-instrument repertoires, developing more robust quality assessment models and incorporating more granular score and performance annotations in the PianoCoRe: Combined and Refined Piano MIDI Dataset setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Evaluate extending the methodology to multi-instrument repertoires, developing more robust quality assessment models and incorporating more granular score and performance annotations in the PianoCoRe: Combined and Refined Piano MIDI Dataset setup",
+    "baseline": "The reported baseline/protocol from PianoCoRe: Combined and Refined Piano MIDI Dataset.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/CPJKU/asap-dataset",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/bytedance/GiantMIDI-Piano",
+      "https://github.com/ilya16/PianoCoRe",
+      "https://github.com/ilya16/SyMuPe",
+      "https://github.com/tangjjbetsy/ATEPP",
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/CPJKU/asap-dataset",
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://github.com/bytedance/GiantMIDI-Piano",
+      "Concrete public resource URL found in source text: https://github.com/ilya16/PianoCoRe",
+      "Concrete public resource URL found in source text: https://github.com/ilya16/SyMuPe",
+      "Concrete public resource URL found in source text: https://github.com/tangjjbetsy/ATEPP",
+      "Concrete public resource URL found in source text: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Concrete public resource URL found in source text: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Concrete public resource URL found in source text: https://huggingface.co/datasets/loubb/aria-midi",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "climate/environment",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 10,
+      "storyability": 7,
+      "total": 84
+    },
+    "grade": "A",
+    "rank": 6,
+    "evidence_precision": 0.8,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 0.75
+  },
+  {
+    "paper_id": "2605.06592v1",
+    "candidate_problem": "Test whether Stress-test and mitigate under-represented domains—the text-side branch can introduce noise, and the image-only variant of DinoRankCLIP (fourth row of Table ˜ 3 (b)) is preferable; (iii) in the DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Lang... addresses a stated failure mode in DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Language Pretraining with High-Order Ranking Consistency.",
+    "evidence_spans": [
+      "Three failure modes: (i) on captions describing globally salient categories without local descriptors, the conflict gate closes everywhere and DinoRankCLIP behaves indistinguishably from RankCLIP at the same order; (ii) when the teacher’s text-aligned projection is misaligned with the contrastive text encoder—for under-represented domains—the text-side branch can introduce noise, and the image-only variant of DinoRankCLIP (fourth row of Table ˜ 3 (b)) is preferable; (iii) ...",
+      "Complementarily, we introduce a high-order Plackett-Luce ranking model in which the per-position utility is augmented with attention-parameterised pairwise and tuple-wise transition terms; the family contains CLIP and RANKCLIP as nested zero-order and first-order special cases, and the optimal order on every benchmark is $R^*=3$.",
+      "The full empirical study -- order sweep, Fine-grained Probe on five datasets, four-node Modality-Gap analysis, six-variant Fusion ablation -- fits in 72 hours on a single eight-GPU H100 node and trains entirely on Conceptual Captions 3M.",
+      "Complementarily, we introduce a high-order Plackett–Luce ranking model in which the per-position utility is augmented with attention-parameterised pairwise and tuple-wise transition terms; the family contains CLIP and RankCLIP as nested zero-order and first-order special cases, and the optimal order on every benchmark is R ∗ = 3 R^{*}=3 .",
+      "The full empirical study—order sweep, Fine-grained Probe on five datasets, four-node Modality-Gap analysis, six-variant Fusion ablation—fits in 72 hours on a single eight-GPU H100 node and trains entirely on Conceptual Captions 3M."
+    ],
+    "problem_evidence_spans": [
+      "Three failure modes: (i) on captions describing globally salient categories without local descriptors, the conflict gate closes everywhere and DinoRankCLIP behaves indistinguishably from RankCLIP at the same order; (ii) when the teacher’s text-aligned projection is misaligned with the contrastive text encoder—for under-represented domains—the text-side branch can introduce noise, and the image-only variant of DinoRankCLIP (fourth row of Table ˜ 3 (b)) is preferable; (iii) ..."
+    ],
+    "feasibility_evidence_spans": [
+      "Complementarily, we introduce a high-order Plackett-Luce ranking model in which the per-position utility is augmented with attention-parameterised pairwise and tuple-wise transition terms; the family contains CLIP and RANKCLIP as nested zero-order and first-order special cases, and the optimal order on every benchmark is $R^*=3$.",
+      "The full empirical study -- order sweep, Fine-grained Probe on five datasets, four-node Modality-Gap analysis, six-variant Fusion ablation -- fits in 72 hours on a single eight-GPU H100 node and trains entirely on Conceptual Captions 3M.",
+      "Complementarily, we introduce a high-order Plackett–Luce ranking model in which the per-position utility is augmented with attention-parameterised pairwise and tuple-wise transition terms; the family contains CLIP and RankCLIP as nested zero-order and first-order special cases, and the optimal order on every benchmark is R ∗ = 3 R^{*}=3 .",
+      "The full empirical study—order sweep, Fine-grained Probe on five datasets, four-node Modality-Gap analysis, six-variant Fusion ablation—fits in 72 hours on a single eight-GPU H100 node and trains entirely on Conceptual Captions 3M."
+    ],
+    "evidence_role": "failure_mode",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit failure mode span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Language Pretraining with High-Order Ranking Consistency. Then apply this intervention: Stress-test and mitigate under-represented domains—the text-side branch can introduce noise, and the image-only variant of DinoRankCLIP (fourth row of Table ˜ 3 (b)) is preferable; (iii) in the DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Lang.... Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate under-represented domains—the text-side branch can introduce noise, and the image-only variant of DinoRankCLIP (fourth row of Table ˜ 3 (b)) is preferable; (iii) in the DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Lang...",
+    "baseline": "The reported baseline/protocol from DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Language Pretraining with High-Order Ranking Consistency.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://www.cs.toronto.edu/~kriz/cifar.html",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://www.cs.toronto.edu/~kriz/cifar.html",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://www.cs.toronto.edu/~kriz/cifar.html",
+      "Concrete public resource URL found in source text: https://www.image-net.org/",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://www.cs.toronto.edu/~kriz/cifar.html",
+      "Verified reachable public code/data/benchmark URL: https://www.image-net.org/"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "safety",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 15,
+      "impact": 12,
+      "storyability": 7,
+      "total": 82
+    },
+    "grade": "A",
+    "rank": 7,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06646v1",
+    "candidate_problem": "Test whether Stress-test and mitigate a recent extension to bounded regression in the Inductive Venn-Abers and related regressors setup addresses a stated limitation in Inductive Venn-Abers and related regressors.",
+    "evidence_spans": [
+      "Inductive Venn–Abers and related regressors Ivan Petej and Vladimir Vovk Abstract Venn–Abers predictors are probabilistic predictors that enjoy appealing properties of validity, but their major limitation is that they are applicable only to the case of binary classification, with a recent extension to bounded regression.",
+      "The improvement is not as significant as we had hoped and disappears for smaller datasets.",
+      "Computational experiments show that this leads to a limited improvement in the performance of standard point regressors on large datasets.",
+      "Table 12: Bounded Logistic dataset ( σ = 1 \\sigma=1 ) none CVAR1 CVAR10 Elastic Net 2.551 ± 0.021 2.551\\pm 0.021 1.506 ± 0.012 \\textbf{1.506}\\pm 0.012 1.508 ± 0.012 1.508\\pm 0.012 Gradient Boosting 1.532 ± 0.018 1.532\\pm 0.018 1.323 ± 0.009 \\textbf{1.323}\\pm 0.009 1.326 ± 0.009 1.326\\pm 0.009 Lasso 2.830 ± 0.024 2.830\\pm 0.024 2.201 ± 0.025 \\textbf{2.201}\\pm 0.025 2.203 ± 0.025 2.203\\pm 0.025 Linear Regression 1.596 ± 0.021 1.596\\pm 0.021 1.031 ± 0.002 \\textbf{1.031}\\pm 0....",
+      "For these smaller datasets the results are mixed, as we said in the main paper."
+    ],
+    "problem_evidence_spans": [
+      "Inductive Venn–Abers and related regressors Ivan Petej and Vladimir Vovk Abstract Venn–Abers predictors are probabilistic predictors that enjoy appealing properties of validity, but their major limitation is that they are applicable only to the case of binary classification, with a recent extension to bounded regression."
+    ],
+    "feasibility_evidence_spans": [
+      "The improvement is not as significant as we had hoped and disappears for smaller datasets.",
+      "Computational experiments show that this leads to a limited improvement in the performance of standard point regressors on large datasets.",
+      "Table 12: Bounded Logistic dataset ( σ = 1 \\sigma=1 ) none CVAR1 CVAR10 Elastic Net 2.551 ± 0.021 2.551\\pm 0.021 1.506 ± 0.012 \\textbf{1.506}\\pm 0.012 1.508 ± 0.012 1.508\\pm 0.012 Gradient Boosting 1.532 ± 0.018 1.532\\pm 0.018 1.323 ± 0.009 \\textbf{1.323}\\pm 0.009 1.326 ± 0.009 1.326\\pm 0.009 Lasso 2.830 ± 0.024 2.830\\pm 0.024 2.201 ± 0.025 \\textbf{2.201}\\pm 0.025 2.203 ± 0.025 2.203\\pm 0.025 Linear Regression 1.596 ± 0.021 1.596\\pm 0.021 1.031 ± 0.002 \\textbf{1.031}\\pm 0....",
+      "For these smaller datasets the results are mixed, as we said in the main paper."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit limitation span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Inductive Venn-Abers and related regressors. Then apply this intervention: Stress-test and mitigate a recent extension to bounded regression in the Inductive Venn-Abers and related regressors setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Author-provided code repository plus public benchmark datasets referenced in the paper.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate a recent extension to bounded regression in the Inductive Venn-Abers and related regressors setup",
+    "baseline": "The reported baseline/protocol from Inductive Venn-Abers and related regressors.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://github.com/ip200/ivar-experiments",
+      "Concrete public resource URL found in source text: https://github.com/ip200/venn-abers",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/ivar-experiments",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/venn-abers"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 8,
+      "storyability": 7,
+      "total": 82
+    },
+    "grade": "A",
+    "rank": 8,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06654v1",
+    "candidate_problem": "Test whether Stress-test and mitigate approximations in the Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less setup addresses a stated limitation in Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less.",
+    "evidence_spans": [
+      "The major limitation of the work is that the experiments are mainly conducted on small models due to the requirement of pretraining and limited computational resources, and the theory is obtained under approximations.",
+      "Figure 1: The Pareto frontier of different optimizers and LoRA finetuning Llama-2-7B with the MetaMathQA dataset for 1 1 epoch.",
+      "APPENDIX: The Alpaca dataset [Taori et al. , 2023 ] ( https://huggingface.co/datasets/tatsu-lab/alpaca ) is released under the cc-by-nc-4.0 license.",
+      "The MetaMathQA [Yu et al. , 2023 ] ( https://huggingface.co/datasets/meta-math/MetaMathQA ) and Magicoder [Wei et al. , 2023 ] ( https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K ) datasets and the NanoGPT [Karpathy, 2022 ] ( https://github.com/karpathy/nanogpt ) and Dion [Ahn et al. , 2025b , a ] ( https://github.com/microsoft/dion ) codebases are under the MIT license.",
+      "The LlamaFactory codebase [Zheng et al. , 2024 ] ( https://github.com/hiyouga/LlamaFactory ) is under the Apache-2.0 license."
+    ],
+    "problem_evidence_spans": [
+      "The major limitation of the work is that the experiments are mainly conducted on small models due to the requirement of pretraining and limited computational resources, and the theory is obtained under approximations."
+    ],
+    "feasibility_evidence_spans": [
+      "Figure 1: The Pareto frontier of different optimizers and LoRA finetuning Llama-2-7B with the MetaMathQA dataset for 1 1 epoch.",
+      "APPENDIX: The Alpaca dataset [Taori et al. , 2023 ] ( https://huggingface.co/datasets/tatsu-lab/alpaca ) is released under the cc-by-nc-4.0 license.",
+      "The MetaMathQA [Yu et al. , 2023 ] ( https://huggingface.co/datasets/meta-math/MetaMathQA ) and Magicoder [Wei et al. , 2023 ] ( https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K ) datasets and the NanoGPT [Karpathy, 2022 ] ( https://github.com/karpathy/nanogpt ) and Dion [Ahn et al. , 2025b , a ] ( https://github.com/microsoft/dion ) codebases are under the MIT license.",
+      "The LlamaFactory codebase [Zheng et al. , 2024 ] ( https://github.com/hiyouga/LlamaFactory ) is under the Apache-2.0 license."
+    ],
+    "evidence_role": "limitation",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit limitation span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less. Then apply this intervention: Stress-test and mitigate approximations in the Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public benchmark related to the paper's main task; start with reproduction from abstract and references.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Stress-test and mitigate approximations in the Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less setup",
+    "baseline": "The reported baseline/protocol from Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/hiyouga/LlamaFactory",
+      "https://github.com/karpathy/nanoGPT",
+      "https://github.com/karpathy/nanogpt",
+      "https://github.com/microsoft/dion",
+      "https://github.com/tatsu-lab/stanford_alpaca",
+      "https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "https://huggingface.co/meta-llama/Llama-2-7b-hf"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/hiyouga/LlamaFactory",
+      "https://github.com/karpathy/nanoGPT",
+      "https://github.com/karpathy/nanogpt",
+      "https://github.com/microsoft/dion",
+      "https://github.com/tatsu-lab/stanford_alpaca",
+      "https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "https://huggingface.co/meta-llama/Llama-2-7b-hf"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Concrete public resource URL found in source text: https://github.com/hiyouga/LlamaFactory",
+      "Concrete public resource URL found in source text: https://github.com/karpathy/nanoGPT",
+      "Concrete public resource URL found in source text: https://github.com/karpathy/nanogpt",
+      "Concrete public resource URL found in source text: https://github.com/microsoft/dion",
+      "Concrete public resource URL found in source text: https://github.com/tatsu-lab/stanford_alpaca",
+      "Concrete public resource URL found in source text: https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "Concrete public resource URL found in source text: https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "Concrete public resource URL found in source text: https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "Concrete public resource URL found in source text: https://huggingface.co/meta-llama/Llama-2-7b-hf",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/meta-llama/Llama-2-7b-hf"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "science",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 15,
+      "novelty_or_neglectedness": 15,
+      "impact": 8,
+      "storyability": 7,
+      "total": 82
+    },
+    "grade": "A",
+    "rank": 9,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  },
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Test whether Evaluate extending BRPC to high-dimensional digital twin systems and developing restart mechanisms with stronger false-alarm control and more adaptive memory-reset strategies in the Online Bayesian Calibration under Gradual and Abrupt System Changes setup addresses a stated future work in Online Bayesian Calibration under Gradual and Abrupt System Changes.",
+    "evidence_spans": [
+      "Future work includes extending BRPC to high-dimensional digital twin systems and developing restart mechanisms with stronger false-alarm control and more adaptive memory-reset strategies.",
+      "Empirical studies on synthetic and plant-simulation benchmarks show that BRPC improves calibration accuracy under gradual changes, while restart-augmented BRPC further improves robustness and predictive performance under abrupt regime shifts compared to sliding-window Bayesian calibration and data assimilation baselines.",
+      "The restart mechanism is essential because data accumulated within a local regime can improve stability and predictive accuracy, but may introduce substantial bias once the underlying system undergoes a structural shift.",
+      "We support the proposed framework with theoretical analysis of the recursive updates and the resulting predictive evidence used for control (Sec. 5 ), and evaluate it on both synthetic data and a plant simulation digital twin benchmark (Sec. 6 ).",
+      "Empirical results on synthetic and plant-simulation benchmarks demonstrate that BRPC improves calibration accuracy under gradual changes, while the restart-augmented framework further enhances robustness and predictive performance under abrupt regime shifts compared to sliding-window Bayesian calibration and data assimilation baselines."
+    ],
+    "problem_evidence_spans": [
+      "Future work includes extending BRPC to high-dimensional digital twin systems and developing restart mechanisms with stronger false-alarm control and more adaptive memory-reset strategies."
+    ],
+    "feasibility_evidence_spans": [
+      "Empirical studies on synthetic and plant-simulation benchmarks show that BRPC improves calibration accuracy under gradual changes, while restart-augmented BRPC further improves robustness and predictive performance under abrupt regime shifts compared to sliding-window Bayesian calibration and data assimilation baselines.",
+      "The restart mechanism is essential because data accumulated within a local regime can improve stability and predictive accuracy, but may introduce substantial bias once the underlying system undergoes a structural shift.",
+      "We support the proposed framework with theoretical analysis of the recursive updates and the resulting predictive evidence used for control (Sec. 5 ), and evaluate it on both synthetic data and a plant simulation digital twin benchmark (Sec. 6 ).",
+      "Empirical results on synthetic and plant-simulation benchmarks demonstrate that BRPC improves calibration accuracy under gradual changes, while the restart-augmented framework further enhances robustness and predictive performance under abrupt regime shifts compared to sliding-window Bayesian calibration and data assimilation baselines."
+    ],
+    "evidence_role": "future_work",
+    "why_hidden_or_underexploited": "The candidate is grounded in an explicit future work span rather than a positive-result claim.",
+    "auto_research_experiment": "Reproduce The reported baseline/protocol from Online Bayesian Calibration under Gradual and Abrupt System Changes. Then apply this intervention: Evaluate extending BRPC to high-dimensional digital twin systems and developing restart mechanisms with stronger false-alarm control and more adaptive memory-reset strategies in the Online Bayesian Calibration under Gradual and Abrupt System Changes setup. Compare against the baseline under the same data, split, and compute budget.",
+    "available_data_or_benchmark": "Public datasets or benchmarks referenced by the paper; use reported protocol for replication.",
+    "expected_metric": "Pre-registered measurable delta on a public benchmark metric versus baseline.",
+    "specific_intervention": "Evaluate extending BRPC to high-dimensional digital twin systems and developing restart mechanisms with stronger false-alarm control and more adaptive memory-reset strategies in the Online Bayesian Calibration under Gradual and Abrupt System Changes setup",
+    "baseline": "The reported baseline/protocol from Online Bayesian Calibration under Gradual and Abrupt System Changes.",
+    "metric": "pre-registered benchmark delta",
+    "paper_status": "active",
+    "code_or_data_status": "found",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete public resource URL found in source text: https://github.com/arXiv/html_feedback",
+      "Concrete public resource URL found in source text: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ],
+    "time_budget_hours": 48,
+    "impact_type": "economic",
+    "story_angle": "A paper-author-supported gap can be turned into a visible, bounded benchmark comparison.",
+    "disqualifiers": [],
+    "confidence": 0.58,
+    "score_breakdown": {
+      "auto_research_feasibility": 25,
+      "falsifiable_evaluation": 12,
+      "problem_clarity": 11,
+      "novelty_or_neglectedness": 15,
+      "impact": 10,
+      "storyability": 7,
+      "total": 80
+    },
+    "grade": "A",
+    "rank": 10,
+    "evidence_precision": 1,
+    "problem_evidence_precision": 1,
+    "feasibility_evidence_precision": 1
+  }
+]

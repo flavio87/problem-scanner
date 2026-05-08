@@ -1,0 +1,326 @@
+[
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Online Bayesian Calibration under Gradual and Abrupt System Changes: Future work should study adaptive restart thresholds, scalable sparse-GP or neural discrepancy models, and validation on larger r... addresses a stated future work in Online Bayesian Calibration under Gradual and Abrupt System Changes.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06612v1",
+    "candidate_problem": "Test whether Evaluate extending BRPC to high-dimensional digital twin systems and developing restart mechanisms with stronger false-alarm control and more adaptive memory-reset strategies in the Online Bayesian Calibration under Gradual and Abrupt System Changes setup addresses a stated future work in Online Bayesian Calibration under Gradual and Abrupt System Changes.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found."
+    ]
+  },
+  {
+    "paper_id": "2605.06644v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Edge-specific signal propagation on mature chromophore-region 3D mechanism graphs for fluorescent protein quantum-yield prediction: Future work could replace or augment this step with more explicit ... addresses a stated future work in Edge-specific signal propagation on mature chromophore-region 3D mechanism graphs for fluorescent protein quantum-yield prediction.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06592v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Language Pretraining with High-Order Ranking Consistency: This is a substantial limitation. addresses a stated limitation in DINORANKCLIP: DINOv3 Distillation and Injection for Vision-Language Pretraining with High-Order Ranking Consistency.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Ground-Truth Labels: A natural next step is to stress-test the chain itself (by instantiating it with deliberately degener... addresses a stated future work in When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Ground-Truth Labels.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Towards Metric-Faithful Neural Graph Matching: A useful future direction is to connect encoder geometry to per-step guarantees for such decoders or to partial-alignment objectives arising along the ... addresses a stated future work in Towards Metric-Faithful Neural Graph Matching.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Towards Metric-Faithful Neural Graph Matching: Future work should therefore expand the design space of bi-Lipschitz graph encoders, improve their computational efficiency, and determine which geomet... addresses a stated future work in Towards Metric-Faithful Neural Graph Matching.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06576v1",
+    "candidate_problem": "Test whether Evaluate methods that explicitly optimize for the expected deployment stressor, such as missing links, temporal drift, rare classes, or structurally disadvantaged nodes in the On the Safety of Graph Representation Learning setup addresses a stated future work in On the Safety of Graph Representation Learning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found."
+    ]
+  },
+  {
+    "paper_id": "2605.06576v1",
+    "candidate_problem": "Test whether Stress-test and mitigate the interaction between the stressed graph factor and the underlying representation design in the On the Safety of Graph Representation Learning setup addresses a stated failure mode in On the Safety of Graph Representation Learning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found."
+    ]
+  },
+  {
+    "paper_id": "2605.06575v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Directional Consistency as a Complementary Optimization Signal: The GONO Framework: This observation reveals that existing optimizers such as Adam, SGD, and RMSprop lack explicit mechanisms to explo... addresses a stated failure mode in Directional Consistency as a Complementary Optimization Signal: The GONO Framework.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06575v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Directional Consistency as a Complementary Optimization Signal: The GONO Framework: In the course of this work, we made a striking empirical observation: an optimizer can exhibit near-perfect direct... addresses a stated failure mode in Directional Consistency as a Complementary Optimization Signal: The GONO Framework.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06667v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation: However, we argue that the necessity of using a specific model for generating videos with acting and camera control is a fu... addresses a stated limitation in ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06667v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation: We also provided ablations and failure cases to clarify the contribution of each design choice and the remaining limitations. addresses a stated limitation in ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06646v1",
+    "candidate_problem": "Test whether Stress-test and mitigate a recent extension to bounded regression in the Inductive Venn-Abers and related regressors setup addresses a stated limitation in Inductive Venn-Abers and related regressors.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found."
+    ]
+  },
+  {
+    "paper_id": "2605.06643v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benchmark Study: Additionally, our robustness evaluation is limited to two representative perturbations; extending this to... addresses a stated future work in Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benchmark Study.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06643v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benchmark Study: Future work must focus on discovering novel training paradigms or architectural innovations that genuinel... addresses a stated future work in Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benchmark Study.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06596v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in FedAttr: Towards Privacy-preserving Client-Level Attribution in Federated LLM Fine-tuning: In settings where the corpus owner is unavailable or unwilling to participate, a delegated or threshold-bas... addresses a stated future work in FedAttr: Towards Privacy-preserving Client-Level Attribution in Federated LLM Fine-tuning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06585v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Distributionally-Robust Learning to Optimize: We prove high-probability bounds showing that the true risk of the learned algorithm is at most the in-sample L2O optimum plus a slack that shrinks with... addresses a stated negative result in Distributionally-Robust Learning to Optimize.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06585v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Distributionally-Robust Learning to Optimize: However, worst-case analysis is inherently pessimistic: it guards against pathological instances that rarely arise in practice, yielding conservative al... addresses a stated negative result in Distributionally-Robust Learning to Optimize.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06647v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval: We have not evaluated settings where the corpus is far outside the LLM’s pretraining distribution; in such domains, corp... addresses a stated benchmark gap in Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06647v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval: The limitations of dense retrieval are not merely engineering inconveniences; they expose a deeper mismatch between sing... addresses a stated limitation in Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Crafting Reversible SFT Behaviors in Large Language Models: The most immediate open problem is extending reversal to discrete input tokens rather than continuous soft prompts, which would make the b... addresses a stated future work in Crafting Reversible SFT Behaviors in Large Language Models.",
+    "reasons": [
+      "No separate feasibility evidence span for public data, code, benchmark, or metric.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Crafting Reversible SFT Behaviors in Large Language Models: Two limitations bound the current study. addresses a stated limitation in Crafting Reversible SFT Behaviors in Large Language Models.",
+    "reasons": [
+      "No separate feasibility evidence span for public data, code, benchmark, or metric.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in PianoCoRe: Combined and Refined Piano MIDI Dataset: A subjective listening test of popular models trained on the subsets of PianoCoRe dataset would be a valuable next step to confirm that objective ... addresses a stated future work in PianoCoRe: Combined and Refined Piano MIDI Dataset.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06597v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in UniSD: Towards a Unified Self-Distillation Framework for Large Language Models: We view this scope as a starting point for several future directions. addresses a stated future work in UniSD: Towards a Unified Self-Distillation Framework for Large Language Models.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06597v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in UniSD: Towards a Unified Self-Distillation Framework for Large Language Models: Self-Distillation (SD) offers a promising direction, where the model derives supervision from its own behavior rather ... addresses a stated future work in UniSD: Towards a Unified Self-Distillation Framework for Large Language Models.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "Test whether Evaluate the same evaluation protocol to controlled variants with these factors while preserving interpretable process diagnostics in the Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning setup addresses a stated future work in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found."
+    ]
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning: Exploratory COMA results are included in the appendix, but a more complete evaluation of policy-gradient and on-po... addresses a stated future work in Coordination Matters: Evaluation of Cooperative Multi-Agent Reinforcement Learning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06615v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in When and Why SignSGD Outperforms SGD: A Theoretical Study Based on $\\ell_1$-norm Lower Bounds: Consequently, evaluating the performance of sign-based methods under the aforementioned problem class a... addresses a stated failure mode in When and Why SignSGD Outperforms SGD: A Theoretical Study Based on $\\ell_1$-norm Lower Bounds.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06610v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in SoftSAE: Dynamic Top-K Selection for Adaptive Sparse Autoencoders: Despite impressive advancements, all these leading methodologies share a fundamental architectural limitation: they impose a rigid,... addresses a stated limitation in SoftSAE: Dynamic Top-K Selection for Adaptive Sparse Autoencoders.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06610v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in SoftSAE: Dynamic Top-K Selection for Adaptive Sparse Autoencoders: Despite current limitations, most notably increased computational cost and the need to carefully manage the soft-to-hard selection ... addresses a stated limitation in SoftSAE: Dynamic Top-K Selection for Adaptive Sparse Autoencoders.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06608v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in DARTS: Targeting Prognostic Covariates in Budget-Constrained Sequential Experiments: While DARTS consistently improves precision in unknown-covariate settings, we note several limitations regarding ... addresses a stated limitation in DARTS: Targeting Prognostic Covariates in Budget-Constrained Sequential Experiments.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06608v1",
+    "candidate_problem": "Test whether Evaluate the limitations of the independent arm assumption in the DARTS: Targeting Prognostic Covariates in Budget-Constrained Sequential Experiments setup addresses a stated limitation in DARTS: Targeting Prognostic Covariates in Budget-Constrained Sequential Experiments.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found."
+    ]
+  },
+  {
+    "paper_id": "2605.06599v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Weight-Decay Turns Transformer Loss Landscapes Villani: Functional-Analytic Foundations for Optimization and Generalization: Extensions to structured regularization, reinforcement learning, and othe... addresses a stated future work in Weight-Decay Turns Transformer Loss Landscapes Villani: Functional-Analytic Foundations for Optimization and Generalization.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While FL addresses the privacy and bandwidth issues, standard implementations und... addresses a stated negative result in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification: While Federated Learning (FL) offers a privacy-preserving alternative to centrali... addresses a stated failure mode in CLAD: A Clustered Label-Agnostic Federated Learning Framework for Joint Anomaly Detection and Attack Classification.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06564v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Dynamic Treatment on Networks: A policy that selects the right nodes to treat but ignores their sequencing can perform strictly worse than one that orders strategically. addresses a stated negative result in Dynamic Treatment on Networks.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06552v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Sequential Design of Genetic Circuits Under Uncertainty With Reinforcement Learning: Exploring such semi-amortized strategies is an interesting avenue for future work. addresses a stated future work in Sequential Design of Genetic Circuits Under Uncertainty With Reinforcement Learning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06552v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Sequential Design of Genetic Circuits Under Uncertainty With Reinforcement Learning: Handling potential model mismatch robustly is therefore an important future direction, particularly in biological... addresses a stated future work in Sequential Design of Genetic Circuits Under Uncertainty With Reinforcement Learning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06660v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Verifier-Backed Hard Problem Generation for Mathematical Reasoning: Across hard-verifier integration and soft-verifier general math, VHG checks validity before interpreting solver failure as difficu... addresses a stated failure mode in Verifier-Backed Hard Problem Generation for Mathematical Reasoning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06660v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Verifier-Backed Hard Problem Generation for Mathematical Reasoning: The main limitation of VHG is that its guarantees are only as strong as the verifier backend. addresses a stated limitation in Verifier-Backed Hard Problem Generation for Mathematical Reasoning.",
+    "reasons": [
+      "No verified concrete public code, data, or benchmark URL found.",
+      "Specific intervention is generic rather than operational."
+    ]
+  },
+  {
+    "paper_id": "2605.06654v1",
+    "candidate_problem": "Test whether Design a paper-specific ablation around this stated gap in Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less: We will be interested in scaling up our experiments and exploring more optimizers for future work. addresses a stated future work in Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretraining Forgets Less.",
+    "reasons": [
+      "Specific intervention is generic rather than operational."
+    ]
+  }
+]

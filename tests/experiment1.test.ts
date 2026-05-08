@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import {
   applyHardRejectionGates,
+  extractConcreteResourceUrls,
   extractEvidenceSentences,
   extractSectionsFromHtml,
   parseArxivFeed,
@@ -108,6 +109,11 @@ describe("applyHardRejectionGates", () => {
       metric: "",
       paper_status: "active",
       code_or_data_status: "not_found",
+      paper_status_sources: [],
+      paper_status_evidence: [],
+      code_or_data_urls: [],
+      code_or_data_sources: [],
+      code_or_data_evidence: [],
       time_budget_hours: 96,
       impact_type: "health",
       story_angle: "",
@@ -152,6 +158,11 @@ describe("applyHardRejectionGates", () => {
       metric: "accuracy",
       paper_status: "active",
       code_or_data_status: "claimed",
+      paper_status_sources: [],
+      paper_status_evidence: [],
+      code_or_data_urls: [],
+      code_or_data_sources: [],
+      code_or_data_evidence: [],
       time_budget_hours: 48,
       impact_type: "science",
       story_angle: "This is not a real gap.",
@@ -198,6 +209,11 @@ describe("applyHardRejectionGates", () => {
       metric: "accuracy",
       paper_status: "active",
       code_or_data_status: "claimed",
+      paper_status_sources: [],
+      paper_status_evidence: [],
+      code_or_data_urls: [],
+      code_or_data_sources: [],
+      code_or_data_evidence: [],
       time_budget_hours: 48,
       impact_type: "science",
       story_angle: "This is a human-validation follow-up rather than a compute-only experiment.",
@@ -207,5 +223,114 @@ describe("applyHardRejectionGates", () => {
 
     const reasons = applyHardRejectionGates(candidate, paperText);
     expect(reasons.join(" ").toLowerCase()).toContain("human participants");
+  });
+
+  it("rejects claimed code/data without a verified concrete URL", () => {
+    const paperText: PaperText = {
+      paper_id: "2605.11111v1",
+      source: "abstract",
+      sections: {
+        introduction: "",
+        discussion: "",
+        limitations: "",
+        future_work: "",
+        conclusion: "",
+        appendix: "",
+        raw_text: "Future work should evaluate adaptive retrieval. A public benchmark is mentioned.",
+      },
+      full_text: "Future work should evaluate adaptive retrieval. A public benchmark is mentioned.",
+    };
+
+    const candidate: RawCandidate = {
+      paper_id: "2605.11111v1",
+      candidate_problem: "Evaluate adaptive retrieval against the reported baseline.",
+      evidence_spans: ["Future work should evaluate adaptive retrieval.", "A public benchmark is mentioned."],
+      problem_evidence_spans: ["Future work should evaluate adaptive retrieval."],
+      feasibility_evidence_spans: ["A public benchmark is mentioned."],
+      evidence_role: "future_work",
+      why_hidden_or_underexploited: "The span is explicit future work.",
+      auto_research_experiment: "Reproduce the reported baseline, add adaptive retrieval, and compare accuracy.",
+      available_data_or_benchmark: "Public benchmark mentioned.",
+      expected_metric: "Accuracy delta versus baseline.",
+      specific_intervention: "Evaluate adaptive retrieval in the reported setup.",
+      baseline: "The reported baseline.",
+      metric: "accuracy",
+      paper_status: "active",
+      code_or_data_status: "claimed",
+      paper_status_sources: [],
+      paper_status_evidence: [],
+      code_or_data_urls: [],
+      code_or_data_sources: [],
+      code_or_data_evidence: [],
+      time_budget_hours: 48,
+      impact_type: "science",
+      story_angle: "A bounded public benchmark comparison.",
+      disqualifiers: [],
+      confidence: 0.7,
+    };
+
+    const reasons = applyHardRejectionGates(candidate, paperText);
+    expect(reasons.join(" ").toLowerCase()).toContain("verified concrete public code");
+  });
+
+  it("rejects externally withdrawn papers", () => {
+    const paperText: PaperText = {
+      paper_id: "2605.22222v1",
+      source: "abstract",
+      sections: {
+        introduction: "",
+        discussion: "",
+        limitations: "",
+        future_work: "",
+        conclusion: "",
+        appendix: "",
+        raw_text: "Future work should evaluate adaptive retrieval. GitHub repository: https://github.com/example/repo",
+      },
+      full_text: "Future work should evaluate adaptive retrieval. GitHub repository: https://github.com/example/repo",
+    };
+
+    const candidate: RawCandidate = {
+      paper_id: "2605.22222v1",
+      candidate_problem: "Evaluate adaptive retrieval against the reported baseline.",
+      evidence_spans: [
+        "Future work should evaluate adaptive retrieval.",
+        "GitHub repository: https://github.com/example/repo",
+      ],
+      problem_evidence_spans: ["Future work should evaluate adaptive retrieval."],
+      feasibility_evidence_spans: ["GitHub repository: https://github.com/example/repo"],
+      evidence_role: "future_work",
+      why_hidden_or_underexploited: "The span is explicit future work.",
+      auto_research_experiment: "Reproduce the reported baseline, add adaptive retrieval, and compare accuracy.",
+      available_data_or_benchmark: "Verified repository.",
+      expected_metric: "Accuracy delta versus baseline.",
+      specific_intervention: "Evaluate adaptive retrieval in the reported setup.",
+      baseline: "The reported baseline.",
+      metric: "accuracy",
+      paper_status: "withdrawn",
+      code_or_data_status: "found",
+      paper_status_sources: ["https://openreview.net/forum?id=test"],
+      paper_status_evidence: ["venue: withdrawn submission"],
+      code_or_data_urls: ["https://github.com/example/repo"],
+      code_or_data_sources: ["https://github.com/example/repo"],
+      code_or_data_evidence: ["Verified reachable public code/data/benchmark URL: https://github.com/example/repo"],
+      time_budget_hours: 48,
+      impact_type: "science",
+      story_angle: "A bounded public benchmark comparison.",
+      disqualifiers: [],
+      confidence: 0.7,
+    };
+
+    const reasons = applyHardRejectionGates(candidate, paperText);
+    expect(reasons.join(" ").toLowerCase()).toContain("withdrawn");
+  });
+});
+
+describe("extractConcreteResourceUrls", () => {
+  it("extracts and canonicalizes public code/data URLs", () => {
+    const urls = extractConcreteResourceUrls(
+      "Code: https://github.com/example/repo/tree/main and data https://huggingface.co/datasets/org/data.",
+    );
+    expect(urls).toContain("https://github.com/example/repo");
+    expect(urls).toContain("https://huggingface.co/datasets/org/data");
   });
 });

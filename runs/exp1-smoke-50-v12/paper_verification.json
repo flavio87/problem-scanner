@@ -1,0 +1,669 @@
+[
+  {
+    "paper_id": "2605.06628v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/UT-SysML/liveaction",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/UT-SysML/liveaction",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/UT-SysML/liveaction",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/timm/eva_giant_patch14_224.clip_ft_in1k",
+      "Verified reachable public code/data/benchmark URL: https://www.image-net.org/"
+    ]
+  },
+  {
+    "paper_id": "2605.06612v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06644v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06592v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://www.cs.toronto.edu/~kriz/cifar.html",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://www.cs.toronto.edu/~kriz/cifar.html",
+      "https://www.image-net.org/"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://www.cs.toronto.edu/~kriz/cifar.html",
+      "Verified reachable public code/data/benchmark URL: https://www.image-net.org/"
+    ]
+  },
+  {
+    "paper_id": "2605.06652v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/finnschwall/simpleaudit",
+      "https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/kelkalot/simpleaudit",
+      "https://github.com/meridianlabs-ai/inspect_petri",
+      "https://github.com/mozilla-ai/any-llm",
+      "https://github.com/safety-research/petri",
+      "https://huggingface.co/HauhauCS",
+      "https://huggingface.co/unsloth"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/finnschwall/simpleaudit_neurips2026_analysis",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ggml-org/llama.cpp",
+      "Verified reachable public code/data/benchmark URL: https://github.com/kelkalot/simpleaudit",
+      "Verified reachable public code/data/benchmark URL: https://github.com/meridianlabs-ai/inspect_petri",
+      "Verified reachable public code/data/benchmark URL: https://github.com/mozilla-ai/any-llm",
+      "Verified reachable public code/data/benchmark URL: https://github.com/safety-research/petri",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/HauhauCS",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/unsloth"
+    ]
+  },
+  {
+    "paper_id": "2605.06588v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06576v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/GXG-CS/GRL-Safety",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/GXG-CS/GRL-Safety",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/GXG-CS/GRL-Safety",
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06575v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/victordaniel/gono-optimizer",
+      "https://www.cs.toronto.edu/~kriz/cifar.html"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/victordaniel/gono-optimizer",
+      "https://www.cs.toronto.edu/~kriz/cifar.html"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/victordaniel/gono-optimizer",
+      "Verified reachable public code/data/benchmark URL: https://www.cs.toronto.edu/~kriz/cifar.html"
+    ]
+  },
+  {
+    "paper_id": "2605.06667v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06646v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/ip200/ivar-experiments",
+      "https://github.com/ip200/venn-abers"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/ivar-experiments",
+      "Verified reachable public code/data/benchmark URL: https://github.com/ip200/venn-abers"
+    ]
+  },
+  {
+    "paper_id": "2605.06643v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/lihongzhao99/MMDG_Benchmark",
+      "https://github.com/open-mmlab/mmaction2",
+      "https://github.com/facebookresearch/DomainBed"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/lihongzhao99/MMDG_Benchmark",
+      "https://github.com/open-mmlab/mmaction2",
+      "https://github.com/facebookresearch/DomainBed"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/lihongzhao99/MMDG_Benchmark",
+      "Verified reachable public code/data/benchmark URL: https://github.com/open-mmlab/mmaction2",
+      "Verified reachable public code/data/benchmark URL: https://github.com/facebookresearch/DomainBed"
+    ]
+  },
+  {
+    "paper_id": "2605.06596v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/jyqhahah/FLForensics"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/jyqhahah/FLForensics"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/jyqhahah/FLForensics"
+    ]
+  },
+  {
+    "paper_id": "2605.06585v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/stellatogrp/dro_pep"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/stellatogrp/dro_pep"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML",
+      "Verified reachable public code/data/benchmark URL: https://github.com/stellatogrp/dro_pep"
+    ]
+  },
+  {
+    "paper_id": "2605.06570v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [],
+    "code_or_data_sources": [],
+    "code_or_data_evidence": []
+  },
+  {
+    "paper_id": "2605.06647v1",
+    "paper_status": "active",
+    "paper_status_sources": [
+      "https://openreview.net/forum?id=CzzeLatTnI"
+    ],
+    "paper_status_evidence": [
+      "SuperIntelligent Retrieval Agent: The Next Frontier of Information Retrieval | ICLR 2026 Workshop MemAgents Poster | ICLR.cc/2026/Workshop/MemAgent"
+    ],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06632v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://github.com/arXiv/html_feedback",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/Roudranil/shakespearean-and-modern-english-conversational-dataset"
+    ]
+  },
+  {
+    "paper_id": "2605.06627v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_sources": [
+      "https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "https://huggingface.co/datasets/loubb/aria-midi"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PERiScoPe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/SyMuPe/PianoCoRe",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/loubb/aria-midi"
+    ]
+  },
+  {
+    "paper_id": "2605.06597v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06557v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/mariacardei/coordination_aware_MARL"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/mariacardei/coordination_aware_MARL"
+    ]
+  },
+  {
+    "paper_id": "2605.06523v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_sources": [
+      "https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/Jackrong/Llama3.1-8B-Thinking-R1"
+    ]
+  },
+  {
+    "paper_id": "2605.06615v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/Dingzhen230/SignSGD_Outperforms_SGD",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/epfml/llm-optimizer-benchmark",
+      "https://github.com/jxbz/signSGD",
+      "https://github.com/karpathy/nanoGPT"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/Dingzhen230/SignSGD_Outperforms_SGD",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/epfml/llm-optimizer-benchmark",
+      "https://github.com/jxbz/signSGD",
+      "https://github.com/karpathy/nanoGPT"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/Dingzhen230/SignSGD_Outperforms_SGD",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/epfml/llm-optimizer-benchmark",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/jxbz/signSGD",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/karpathy/nanoGPT"
+    ]
+  },
+  {
+    "paper_id": "2605.06610v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/St0pien/SoftSAE",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/St0pien/SoftSAE",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/St0pien/SoftSAE",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06608v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06599v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06591v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/lucidrains/x-transformers"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/lucidrains/x-transformers"
+    ]
+  },
+  {
+    "paper_id": "2605.06571v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06564v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06552v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/MichalKobiela/GeneCircuitsRL",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/MichalKobiela/GeneCircuitsRL",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/MichalKobiela/GeneCircuitsRL",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06660v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "claimed",
+    "code_or_data_urls": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_sources": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "code_or_data_evidence": [
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/arXiv/html_feedback",
+      "Concrete URL found but not verified reachable during smoke run: https://github.com/brucemiller/LaTeXML"
+    ]
+  },
+  {
+    "paper_id": "2605.06654v1",
+    "paper_status": "active",
+    "paper_status_sources": [],
+    "paper_status_evidence": [],
+    "code_or_data_status": "found",
+    "code_or_data_urls": [
+      "https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "https://huggingface.co/meta-llama/Llama-2-7b-hf"
+    ],
+    "code_or_data_sources": [
+      "https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "https://huggingface.co/meta-llama/Llama-2-7b-hf"
+    ],
+    "code_or_data_evidence": [
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/ise-uiuc/Magicoder-OSS-Instruct-75K",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/datasets/tatsu-lab/alpaca",
+      "Verified reachable public code/data/benchmark URL: https://huggingface.co/meta-llama/Llama-2-7b-hf"
+    ]
+  }
+]
