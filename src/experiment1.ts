@@ -3057,7 +3057,7 @@ export function parseCliArgs(argv: string[]): ExperimentConfig {
     target_max: toPositiveInt(parsed.values.targetMax as string | undefined, 120, "targetMax"),
     abstract_top_k: toPositiveInt(parsed.values.abstractTopK as string | undefined, 40, "abstractTopK"),
     candidate_per_paper: toPositiveInt(parsed.values.candidatePerPaper as string | undefined, 2, "candidatePerPaper"),
-    verifier_top_k: toPositiveInt(parsed.values.verifierTopK as string | undefined, 30, "verifierTopK"),
+    verifier_top_k: toNonNegativeInt(parsed.values.verifierTopK as string | undefined, 30, "verifierTopK"),
     max_evidence_spans: toPositiveInt(parsed.values.maxEvidenceSpans as string | undefined, 4, "maxEvidenceSpans"),
     max_candidates_output: toPositiveInt(parsed.values.maxCandidatesOutput as string | undefined, 20, "maxCandidatesOutput"),
     output_dir: outputDir,

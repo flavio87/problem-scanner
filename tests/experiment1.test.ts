@@ -495,6 +495,12 @@ describe("parseCliArgs", () => {
     expect(config.arxiv_source).toBe("recent-html");
   });
 
+  it("allows verifierTopK zero to skip verifier calls", () => {
+    const config = parseCliArgs(["--mode", "heuristic", "--verifierTopK", "0"]);
+
+    expect(config.verifier_top_k).toBe(0);
+  });
+
   it("parses LLM concurrency, output-token, and retry controls", () => {
     const config = parseCliArgs([
       "--mode",
